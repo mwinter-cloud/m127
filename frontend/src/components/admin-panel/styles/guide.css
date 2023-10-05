@@ -1,0 +1,311 @@
+.guide-section {
+	margin-top: 30px;
+	display: flex;
+}
+.guide-section aside {
+	width: 30%;
+}
+.guide-section aside h2 {
+	font-size: 3em;
+}
+.guide-section aside ul {
+	border-left: 1px solid rgba(255,255,255,.1);
+}
+.guide-section aside ul li {
+	font-size: .9em;
+	margin-bottom: 5px;
+	cursor: pointer;
+	padding: 8px 50px 8px 20px;
+	margin-bottom: 5px;
+	position: relative;
+}
+.guide-section aside ul li .activeline {
+	height: 100%;
+	width: 4px;
+	background: #8eee59;
+	position: absolute;
+	left: -2px;
+	top: 0;
+}
+.guide-section aside ul li:hover {
+	color: white;
+}
+
+.guide-section aside ul .active:hover {
+	color: inherit;
+}
+/*  материалы руководства  */
+
+.guide-section .guide-main {
+	width: 70%;
+	padding: 0 0 30px 3%;
+}
+
+.guide-main .guide-header {
+	height: 240px;
+	width: 100%;
+	background: var(--GC);
+	background-size: cover;
+	border-radius: 3px;
+	text-align: center;
+	padding: 60px 20%;
+}
+
+.guide-main .guide-header h2 {
+	color: white;
+	font-weight: 400;
+	font-size: .9em;
+	background: rgba(36, 37, 41, 0.3);
+    padding: 3px 8px;
+	display: inline-block;
+	border-radius: 3px;
+}
+
+.guide-main .guide-title {
+	margin: 20px 0;
+	display: flex;
+}
+.guide-main .guide-title h3 {
+	font-size: 2em;
+	font-weight: 500;
+	margin: 0;
+}
+.guide-main .guide-title ul {
+	margin: 0 40px;
+}
+.guide-main .guide-title ul li {
+	margin-bottom: 3px;
+	font-size: .85em;
+	color: #888;
+	cursor: pointer;
+	user-select: none;
+}
+.guide-main .guide-title ul li:hover {
+	color: white;
+}
+.guide-card {
+	background: rgb(36,37,41,.9);
+	padding: 20px 10px 20px 20px;
+	border-radius: 3px;
+	margin-bottom: 50px;
+}
+
+.guide-card .content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.guide-card h4 {
+	font-weight: 400;
+	font-size: 1em;
+	margin: 0;
+}
+
+.guide-card .content .text {
+    width: 68%;
+}
+
+.guide-card .content .text p {
+	color: #8f8f91;
+	font-size: .9em;
+    line-height: 1.35em;
+}
+
+/* illustration block */
+.guide-card .illustrations {
+    width: 28%;
+	max-height: 290px;
+	overflow-y: auto;
+	padding: 5px 10px;
+	background: rgb(50, 51, 56);
+	border: 1px solid #43454c;
+    border-radius: 2px;
+	scrollbar-width: none;
+}
+
+.guide-card .illustrations::-webkit-scrollbar {
+    width: 5px;
+	background: transparent;
+}
+
+.guide-card .illustrations::-webkit-scrollbar-thumb {
+	border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.guide-card .illustrations .illustration {
+	cursor: pointer;
+}
+
+.guide-card .illustrations p {
+    font-size: .85em;
+	color: #8f8f91;
+    margin: 0 0 8px 0;
+}
+.guide-card .illustrations .illustration img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+	margin-top: 5px;
+}
+
+/* image page */
+.illustration-page {
+    position: relative;
+    padding: 30px;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    display: flex;
+}
+.illustration-page .col1 {
+    width: 25vw;
+    height: 100%;
+}
+.illustration-page .col1 i {
+	cursor: pointer;
+}
+.illustration-page .col2 {
+    height: 100%;
+    width: 75vw;
+    position: relative;
+}
+.illustration-page .article-name {
+    font-size: 1.8em;
+    font-weight: 400;
+    writing-mode: tb-rl;
+	margin: 5px;
+}
+.illustration-page .col1 i {
+    font-size: 2.3em;
+    margin-bottom: 30px;
+}
+.illustration-page .description {
+    padding: 30px 0;
+    height: 12vh;
+}
+.illustration-page .illustration-image {
+    max-width: 100%;
+    max-height: 70vh;
+    display: block;
+    object-fit: cover;
+	margin-top: 20px;
+}
+
+/* поиск в руководстве */
+.guide-main .search-block {
+	position: relative;
+	width: 100%;
+	margin: 30px 0;
+}
+.guide-main .search-block input {
+	border: 0;
+	background: #fff;
+	padding: 3px 3px 3px 5px;
+	border-radius: 3px;
+	width: 100%;
+	color: black;
+	outline: #fff solid 2px;
+}
+.guide-main .search-block .search-btn {
+	background: #fff;
+	border: 0;
+	position: absolute;
+	right: 2px;
+	top: 0;
+	height: 100%;
+	width: 25px;
+	font-size: 1em;
+	color: #000;
+	cursor: pointer;
+	padding: 1px;
+}
+
+@media (max-width: 800px) {
+	.guide-section {
+		margin-top: 0;
+		display: block;
+	}
+	.guide-section aside {
+		width: 100%;
+		position: fixed;
+		background: rgba(36, 37, 41, 0.9);
+		overflow-y: hidden;
+		z-index: 1;
+		top: 60px;
+		padding: 10px;
+	}
+	.guide-section aside ul {
+		display: flex;
+		flex-wrap: wrap;
+		width: 210%;
+		border-left: 0;
+	}
+	.guide-section aside ul:nth-child(3n) {
+		flex-basis: 100%;
+		height: 0;
+	}
+	.guide-section aside ul li {
+		margin: 0 0 10px 0;
+		padding: 5px 15px;
+	}
+	.guide-section .guide-main {
+		width: 100%;
+		padding: 100px 0 0 0;
+	}
+	.guide-main .guide-title {
+		display: block;
+	}
+	.guide-main .guide-title ul {
+		margin: 10px 0;
+	}
+	.guide-card {
+		display: block;
+		margin-bottom: 20px;
+		padding: 10px 3%;
+	}
+	.guide-card .content {
+		display: block;
+	}
+	.guide-card .content .text {
+		width: 100%;
+	}
+	.guide-card .illustrations {
+		width: 100%;
+		margin-top: 10px;
+	}
+	.guide-card .big-simple-btn {
+		width: 100%;
+		margin-top: 25px;
+		padding: 8px 15px;
+		text-align: center;
+	}
+	.illustration-page {
+		display: block;
+		padding: 20px 3%;
+	}
+	.illustration-page .col1 {
+		width: 100%;
+		display: flex;
+		height: auto;
+	}
+	.illustration-page .article-name {
+		writing-mode: lr;
+		font-size: .9em;
+	}
+	.illustration-page .col1 i {
+		font-size: 1.1em;
+		margin-top: 5px;
+	}
+	.illustration-page .col2 {
+		width: 100%;
+	}
+	.illustration-page .description {
+		height: auto;
+		padding: 10px 0;
+	}
+	.illustration-page .illustration-image {
+		width: 100%;
+		height: auto;
+	}
+}

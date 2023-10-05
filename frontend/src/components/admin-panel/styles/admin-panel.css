@@ -1,0 +1,492 @@
+/* header */
+.admin-page-header {
+	height: 80px;
+	padding: 20px 3%;
+	display: flex;
+	justify-content: space-between;
+	z-index: 1;
+    position: relative;
+    background: #1a1b20;
+}
+
+.admin-page-header .moderation-title {
+	display: flex;
+}
+
+.admin-page-header .moderation-title h1{
+	font-size: 1em;
+	margin: 12px 0;
+	color: inherit;
+	font-weight: 500;
+}
+
+.admin-page-header .moderation-title img {
+	height: 40px;
+	width: 40px;
+	object-fit: cover;
+	border-radius: 6px;
+	margin-right: 15px;
+}
+
+.admin-page-header ul {
+	display: flex;
+	list-style: none;
+	font-size: .85em;
+	margin: 5px 0;
+}
+
+.admin-page-header ul li {
+	margin-left: 45px;
+	display: inline-block;
+	padding: 7px 0;
+    cursor: pointer;
+	user-select: none;
+}
+
+.admin-page-header ul li:hover {
+	color: white;
+}
+
+.admin-page-header ul .active {
+	background: rgb(0,201,255);
+	background: linear-gradient(90deg, rgba(0,201,255,1) 0%, rgba(146,254,157,1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+	font-weight: 500;
+}
+
+.admin-page-header ul .guide-link {
+	background: rgb(0,201,255);
+	background: linear-gradient(90deg, rgba(0,201,255,1) 0%, rgba(146,254,157,1) 100%);
+	border-radius: 24px;
+	padding: 7px 15px;
+	cursor: pointer;
+	color: white;
+	height: 28px;
+	text-transform: uppercase;
+	font-size: .8em;
+	margin-left: 70px;
+}
+
+/* content */
+
+main {
+	position: relative;
+}
+
+.settings-container {
+	padding: 100px 10%;
+}
+
+.big-container {
+	padding: 40px 3%;
+}
+
+/*---------- настройки сайта в админ-панели ----------*/
+
+.moderation-card .form-group {
+	border-bottom: 1px solid rgba(255, 255, 255, .1);
+}
+
+.admin-panel-form footer {
+	width: 100%;
+	padding-top: 30px;
+}
+.admin-panel-form .send-btn:hover {
+	border: 0;
+	background: #535358;
+}
+
+/* форма определения цветной полосы в шапке */
+
+.header-colorline-example .colorline-input-block {
+	width: 80%;
+	position: relative;
+}
+
+.header-colorline-example .colorline-input-block .colorline {
+	width: 100%;
+	height: 8px;
+	bottom: -6px;
+	position: absolute;
+	right: 0;
+	border-radius: 3px;
+	display: none;
+}
+
+.header-colorline-example .colorline-input-block:hover .colorline {
+	display: block;
+}
+
+.header-colorline-example .colorline-input-block input {
+	width: 100%;
+}
+
+/* форма выбора цвета */
+
+.color-inputs {
+	display: flex;
+	flex-wrap: wrap;
+}
+.color-inputs .colorInputWrapper {
+	width: 80px;
+	height: 80px;
+	position: relative;
+	margin-right: 15px;
+}
+
+.admin-panel-form .colorInputWrapper label {
+	font-size: .8em;
+	margin: 3px;
+    color: white;
+}
+
+.admin-panel-form .colorInputWrapper input {
+	font-family: inherit;
+    color: white;
+    background: #8f8f91;
+    width: 100%;
+    border: 0;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+	padding: 3px;
+}
+
+.admin-panel-form .colorInputWrapper input:focus {
+	outline: 0;
+	border: 0;
+}
+
+.admin-panel-form .colorInputWrapper input::placeholder {
+	color: inherit;
+}
+
+.color-list {
+	display: flex;
+	margin: 30px 0 20px 0;
+}
+.color-list div {
+	height: 24px;
+	width: 24px;
+	margin-right: 10px;
+}
+
+/* search block */
+.updates-section .search-block {
+	position: relative;
+	width: 30%;
+	margin: 30px 0;
+}
+.updates-section .search-block input {
+	border: 0;
+	background: #2b2c31;
+	padding: 3px 30px 3px 10px;
+	border-radius: 3px;
+	width: 100%;
+	outline: #2b2c31 solid 2px;
+}
+.updates-section .search-block button {
+	background: #409eff;
+	border: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+	height: 100%;
+	width: 25px;
+	border-radius: 3px;
+	color: white;
+	cursor: pointer;
+}
+.cite-settings-banner {
+	background: url(https://sun9-80.userapi.com/impg/77RMA1jmxQMQnqEdP5cLpTNJZl3zA4DScXf_lA/jftLiHPia2o.jpg?size=2560x1920&quality=95&sign=72d380b98b3380c8677f97824666a506&type=album);
+	background-size: cover;
+	width: 100%;
+	height: 210px;
+	position: fixed;
+	z-index: 0;
+	top: 0;
+}
+
+.moderation-card {
+	background: rgb(36,37,41,.9);
+	padding: 40px 50px;
+	position: relative;
+	border-radius: 3px;
+	z-index: 1;
+}
+
+.moderation-card h2 {
+	font-size: 1.2em;
+	margin: 0;
+	font-weight: 500;
+}
+
+.moderation-card h2 i {
+	font-size: 2.0em;
+	margin-right: 10px;
+	vertical-align: middle;
+	margin-top: -5px;
+	color: #fff;
+}
+.moderation-card .card-menu {
+	display: flex;
+	list-style: none;
+	margin: 20px 0 0 0;
+	font-size: .9em;
+	border-bottom: 1px solid rgba(255, 255, 255, .1);
+	padding: 16px 0;
+}
+.moderation-card .card-menu li {
+	margin-right: 20px;
+	position: relative;
+	cursor: pointer;
+	user-select: none;
+}
+.card-menu li:hover {
+	color: white;
+}
+.moderation-card .card-menu .active {
+	background: rgb(0,201,255);
+	background: linear-gradient(90deg, rgba(0,201,255,1) 0%, rgba(146,254,157,1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+	font-weight: 500;
+}
+.moderation-card .card-menu li .line {
+	background: rgb(0,201,255);
+	background: linear-gradient(90deg, rgba(0,201,255,1) 0%, rgba(146,254,157,1) 100%);
+	height: 2px;
+	width: 100%;
+	border-radius: 4px;
+	position: absolute;
+	bottom: -16px;
+}
+/* форма редактирования смайлов */
+
+.smiles-edit-block {
+	background: rgba(36, 37, 41, 0.9);
+	padding: 40px 50px;
+	position: relative;
+	border-radius: 3px;
+	z-index: 1;
+	margin-top: 30px;
+}
+
+.smiles-edit-block h2 {
+	font-size: 1.2em;
+    margin: 0;
+    font-weight: 500;
+	margin-bottom: 30px;
+}
+.smiles-edit-block h2 i {
+    font-size: 2em;
+    margin-right: 10px;
+    vertical-align: middle;
+    margin-top: -5px;
+    color: #fff;
+}
+
+.smiles-edit-block .addSmileInputWrapper {
+	width: 38%;
+	margin: 0;
+}
+.smiles-edit-block label {
+	width: 100%;
+	margin-bottom: 10px;
+	margin-top: 3px;
+	display: inline-block;
+	margin-right: 10px;
+	font-size: .85em;
+	color: #888;
+}
+.smiles-edit-block .addSmileInputWrapper {
+	margin: 15px 0 0 0;
+}
+.smiles-edit-block .addSmileInputWrapper input {
+	margin-top: 0;
+	height: 24px;
+	padding: 3px 10px;
+	width: 50%;
+	cursor: pointer;
+}
+.addSmileInputWrapper .file-img {
+	height: 28px;
+	width: 28px;
+	margin: 0;
+	object-fit: cover;
+}
+.smiles-edit-block .inputWrapper input {
+	border: 0;
+	font-family: inherit;
+	margin-top: 0;
+	border-radius: 3px;
+    padding: 4px 8px;
+    font-size: 13px;
+    background: #2b2c31;
+    display: inline-block;
+    color: #8f8f91;
+}
+.addSmileInputWrapper button {
+	background: transparent;
+	border: 0;
+	padding: 0;
+}
+.addSmileInputWrapper button:focus {
+	outline: 0;
+}
+.smiles-edit-block .send-file {
+	font-size: 1.6em;
+}
+.smiles-edit-block .added-smiles {
+	width: 100%;
+	padding: 20px 0;
+	display: flex;
+	flex-wrap: wrap;
+	margin-top: 15px;
+}
+.smiles-edit-block .added-smiles .smile-edit-block {
+	display: flex;
+	margin-bottom: 15px;
+	width: auto;
+	padding: 0;
+	margin-right: 18px;
+}
+.smiles-edit-block .added-smiles .smile-edit-block img {
+	height: 28px;
+	width: 28px;
+	object-fit: contain;
+	margin-right: 8px;
+}
+.smiles-edit-block .added-smiles .smile-edit-block .text-btn {
+	margin-top: 6px;
+	font-size: 1em;
+    color: #8f8f91;
+	cursor: pointer;
+}
+.smiles-edit-block .added-smiles .smile-edit-block .text-btn:hover {
+    color: #bdbdc2;
+}
+
+@media (max-width: 800px) {
+	.admin-page-header {
+		width: 100%;
+		z-index: 2;
+		position: fixed;
+		padding: 0;
+		height: 65px;
+	}
+	.admin-page-header .moderation-title {
+		padding: 12px 3%;
+	}
+
+	.open-menu-btn {
+		border: 1px solid rgba(171, 205, 239, 0.05);
+		background: linear-gradient(0deg, rgba(171, 205, 239, 0.0769083) 0%, rgba(171, 205, 239, 0.0396534) 99%);
+		padding: 2px 5px;
+		border-radius: 3px;
+		display: inline-block;
+		font-size: 1.2em;
+		margin: 16px 3%;
+		height: 30px;
+		width: 30px;
+	}
+
+	.mobile-menu {
+		position: fixed;
+		background: rgba(36, 37, 41, 0.9);
+		top: 65px;
+		display: block!important;
+		padding: 20px 3%;
+		margin: 0!important;
+		width: 100%;
+	}
+
+	.mobile-menu li {
+		margin-left: 0!important;
+		margin-bottom: 10px;
+		margin-right: 20px;
+		font-size: 1.1em;
+	}
+
+	.admin-page-header ul .guide-link {
+		margin-left: 0!important;
+	}
+
+	.settings-container {
+		padding: 90px 3%;
+	}
+	.moderation-card {
+		padding: 30px 5%;
+	}
+
+	.header-colorline-example .colorline-input-block input {
+		width: 100%;
+	}
+
+	.color-inputs {
+		justify-content: space-between;
+	}
+
+	.color-inputs .colorInputWrapper {
+		margin-bottom: 8px;
+		width: 48%;
+		height: 100px;
+		margin-right: 0!important;
+	}
+
+	.illustration-input-block {
+		margin-left: 0!important;
+	}
+	.moderators-section {
+		display: block;
+		padding: 90px 3% 30px 3%!important;
+	}
+	.moderators-section aside h2 {
+		font-size: 2em!important;
+	}
+	.moderators-section aside {
+		width: 100%!important;
+	}
+	.moderators-section .moderator-list {
+		width: 100%!important;
+		padding: 0!important;
+	}
+	.admin-list li h3 {
+		font-size: .95em;
+	}
+	.reports-section {
+		display: block;
+		padding: 90px 3% 30px 3%!important;
+	}
+	.big-container {
+		padding: 90px 3% 30px 3%;
+	}
+	.updates-card ul .note {
+		flex-wrap: wrap;
+		margin-bottom: 0;
+	}
+	.updates-card ul li .type {
+		width: 10%!important;
+	}
+	.updates-card ul li .title {
+		width: 90%!important;
+	}
+	.updates-card ul li .rating {
+		width: 100%!important;
+		margin-top: 5px;
+	}
+	.updates-card ul li .author {
+		width: 100%!important;
+		margin-top: 10px;
+	}
+	.workplan-page .updates-card ul li .period {
+		width: 100%!important;
+		margin-top: 10px;
+	}
+	.updates-card ul li .datetime {
+		width: 100% !important;
+		margin-top: 10px;
+	}
+}
+

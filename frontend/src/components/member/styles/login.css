@@ -1,0 +1,39 @@
+.login-page .banner {
+    object-fit: cover;
+    border-radius: 3px 3px 0 0;
+    display: block;
+    width: 50%;
+    height: 210px;
+    margin-left: 25%;
+    margin-top: 20px;
+    position: relative;
+    background: var(--LP);
+    background-size: cover;
+}
+.login-page h1 {
+    font-size: 1.2em;
+    position: relative;
+    writing-mode: horizontal-tb;
+    left: 0;
+    top: 0;
+}
+.login-page .registration-window {
+    margin: 0 25% 50px 25%;
+    width: 50%;
+    border-radius: 0 0 3px 3px;
+}
+
+
+@media (max-width: 800px) {
+    .login-page {
+        padding: 10px;
+    }
+    .login-page .banner {
+        width: 100%;
+        margin: 0;
+    }
+    .registration-page .registration-window {
+        width: 100%;
+        margin: 0;
+    }
+}

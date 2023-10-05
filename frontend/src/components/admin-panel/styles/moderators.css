@@ -1,0 +1,127 @@
+.moderators-section aside {
+	width: 30%;
+}
+.moderators-section aside h2 {
+	font-size: 3em;
+	font-weight: 600;
+	margin: 0 0 30px 0;
+}
+.moderators-section aside ul li {
+	font-size: .9em;
+	margin-bottom: 5px;
+	cursor: pointer;
+}
+.moderators-section aside ul li:hover {
+	color: white;
+	text-decoration: underline;
+}
+.moderators-section aside .add-moderator-btn {
+	padding: 10px 10px;
+	border: 1px solid rgba(255, 255, 255, 0.05);
+	background: linear-gradient(0deg, rgba(171, 205, 239, 0.0769083) 0%, rgba(171, 205, 239, 0.0396534) 99%);
+	font-size: .95em;
+	margin: 50px 0 20px 0;
+	border-radius: 3px;
+	cursor: pointer;
+}
+
+.added-moderator-card {
+	border-radius: 3px;
+	border: 1px solid rgba(255, 255, 255, 0.05);
+	background: linear-gradient(0deg, rgba(171, 205, 239, 0.0769083) 0%, rgba(171, 205, 239, 0.0396534) 99%);
+	padding: 10px;
+	margin-bottom: 6px;
+}
+.moderators-section aside .added-moderator-card .text-btn {
+	font-size: 13px;
+}
+
+.added-moderator-card .btns {
+	font-size: .85em;
+	margin-top: 10px;
+	user-select: none;
+}
+
+.added-moderator-card .cancel {
+	margin-left: 8px;
+	color: #8f8f91;
+	cursor: pointer;
+	user-select: none;
+}
+
+.transparent-input-wrapper {
+	position: relative;
+}
+
+.transparent-input-wrapper input {
+	background: transparent;
+	padding-left: 25px;
+	border: 0;
+	width: 100%;
+	color: inherit;
+	font-size: .95em;
+}
+
+.transparent-input-wrapper input::placeholder {
+	color: #c2c2c4;
+}
+.moderators-section aside p {
+	font-size: .9em;
+}
+
+.transparent-input-wrapper i {
+	position: absolute;
+	font-size: 1.1em;
+	margin-top: 4px;
+}
+
+/*  список модераторов */
+.moderators-section .moderator-list {
+	width: 70%;
+	padding: 0 0 30px 3%;
+}
+
+.admin-list li {
+	display: flex;
+	vertical-align: middle;
+	width: 100%;
+	margin-bottom: 15px;
+	position: relative;
+}
+.admin-list li h3 {
+	font-weight: 500;
+	margin: 7px 25px 7px 10px;
+	width: 85%;
+	cursor: pointer;
+	position: relative;
+}
+.admin-list .admin-key {
+	margin-right: 5px;
+	color: #f9dd66;
+	display: block;
+	float: left;
+}
+.admin-list .admin-key:hover::after {
+    content: attr(data-title);
+    position: absolute;
+    left: 0;
+    top: -30px;
+    background: rgba(0,0,0,.5);
+    color: #8f8f91;
+    font-size: 13px;
+    padding: 5px;
+	font-family: inherit;
+    z-index: 1;
+    display: inline-block;
+}
+.admin-list li .simple-btn {
+	display: inline-block;
+	background: #2b2c31;
+    border-radius: 3px;
+    padding: 5px 8px;
+	height: 28px;
+	cursor: pointer;
+}
+.admin-list li .simple-btn:hover {
+	color: white;
+}

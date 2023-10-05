@@ -1,0 +1,11 @@
+.full-screen-window {
+    width: 100vw;
+    height: 100vh;
+    background: #1a1b20;
+    z-index: 5;
+    padding: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+}

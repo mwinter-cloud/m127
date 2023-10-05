@@ -1,0 +1,17 @@
+.comments-field .smile-block {
+    width: 100%;
+    left: 0;
+    height: 100px;
+    position: absolute;
+    bottom: 50px;
+    border: 1px solid rgba(171, 205, 239, 0.2);
+    background: rgba(26, 27, 32, 0.95);
+    border-radius: 2px;
+    padding: 5px!important;
+}
+.comments-field .smile-block ul {
+    display: flex;
+}
+.smile-block .smile {
+    cursor: pointer;
+}

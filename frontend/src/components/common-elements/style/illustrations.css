@@ -1,0 +1,58 @@
+body {
+    --GC: "";
+    --L: "";
+    --DC: "";
+    --DA: "";
+    --IN: "";
+    --EP: "";
+    --AP: "";
+    --LP: "";
+    --RP: "";
+}
+
+.illustration-input-block {
+    margin-left: 20%;
+    border-radius: 3px;
+    display: block;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+.L-img {
+    height: 32px;
+    width: 32px;
+}
+.GC-img {
+    height: 120px;
+    width: 300px;
+}
+.DC-img {
+    height: 120px;
+    width: 300px;
+}
+.DA-img {
+    height: 90px;
+    width: 90px;
+    border-radius: 50%!important;
+}
+.EP-img {
+    height: 90px;
+    width: 90px;
+    object-fit: cover;
+}
+.AP-img {
+    height: 90px;
+    width: 90px;
+}
+.IN-img {
+    height: 120px;
+    width: 210px;
+}
+.LP-img {
+    height: 120px;
+    width: 300px;
+}
+.RP-img {
+    height: 120px;
+    width: 300px;
+}

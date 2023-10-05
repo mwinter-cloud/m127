@@ -1,0 +1,117 @@
+.updates-card {
+	background: rgb(36,37,41,.9);
+	padding: 20px 0 5px 0;
+	position: relative;
+	border-radius: 3px;
+	position: relative;
+}
+.updates-card .add-note-btn {
+	border: 0;
+	background: rgb(247,178,67);
+	background: linear-gradient(90deg, rgba(247,178,67,1) 0%, rgba(255,124,96,1) 100%);
+	border-radius: 0 3px 0 8px;
+	padding: 3px 8px;
+	color: white;
+	font-size: .8em;
+	cursor: pointer;
+	user-select: none;
+	font-weight: 500;
+	font-family: inherit;
+	position: absolute;
+	right: 0;
+	top: 0;
+	display: inline-block;
+}
+.updates-card ul .note {
+	display: flex;
+	font-size: .9em;
+	padding: 7px 20px;
+	cursor: pointer;
+}
+.updates-card ul .note:hover {
+	background: #3c3a3ab0;
+}
+.updates-card ul .active {
+	background: #3c3a3ab0;
+}
+.updates-card ul .description {
+	border-top: 1px solid #383838;
+	border-bottom: 1px solid #383838;
+	font-size: 13px;
+	padding: 5px 20px 20px 20px;
+}
+.updates-card ul .description .btns .btn {
+	display: inline-block;
+	color: #8f8f91;
+	margin-right: 15px;
+	user-select: none;
+}
+.updates-card ul .description .btns .btn:hover {
+	cursor: pointer;
+	color: inherit;
+}
+.updates-card ul li .type {
+	width: 3%;
+	font-size: 1.15em;
+    color: #8f8f91;
+}
+.updates-card ul li .title {
+	width: 70%;
+    font-size: 0.9em;
+}
+.updates-card ul li .author {
+	width: 14%;
+    color: #8f8f91;
+	font-size: .9em;
+}
+.updates-card ul li .author:hover {
+	color: inherit;
+}
+.updates-card ul li .datetime {
+	width: 10%;
+    color: #8f8f91;
+	font-size: .9em;
+}
+
+.updates-card ul li .period {
+	width: 15%;
+    color: #8f8f91;
+	font-size: .9em;
+}
+
+.workplan-page .updates-card ul li .period {
+	width: 23%;
+}
+
+.updates-card ul li .rating {
+	width: 10%;
+    color: #8f8f91;
+	font-size: 1.2em;
+	display: flex;
+}
+
+.updates-card ul li .rating i {
+	padding: 0 1px;
+	cursor: pointer;
+}
+.updates-card ul li .rating i:hover {
+	color: white;
+}
+.updates-card ul li .rating .active-icon {
+	color: white;
+}
+.updates-card ul li .rating .result {
+	font-size: .8em;
+	margin-left: 4px;
+}
+/* forms */
+.updates-section .simple-form textarea {
+	height: 100px;
+}
+
+/* header */
+.updates-section h2 {
+	font-size: 2.5em;
+	font-weight: 500;
+	margin: 0 0 40px 0;
+}

@@ -1,0 +1,40 @@
+/* в редакторе */
+.redactor-design-win .colors-list {
+    display: flex;
+}
+.redactor-design-win .color-el {
+	margin: 2px 3px;
+    height: 28px;
+    width: 28px;
+	cursor: pointer;
+    border-radius: 50%;
+}
+.color-select-block .selected-color {
+    font-size: 13px;
+    padding: 4px 20px;
+}
+.color-select-block .open-palette-btn {
+    font-size: 13px;
+}
+.simple-form .redactor-design-win {
+    width: 96%;
+    left: 2%;
+    height: 50px;
+    position: absolute;
+    top: 0;
+    padding: 9px 10px;
+}
+.simple-form .redactor-design-win .color-el {
+    width: 24px;
+    height: 24px;
+}
+.simple-form .redactor-design-win li {
+    margin-right: 6px!important;
+}
+.form-window .color-select-win {
+    width: 80%;
+    left: 20%;
+    top: -11vh;
+    z-index: 2;
+    height: 10vh;
+}

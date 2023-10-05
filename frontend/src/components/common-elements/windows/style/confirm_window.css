@@ -1,0 +1,47 @@
+.confirm-window {
+    width: 36%;
+    margin-left: 32%!important;
+    background: #2b2c31;
+    position: fixed;
+    height: auto;
+    z-index: 5;
+    padding: 20px!important;
+    top: 25vh;
+    left: 0;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.confirm-window .btns {
+    display: flex;
+    margin: 15px 0 0 0!important;
+}
+.confirm-window .btn {
+    cursor: pointer;
+    font-size: 14px;
+    user-select: none;
+}
+.confirm-window .confirm-btn {
+    padding-right: 15px;
+    margin-right: 5px;
+}
+.confirm-window .btn:hover {
+    text-decoration: underline;
+}
+
+.confirm-window p {
+    margin: 0 0 10px 0 !important;
+    font-size: 15px !important;
+}
+
+.confirm-window .close-btn {
+    color: #8f8f91;
+}
+
+
+@media (max-width: 800px) {
+    .confirm-window {
+        width: 90%;
+        margin-left: 5%!important;
+    }
+}

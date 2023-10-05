@@ -1,0 +1,64 @@
+.small-window {
+    width: 56%;
+    margin-left: 22%;
+    background: #1a1b20;
+    position: relative;
+    height: auto;
+    z-index: 4;
+    padding: 10px 1%;
+    margin-top: 6vh;
+    margin-bottom: 5vh;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.small-window .small-window-header {
+    padding: 10px 1vw;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    background: transparent;
+    border: 0;
+}
+
+.small-window header i {
+    font-size: 17px;
+    margin-right: 10px;
+    cursor: pointer;
+    margin-top: 0;
+}
+
+.small-window header h4 {
+    font-weight: 400;
+    font-size: 15px;
+    margin: 0;
+    color: inherit;
+}
+
+.small-window main {
+    padding: 20px 1vw 20px 1vw;
+}
+.small-window .transparent-btn {
+    left: 50%;
+    transform: translate(-50%, 0);
+    position: relative;
+}
+.small-window h3 {
+    font-weight: 400;
+    margin: 0 0 20px 0;
+    font-size: 14px;
+}
+.small-window h3 i {
+    color: #888;
+}
+
+@media (max-width: 800px) {
+    .small-window {
+        width: 94%;
+        margin: 3%;
+        min-height: 96vh;
+    }
+    .small-window main {
+        padding: 20px 2vw;
+    }
+}

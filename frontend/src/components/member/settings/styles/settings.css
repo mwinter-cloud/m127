@@ -1,0 +1,130 @@
+.settings-page {
+    padding: 20px 25% 30px 3%;
+    font-size: .9em;
+}
+.settings-page h1 {
+    font-size: 10em;
+    color: inherit;
+    margin: 0;
+    font-weight: 500;
+}
+
+.settings-page .settings-flex {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+}
+.settings-page .settings-flex .menu {
+	width: 28%;
+}
+.settings-page .settings-flex .form-field {
+	width: 65%;
+}
+.settings-page .settings-flex .menu ul {
+	margin: 0;
+	list-style: none;
+	display: block;
+	font-size: 1.1em;
+	padding: 30px 0 0 15%;
+}
+.settings-page .settings-flex .menu ul li {
+	width: 100%;
+    cursor: pointer;
+	margin-bottom: 10px;
+}
+.settings-page .settings-flex .menu ul .active {
+    color: #6b99ad;
+}
+.settings-page .settings-flex .col1 ul li:hover {
+	cursor: pointer;
+	text-decoration: underline;
+	color: #6495ED;
+	user-select: none;
+}
+.settings-page .simple-form .form-group {
+    padding: 0;
+}
+.settings-page .simple-form .inputWrapper {
+    margin: 35px 0;
+}
+.settings-page .simple-form .inputWrapper label {
+    width: 18%;
+}
+.settings-page .form-field .form-group h3 {
+    font-weight: 400;
+    margin: 10px 0 30px 0;
+    font-size: 1em;
+}
+.settings-page .form-field .post-textarea {
+    width: 80%;
+    background: #2b2c31;
+    border-radius: 3px;
+    padding: 8px 10px;
+    border: 0;
+    color: #8f8f91;
+    resize: none;
+    height: 200px;
+    font-family: inherit;
+}
+.settings-page .form-field .send-btn {
+    background: linear-gradient(158deg, rgba(171, 249, 251, 0.6) 0%, rgba(150, 227, 243, 0.6) 34%, rgba(141, 206, 235, 0.7) 62%, rgba(131, 185, 229, 0.8) 72%);
+    display: inline-block;
+    border-radius: 3px;
+    padding: 5px 12px;
+    color: black;
+    font-size: .9em;
+    margin: 20px auto;
+}
+
+
+@media (max-width: 800px) {
+    .settings-page {
+        padding: 20px 3%;
+    }
+
+    .settings-page h1 {
+        font-size: 4em;
+    }
+
+    .settings-page .settings-flex {
+        display: block;
+    }
+
+    .settings-page .settings-flex .menu ul {
+        display: flex;
+        padding: 10px 0 0 0;
+    }
+
+    .settings-page .form-field .form-group h3 {
+        margin: 10px 0 15px 0;
+    }
+
+    .settings-page .settings-flex .menu ul li {
+        margin-right: 10px;
+    }
+
+    .settings-page .settings-flex .form-field {
+        width: 100%;
+    }
+
+    .settings-page .cover-img {
+        width: 100%;
+        height: 120px;
+    }
+
+    .post_image-img {
+        max-width: 80%;
+    }
+
+    .settings-page .form-field .send-btn {
+        border-radius: 3px;
+        padding: 10px 8px;
+        font-size: .9em;
+        width: 100%;
+        font-family: inherit;
+    }
+
+    .settings-page .form-field .post-textarea {
+        width: 100%;
+    }
+}

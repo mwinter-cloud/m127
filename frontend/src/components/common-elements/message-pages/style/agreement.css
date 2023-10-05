@@ -1,0 +1,57 @@
+.agreement-page {
+    padding: 20px 25% 20px 3%;
+}
+.agreement-page .main-agreement-header {
+    display: flex;
+    width: 100%;
+}
+.agreement-page .main-agreement-header .citename {
+    color: var(--SC);
+}
+.agreement-page .main-agreement-header h3 {
+    margin: 6px;
+    font-weight: 400;
+    font-size: .95em;
+}
+.agreement-page .main-agreement-header i {
+    margin: 8px 0;
+    font-size: 1em;
+    color: #888;
+}
+.agreement-page main {
+    font-size: .9em;
+    line-height: 1.35em;
+}
+.agreement-page main h1 {
+    font-weight: 500;
+    margin-top: 50px;
+    font-size: 1.6em;
+}
+.agreement-page main .rules-content {
+    margin-bottom: 50px;
+}
+.agreement-page main .info-block {
+    background: #26272c;
+    border-radius: 3px;
+    padding: 15px;
+    margin-top: 10px;
+}
+.agreement-page main .info-block h3 {
+    font-weight: 400;
+    font-size: 1em;
+    margin: 0;
+    user-select: none;
+}
+.agreement-page main .info-block h3 i {
+    font-size: 1.1em;
+    margin-right: 5px;
+    color: #888;
+}
+.agreement-page main .info-block header {
+    cursor: pointer;
+}
+.agreement-page main .info-block-content {
+    border-top: 1px solid rgba(255,255,255,.05);
+    padding: 15px 0 5px 0;
+    margin-top: 10px;
+}

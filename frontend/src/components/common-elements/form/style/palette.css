@@ -1,0 +1,70 @@
+.color-select-block {
+    display: flex;
+}
+.color-select-block .selected-color {
+	height: 28px;
+	width: auto;
+	padding: 3px 10px;
+	border-radius: 2px;
+	margin-right: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.color-select-block .open-palette-btn{
+	padding: 6px 12px;
+	border: 1px solid rgba(171,205,239,.2);
+	border-radius: 2px;
+	color: #8f8f91;
+	font-size: .85em;
+	width: auto;
+    height: 28px;
+	position: relative;
+	user-select: none;
+	cursor: pointer;
+}
+
+.color-select-block .color-select-win {
+	width: 100%;
+	left: 0;
+	height: 11vh;
+	position: absolute;
+	top: -12vh;
+	border: 1px solid rgba(171,205,239,.2);
+	background: rgba(26,27,32,.95);
+	border-radius: 3px;
+    padding: 10px;
+    justify-content: space-between;
+}
+.color-select-block .color-select-win ul {
+    display: flex;
+    flex-wrap: wrap;
+
+}
+.color-select-block .color-select-win .selected-design {
+    margin: 2px 3px;
+    height: 21px;
+    width: 21px;
+	cursor: pointer;
+}
+.color-select-block .color-select-win .color-el {
+	margin: 2px 3px;
+    height: 21px;
+    width: 21px;
+	cursor: pointer;
+}
+
+@media (max-width: 800px) {
+	.color-select-block .open-palette-btn {
+		height: 30px;
+		width: 50%;
+	}
+
+	.color-select-block .selected-color {
+		width: 50%;
+		height: 30px;
+	}
+
+	.color-select-block .color-select-win {
+		height: auto;
+		min-height: 40px;
+	}
+}

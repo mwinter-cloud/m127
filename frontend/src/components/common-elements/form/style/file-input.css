@@ -1,0 +1,155 @@
+.simple-form .fileInputWrapper label {
+    align-items: normal;
+}
+.file-input-block-wrapper {
+    width: 80%;
+}
+.file-input-block {
+	overflow-y: hidden;
+	height: 25px;
+    position: relative;
+    width: 125px;
+    margin-bottom: 15px;
+}
+.file-input-block:focus {
+    outline: 0;
+}
+.file-input-block input {
+    padding-bottom: 30px !important;
+    top: 0;
+    position: absolute !important;
+    background: transparent !important;
+    width: 100% !important;
+    z-index: 2!important;
+    opacity: 0;
+}
+.file-input {
+    display: inline-block;
+    position: absolute !important;
+    bottom: 0;
+    z-index: 1;
+    border: 1px solid rgba(171, 205, 239, 0.2);
+    border-radius: 2px;
+    font-size: .95em;
+    margin: -10px 0 0 0 !important;
+    color: rgba(0,0,0,.8);
+    padding: 5px 10px !important;
+    cursor: pointer;
+}
+.file-input-block:focus{
+    outline: 0;
+}
+.simple-file-input span{
+    margin-right: 5px;
+    font-size: 1.05em;
+}
+.simple-file-input:hover {
+    border: 1px solid #42aef7;
+    transition: .3s;
+    color: #42aef7;
+    cursor: pointer;
+}
+
+.inputWrapper .file-input {
+	border-radius: 3px;
+	border: 0;
+	margin-top: 20px;
+	padding: 4px 8px;
+	font-size: 13px;
+	background: #2b2c31;
+	display: inline-block;
+    color: #8f8f91;
+	cursor: pointer;
+}
+
+.avatar-file-input {
+    border: 1px dashed #8c939d;
+    color: #8c939d;
+    border-radius: 50%;
+    height: 120px;
+    width: 120px;
+    font-size: .95em;
+    margin: 0;
+}
+
+/* превью */
+.logo-img {
+    height: 32px;
+    width: 32px;
+    object-fit: cover;
+}
+
+.invite-img {
+    height: 120px;
+    width: 210px;
+    object-fit: cover;
+}
+
+.avatar-img {
+    height: 90px;
+    width: 90px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.background-img {
+    height: 120px;
+    width: 300px;
+    object-fit: cover;
+}
+
+.helloPage-img {
+    height: 90px;
+    width: 90px;
+    object-fit: cover;
+}
+
+.walkPage-img {
+    height: 90px;
+    width: 90px;
+    object-fit: cover;
+}
+
+.illustration-img {
+    height: 120px;
+    width: 210px;
+    object-fit: cover;
+}
+
+.post_image-img {
+    max-width: 40%;
+    max-height: 100px;
+    object-fit: contain;
+    margin-bottom: 5px;
+    margin-top: 15px;
+}
+
+.smile-img {
+    height: 28px;
+    width: 28px;
+    object-fit: cover;
+}
+
+.cover-img {
+    width: 40%;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 3px;
+    margin-bottom: 5px;
+    margin-top: 15px;
+}
+.file-img {
+    width: 40%;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 3px;
+    margin-bottom: 5px;
+    margin-top: 15px;
+}
+.settings-page .form-field .avatar-img {
+    width: 120px;
+    height: 120px;
+}
+.dropzone-img[src=""] {
+   display: none;
+}

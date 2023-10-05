@@ -1,0 +1,157 @@
+@font-face {
+    font-family: d8;
+    src: url(../../../../static/frontend/fonts/d8.ttf);
+}
+@font-face {
+    font-family: Chava;
+    src: url(../../../../static/frontend/fonts/chava.ttf);
+}
+* {
+	box-sizing: border-box;
+}
+body {
+	background: #1a1b20;
+	margin: 0;
+	font-family: 'Montserrat', sans-serif;
+	color: #c2c2c4;
+}
+
+h1 {
+	font-size: 1.8em;
+}
+
+.hide {
+	display: none!important;
+}
+
+ul {
+	list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.flex {
+	display: flex;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+a:focus {
+	outline: 0;
+}
+
+input {
+	font-family: inherit;
+	color: inherit;
+}
+input:focus {
+	outline: 0;
+}
+button:focus {
+	outline: 0;
+}
+.member-card {
+	display: flex;
+}
+.member-card h3 {
+	margin: 10px 10px;
+	font-size: 1em;
+	font-weight: 500;
+}
+.container {
+    width: 100%;
+    padding: 0 15%;
+}
+.transparent-btn {
+	width: auto;
+    display: inline-block;
+    font-size: 13px;
+    padding: 5px 8px;
+    font-weight: 400;
+    border-radius: 3px;
+	cursor: pointer;
+    margin-top: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: linear-gradient(0deg, rgba(171, 205, 239, 0.0769083) 0%, rgba(171, 205, 239, 0.0396534) 99%);
+}
+.transparent-btn:hover {
+	color: rgba(255, 255, 255, .6);
+	border: 1px solid rgba(255, 255, 255, .1);
+}
+.add-btn {
+	padding: 6px 15px;
+    font-size: .85em;
+    height: auto;
+    display: inline-block;
+    margin-top: 0;
+    border-radius: 3px;
+    margin-left: 0;
+    color: #8f8f91;
+    background: #2b2c31;
+    cursor: pointer;
+	user-select: none;
+}
+
+.loading-icon {
+	font-size: 1.5em;
+	margin: 20px;
+}
+
+.active-text {
+	color: rgba(255,255,255,.7)!important;
+}
+
+.right-align {
+	text-align: right;
+}
+
+.pale-text {
+	color: #888;
+}
+
+.underline-hover {
+	user-select: none;
+}
+
+.underline-hover:hover {
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.simple-button {
+	background: #2b2c31;
+    padding: 4px 6px;
+    border-radius: 3px;
+    margin-right: 8px;
+    font-size: 13px;
+    margin-bottom: 8px;
+    display: block;
+    color: #8f8f91;
+}
+
+/* базовые изображения */
+.avatar {
+	height: 36px;
+	width: 36px;
+	object-fit: cover;
+	border-radius: 50%;
+}
+
+.small-logo {
+    height: 30px;
+}
+
+.logo-img {
+    height: 64px;
+}
+
+.smile {
+    height: 26px;
+    width: 26px;
+    object-fit: contain;
+	margin: 0 5px;
+	user-select: none;
+	vertical-align: middle;
+}

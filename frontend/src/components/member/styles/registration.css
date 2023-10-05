@@ -1,0 +1,43 @@
+.registration-page {
+	padding: 0;
+	position: relative;
+}
+.registration-page .banner {
+	margin-top: 0;
+	object-fit: cover;
+	border-radius: 0;
+	display: block;
+	width: 100%;
+	height: 210px;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	background: var(--RP);
+	background-size: cover;
+}
+.registration-page h1 {
+	font-size: 2.5em;
+	font-weight: 400;
+	margin: 0;
+	color: rgb(194, 194, 196);
+	position: absolute;
+	writing-mode: tb-rl;
+	left: -10%;
+	top: 10px;
+	z-index: 2;
+}
+.registration-page .registration-window {
+	padding: 50px 3%;
+	background: #26272c;
+	width: 60%;
+	margin: 150px 20% 50px 20%;
+	z-index: 2;
+	position: relative;
+	border-radius: 3px;
+}
+
+.registration-window .send-btn:hover {
+    background-image: linear-gradient(to right, #f78ca0 0%, #f9748f 19%, #fd868c 60%, #fe9a8b 100%);
+    color: white;
+    cursor: pointer;
+}

@@ -1,0 +1,230 @@
+body {
+	margin: 0;
+	color: #c2c2c4;
+	font-family: 'Montserrat', sans-serif;
+	background: #1a1b20;
+	position: relative;
+	overflow-x: hidden;
+}
+* {
+	box-sizing: border-box;
+}
+.hide {
+    display: none!important;
+}
+.auth-header {
+	width: 100%;
+	height: 200px;
+	margin-top: 20px;
+	object-fit: cover;
+	border-radius: 4px 4px 0 0;
+	display: block;
+}
+.auth h3 {
+	margin: 0px 0 20px 0;
+	font-weight: 500;
+}
+.auth .settings-form {
+	padding: 20px 5%;
+	background: #26272c;
+	margin: 0;
+	border-radius: 0 0 4px 4px;
+}
+.auth .settings-form p {
+	font-size: .9em;
+	margin: 0px 0 30px 0;
+	color: #8f8f91;
+}
+.auth .settings-form .send-btn {
+	background: #333438;
+	color: #c2c2c4;
+	display: inline-block;
+	border-radius: 4px;
+	padding: 7px 10px;
+	font-size: .9em;
+	border: 0;
+	cursor: pointer;
+}
+.auth .settings-form .send-btn:focus {
+    outline: 0;
+}
+.sm-container {
+	padding: 20px 28% 100px 28%;
+	position: relative;
+}
+.settings-form {
+	margin: 60px 0;
+	width: 100%;
+}
+.settings-form .inputWrapper {
+	display: flex;
+	margin-bottom: 30px;
+	position: relative;
+	width: 100%;
+}
+.full-label-form .inputWrapper {
+    display: block;
+}
+.full-label-form .inputWrapper label {
+    width: 100%!important;
+    margin-bottom: 10px;
+}
+.settings-form .inputWrapper label {
+	display: block;
+	width: 20%;
+	font-size: .9em;
+	position: relative;
+	padding-top: 8px;
+}
+.settings-form .inputWrapper label span {
+	position: absolute;
+	bottom: 5px;
+}
+.settings-form .inputWrapper input {
+	width: 100%;
+	background: #2b2c31;
+	border-radius: 4px;
+	padding: 8px 10px;
+	color: #8f8f91;
+	border: 0;
+}
+.settings-form .inputWrapper input:focus {
+	outline: 0;
+	border: 0;
+  	color: rgba(255,255,255,.7);
+}
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  border: 0;
+  -webkit-text-fill-color: #8f8f91;
+  -webkit-box-shadow: 0 0 0px 1000px #2b2c31 inset;
+  transition: background-color 5000s ease-in-out 0s;
+	outline: 0;
+}
+.settings-form .inputWrapper .file-input {
+	background: transparent;
+	border-radius: 4px;
+	padding: 0;
+	border: 0;
+	margin-top: 20px;
+	padding: 4px 8px;
+	font-size: .85em;
+	background: #2b2c31;
+	display: inline-block;
+}
+.settings-form .inputWrapper .inputBlock {
+	width: 100%;
+	border-radius: 4px;
+	padding: 6px 10px;
+	border: 0;
+	position: relative;
+	padding: 0 !important;
+}
+.settings-form .inputWrapper .inputBlock:focus {
+	outline: 0;
+	border: 0;
+}
+.settings-form .inputWrapper .avatar-prev {
+	display: flex;
+}
+.settings-form .inputWrapper .avatar-prev .big-avatar {
+	height: 140px;
+	width: 140px;
+	object-fit: cover;
+	border-radius: 50%;
+	margin-right: 20px;
+}
+.settings-form .inputWrapper .avatar-prev .middle-avatar {
+	height: 50px;
+	width: 50px;
+	object-fit: cover;
+	border-radius: 50%;
+	margin-top: 80px;
+	margin-right: 15px;
+}
+.settings-form .inputWrapper .avatar-prev .sm-avatar {
+	height: 20px;
+	width: 20px;
+	border-radius: 50%;
+	object-fit: cover;
+	display: none;
+}
+.settings-form footer{
+	margin-top: 60px;
+	text-align: center;
+}
+.text-btn {
+	color: white;
+	font-size: .9em;
+}
+.auth-header {
+	width: 100%;
+	height: 200px;
+	margin-top: 20px;
+	object-fit: cover;
+	border-radius: 4px 4px 0 0;
+	display: block;
+}
+.auth h3 {
+	margin: 0px 0 20px 0;
+	font-weight: 500;
+}
+.auth .settings-form {
+	padding: 20px 5%;
+	background: #26272c;
+	margin: 0;
+	border-radius: 0 0 4px 4px;
+}
+.auth .settings-form p {
+	font-size: .9em;
+	margin: 0px 0 30px 0;
+	color: #8f8f91;
+}
+.auth .settings-form .send-btn {
+	background: #333438;
+	color: #c2c2c4;
+	display: inline-block;
+	border-radius: 4px;
+	padding: 7px 10px;
+	font-size: .9em;
+	border: 0;
+	position: relative;
+	left: 50%;
+	transform: translate(-50%, 0);
+	margin-top: 20px;
+}
+.light-text {
+	color: #c2c2c4 !important;
+}
+.django-form label {
+    width: 30%!important;
+    padding-top: 5px!important;
+}
+.django-form input {
+    height: 30px!important;
+}
+.django-form .alert {
+    font-size: .9em;
+}
+@media (max-width: 800px) {
+    * {
+        -webkit-tap-highlight-color: transparent;
+    }
+    .sm-container {
+        padding: 0;
+    }
+    .auth-header {
+        margin-top: 0;
+    }
+    .settings-form .inputWrapper {
+        display: block;
+    }
+    .settings-form .inputWrapper label {
+        margin-bottom: 10px;
+    }
+    .auth .settings-form .send-btn {
+        font-size: 1em;
+        padding: 10px 20px;
+    }
+}

@@ -1,0 +1,26 @@
+.profile-create-page .settings-form {
+    margin: 0;
+}
+
+.profile-create-page h2 {
+    font-size: 1.2em;
+    margin: 0;
+    font-weight: 500;
+}
+
+.profile-create-page h2 i {
+    font-size: 1.05em;
+    margin-right: 0;
+}
+
+.profile-create-page p {
+    font-size: .9em;
+    margin: 20px 0;
+    color: #888;
+}
+
+.profile-create-page .send-btn:hover {
+    background-image: linear-gradient(to right, #f78ca0 0%, #f9748f 19%, #fd868c 60%, #fe9a8b 100%);
+    color: white;
+    cursor: pointer;
+}

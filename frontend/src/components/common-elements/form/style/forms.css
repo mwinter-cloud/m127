@@ -1,0 +1,265 @@
+/* самая базовая форма */
+.simple-form {
+	position: relative;
+}
+.simple-form .send-btn {
+    background: #333438;
+    color: rgba(255, 255, 255, 0.5);
+    display: inline-block;
+    border-radius: 3px;
+    padding: 8px 18px;
+	font-family: inherit;
+    font-size: 13px;
+    border: 0;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+    margin-top: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+	user-select: none;
+}
+
+.simple-form .send-btn:focus {
+	outline: 0;
+}
+
+.simple-form .form-group {
+	margin: 10px 0;
+	padding: 10px 0;
+	position: relative;
+}
+
+.simple-form .form-group h3 {
+	font-size: 1.1em;
+	font-weight: 500;
+}
+
+.simple-form .form-group p {
+	font-size: .85em;
+    color: #8f8f91;
+	margin: 5px 0;
+}
+
+.simple-form .form-group .ref {
+	font-size: .8em;
+    color: #8f8f91;
+	bottom: 15px;
+	position: absolute;
+	display: block;
+}
+
+.simple-form .inputWrapper {
+	display: flex;
+	margin: 25px 0;
+	position: relative;
+}
+.simple-form .inputWrapper label {
+	font-size: 13px;
+	display: block;
+	width: 20%;
+	padding: 5px 3% 0 0;
+    align-items: center;
+}
+
+.simple-form .inputWrapper input {
+	border: 0;
+	background: #2b2c31;
+	width: 80%;
+    border-radius: 3px;
+    padding: 8px 10px;
+    color: #8f8f91;
+	height: 30px;
+}
+.simple-form .fullInputWrapper input {
+	width: 100%!important;
+}
+.simple-form .inputWrapper input:focus {
+	outline: 0;
+	border: 0;
+	color: #c2c2c4;
+}
+
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  border: 0;
+  -webkit-text-fill-color: #8f8f91;
+  -webkit-box-shadow: 0 0 0px 1000px #2b2c31 inset;
+  transition: background-color 5000s ease-in-out 0s;
+	outline: 0;
+}
+
+.simple-form textarea {
+	width: 80%;
+	background: #2b2c31;
+	border-radius: 4px;
+	padding: 8px 10px;
+	border: 0;
+	color: #8f8f91;
+	resize: none;
+    height: 140px;
+    font-family: inherit;
+	scrollbar-width: none;
+}
+
+.simple-form textarea::-webkit-scrollbar {
+    width: 5px;
+	background: transparent;
+}
+
+.simple-form textarea::-webkit-scrollbar-thumb {
+	border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.simple-form textarea:focus {
+	outline: 0;
+	border: 0;
+  	color: inherit;
+}
+
+.simple-form p {
+	font-size: 13px;
+	color: #888;
+	margin: 15px 0;
+}
+
+.simple-form .room-list header {
+	border-top: 0!important;
+}
+
+.simple-btn {
+	background: #333438;
+	color: #8f8f91;
+	display: inline-block;
+	border-radius: 3px;
+	padding: 6px 10px;
+	font-size: .8em;
+	font-family: inherit;
+	border: 0;
+	position: relative;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	cursor: pointer;
+}
+.simple-btn:focus {
+    outline: 0;
+}
+
+.big-simple-btn {
+	background: #333438;
+	color: #8f8f91;
+	display: inline-block;
+	border-radius: 3px;
+	padding: 10px 30px;
+	font-size: .85em;
+	font-family: inherit;
+	border: 0;
+	position: relative;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	cursor: pointer;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+.big-simple-btn:focus {
+    outline: 0;
+}
+
+.text-btn {
+	color: #888;
+	font-size: .85em;
+	cursor: pointer;
+	margin: 10px 0;
+}
+.text-btn i {
+	font-size: 1.1em;
+}
+.text-btn:hover {
+	color: inherit;
+}
+
+.simple-form .error-block {
+	background: transparent;
+	margin-bottom: 30px;
+	font-size: .9em;
+}
+.simple-form .error-block p {
+	border-left: 2px solid #42AAFF;
+	padding: 3px 10px;
+	margin: 0;
+}
+.simple-form .error-block p:first-child {
+	padding-top: 5px;
+}
+.simple-form .error-block p:last-child {
+	padding-bottom: 5px;
+}
+.settings-line {
+    width: 100%;
+    height: 1px;
+    background: #2b2c31;
+    margin: 20px 0;
+}
+.form-window .error-block {
+	font-size: .9em;
+	color: #8f8f91;
+}
+.simple-form h5 {
+	font-size: 13px;
+	font-weight: 400;
+    margin: 30px 0;
+}
+/* список для выбора */
+.simple-form .form-list {
+	color: #888;
+	font-size: .85em;
+}
+.simple-form .form-list li {
+	margin-bottom: 8px;
+    border-radius: 3px;
+    padding: 5px 8px;
+	cursor: pointer;
+	color: #8f8f91;
+}
+.simple-form .form-list .active {
+    background: #2b2c31;
+}
+
+
+@media (max-width: 800px) {
+	.inputWrapper {
+		display: block !important;
+		margin-bottom: 25px !important;
+	}
+
+	.inputWrapper label {
+		width: 100% !important;
+		margin-bottom: 10px !important;
+		font-size: 13px !important;
+	}
+
+	.inputWrapper label span {
+		position: relative !important;
+	}
+
+	.simple-form .inputWrapper input {
+		width: 100%;
+		height: auto;
+		font-size: 15px !important;
+	}
+
+	.settings-page .form-field .post-textarea {
+		width: 100%;
+	}
+
+	.simple-form .send-btn {
+		width: 100%;
+		padding: 10px 0;
+		font-size: 14px;
+	}
+	.simple-form textarea {
+		width: 100%;
+	}
+}
