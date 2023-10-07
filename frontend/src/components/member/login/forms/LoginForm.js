@@ -2,7 +2,7 @@ import React from 'react'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import CSRFToken from "../../../common-elements/form/CSRFToken"
-import {useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom"
 
 const LoginForm = (props) => {
 	const navigation = useNavigate()
@@ -20,11 +20,14 @@ const LoginForm = (props) => {
         validateOnChange: false,
         onSubmit: (values, {setStatus, setErrors}) => {
             const set_member = (data) => {props.set_member(data)}
+            const formData = new FormData(document.getElementById('login_form'))
             $.ajax({
                 type: 'post',
                 url: '/api/signin',
                 cache: false,
-                data: values,
+                data: formData,
+                processData: false,
+                contentType: false,
                 success: function (res) {
                     set_member(res)
                     window.location.replace('/')
@@ -38,7 +41,7 @@ const LoginForm = (props) => {
         },
     })
     return (
-        <form className="simple-form" onSubmit={formik.handleSubmit}>
+        <form className="simple-form" onSubmit={formik.handleSubmit} id="login_form">
             <div className="error-block">
                 {formik.errors.username ? <p>{formik.errors.username}</p> : null}
                 {formik.errors.password ? <p>{formik.errors.password}</p> : null}

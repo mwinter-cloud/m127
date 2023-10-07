@@ -4,15 +4,11 @@ import Header from "../elements/Header"
 import SpecialRoomList from "../elements/SpecialRoomList"
 import ToAdmin from "../elements/ToAdmin"
 import LinkList from "../elements/LinkList"
-import Cover from "../elements/Cover";
+import Cover from "../elements/Cover"
 
 class InfoPage extends Component {
     constructor(props) {
         super(props)
-    }
-
-    componentDidMount() {
-        console.log(this.props)
     }
 
     render() {

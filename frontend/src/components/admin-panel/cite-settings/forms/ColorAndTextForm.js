@@ -3,7 +3,6 @@ import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import CSRFToken from "../../../common-elements/form/CSRFToken"
 import { Navigate } from "react-router-dom"
-import axios from "axios"
 import TextareaWrapper from "../../../common-elements/form/elements/wrappers/TextareaWrapper"
 
 const ColorAndTextForm = (props) => {
@@ -16,44 +15,44 @@ const ColorAndTextForm = (props) => {
             CT: "",
         },
         validationSchema: Yup.object({
-            OS: Yup.string()
-                .max(150, ''),
+            SO: Yup.string()
+                .max(150, 'Код для цвета выбранного варианта ответа в опросе не должен превышать 150 символов.'),
             VB: Yup.string()
-                .max(150, ''),
+                .max(150, 'Код для цвета кнопки в опросе не должен превышать 150 символов.'),
             EMC: Yup.string()
-                .max(150, ''),
+                .max(150, 'Код для цветной полосы ранним утром не должен превышать 150 символов.'),
             MC: Yup.string()
-                .max(150, ''),
+                .max(150, 'Код для цветной полосы утром не должен превышать 150 символов.'),
             DAC: Yup.string()
-                .max(150, ''),
+                .max(150, 'Код для цветной полосы ранним днём не должен превышать 150 символов.'),
             EC: Yup.string()
-                .max(150, ''),
+                .max(150, 'Код для цветной полосы ранним вечером не должен превышать 150 символов.'),
             AN: Yup.string()
-                .max(150, ''),
+                .max(150, 'Текст объявления не должен превышать 150 символов.'),
             red: Yup.string()
-                .max(150, ''),
+                .max(150, 'Код для красного цвета не должен превышать 150 символов.'),
             orange: Yup.string()
-                .max(150, ''),
+                .max(150, 'Код для оранжевого цвета не должен превышать 150 символов.'),
             green: Yup.string()
-                .max(150, ''),
+                .max(150, 'Код для зелёного цвета не должен превышать 150 символов.'),
             d_blue: Yup.string()
-                .max(150, ''),
+                .max(150, 'Код для тёмно-синего цвета не должен превышать 150 символов.'),
             blue: Yup.string()
-                .max(150, ''),
+                .max(150, 'Код для синего цвета не должен превышать 150 символов.'),
             yellow: Yup.string()
-                .max(150, ''),
+                .max(150, 'Код для жёлтого цвета не должен превышать 150 символов.'),
             pink: Yup.string()
-                .max(150, ''),
+                .max(150, 'Код для розового цвета не должен превышать 150 символов.'),
             cherry: Yup.string()
-                .max(150, ''),
+                .max(150, 'Код для вишнёвого цвета не должен превышать 150 символов.'),
             violet: Yup.string()
-                .max(150, ''),
+                .max(150, 'Код для фиолетового цвета не должен превышать 150 символов.'),
             SD: Yup.string()
-                .max(500, ''),
+                .max(1000, 'Описание сайта не должно превышать 1000 символов.'),
             RL: Yup.string()
-                .max(500, ''),
+                .max(1000, 'Текст правил не должен превышать 1000 символов.'),
             CT: Yup.string()
-                .max(500, ''),
+                .max(1000, 'Текст с контактами не должен превышать 1000 символов.'),
         }),
         validateOnChange: false,
         onSubmit: (values, {setStatus, setErrors}) => {
@@ -116,6 +115,19 @@ const ColorAndTextForm = (props) => {
                     <input name="AB" value={formik.values.AB} onChange={formik.handleChange}/>
                 </div>
                 <span className="ref">(Справа от карусели)</span>
+            </div>
+
+            <div className="form-group">
+                <div className="inputWrapper">
+                    <label>Выбранный вариант ответа</label>
+                    <input name="SO" value={formik.values.SO} onChange={formik.handleChange}/>
+                </div>
+            </div>
+            <div className="form-group">
+                <div className="inputWrapper">
+                    <label>Кнопка отправки голоса в опросе</label>
+                    <input name="VB" value={formik.values.VB} onChange={formik.handleChange}/>
+                </div>
             </div>
             <div className="form-group">
                 <h3>Полоса вверху страницы</h3>
@@ -187,6 +199,28 @@ const ColorAndTextForm = (props) => {
                                  handleChange={formik.handleChange}
                                  value={formik.values.CT}
                                  field="CT"/>
+            </div>
+            <div className="error-block">
+                {formik.errors.OS ? <p>{formik.errors.OS}</p> : null}
+                {formik.errors.VB ? <p>{formik.errors.VB}</p> : null}
+                {formik.errors.EMC ? <p>{formik.errors.EMC}</p> : null}
+                {formik.errors.MC ? <p>{formik.errors.MC}</p> : null}
+                {formik.errors.DAC ? <p>{formik.errors.DAC}</p> : null}
+                {formik.errors.EC ? <p>{formik.errors.EC}</p> : null}
+                {formik.errors.AN ? <p>{formik.errors.AN}</p> : null}
+                {formik.errors.red ? <p>{formik.errors.red}</p> : null}
+                {formik.errors.orange ? <p>{formik.errors.orange}</p> : null}
+                {formik.errors.green ? <p>{formik.errors.green}</p> : null}
+                {formik.errors.d_blue ? <p>{formik.errors.d_blue}</p> : null}
+                {formik.errors.blue ? <p>{formik.errors.blue}</p> : null}
+                {formik.errors.yellow ? <p>{formik.errors.yellow}</p> : null}
+                {formik.errors.pink ? <p>{formik.errors.pink}</p> : null}
+                {formik.errors.cherry ? <p>{formik.errors.cherry}</p> : null}
+                {formik.errors.violet ? <p>{formik.errors.violet}</p> : null}
+                {formik.errors.cherry ? <p>{formik.errors.cherry}</p> : null}
+                {formik.errors.SD ? <p>{formik.errors.SD}</p> : null}
+                {formik.errors.RL ? <p>{formik.errors.RL}</p> : null}
+                {formik.errors.CT ? <p>{formik.errors.CT}</p> : null}
             </div>
             <footer>
                 <button className="send-btn" type="submit">Сохранить</button>

@@ -9,9 +9,10 @@ class InviteCreator extends React.Component {
 		this.copyText = this.copyText.bind(this)
 		this.state = {
 			code: '',
-			invite_active: false,
+			invite_active: 0,
 			copy_success: false,
 		}
+		this.openMsg = this.openMsg.bind(this)
 	}
 	getInviteMsg = () => {
 		let msg_gen = () => {
@@ -23,10 +24,8 @@ class InviteCreator extends React.Component {
 			return code_word
 		}
 		const code_word = msg_gen()
-		this.setState({
-    		invite_active: true
-    	})
 	}
+
 	copyText = () => {
 	    let range = document.createRange()
         range.selectNode(document.getElementById("invite_text"))
@@ -38,20 +37,32 @@ class InviteCreator extends React.Component {
     		copy_success: true
     	})
 	}
+
+	openMsg = () => {
+		this.setState({invite_active: this.state.invite_active?0:1}, () => {
+			if(this.state.invite_active) {
+				this.getInviteMsg()
+			}
+		})
+	}
+
 	render() {
-	  return (
-	    <>
-          <li className="invite-create-block" onClick={this.getInviteMsg}>
-		    Пригласить друга
-          </li>
-          <div id="ivite_block" className={this.state.invite_active?'invite-block':'hide'}>
-            <div className="copy-btn" id="copy_btn" onClick={this.copyText}><i className="el-icon-document-copy"></i><i className={this.state.copy_success?"el-icon-check green-text":"hide"}></i></div>
-            <p id="invite_text">Делюсь ссылкой http://45.9.42.12:8000/hello-i-invite-you и кодом {this.state.code}. С Наилучшими Пожеланиями!</p>
-            <p>можно прикрепить картинку -></p>
-            <img src="../../../../static/frontend/images/motya.jpg" class="invite-img" />
-          </div>
-	    </>
-	  )
+		return (
+			<>
+				<li className="invite-create-block" onClick={this.openMsg}>
+					Пригласить друга
+				</li>
+				<div id="ivite_block" className={this.state.invite_active ? 'invite-block' : 'hide'}>
+					<p id="invite_text">Делюсь ссылкой windmail.ru/hello-i-invite-you и кодом {this.state.code}. С
+						Наилучшими Пожеланиями!</p>
+					<p>Воспользоваться изображением -></p>
+					<div class="invite-img"></div>
+					<div className="copy-btn" id="copy_btn" onClick={this.copyText}><i
+						className="el-icon-document-copy"></i><i
+						className={this.state.copy_success ? "el-icon-check green" : "hide"}></i></div>
+				</div>
+			</>
+		)
 	}
 }
 

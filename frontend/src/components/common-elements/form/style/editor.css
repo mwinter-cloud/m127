@@ -162,6 +162,9 @@
     display: block;
     margin: 15px auto;
 }
+.answer-input .send-btn:hover{
+    background: #3e3f46;
+}
 .answer-input .send-btn:focus{
     outline: 0;
 }
@@ -243,7 +246,7 @@
     width: 100%;
 }
 .room-page .fixed-editor {
-    opacity: .9;
+    opacity: .98;
     position: sticky;
     bottom: 0;
     width: 100%;

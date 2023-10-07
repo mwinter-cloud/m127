@@ -48,13 +48,13 @@
 	background-size: cover;
 	border-radius: 3px;
 	text-align: center;
-	padding: 60px 20%;
+	padding: 30px 20%;
 }
 
 .guide-main .guide-header h2 {
 	color: white;
 	font-weight: 400;
-	font-size: .9em;
+	font-size: 1.1em;
 	background: rgba(36, 37, 41, 0.3);
     padding: 3px 8px;
 	display: inline-block;

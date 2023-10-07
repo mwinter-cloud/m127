@@ -25,6 +25,7 @@ class RoomPage extends Component {
             const room = res.data
             this.setState({room: room})
         })
+        axios.get(window.location.origin + '/api/set-room-view/' + this.props.id)
         this.roomSocket = new WebSocket(
             'ws://' + window.location.host + '/ws/room/' + this.props.id)
         this.roomSocket.onmessage = e => {

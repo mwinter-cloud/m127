@@ -9,6 +9,8 @@
     position: relative;
     background: var(--LP);
     background-size: cover;
+    background-repeat:no-repeat;
+    background-position: center center;
 }
 .login-page h1 {
     font-size: 1.2em;

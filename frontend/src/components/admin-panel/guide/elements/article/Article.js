@@ -3,8 +3,7 @@ import Illustration from "./Illustration"
 import FormWindow from "../../../../common-elements/windows/FormWindow"
 import GuideArticleForm from "../../forms/GuideArticleForm"
 import GuideImageForm from "../../forms/GuideImageForm"
-import replace_array_item from "../../../../../special-functions/replace-array-item"
-import remove_array_item from "../../../../../special-functions/remove-array-item";
+import parse from "html-react-parser"
 
 class Article extends Component {
     constructor(props) {
@@ -76,7 +75,7 @@ class Article extends Component {
                     <h4>{this.props.article.name}</h4>
                     <div className="content">
                         <div className="text">
-                            <p>{this.props.article.text}</p>
+                            <p>{parse(this.props.article.text)}</p>
                         </div>
                         <div className="illustrations">
                             {this.props.article.illustrations.map((illustration, index) => {
