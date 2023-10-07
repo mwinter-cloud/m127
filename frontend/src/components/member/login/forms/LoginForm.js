@@ -5,6 +5,7 @@ import CSRFToken from "../../../common-elements/form/CSRFToken"
 import {useNavigate} from "react-router-dom"
 
 const LoginForm = (props) => {
+    alert(1)
 	const navigation = useNavigate()
     const formik = useFormik({
         initialValues: {
