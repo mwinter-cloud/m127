@@ -85,14 +85,17 @@ class Article extends Component {
                                                   removeImage={this.removeImage}
                                                   key={index}/>)
                             })}
-                            <div className="text-btn" onClick={this.openImageWindow}><i
+                            {this.props.is_admin?(
+                                <div className="text-btn" onClick={this.openImageWindow}><i
                                 className="el-icon-plus"></i> изображение
                             </div>
+                            ):null}
                         </div>
                     </div>
+                    {this.props.is_admin?(
                     <div className="big-simple-btn" onClick={this.openEditWindow}><i
                         className="el-icon-edit"></i> Редактировать
-                    </div>
+                    </div>):null}
                 </div>
             </>
         )

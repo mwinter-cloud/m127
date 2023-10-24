@@ -45,14 +45,14 @@ class PagesAccess extends React.Component {
 
     componentDidMount() {
         //закостамизируем перед отображением
-        axios.get(window.location.origin + '/api/get-colors').then(res => {
+        axios.get('/api/get-colors').then(res => {
             const colors = res.data
             colors.map(color => {
                 document.body.style.setProperty("--" + color.type, color.text)
             })
             this.props.set_colors(colors)
         })
-        axios.get(window.location.origin + '/api/get-illustrations').then(res => {
+        axios.get('/api/get-illustrations').then(res => {
             const illustrations = res.data
             this.props.set_illustrations(illustrations)
             illustrations.map(illustration => {
@@ -62,7 +62,7 @@ class PagesAccess extends React.Component {
         const set_undefined_type = () => {
             this.setState({access_type: 0})
         }
-        let auth_pr = axios.get('http://' + window.location.host + '/api/get-user').catch(function (error) {
+        let auth_pr = axios.get('/api/get-user').catch(function (error) {
             console.log('Необходимо войти')
             set_undefined_type()
             return Promise.reject(error)
@@ -203,6 +203,7 @@ class PagesAccess extends React.Component {
                             return ('')
                         }
                     })()}
+                    )}
                     {(() => {
                         // доступ к настройкам сайта
                         if (this.state.is_admin == 1) {
@@ -227,6 +228,7 @@ class PagesAccess extends React.Component {
                                     <>
                                         <Route path="/admin-panel" element={<AdminPanel/>}>
                                             <Route path="cite-settings" element={<WalkPage code='3'/>}/>
+                                            <Route path="reports" element={<WalkPage code='3'/>}/>
                                         </Route>
                                     </>
                                 )

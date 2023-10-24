@@ -21,8 +21,14 @@ class FormBlock extends Component {
 			this.sendSocketMsg(res_data, recipient)
 		}
 		const open_socket_and_send_msg = (event_data, recipient) => {
+			let wsProtocol = ""
+			if (window.location.protocol == 'https:') {
+				wsProtocol = 'wss://'
+			} else {
+				wsProtocol = 'ws://'
+			}
 			this['userSocket' + recipient] = new WebSocket(
-				'ws://' + window.location.host + '/ws/user/' + recipient)
+				wsProtocol + window.location.host + '/ws/user/' + recipient)
 			this['userSocket' + recipient].onopen = function () {
 				send_msg(event_data, recipient)
 			}
@@ -53,7 +59,7 @@ class FormBlock extends Component {
 
 	sendSocketMsg = (data, recipient) => {
 		const event_data = {
-			'id': data.id,
+			'id': {room:this.props.id,notification:data.id},
 			'object': data.object,
 			'text': data.text,
 			'sender': data.sender,
@@ -105,7 +111,7 @@ class FormBlock extends Component {
 	}
 
 	render() {
-		if((this.props.room_type=="ADM"&&this.props.is_admin)||(this.props.room_type!="ADM")) {
+		if ((this.props.room_type == "ADM" && this.props.is_admin) || (this.props.room_type != "ADM")) {
 			return (
 				<>
 					<MediaQuery minWidth={801}>

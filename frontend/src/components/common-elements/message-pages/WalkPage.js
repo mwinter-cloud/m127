@@ -32,8 +32,8 @@ function WalkPage(props) {
   	return (
           <main className="error-page">
               <header className="error-msg-header"><i className="el-icon-warning-outline"></i> {id!='4'?'Ошибка :D':''} {String(error_msg)}<div id="error_msg"></div></header>
+              <p>Для прогулки хороша любая погода! Почему бы тебе не прогуляться?</p>
               <div className="walk-img"></div>
-			  <p>Для прогулки хороша любая погода! Почему бы тебе не прогуляться?</p>
           </main>
 	)
 }

@@ -5,12 +5,14 @@ import RegistrationPage_wrap from "../../../../store/wraps/member/RegistrationPa
 function Registration() {
 	const location = useLocation()
 	let entered_code = false
+	let operation_id = 0
 	if(location.state!=null) {
 		entered_code = location.state.entered_code
+		operation_id = location.state.operation_id
 	}
 	if(entered_code) {
 		return (
-			<RegistrationPage_wrap/>
+			<RegistrationPage_wrap operation_id={operation_id}/>
 		)
 	} else {
 		return (

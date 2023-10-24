@@ -27,6 +27,15 @@
 	border-radius: 6px;
 	margin-right: 15px;
 }
+.admin-page-header .moderation-title .admin-panel-header-icon {
+	font-size: 1.6em;
+	margin-top: 7px;
+	margin-right: 10px;
+	display: block;
+}
+.admin-page-header .moderation-title .admin-panel-header-icon:hover {
+	color: var(--SC);
+}
 
 .admin-page-header ul {
 	display: flex;
@@ -300,6 +309,28 @@ main {
 	font-size: .85em;
 	color: #888;
 }
+
+.smiles-edit-block .file-input-block {
+	height: 50px;
+	width: 50px;
+	overflow: hidden;
+}
+.smiles-edit-block .file-input-block {
+	height: 50px;
+	width: 50px!important;
+}
+.addSmileInputWrapper .inputWrapper .file-input {
+	height: 50px;
+	width: 50px;
+	background: transparent!important;
+	border: 1px dashed #494a50!important;
+	text-align: center;
+}
+.addSmileInputWrapper .inputWrapper .file-input i {
+	font-size: 1.8em;
+	margin: 6px 0;
+}
+
 .smiles-edit-block .addSmileInputWrapper {
 	margin: 15px 0 0 0;
 }

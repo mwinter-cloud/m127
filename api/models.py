@@ -71,6 +71,8 @@ class Profile(models.Model):
     is_active = models.BooleanField(default=False)
     is_blocked = models.BooleanField(default=False)
     email_confirm = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+    inviter = models.OneToOneField(User, on_delete=models.CASCADE, related_name='inviter', blank=True, null=True)
 
     def save(self, *args, **kwargs):
         super().save()
@@ -85,6 +87,15 @@ class Profile(models.Model):
     def __str__(self):
         return self.name
 
+class Operation(models.Model):
+    code = models.CharField(max_length=30, unique=True)
+    type = models.IntegerField(default=0) #1-confirmemail,2-changepassword,3-changeemail,4-invite
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    info = models.CharField(max_length=30, blank=True)
+
+    def __str__(self):
+        return self.code
+
 class Tag(models.Model):
     name = models.CharField(max_length=90)
 
@@ -97,7 +108,7 @@ class Room(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     message = models.TextField(max_length=5000)
     tags = models.ManyToManyField(Tag, blank='True')
-    saved_by = models.ManyToManyField(Profile, blank='True')
+    saved_by = models.ManyToManyField(User, blank='True')
     views = models.IntegerField(default=0)
     color = models.ForeignKey(Color, on_delete=models.SET_NULL, blank=True, null=True)
     cover = models.ImageField(upload_to='rooms/covers', blank=True)
@@ -133,6 +144,17 @@ class Answer(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='room_answer_author', blank=True)
     room = models.ForeignKey(Room, on_delete=models.CASCADE, related_name='answers', blank=True)
+    NORMAL = "1"
+    HIDDEN = "2"
+    TYPES_CHOICES = [
+        (NORMAL, 'Нормальная'),
+        (HIDDEN, 'Скрытая'),
+    ]
+    type = models.CharField(
+        max_length=1,
+        choices=TYPES_CHOICES,
+        default=NORMAL,
+    )
 
     def __str__(self):
             return self.text
@@ -224,7 +246,7 @@ class Comment(models.Model):
 #служебные
 class Notification(models.Model):
     sender = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='sender')
-    recipients = models.ManyToManyField(Profile, related_name='recipients')
+    recipients = models.ManyToManyField(User, related_name='recipients')
     text = models.CharField(max_length=100, blank=True)
     type = models.IntegerField(default=0) #0-спасибо,1-ответ,2-сообщение в комнате,3-жалоба,4-предупреждение за ответ и 5 за опрос
     object = models.IntegerField(default=0)
@@ -258,7 +280,7 @@ class Customization(models.Model):
         choices=TYPES_CHOICES,
         default=ANNOUNCEMENT,
     )
-    text = models.CharField(max_length=500, blank=True)
+    text = models.CharField(max_length=1000, blank=True)
 
 class Illustration(models.Model):
     LOGO = 'L'

@@ -7,7 +7,10 @@ class Cover extends Component {
 
     render() {
         return (
-            <div className="cover"></div>
+            <>
+                {this.props.cover ?
+                    (<div className="cover"></div>) : null}
+            </>
         )
     }
 }

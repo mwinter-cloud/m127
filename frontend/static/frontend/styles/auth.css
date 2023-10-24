@@ -37,13 +37,18 @@ body {
 }
 .auth .settings-form .send-btn {
 	background: #333438;
-	color: #c2c2c4;
+	color: #888!important;
 	display: inline-block;
 	border-radius: 4px;
 	padding: 7px 10px;
 	font-size: .9em;
 	border: 0;
 	cursor: pointer;
+	font-family: inherit;
+}
+.auth .settings-form .send-btn:hover {
+	background: #47484c;
+	color: #b5b1b1!important;
 }
 .auth .settings-form .send-btn:focus {
     outline: 0;
@@ -167,8 +172,8 @@ select:-webkit-autofill {
 	display: block;
 }
 .auth h3 {
-	margin: 0px 0 20px 0;
-	font-weight: 500;
+	margin: 10px 0 20px 0;
+	font-weight: 400;
 }
 .auth .settings-form {
 	padding: 20px 5%;
@@ -187,7 +192,7 @@ select:-webkit-autofill {
 	display: inline-block;
 	border-radius: 4px;
 	padding: 7px 10px;
-	font-size: .9em;
+	font-size: .85em;
 	border: 0;
 	position: relative;
 	left: 50%;
@@ -200,6 +205,8 @@ select:-webkit-autofill {
 .django-form label {
     width: 30%!important;
     padding-top: 5px!important;
+	font-size: .85em!important;
+	color: #888;
 }
 .django-form input {
     height: 30px!important;

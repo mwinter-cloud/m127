@@ -11,8 +11,7 @@ class AdminPanelHeader extends Component {
             <header className="admin-page-header">
                 <div className="moderation-title">
                     <Link to="/">
-                        <img
-                        src="https://sun9-23.userapi.com/impg/_ETpQ669o1tzaKUYjlQIU8V9_L_o2dRGfeUKVw/mFHmYEL2u2A.jpg?size=1280x862&quality=95&sign=7d3d4f1eb3d6166007f7f211adceae09&type=album"/>
+                        <i className="el-icon-s-home admin-panel-header-icon"></i>
                     </Link>
                     <h1>Админ-панель</h1>
                 </div>

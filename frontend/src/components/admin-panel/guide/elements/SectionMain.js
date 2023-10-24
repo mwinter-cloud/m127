@@ -39,10 +39,10 @@ class SectionMain extends Component {
                 this.setState({section_name: "Руководство по использованию"})
                 break
             case "3":
-                this.setState({section_name: "Описание кода frontend"})
+                this.setState({section_name: "Описание кода backend"})
                 break
             case "4":
-                this.setState({section_name: "Описание кода backend"})
+                this.setState({section_name: "Описание кода frontend"})
                 break
             case "5":
                 this.setState({section_name: "Учебные материалы по организации сообщества"})

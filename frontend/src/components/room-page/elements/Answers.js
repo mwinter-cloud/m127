@@ -9,7 +9,7 @@ class Answers extends Component {
             answers: [],
             loaded_answers_count: 0,
             new_answers: [],
-            section: 2, //1-сначала новые, 2-сначала первые(старые)
+            section: 1, //1-сначала старые, 2-сначала новые
         }
         this.changeSection = this.changeSection.bind(this)
         this.loadAnswers = this.loadAnswers.bind(this)
@@ -89,8 +89,8 @@ class Answers extends Component {
                     </div>
                     <h3>Ответы</h3>
                 </header>
-                <div>
-                    {this.state.section == 1 ? (<NewAnswers answers={this.props.new_answers}/>) : ""}
+                    {this.state.section == 2 ? (<NewAnswers answers={this.props.new_answers}/>) : ""}
+                <div className="main-answers">
                     {this.state.answers.map((answer, index) => {
                         return (
                             <AnswerBlock room_id={this.props.id} answer={answer} key={index}/>
@@ -100,8 +100,8 @@ class Answers extends Component {
                         <div className="right-align">
                             <div className="show-more" onClick={this.loadAnswers}>Показать больше записей</div>
                         </div>) : null}
-                    {this.state.section == 2 ? (<NewAnswers answers={this.props.new_answers}/>) : ""}
                 </div>
+                    {this.state.section == 1 ? (<NewAnswers answers={this.props.new_answers}/>) : ""}
             </div>
         )
     }

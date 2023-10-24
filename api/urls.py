@@ -20,10 +20,17 @@ urlpatterns = [
     path('add-moderator', ProfileView.as_view({'post': 'add_moderator'})),
     path('create-base-profile', ProfileView.as_view({'post': 'create_base'})),
     path('logout', UserView.as_view({'get': 'logout'})),
+    path('send-confirm-email', UserView.as_view({'post': 'send_confirm_email'})),
+    path('confirm-email/<int:code>', UserView.as_view({'get': 'register_confirm'})),
+    path('change-email-query', UserView.as_view({'post': 'send_change_email_mail'})),
+    path('change-email/<int:code>', UserView.as_view({'get': 'change_email'})),
+    path('change-password/<int:code>', UserView.as_view({'post': 'change_password'})),
+    path('change-password-email', UserView.as_view({'post': 'change_password_email'})),
+    path('change-anonim-password-email', UserView.as_view({'post': 'change_anonim_password_email'})),
     #tag
     path('get-tags', TagView.as_view({'post': 'list'})),
     path('get-popular-tags', TagView.as_view({'get': 'popular_tag_list'})),
-    #polls
+    #опросы
     path('get-polls', PollView.as_view({'post': 'list'})),
     path('delete-poll', PollView.as_view({'post': 'delete'})),
     path('get-poll/<int:pk>', PollView.as_view({'get': 'retrieve'})),
@@ -36,6 +43,7 @@ urlpatterns = [
     path('create-comment', CommentView.as_view({'post': 'create'})),
     path('delete-comment', CommentView.as_view({'post': 'delete'})),
     path('add-option', OptionView.as_view({'post': 'create'})),
+    path('set-poll-view/<int:id>', PollView.as_view({'get': 'set_view'})),
     #кастомизация
     path('add-smile', SmileView.as_view({'post': 'create'})),
     path('delete-smile', SmileView.as_view({'post': 'delete'})),
@@ -46,6 +54,7 @@ urlpatterns = [
     path('color-and-text-edit', CustomizationView.as_view({'post': 'edit'})),
     path('illustrations-edit', IllustrationView.as_view({'post': 'edit'})),
     path('get-announcement', CustomizationView.as_view({'get': 'announcement'})),
+    path('get-citename', CustomizationView.as_view({'get': 'citename'})),
     #комнаты
     path('create-poll', PollView.as_view({'post': 'create'})),
     path('add-options', OptionView.as_view({'post': 'create'})),
@@ -53,12 +62,14 @@ urlpatterns = [
     path('create-room', RoomView.as_view({'post': 'create'})),
     path('edit-room', RoomView.as_view({'post': 'edit'})),
     path('get-room/<int:id>', RoomView.as_view({'get': 'retrieve'})),
-    path('get-room/<int:id>', RoomView.as_view({'get': 'retrieve'})),
+    path('set-room-view/<int:id>', RoomView.as_view({'get': 'set_view'})),
     path('get-answers', AnswerView.as_view({'post': 'list'})),
     path('create-answer', AnswerView.as_view({'post': 'create'})),
     path('edit-answer', AnswerView.as_view({'post': 'edit'})),
     path('delete-answer', AnswerView.as_view({'post': 'delete'})),
     path('get-answer/<int:id>', AnswerView.as_view({'get': 'retrieve'})),
+    path('hide-answer', AnswerView.as_view({'post': 'hide_answer'})),
+    path('restore-answer', AnswerView.as_view({'post': 'restore_answer'})),
     path('delete-room', RoomView.as_view({'post': 'delete'})),
     path('is-room-saved/<int:pk>', RoomView.as_view({'get': 'is_saved'})),
     path('save-room', RoomView.as_view({'post': 'save'})),
@@ -90,6 +101,8 @@ urlpatterns = [
     path('send-update-grade', UpdateView.as_view({'post': 'set_rating'})),
     path('get-oficial-rooms', RoomView.as_view({'get': 'oficial_list'})),
     path('get-site-data', CustomizationView.as_view({'get': 'site_data'})),
+    path('create-invite', ProfileView.as_view({'post': 'get_invite_code'})),
+    path('compare-code', ProfileView.as_view({'post': 'compare_invite_code'})),
     #поиск
     path('get-search-items', SearchView.as_view({'post': 'list'})),
     #руководство

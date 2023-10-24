@@ -29,8 +29,12 @@ class NotificationsSection extends Component {
             this.setState({notifications: [data,].concat(this.state.notifications)})
             this.setBell()
         }
+        let wsProtocol = ""
+        if (window.location.protocol == 'https:') {
+          wsProtocol = 'wss://'
+        } else {wsProtocol = 'ws://'}
         this['userSocket' + this.props.my_id] = new WebSocket(
-            'ws://' + window.location.host + '/ws/user/' + this.props.my_id)
+            wsProtocol + window.location.host + '/ws/user/' + this.props.my_id)
         this['userSocket' + this.props.my_id].onmessage = (data) => {
             data = JSON.parse(event.data)
             const notification = {
@@ -47,26 +51,21 @@ class NotificationsSection extends Component {
                     url: window.location.origin + '/api/delete-notification',
                     cache: false,
                     data: {id: id},
-                    success: function (res_data) {
-                        data.created_at = res_data.created_at
-                        data.recipients.map(recipient => {
-                            open_socket_and_send_msg(data, recipient)
-                        })
-                    },
                     error: function (xhr, status, error) {
                         console.log(JSON.parse(xhr.responseText))
                     }
                 })
             }
-            console.log(notification)
-            if (notification.type == 1 || notification.type == 2) { //если получено уведомление о новом сообщении, то запиешм его только если мы не в ней
+            if (notification.type == 1 || notification.type == 2) {
+                //если получено уведомление о новом сообщении, то запиешм его только если мы не в комнате
                 let pathname_params = document.location.pathname.split('/')
-                if (!(pathname_params[1] == 'room' && pathname_params[2] == notification.object)) {
+                if (!(pathname_params[1] == 'room' && pathname_params[2] == notification.id.room)) {
                     add_notification(notification)
                 } else {
-                    remove_notification(notification.id)
+                    remove_notification(notification.id.notification)
                 }
-            } else if (notification.type = "block") {
+            } else if (notification.type == "block") {
+                //участник был заблокирован, надо его вывести
                 window.location.reload()
             } else {
                 add_notification(notification)

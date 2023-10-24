@@ -22,8 +22,8 @@
     user-select: none;
 }
 .confirm-window .confirm-btn {
-    padding-right: 15px;
-    margin-right: 5px;
+    padding: 0 15px 0 0!important;
+    margin: 0 5px 0 0!important;
 }
 .confirm-window .btn:hover {
     text-decoration: underline;

@@ -20,7 +20,7 @@ class AnswerBtns extends Component {
 											 color={this.props.answer.author.color}
 											 text={this.props.answer.text}
 											 name={this.props.answer.author.name}/>
-								<AppealButton id={this.props.answer.author.id ?
+								<AppealButton id={this.props.answer.id ?
 									this.props.answer.author.user.id : null}
 											  color={this.props.answer.author.color}
 											  name={this.props.answer.author.name}

@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import FormWindow from "../../common-elements/windows/FormWindow"
 import CreateRoomForm from "../../main-page/forms/CreateRoomForm"
-import SaveBtn from "./SaveBtn"
 import BannerRoomForm from "../forms/BannerRoomForm"
-import CreateBannerRoomBtn_wrap from "../../../store/wraps/room-page/CreateBannerRoomBtn_wrap"
 import MediaQuery from 'react-responsive'
+import RoomMenu from "./RoomMenu";
 
 class Header extends Component {
     constructor(props) {
@@ -14,20 +13,10 @@ class Header extends Component {
             edit_window: 0,
             banner_form: 0,
         }
-        this.wrapperRef = React.createRef()
-        this.handleClickOutside = this.handleClickOutside.bind(this)
         this.openRoomMenu = this.openRoomMenu.bind(this)
         this.openEditWindow = this.openEditWindow.bind(this)
         this.reloadRoom = this.reloadRoom.bind(this)
         this.openBannerForm = this.openBannerForm.bind(this)
-    }
-
-    componentDidMount() {
-        document.addEventListener("mousedown", this.handleClickOutside)
-    }
-
-    componentWillUnmount() {
-        document.removeEventListener("mousedown", this.handleClickOutside)
     }
 
     openRoomMenu = () => {
@@ -73,16 +62,9 @@ class Header extends Component {
                                     Опции темы
                                 </div>
                                 {this.state.room_menu ? (
-                                    <div className="options-block" ref={this.wrapperRef}>
-                                        <ul>
-                                            <li className="underline-hover blue-text"
-                                                onClick={this.openEditWindow}>Редактированить
-                                            </li>
-                                            <CreateBannerRoomBtn_wrap room_id={this.props.room.id}
-                                                                 openBannerForm={this.openBannerForm}/>
-                                            <SaveBtn room_id={this.props.room.id}/>
-                                        </ul>
-                                    </div>) : null}
+                                    <RoomMenu room_id={this.props.room.id} openBannerForm={this.openBannerForm}
+                                    openEditWindow={this.openEditWindow} openMenuWindow={this.openRoomMenu}/>)
+                                    : null}
                             </div>
                         </div>
                     </div>

@@ -9,13 +9,10 @@ class LinkList extends Component {
     render() {
         return (
             <ul className="social-menu-ul">
-                <InviteCreator/>
-                <li><a href="../agreement" target="_blank">Соглашение</a> -> его <a target="_blank"
-                                                                                          href="../room/34">обсуждение</a>
-                </li>
-                <li><a href="../admin-panel/guide/2" target="_blank">Описание приложения</a></li>
-                <li><a href="../room/35" target="_blank">Объявления</a></li>
-                <li><a href="../room/38" target="_blank">Общение модераторов</a></li>
+                <InviteCreator invite_image={this.props.invite_image}/>
+                <li><a href="../agreement" target="_blank">Соглашение</a></li>
+                <li><a href="../admin-panel/guide/2" target="_blank">Руководство по использованию</a></li>
+                <li><a href="../admin-panel/guide/1" target="_blank">Идеи сайта</a></li>
             </ul>
         )
     }

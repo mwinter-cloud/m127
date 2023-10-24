@@ -13,6 +13,7 @@ class AgreementPage extends Component {
             CT: "",
             open_description: 0,
             open_contacts: 0,
+            citename: ""
         }
 		this.openDescription = this.openDescription.bind(this)
 		this.openContacts = this.openContacts.bind(this)
@@ -23,6 +24,10 @@ class AgreementPage extends Component {
         axios.get('http://' + window.location.host + '/api/get-site-data').then(res => {
             const data = res.data
             data.map(item => set_data({[item.type]: item.text}))
+        })
+        axios.get('/api/get-citename').then(res => {
+            const text = res.data.text
+            this.setState({citename: text})
         })
     }
 
@@ -40,7 +45,7 @@ class AgreementPage extends Component {
                 <div className="agreement-page">
                     <header className="main-agreement-header">
                         <img src="../../../../static/frontend/images/small-logo.png" className="small-logo"/>
-                        <h3 className="citename">Почта ветров</h3>
+                        <h3 className="citename">{this.state.citename?this.state.citename:window.location.hostname}</h3>
                         <i className="el-icon-arrow-right"></i>
                         <h3>Соглашение</h3>
                     </header>

@@ -13,14 +13,20 @@ class CommentFormBlock extends Component {
     }
 
     componentDidMount() {
+        let wsProtocol = ""
+        if (window.location.protocol == 'https:') {
+            wsProtocol = 'wss://'
+        } else {
+            wsProtocol = 'ws://'
+        }
         this.commentsSocket = new WebSocket(
-				'ws://'+window.location.host+'/ws/comments/'+this.props.poll_id)
-			this.commentsSocket.onmessage = e => {
-				let data = JSON.parse(e.data)
-                this.props.addComment(data)
-                let block = document.getElementById("comments_block")
-                block.scrollTop = block.scrollHeight
-			 }
+            wsProtocol + window.location.host + '/ws/comments/' + this.props.poll_id)
+        this.commentsSocket.onmessage = e => {
+            let data = JSON.parse(e.data)
+            this.props.addComment(data)
+            let block = document.getElementById("comments_block")
+            block.scrollTop = block.scrollHeight
+        }
     }
 
     componentWillUnmount() {
@@ -28,17 +34,17 @@ class CommentFormBlock extends Component {
     }
 
     createCommentEvent = (data) => {
-		this.commentsSocket.send(JSON.stringify({
+        this.commentsSocket.send(JSON.stringify({
             'text': data.text,
             'created_at': data.created_at,
             'name': data.author.name,
             'avatar': data.author.avatar,
             'id': data.id,
         }))
-	}
+    }
 
     setSmilesBlock = () => {
-        this.setState({smiles_block: this.state.smiles_block==0?1:0})
+        this.setState({smiles_block: this.state.smiles_block == 0 ? 1 : 0})
     }
 
     render() {

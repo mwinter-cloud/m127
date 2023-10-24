@@ -48,7 +48,8 @@ const formik = useFormik({
             <div className="addSmileInputWrapper">
                 <FileInputWrapper label="Файл"
                                   src=""
-                                  field="file"/>
+                                  field="file"
+                                  type="plus"/>
                 <button type="submit">
                     <i className="el-icon-download text-btn send-file"></i>
                 </button>

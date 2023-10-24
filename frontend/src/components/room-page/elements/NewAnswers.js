@@ -10,13 +10,9 @@ class NewAnswers extends React.Component {
 	    return(
 	        <div className="new-answers">
         	    {this.props.answers.map((answer, index) => {
-        	        if(answer.id!=0){
-            			if(!document.body.contains(document.getElementById('answer'+answer.id))){
                 			return (
                 				<AnswerBlock key={index} answer={answer}/>
                 			)
-            			}
-        	        }
         		})}
     		</div>
 		)

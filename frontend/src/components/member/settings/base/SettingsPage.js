@@ -33,7 +33,7 @@ class SettingsPage extends Component {
                         </ul>
                     </div>
                     <div className="form-field">
-                        {this.state.section=="user"?(<UserForm/>):(<ProfileForm/>)}
+                        {this.state.section=="user"?(<UserForm email={this.props.member.email}/>):(<ProfileForm/>)}
                     </div>
                 </div>
             </main>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Option from "./Option";
 
 class Options extends Component {
     constructor(props) {
@@ -8,43 +9,20 @@ class Options extends Component {
     render() {
         return (
             <div className="poll-options">
-                {(() => {
-                    if (this.props.voice_sended) {
+                <ul className={this.props.voice_sended?"sended-voice-poll":"empty-poll"}>
+                    {this.props.options.map((option, index) => {
                         return (
-                            <ul className="sended-voice-poll">
-                                {this.props.options.map((option, index) => {
-                                    return (
-                                        <li key={index} data-id={option.id} data-index={index} id={"option" + option.id}
-                                            className={this.props.selected_option == option.id ? "selected-option" : null}>
-                                            {option.text}
-                                            {this.props.voice_sended ? (
-                                                <div className="progress"
-                                                     style={this.props.voices_count ? ({
-                                                         width: (this.props.voices[index] / this.props.voices_count) * 100 + '%'
-                                                     }) : null}>
-                                                </div>) : null}
-                                        </li>
-                                    )
-                                })
-                                }
-                            </ul>
+                            <Option index={index} key={index}
+                                    option={option}
+                                    selectOption={this.props.selectOption}
+                                    voices_count={this.props.voices_count}
+                                    voices={this.props.voices[index]}
+                                    selected_option={this.props.selected_option}
+                                    voice_sended={this.props.voice_sended}/>
                         )
-                    } else {
-                        return (
-                            <ul>
-                                {this.props.options.map((option, index) => {
-                                    return (
-                                        <li key={index} data-id={option.id} data-index={index} id={"option" + option.id}
-                                            onClick={this.props.selectOption} className={this.props.selected_option == option.id ? "selected-option" : null}>
-                                            {option.text}
-                                        </li>
-                                    )
-                                })
-                                }
-                            </ul>
-                        )
+                    })
                     }
-                })()}
+                </ul>
             </div>
         )
     }

@@ -56,3 +56,12 @@ body {
     height: 120px;
     width: 300px;
 }
+
+.base-avatar {
+    background: var(--DA);
+	height: 36px;
+	width: 36px;
+    background-size: cover;
+	object-fit: cover;
+	border-radius: 50%;
+}

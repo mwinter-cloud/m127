@@ -16,11 +16,11 @@ class Menu extends Component {
                 },
                 {
                     name: "3",
-                    title: "Описание кода frontend",
+                    title: "Описание кода backend",
                 },
                 {
                     name: "4",
-                    title: "Описание кода backend",
+                    title: "Описание кода frontend",
                 },
                 {
                     name: "5",

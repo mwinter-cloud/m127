@@ -5,10 +5,12 @@ import axios from "axios"
 import CSRFToken from "../../../common-elements/form/CSRFToken"
 import FileInputWrapper from "../../../common-elements/form/elements/wrappers/FileInputWrapper"
 import ColorInput_wrap from "../../../../store/wraps/forms/ColorInput_wrap"
+import {Navigate} from "react-router-dom"
 
 const ProfileForm = () => {
 	const [profile_data, setProfileData] = useState({})
     const [selectedColor, setColor] = useState('transparent')
+    const [navigation, setNavigation] = useState(0)
 
     const useMountEffect = () => {
 		useEffect(() => {
@@ -30,7 +32,7 @@ const ProfileForm = () => {
             name: '',
             city: '',
             email: '',
-            cite: '',
+            webcite: '',
             post_title: '',
             post_text: '',
         },
@@ -42,7 +44,7 @@ const ProfileForm = () => {
                 .max(30, 'Слишком длинное название города'),
             email: Yup.string()
                 .max(30, 'Слишком длинная почта'),
-            cite: Yup.string()
+            webcite: Yup.string()
                 .max(60, 'Слишком длинный адрес сайта'),
             post_title: Yup.string()
                 .max(50, 'Слишком длинный заголовок'),
@@ -64,7 +66,7 @@ const ProfileForm = () => {
             processData: false,
             contentType: false,
             success: function () {
-                window.location.replace("http://"+window.location.host)
+                setNavigation(1)
             },
             error: function (xhr, status, error) {
                 console.log(JSON.parse(xhr.responseText))
@@ -76,6 +78,7 @@ const ProfileForm = () => {
         <form className="simple-form" onSubmit={formik.handleSubmit}
               id="profile_settings_form" encType="multipart/form-data" method="post">
             <CSRFToken/>
+            {navigation?(<Navigate to="/" replace={true}/>):null}
             <div className="form-group">
                 {formik.errors.name ? <p>{formik.errors.name}</p> : null}
                 <div className="inputWrapper">
@@ -96,7 +99,7 @@ const ProfileForm = () => {
                 <h3>Информация</h3>
                 {formik.errors.email ? <p>{formik.errors.email}</p> : null}
                 {formik.errors.city ? <p>{formik.errors.city}</p> : null}
-                {formik.errors.cite ? <p>{formik.errors.cite}</p> : null}
+                {formik.errors.webcite ? <p>{formik.errors.webcite}</p> : null}
                 <div className="inputWrapper">
                     <label><span>Почта</span></label>
                     <input name="email" placeholder=" = ^ᴗ^ = " onChange={formik.handleChange}
@@ -109,7 +112,7 @@ const ProfileForm = () => {
                 </div>
                 <div className="inputWrapper">
                     <label><span>Сайт</span></label>
-                    <input type="text" name="cite" onChange={formik.handleChange} value={formik.values.cite}
+                    <input type="text" name="webcite" onChange={formik.handleChange} value={formik.values.webcite}
                            placeholder=" = ^ᴗ^ = "/>
                 </div>
                 <div className="settings-line"></div>

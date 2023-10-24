@@ -30,7 +30,7 @@ class Rating extends Component {
 
     setRating = (rating) => {
         const init = (data) => {this.initStars(data,(rating?1:0))}
-        axios.get('http://' + window.location.host + '/api/get-room-voices/'+(rating?rating:this.props.room_id)).then(res => {
+        axios.get('/api/get-room-voices/'+(rating?rating:this.props.room_id)).then(res => {
             init(res.data)
         })
     }

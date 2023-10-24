@@ -10,7 +10,7 @@
     color: white;
     margin-bottom: 30px;
     padding: 8px;
-    border-bottom: 3px solid #409eff;
+    border-bottom: 3px solid var(--SC);
     overflow-wrap: break-word;
 }
 
@@ -30,6 +30,9 @@
     background: var(--EP);
     background-size: cover;
     border-radius: 3px;
+}
+.error-page p {
+    line-height: 1.5em;
 }
 
 

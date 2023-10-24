@@ -9,6 +9,21 @@ import Cover from "../elements/Cover"
 class InfoPage extends Component {
     constructor(props) {
         super(props)
+        this.state = {
+            cover: "",
+            invite_image: ""
+        }
+    }
+
+    componentDidMount() {
+        this.props.illustrations.map(el => {
+            if (el.type == "AP") {
+                this.setState({cover: el.text})
+            }
+            if (el.type == "IN") {
+                this.setState({invite_image: el.text})
+            }
+        })
     }
 
     render() {
@@ -17,8 +32,8 @@ class InfoPage extends Component {
                 <Header/>
                 <div className="main-block">
                     <div className="col-1">
-                        <Cover/>
-                        <LinkList/>
+                        <Cover cover={this.state.cover}/>
+                        <LinkList invite_image={this.state.invite_image}/>
                     </div>
                     <div className="col-2">
                         <SpecialRoomList/>

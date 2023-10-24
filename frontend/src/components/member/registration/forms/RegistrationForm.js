@@ -1,17 +1,18 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import CSRFToken from "../../../common-elements/form/CSRFToken"
-import {useNavigate} from "react-router-dom"
 
 const RegistrationForm = (props) => {
-    const navigation = useNavigate()
+    const [loading, setLoading] = useState(0)
     const formik = useFormik({
         initialValues: {
             username: '',
             password: '',
             password2: '',
             email: '',
+            origin: window.location.origin,
+            operation_id: props.operation_id
         },
         validationSchema: Yup.object({
             username: Yup.string()
@@ -24,23 +25,22 @@ const RegistrationForm = (props) => {
         }),
         validateOnChange: false,
         onSubmit: (values, {setStatus, setErrors}) => {
-            const set_member = (data) => {props.set_member(data)}
+            setLoading(true)
             $.ajax({
                 type: 'post',
                 url: '/api/create-user',
                 cache: false,
                 data: values,
-                success: function (res) {
-                    set_member(res)
-                    navigation('/hello-world!')
+                success: function () {
+                    window.location.reload()
                 },
                 error: function (xhr) {
                     for (const [key, value] of Object.entries(JSON.parse(xhr.responseText))) {
-                        if (value[0] == 'A user with that username already exists.') {
-                            setErrors({'username':'Этот логин уже используется'})
+                        if (value[0] == 'Пользователь с таким именем уже существует.') {
+                            setErrors({'username': value[0]})
                         }
                         if (value[0] == 'Указанная почта уже используется') {
-                            setErrors({'email':value[0]})
+                            setErrors({'email': value[0]})
                         }
                     }
                 }
@@ -76,7 +76,10 @@ const RegistrationForm = (props) => {
                 <input type="email" name="email" id="email" onChange={formik.handleChange} value={formik.values.email}
                        placeholder=" = ^ᴗ^ = "/>
             </div>
-            <button className="send-btn" type="submit">Вперёд!</button>
+            <div className="send-form-block">
+                <button className="send-btn" type="submit">Вперёд!</button>
+                {loading ? (<i className="el-icon-loading"></i>) : null}
+            </div>
         </form>
     )
 }

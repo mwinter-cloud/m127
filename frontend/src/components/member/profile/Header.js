@@ -10,7 +10,8 @@ class Header extends Component {
             <header className="main-profile-header">
                 {this.props.cover? (<img src={this.props.cover} className="cover"/>):(<div className="cover-block"></div>)}
                 <div className="user-info">
-                    <img src={this.props.avatar?this.props.avatar:""} className="avatar"/>
+                    {this.props.avatar?(<img src={this.props.avatar} className="avatar"/>)
+                        :(<div className="base-avatar"></div>)}
                     <h3 className={this.props.color?this.props.color.type:null}>{this.props.name}</h3>
                 </div>
             </header>

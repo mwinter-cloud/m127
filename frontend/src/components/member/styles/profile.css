@@ -91,6 +91,15 @@
 	border: 3px solid #c2c2c4;
 	bottom: 10px;
 }
+.profile-page .main-profile-header .base-avatar {
+	width: 120px;
+	height: 120px;
+    z-index: 2;
+	position: absolute;
+	border: 3px solid #c2c2c4;
+	bottom: 10px;
+	display: inline-block;
+}
 .profile-page .main-profile-header .avatar[src=""] {
 	background: var(--DA);
 	background-size: cover;
@@ -108,16 +117,18 @@
 	margin-top: 40px;
 }
 .profile-page .col1 {
-	width: 63%;
+	width: 63%!important;
 	text-align: left;
 	padding: 0 0;
 }
 .profile-page .col2 {
 	width: 30%!important;
-	padding-top: 0;
+	padding: 0!important;
+	margin: 0!important;
 }
 .profile-page .post {
 	font-size: 1em;
+	color: #8f8f91;
 }
 .profile-page .post h2 {
 	margin: 0;
@@ -127,6 +138,14 @@
 	background: transparent;
 	padding: 3px;
 	border-radius: 2px 2px 0 0;
+}
+.profile-page .post main .null-post {
+	padding: 30px 20px!important;
+	text-align: center;
+}
+.profile-page .post main .null-post i {
+	font-size: 1.1em;
+	margin-right: 8px;
 }
 .profile-page .post header ul {
 	font-size: 1.1em;

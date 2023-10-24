@@ -22,7 +22,7 @@ class SpecialRoomList extends Component {
     render() {
         return (
             <>
-                <h2><i className="el-icon-chat-square"></i> Специальные темы</h2>
+                <h2><i className="el-icon-chat-round"></i> Специальные темы</h2>
                 <ul>
                     {this.state.rooms.map((room, index) => {
                         return (

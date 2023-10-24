@@ -33,8 +33,9 @@ class MainAnswer extends Component {
                             </header>
                         </MediaQuery>
                         <div className="author">
-                            {this.props.answer.author.avatar ?
-                                (<img src={this.props.answer.author.avatar} className="base-avatar"/>) : null}
+                            {this.props.answer.author.avatar != null ?
+                                (<img src={this.props.answer.author.avatar} className="avatar"/>)
+                                : null}
                             <div className="author-info" onClick={this.openProfile}>
                                 <span className={this.props.answer.author.color}>{this.props.answer.author.name}</span>
                             </div>

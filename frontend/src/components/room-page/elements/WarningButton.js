@@ -1,4 +1,5 @@
 import React from 'react'
+import AnswerHideBtn from "./AnswerHideBtn"
 
 class WurningButton extends React.Component {
 	constructor(props) {
@@ -48,7 +49,7 @@ class WurningButton extends React.Component {
 		const event_recipient = this.props.recipient_user_id
 		let notification_data = {
 			text: "",
-			recipients: [this.props.recipient_profile_id],
+			recipients: [this.props.recipient_user_id],
 			sender: this.props.my_profile.id,
 		}
 		if(this.props.answer_id) {
@@ -82,6 +83,7 @@ class WurningButton extends React.Component {
 	sendSocketMsg = (data) => {
 		const event_recipient = this.props.recipient_user_id
 		const event_data = {
+			'id': this.props.answer_id,
 			'object': data.object,
 			'text': "",
 			'sender': {'id': this.props.my_profile.id, 'name': this.props.my_profile.name,
@@ -89,6 +91,7 @@ class WurningButton extends React.Component {
 			'created_at': data.created_at,
 			'notif_type': this.props.answer_id?4:5,
 		}
+		console.log(event_data)
 		const send_socket_msg = () => {
 			this['userSocket' + event_recipient].send(JSON.stringify(event_data))
 		}
@@ -103,12 +106,11 @@ class WurningButton extends React.Component {
 	}
 
 	render() {
-		if(this.state.is_sended!=2) {
+		if (this.state.is_sended != 2) {
 			return (
 				<div className="btn" onClick={this.sendWarning}>
-					{this.state.is_sended ? (
-							<img src="http://www.lenagold.ru/fon/clipart/z/zve/zvezd79.gif" className="send-success"/>) :
-						(<i className="el-icon-aim"></i>)} предупреждение
+					{this.state.is_sended ? (<AnswerHideBtn answer_id={this.props.answer_id}/>)
+						: (<><i className="el-icon-aim"></i> предупреждение</>)}
 				</div>
 			)
 		} else {

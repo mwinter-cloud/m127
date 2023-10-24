@@ -11,7 +11,7 @@ class FileInputWrapper extends Component {
             <div className="inputWrapper fileInputWrapper">
                 <label>{this.props.label}</label>
                 <div className="file-input-block-wrapper">
-                    <Dropzone field={this.props.field}/>
+                    <Dropzone field={this.props.field} type={this.props.type}/>
                     <img src={this.props.src?this.props.src:""} className={this.props.field+"-img dropzone-img"} id={this.props.field+"_img"}/>
                 </div>
             </div>

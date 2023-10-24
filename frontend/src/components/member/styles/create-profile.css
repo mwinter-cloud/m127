@@ -1,3 +1,6 @@
+.profile-create-page {
+    padding: 50px;
+}
 .profile-create-page .settings-form {
     margin: 0;
 }
@@ -23,4 +26,11 @@
     background-image: linear-gradient(to right, #f78ca0 0%, #f9748f 19%, #fd868c 60%, #fe9a8b 100%);
     color: white;
     cursor: pointer;
+}
+
+
+@media (max-width: 800px) {
+    .profile-create-page {
+        padding: 0;
+    }
 }

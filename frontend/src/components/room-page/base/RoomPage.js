@@ -21,13 +21,22 @@ class RoomPage extends Component {
     componentDidMount() {
         this.props.set_section('')
         window.scrollTo(0, 0)
-        axios.get(window.location.origin + '/api/get-room/' + this.props.id).then(res => {
+        const get_room = axios.get(window.location.origin + '/api/get-room/' + this.props.id).catch((err) => {
+            this.setState({room: "404"})
+        })
+        get_room.then(res => {
             const room = res.data
             this.setState({room: room})
         })
         axios.get(window.location.origin + '/api/set-room-view/' + this.props.id)
+        let wsProtocol = ""
+        if (window.location.protocol == 'https:') {
+            wsProtocol = 'wss://'
+        } else {
+            wsProtocol = 'ws://'
+        }
         this.roomSocket = new WebSocket(
-            'ws://' + window.location.host + '/ws/room/' + this.props.id)
+            wsProtocol + window.location.host + '/ws/room/' + this.props.id)
         this.roomSocket.onmessage = e => {
             const data = JSON.parse(e.data)
             const text = data['text']
@@ -75,48 +84,56 @@ class RoomPage extends Component {
 
     render() {
         if (this.state.room != {}) {
-            return (
-                <main className="room-page">
-                    {(() => {
-                        if (this.state.room.tags) {
-                            return (
-                                <>
-                                    <Cover cover={this.state.room.cover}/>
-                                    <Header room={this.state.room} reloadRoom={this.reloadRoom}/>
-                                </>
-                            )
-                        }
-                    })()}
-                    {(() => {
-                        if (this.state.room.author) {
-                            return (
-                                <>
-                                    <MainAnswer
-                                        room_id={this.props.id}
-                                        answer={{
-                                            id: this.state.room.id,
-                                            text: this.state.room?this.state.room.message:null,
-                                            name: this.state.room.name, created_at: this.state.room.created_at,
-                                            author: {
-                                                id: this.state.room.author.id,
-                                                name: this.state.room.author.name,
-                                                avatar: this.state.room.author.avatar,
-                                                color: this.state.room.author.color?this.state.room.author.color.type:null,
-                                            }
-                                        }}/>
-                                    <Answers id={this.props.id} new_answers={this.state.new_answers}
-                                             clearNewAnswers={this.clearNewAnswers}/>
-                                    <FormBlock id={this.props.id} room_name={this.state.room.name}
-                                               savers={this.state.room.saved_by}
-                                               room_type={this.state.room.type}
-                                               is_admin={this.props.my_profile.is_admin}
-                                               sendSocketEvent={this.sendSocketEvent}/>
-                                </>
-                            )
-                        }
-                    })()}
-                </main>
-            )
+            if (this.state.room != "404") {
+                return (
+                    <main className="room-page">
+                        {(() => {
+                            if (this.state.room.tags) {
+                                return (
+                                    <>
+                                        <Cover cover={this.state.room.cover}/>
+                                        <Header room={this.state.room} reloadRoom={this.reloadRoom}/>
+                                    </>
+                                )
+                            }
+                        })()}
+                        {(() => {
+                            if (this.state.room.author) {
+                                return (
+                                    <>
+                                        <MainAnswer
+                                            room_id={this.props.id}
+                                            answer={{
+                                                id: this.state.room.id,
+                                                text: this.state.room ? this.state.room.message : null,
+                                                name: this.state.room.name, created_at: this.state.room.created_at,
+                                                author: {
+                                                    id: this.state.room.author.id,
+                                                    name: this.state.room.author.name,
+                                                    avatar: this.state.room.author.avatar,
+                                                    color: this.state.room.author.color ? this.state.room.author.color.type : null,
+                                                }
+                                            }}/>
+                                        <Answers id={this.props.id} new_answers={this.state.new_answers}
+                                                 clearNewAnswers={this.clearNewAnswers}/>
+                                        <FormBlock id={this.props.id} room_name={this.state.room.name}
+                                                   savers={this.state.room.saved_by}
+                                                   room_type={this.state.room.type}
+                                                   is_admin={this.props.my_profile.is_admin}
+                                                   sendSocketEvent={this.sendSocketEvent}/>
+                                    </>
+                                )
+                            }
+                        })()}
+                    </main>
+                )
+            } else {
+                return (
+                    <main className="room-page">
+                        <h2>Запись не найдена.</h2>
+                    </main>
+                )
+            }
         } else {
             return (<main className="room-page"><i className="el-icon-loading loading-icon"></i></main>)
         }

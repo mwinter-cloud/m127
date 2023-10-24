@@ -7,6 +7,13 @@ class ProfileCreatePage extends Component {
         super(props)
     }
 
+    componentDidMount() {
+        const hello = localStorage.getItem('hello')
+        if (hello==null) {
+            localStorage.setItem("hello", "True")
+        }
+    }
+
     render() {
         return (
             <main className="profile-create-page">

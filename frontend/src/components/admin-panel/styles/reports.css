@@ -58,6 +58,11 @@
     display: block;
     color: #8f8f91;
 }
+.reports-section .reports-list .report .btn .btn {
+    margin-bottom: 0;
+    font-size: 13px;
+    padding: 2px 6px;
+}
 .black-list h3 {
     font-weight: 500;
     text-decoration: underline;

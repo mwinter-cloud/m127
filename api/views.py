@@ -7,47 +7,71 @@ from .serializers import UserRegistrationSerializer, UserSerializer, ProfileSeri
     IllustrationSerializer, CreateRoomSerializer, OptionSerializer, ReportSerializer, ReportCreateSerializer, \
     FullAnswerSerializer, CarouselRoomSerializer, HeaderRoomSerializer, HeaderRoomCreateSerializer, \
     CarouselRoomCreateSerializer, WorkplanSerializer, WorkplanCreateSerializer, ModeratorProfileSerializer, \
-    UpdateSerializer, UpdateCreateSerializer, RoomVoiceSerializer, ArticleSerializer, ArticleIllustrationSerializer
+    UpdateSerializer, UpdateCreateSerializer, RoomVoiceSerializer, ArticleSerializer, \
+    ArticleIllustrationSerializer, OperationCodeSerializer
 from django.http.response import JsonResponse
 from rest_framework import viewsets
 from rest_framework.response import Response
 from .models import Profile, Room, Carousel_room, Header_room, Tag, Poll, Voice, Option, Comment, Smile, Answer, \
     Color, Notification, Customization, Illustration, Report, Workplan, Update, RoomVoice, Article, \
-    ArticleIllustration
+    ArticleIllustration, Operation
 from django.shortcuts import get_object_or_404, redirect
 from django.db.models import Q
-from django.utils import timezone
-from datetime import timedelta
 from django.db.models import Count
+from random import randint
+from django.template.loader import render_to_string
+from django.core.mail import send_mail
+
 
 class UserView(viewsets.ViewSet):
     def create(self, request):
         data = request.data
+        operation_id = request.POST.get('operation_id')
+        operation = get_object_or_404(Operation.objects.all(), id=operation_id)
         serializer = UserRegistrationSerializer(data=data)
         if not serializer.is_valid():
             return JsonResponse(status=400, data=serializer.errors)
         user = serializer.save()
-        Profile(name=user.username, user=user, color=None).save()
+        Profile(name=user.username, user=user, color=None, inviter=operation.user).save()
         login(request, user)
-        user_serializer = UserSerializer(user)
-        return JsonResponse(user_serializer.data, safe=False)
+        #отправим письмо на почту
+        user = request.user
+        oper_code = randint(0, 1000000)
+        email = user.email
+        operation = Operation(code=oper_code, user=user, type=1, info=email)
+        operation.save()
+        origin = request.POST.get('origin')
+        data = {'code': oper_code, 'email': email, 'origin': origin}
+        msg_plain = render_to_string('emails/email_confirm.txt', data)
+        msg_html = render_to_string('emails/email_confirm.html', data)
+        subject, from_email, to = 'Регистрация на сайте '+origin, 'maomail@windmail.ru', [email]
+        send_mail(subject, msg_plain, from_email, to, html_message=msg_html)
+        operation.delete()
+        return JsonResponse(True, safe=False)
+
+    def send_confirm_email(self, request):
+        user = request.user
+        oper_code = randint(0, 1000000)
+        email = user.email
+        operation = Operation(code=oper_code, user=user, type=1, info=email)
+        operation.save()
+        origin = request.POST.get('origin')
+        data = {'code': oper_code, 'email': email, 'origin': origin}
+        msg_plain = render_to_string('emails/email_confirm.txt', data)
+        msg_html = render_to_string('emails/email_confirm.html', data)
+        subject, from_email, to = 'Регистрация на сайте '+origin, 'maomail@windmail.ru', [email]
+        send_mail(subject, msg_plain, from_email, to, html_message=msg_html)
+        return JsonResponse(True, safe=False)
 
     def retrieve(self, request):
-        #удалить жалобы, которые добавлены более суток назад
-        how_many_days = 1
-        old_reports = Report.objects.filter(created_at__lte=timezone.now() - timedelta(days=how_many_days))
-        for report in old_reports:
-            report.delete()
-
         queryset = User.objects.all()
         user = get_object_or_404(queryset, pk=request.user.pk)
         serializer = UserSerializer(user)
         return Response(serializer.data)
 
     def login(self, request):
-        data = request.data
-        username = data.get('username')
-        password = data.get('password')
+        username = request.POST.get('username')
+        password = request.POST.get('password')
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
@@ -59,6 +83,88 @@ class UserView(viewsets.ViewSet):
     def logout(self, request):
         logout(request)
         return redirect('../login/')
+
+    def register_confirm(self, request, code):
+        queryset = Operation.objects.all()
+        exist_operation = queryset.filter(code=code)
+        if exist_operation:
+            operation = get_object_or_404(queryset, code=code)
+            user = request.user
+            profile_queryset = Profile.objects.all()
+            profile = get_object_or_404(profile_queryset, user=user)
+            profile.email_confirm = True
+            profile.save()
+            operation.delete()
+        return redirect("../../")
+
+    def send_change_email_mail(self, request):
+        new_email = request.POST.get('email')
+        user = request.user
+        email = user.email
+        exist_operation = Operation.objects.all().filter(info=new_email, type=3, user=user)
+        if not exist_operation:
+            oper_code = randint(0, 1000000)
+            operation = Operation(code=oper_code, user=user, type=3, info=new_email)
+            operation.save()
+        else:
+            operation = get_object_or_404(Operation.objects.all(), info=new_email, type=3, user=user)
+            oper_code = operation.code
+        origin = request.POST.get('origin')
+        data = {'code': oper_code, 'old_email': email, 'new_email': new_email, 'origin': origin}
+        msg_plain = render_to_string('emails/email_change.txt', data)
+        msg_html = render_to_string('emails/email_change.html', data)
+        subject, from_email, to = f'Смена почты на сайте {origin}', 'maomail@windmail.ru', [email]
+        send_mail(subject, msg_plain, from_email, to, html_message=msg_html)
+        return JsonResponse(True, safe=False)
+
+    def change_email(self, request, code):
+        queryset = Operation.objects.all()
+        exist_operation = queryset.filter(code=code)
+        if exist_operation:
+            operation = get_object_or_404(queryset, code=code)
+            user = request.user
+            user.email = operation.info
+            user.save()
+            operation.delete()
+        return redirect("../../")
+
+    def change_password_email(self, request):
+        user = request.user
+        email = user.email
+        exist_operation = Operation.objects.all().filter(type=2, user=user)
+        if not exist_operation:
+            oper_code = randint(0, 1000000)
+            operation = Operation(code=oper_code, user=user, type=2, info=email)
+            operation.save()
+        else:
+            operation = get_object_or_404(Operation.objects.all(), type=2, user=user)
+            oper_code = operation.code
+        origin = request.POST.get('origin')
+        data = {'code': oper_code, 'origin': origin}
+        msg_plain = render_to_string('emails/password_change.txt', data)
+        msg_html = render_to_string('emails/password_change.html', data)
+        subject, from_email, to = f'Смена пароля на сайте {origin}', 'maomail@windmail.ru', [email]
+        send_mail(subject, msg_plain, from_email, to, html_message=msg_html)
+        return JsonResponse(True, safe=False)
+
+    def change_anonim_password_email(self, request):
+        email = request.POST.get('email')
+        user = get_object_or_404(User.objects.all(), email=email)
+        exist_operation = Operation.objects.all().filter(type=2, user=user, info=email)
+        if not exist_operation:
+            oper_code = randint(0, 1000000)
+            operation = Operation(code=oper_code, user=user, type=2, info=email)
+            operation.save()
+        else:
+            operation = get_object_or_404(Operation.objects.all(), type=2, user=user, info=email)
+            oper_code = operation.code
+        origin = request.POST.get('origin')
+        data = {'code': oper_code, 'origin': origin}
+        msg_plain = render_to_string('emails/password_change.txt', data)
+        msg_html = render_to_string('emails/password_change.html', data)
+        subject, from_email, to = f'Смена пароля на сайте {origin}', 'maomail@windmail.ru', [email]
+        send_mail(subject, msg_plain, from_email, to, html_message=msg_html)
+        return JsonResponse(True, safe=False)
 
 class ProfileView(viewsets.ViewSet):
     def create_base(self, request):
@@ -112,7 +218,7 @@ class ProfileView(viewsets.ViewSet):
         if not serializer.is_valid():
             return JsonResponse(status=400, data=serializer.errors)
         serializer.save()
-        return Response(data)
+        return JsonResponse(serializer.data, safe=False)
 
     def retrieve_my_profile(self, request):
         queryset = Profile.objects.all()
@@ -146,6 +252,31 @@ class ProfileView(viewsets.ViewSet):
         profile.is_admin = False
         profile.save()
         return Response(True)
+
+    def get_invite_code(self, request):
+        queryset = Operation.objects.all()
+        user = request.user
+        invite = queryset.filter(user=user, type=4)
+        if invite.exists():
+            operation = get_object_or_404(queryset, user=user, type=4)
+            serializer = OperationCodeSerializer(operation, many=False)
+            code = serializer.data.get('code')
+        else:
+            code = request.POST.get('code')
+            Operation(user=user, type=4, code=code).save()
+        return JsonResponse(code, safe=False)
+
+    def compare_invite_code(self, request):
+        queryset = Operation.objects.all()
+        code = request.POST.get('code')
+        operation = queryset.filter(code=code, type=4)
+        if operation.exists():
+            operation = get_object_or_404(queryset, code=code, type=4)
+            serializer = OperationCodeSerializer(operation, many=False)
+            result = serializer.data.get('id')
+        else:
+            result = False
+        return JsonResponse(result, safe=False)
 
     def add_moderator(self, request):
         queryset = Profile.objects.all()
@@ -194,7 +325,7 @@ class RoomView(viewsets.ViewSet):
         search_str = request.POST.get('search_str')
         section = request.POST.get('section')
         loaded_rooms_count = int(request.POST.get('loaded_rooms_count'))
-        user_id = request.user.id
+        user_id = request.user.profile.id
         # системные записи отмечены типом "служебные" и "административные". их не отображаем в общем списке
         room_list = Room.objects.all().exclude(type="ADM").exclude(type="OFC")
         if section == "my":
@@ -221,12 +352,13 @@ class RoomView(viewsets.ViewSet):
         queryset = Room.objects.all()
         room_id = int(request.POST.get('room_id'))
         answer = get_object_or_404(queryset, pk=room_id)
+        answer.cover.delete(save=True)
         answer.delete()
         return Response(True)
 
     def is_saved(self, request, pk):
         user = request.user
-        poll = Room.objects.all().filter(id=pk).filter(saved_by__id__icontains=user.profile.id)
+        poll = Room.objects.all().filter(id=pk).filter(saved_by__id__icontains=user.id)
         if poll.exists():
             status = 1
         else:
@@ -236,15 +368,15 @@ class RoomView(viewsets.ViewSet):
     def save(self, request):
         room_id = int(request.POST.get('room_id'))
         saved_status = int(request.POST.get('saved_status'))
-        profile = request.user.profile
+        user = request.user
         queryset = Room.objects.all()
         room = get_object_or_404(queryset, pk=room_id)
         if saved_status == 0:
-            room.saved_by.add(profile)
+            room.saved_by.add(user)
             room.save()
             status = 1
         else:
-            room.saved_by.remove(profile)
+            room.saved_by.remove(user)
             room.save()
             status = 0
         return JsonResponse(status, safe=False)
@@ -259,6 +391,7 @@ class RoomView(viewsets.ViewSet):
         if type == 1:
             carousel_rooms = Carousel_room.objects.all()
             if carousel_rooms.count() >= 3:
+                carousel_rooms[0].cover.delete(save=True)
                 carousel_rooms[0].delete()
             serializer = CarouselRoomCreateSerializer(data=data)
             if not serializer.is_valid():
@@ -268,6 +401,7 @@ class RoomView(viewsets.ViewSet):
         if type == 2:
             header_rooms = Header_room.objects.all()
             if header_rooms.count() >= 5:
+                header_rooms[0].cover.delete(save=True)
                 header_rooms[0].delete()
             serializer = HeaderRoomCreateSerializer(data=data)
             if not serializer.is_valid():
@@ -287,9 +421,16 @@ class RoomView(viewsets.ViewSet):
         return Response(serializer.data)
 
     def oficial_list(self, request):
-        rooms = Room.objects.all().filter(type="OFC").order_by("-id").distinct()
+        rooms = Room.objects.all().filter(Q(type="OFC") | Q(type="ADM")).order_by("-id").distinct()
         serializer = RoomSerializer(rooms, many=True)
         return Response(serializer.data)
+
+    def set_view(self, request, id):
+        queryset = Room.objects.all()
+        room = get_object_or_404(queryset, pk=id)
+        room.views = room.views + 1
+        room.save()
+        return Response(True)
 
 class RoomVoiceView(viewsets.ViewSet):
     def get_data(self, request, room_id):
@@ -407,6 +548,13 @@ class PollView(viewsets.ViewSet):
         poll.delete()
         return Response("Опрос удален.")
 
+    def set_view(self, request, id):
+        queryset = Poll.objects.all()
+        poll = get_object_or_404(queryset, pk=id)
+        poll.views = poll.views + 1
+        poll.save()
+        return Response(True)
+
 
 class OptionView(viewsets.ViewSet):
     def create(self, request):
@@ -446,11 +594,6 @@ class VoiceView(viewsets.ViewSet):
         return Response(data)
 
     def get_voices(self, request, poll_id):
-        #удалить записи, которым более 30 дней
-        how_many_days = 30
-        old_notes = Voice.objects.filter(created_at__lte=timezone.now() - timedelta(days=how_many_days))
-        for note in old_notes:
-            note.delete()
         options = Option.objects.filter(poll__pk=poll_id)
         voices_list = []
         for opt in options:
@@ -482,11 +625,6 @@ class CommentView(viewsets.ViewSet):
     def retrieve(self, request, poll_id):
         comments = Comment.objects.filter(poll__pk=poll_id)
         serializer = CommentSerializer(comments, many=True)
-        #удалить записи, которым более 7 дней
-        how_many_days = 7
-        old_notes = Comment.objects.filter(created_at__lte=timezone.now() - timedelta(days=how_many_days))
-        for note in old_notes:
-            note.delete()
         return Response(serializer.data)
 
     def delete(self, request):
@@ -508,6 +646,7 @@ class SmileView(viewsets.ViewSet):
         id = request.data.get('id')
         queryset = Smile.objects.all()
         smile = get_object_or_404(queryset, pk=id)
+        smile.file.delete(save=True)
         smile.delete()
         return Response(True)
 
@@ -554,7 +693,18 @@ class CustomizationView(viewsets.ViewSet):
         return Response(serializer.data)
 
     def announcement(self, request):
-        note = Customization.objects.all().get(type="AN")
+        try:
+            note = Customization.objects.all().get(type="AN")
+        except:
+            return Response("")
+        serializer = CustomizationSerializer(note, many=False)
+        return Response(serializer.data)
+
+    def citename(self, request):
+        try:
+            note = Customization.objects.all().get(type="CN")
+        except:
+            return Response("")
         serializer = CustomizationSerializer(note, many=False)
         return Response(serializer.data)
 
@@ -616,11 +766,6 @@ class AnswerView(viewsets.ViewSet):
             control_answer = 1
         else:
             control_answer = 0
-        #удалить записи, которым более 30 дней
-        how_many_days = 30
-        old_notes = Answer.objects.filter(created_at__lte=timezone.now() - timedelta(days=how_many_days))
-        for note in old_notes:
-            note.delete()
         return Response({'answers': serializer.data, 'control_answer': control_answer})
 
     def create(self, request):
@@ -662,16 +807,27 @@ class AnswerView(viewsets.ViewSet):
         answer.delete()
         return Response(True)
 
+    def hide_answer(self, request):
+        answer_id = request.data.get('answer_id')
+        queryset = Answer.objects.all()
+        answer = get_object_or_404(queryset, pk=answer_id)
+        answer.type = 2
+        answer.save()
+        return Response(True)
+
+    def restore_answer(self, request):
+        answer_id = request.data.get('answer_id')
+        queryset = Answer.objects.all()
+        answer = get_object_or_404(queryset, pk=answer_id)
+        answer.type = 1
+        answer.save()
+        return Response(True)
+
 #уведомления
 class NotificationView(viewsets.ViewSet):
     def list(self, request):
-        user = request.user.profile
+        user = request.user
         queryset = Notification.objects.all().filter(recipients=user).order_by('-id')[:10]
-        #удалить записи, которым более 30 дней
-        how_many_days = 30
-        old_notes = Notification.objects.filter(created_at__lte=timezone.now() - timedelta(days=how_many_days))
-        for note in old_notes:
-            note.delete()
         serializer = NotificationSerializer(queryset, many=True)
         return Response(serializer.data)
 
@@ -686,7 +842,7 @@ class NotificationView(viewsets.ViewSet):
             text = ""
             object = 0
             for rec in recipients_list:
-                recipients.append(rec.id)
+                recipients.append(rec.user.id)
                 viewed += str(rec.id)+','
         else:
             recipients = data.getlist('recipients[]')
@@ -707,7 +863,7 @@ class NotificationView(viewsets.ViewSet):
         return JsonResponse(serializer.data, safe=False)
 
     def get_new(self, request):
-        user = request.user.profile
+        user = request.user
         queryset = Notification.objects.all().filter(recipients__in=([user.id]),viewed__icontains=(user.id))
         if queryset.exists():
             res = 1
@@ -716,7 +872,7 @@ class NotificationView(viewsets.ViewSet):
         return Response(res)
 
     def show_new_notifs(self, request):
-        user = request.user.profile
+        user = request.user
         queryset = Notification.objects.all().filter(viewed__icontains=(user.id))
         if queryset.exists():
             for notif in queryset:
@@ -729,7 +885,6 @@ class NotificationView(viewsets.ViewSet):
         return Response(user.id)
 
     def warning_exist(self, request):
-        profile = request.user.profile
         data = request.data
         violator_id = int(data.get('violator_id'))
         object_id = int(data.get('object_id'))
@@ -763,8 +918,8 @@ class NotificationView(viewsets.ViewSet):
     def delete(self, request):
         queryset = Notification.objects.all()
         id = request.data.get('id')
-        note = get_object_or_404(queryset, pk=id)
-        note.delete()
+        note = get_object_or_404(queryset, id=id)
+        note.recipients.remove(request.user)
         return Response(True)
 
 #жалобы
@@ -772,11 +927,6 @@ class ReportView(viewsets.ViewSet):
     def list(self, request):
         report_list = Report.objects.all()
         serializer = ReportSerializer(report_list, many=True)
-        #удалить записи, которым более 1 дня
-        how_many_days = 1
-        old_notes = Notification.objects.filter(created_at__lte=timezone.now() - timedelta(days=how_many_days))
-        for note in old_notes:
-            note.delete()
         return Response(serializer.data)
 
     def create(self, request):

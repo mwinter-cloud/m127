@@ -36,8 +36,22 @@
 	border-radius: 3px;
 }
 
+.no-banner-window {
+	margin-top: 8vh!important;
+}
+
 .registration-window .send-btn:hover {
     background-image: linear-gradient(to right, #f78ca0 0%, #f9748f 19%, #fd868c 60%, #fe9a8b 100%);
     color: white;
     cursor: pointer;
+}
+
+.registration-window .send-form-block {
+	position: relative;
+	width: 30%;
+	margin: 0 auto;
+}
+.registration-window .send-form-block i {
+	font-size: 1.2em;
+	margin-left: 70px;
 }

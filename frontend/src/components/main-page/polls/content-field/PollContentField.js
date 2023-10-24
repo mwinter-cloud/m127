@@ -45,7 +45,7 @@ class PollsContentField extends Component {
             }
             init_poll_voices(nextProps.poll.id) // запишем количество голосов для вариантов и подсчитаем общее
             // их количество, посмотрим, сохранили ли мы этот опрос, и голосовали ли мы уже в нем
-            axios.get('http://' + window.location.host + '/api/is-poll-saved/' + nextProps.poll.id).then(res => {
+            axios.get('/api/is-poll-saved/' + nextProps.poll.id).then(res => {
                 set_saved_status(res.data)
             })
             axios.get('/api/is-my-voice/' + nextProps.poll.id).then(res => {
@@ -76,9 +76,15 @@ class PollsContentField extends Component {
     }
 
     openSocket = (poll_id, resolve_data) => {
+        let wsProtocol = ""
+			if (window.location.protocol == 'https:') {
+				wsProtocol = 'wss://'
+			} else {
+				wsProtocol = 'ws://'
+			}
         if (this['pollSocket' + poll_id] == undefined) {
             this['pollSocket' + poll_id] = new WebSocket(
-                'ws://' + window.location.host + '/ws/poll/' + poll_id)
+                wsProtocol + window.location.host + '/ws/poll/' + poll_id)
             this['pollSocket' + poll_id].onclose = () => {
                 this['pollSocket' + poll_id] = undefined
             }

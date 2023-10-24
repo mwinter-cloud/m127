@@ -11,18 +11,29 @@ class Profile extends Component {
         this.state = {
             member: {cover: 'undefined'}
         }
+        this.loadProfile = this.loadProfile.bind(this)
     }
 
     componentDidMount() {
-        axios.get(window.location.origin + '/api/get-member/' + this.props.id).then(res => {
-            const member = res.data
-            this.setState({member: member})
-        })
+        this.loadProfile(this.props.id)
         document.querySelector('body').style.overflow = "hidden"
     }
 
     componentWillUnmount() {
         document.querySelector('body').style.overflow = "auto"
+    }
+
+    componentWillReceiveProps(nextProps, nextContext) {
+        if(nextProps.id!=this.props.id) {
+            this.loadProfile(nextProps.id)
+        }
+    }
+
+    loadProfile = (id) => {
+        axios.get(window.location.origin + '/api/get-member/' + id).then(res => {
+            const member = res.data
+            this.setState({member: member})
+        })
     }
 
     render() {

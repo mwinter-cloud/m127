@@ -2,7 +2,7 @@ from rest_framework import serializers
 from django.contrib.auth.models import User
 from .models import Profile, Room, Tag, Poll, Option, Voice, Comment, Smile, Answer, Color, Notification, \
     Customization, Illustration, Report, Header_room, Carousel_room, Workplan, Update, RoomVoice, \
-    ArticleIllustration, Article
+    ArticleIllustration, Article, Operation
 from django.shortcuts import get_object_or_404
 
 # user + profile
@@ -20,6 +20,14 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
             email = get_object_or_404(User, email=value)
             if email != '':
                 raise serializers.ValidationError('Указанная почта уже используется')
+        return value
+
+    def validate_username(self, value):
+        exist_contact = User.objects.filter(username=value)
+        if exist_contact:
+            username = get_object_or_404(User, username=value)
+            if username != '':
+                raise serializers.ValidationError('Указанный логин уже используется')
         return value
 
 class ColorSerializer(serializers.ModelSerializer):
@@ -80,6 +88,7 @@ class ModeratorProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
         fields = ['id', 'name', 'avatar', 'user']
+
 
 #теги
 class TagNameSerializer(serializers.ModelSerializer):
@@ -148,14 +157,14 @@ class AnswerSerializer(serializers.ModelSerializer):
     author = MainProfileInfoSerializer(many=False)
     class Meta:
         model = Answer
-        fields = ['id', 'text', 'author', 'room', 'created_at']
+        fields = ['id', 'text', 'author', 'room', 'created_at', 'type']
 
 class FullAnswerSerializer(serializers.ModelSerializer):
     author = MainProfileInfoSerializer(many=False)
     room = RoomNameIdSerializer(many=False, read_only=True)
     class Meta:
         model = Answer
-        fields = ['id', 'text', 'author', 'room', 'created_at']
+        fields = ['id', 'text', 'author', 'room', 'created_at', 'type']
 
 class CreateAnswerSerializer(serializers.ModelSerializer):
     class Meta:
@@ -271,3 +280,8 @@ class ArticleIllustrationSerializer(serializers.ModelSerializer):
     class Meta:
         model = ArticleIllustration
         fields = ['id', 'description', 'file', 'article']
+
+class OperationCodeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Operation
+        fields = ['id', 'code']

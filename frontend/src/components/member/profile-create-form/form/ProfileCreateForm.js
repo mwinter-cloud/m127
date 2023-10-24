@@ -30,16 +30,16 @@ const ProfileCreateForm = () => {
         const formData = new FormData(document.getElementById('profile_create_form'))
         $.ajax({
             type: 'post',
-            url: '../api/create-profile',
+            url: '/api/create-profile',
             cache: false,
             data: formData,
             processData: false,
             contentType: false,
             success: function () {
-                window.location.replace("http://" + window.location.host + "/hello-world!")
+                window.location.reload()
             },
-            error: function (xhr) {
-                console.log(xhr)
+            error: function () {
+                window.location.reload()
             }
         })
     }
@@ -48,7 +48,7 @@ const ProfileCreateForm = () => {
               encType="multipart/form-data" method="post">
             <h2><i className="el-icon-sunset"></i> Создание профиля</h2>
             <p>
-                Отлично! Давайте познакомимся
+                Отлично! Давай познакомимся!
             </p>
             <div className="error-block">
                 {formik.errors.name ? <p>{formik.errors.name}</p> : null}

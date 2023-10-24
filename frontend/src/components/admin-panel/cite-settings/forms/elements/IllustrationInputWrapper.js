@@ -49,7 +49,7 @@ class IllustrationInputWrapper extends Component {
                     <label>{this.state.label}</label>
                     <input name={this.props.name} value={this.props.value} onChange={this.props.changeEvent}/>
                 </div>
-                <img className={this.props.name+"-img illustration-input-block"} src={this.props.value}/>
+                {this.props.value?(<img className={this.props.name+"-img illustration-input-block"} src={this.props.value}/>):null}
             </div>
         )
     }

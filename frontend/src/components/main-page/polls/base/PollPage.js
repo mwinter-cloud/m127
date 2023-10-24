@@ -20,6 +20,7 @@ class PollPage extends Component {
         this.props.set_section('polls')
         this.loadPoll(this.props.id)
         window.scrollTo(0,0)
+        axios.get(window.location.origin + '/api/set-poll-view/' + this.props.id)
     }
 
     componentWillReceiveProps(nextProps, nextContext) {
@@ -36,7 +37,7 @@ class PollPage extends Component {
             this.setState({error: text})
         }
         set_error('')
-        let get_poll_pr = axios.get('http://' + window.location.host + '/api/get-poll/' + id).catch(function (error) {
+        let get_poll_pr = axios.get('/api/get-poll/' + id).catch(function (error) {
             set_error('Опрос не найден')
             return Promise.reject(error)
         })
@@ -56,8 +57,7 @@ class PollPage extends Component {
                 <div className="col2">
                     {(() => {
                         if (this.props.id == undefined) {
-                            return (<img src="https://media.tenor.com/k01wKFjpoyUAAAAC/cat-keyboard.gif"
-                                         className="null-poll-img"/>)
+                            return (<i className="el-icon-arrow-left null-poll-icon"></i>)
                         } else {
                             if (this.state.error == "") {
                                 return (

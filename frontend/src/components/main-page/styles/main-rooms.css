@@ -19,22 +19,23 @@
 }
 .rooms-main .cite-top .rating-aside-field {
 	display: flex;
-	width: 100%;
+	width: auto;
 	height: auto;
 	padding: 5px 5px;
 	position: absolute;
-	left: 0;
-	bottom: 0;
+	right: 5px;
+	bottom: 5px;
 }
 .rooms-main .cite-top .rating-aside-field .rating-grade {
 	color: #888;
-	font-size: 1em;
+	font-size: .9em;
+	margin-top: 1px;
 	margin-left: 8px;
 }
 .rooms-main .cite-top .rating-aside-field .rating-arrow {
-	font-size: 1.25em;
-	margin-top: -2px;
-	margin-right: 10px;
+	font-size: 1.1em;
+	margin-top: 0;
+	margin-right: 5px;
 	color: #888;
 	display: block;
 }
@@ -48,7 +49,7 @@
 .rooms-main .cite-top .rating-block .null-rating-block {
 	z-index: 1;
 	position: relative;
-	background: #1a1b20;
+	background: transparent;
 	width: 100%;
 	height: 100%;
 	overflow: hidden;
@@ -69,17 +70,19 @@
 	width: 115px;
 	display: flex;
 	justify-content: space-between;
-
+}
+.rooms-main .cite-top .header-text {
+    background: rgba(26,27,32,.7);
+    position: relative;
+    border-radius: 0 0 3px 3px;
+    padding: 10px;
+	margin: -40px 0 0 0;
 }
 .rooms-main .cite-top h1 {
     font-weight: 500;
     font-size: 1.1em;
-    background: rgba(26,27,32,.7);
-    padding: 10px;
-    border-radius: 0 0 3px 3px;
-    position: relative;
-	margin: -40px 0 0 0;
-	text-align: center;
+	margin: 0;
+	display: inline-block;
 }
 .rooms-main .cite-top h1 i {
 	color: #888;
@@ -118,6 +121,12 @@
 	border-radius: 3px;
 	display: block;
 }
+.rooms-main .cite-top .carousel .picture-block {
+	width: 100%;
+    height: 320px;
+	background: #2b2c31;
+	border-radius: 3px;
+}
 /* aside */
 .rooms-main .cite-top .aside {
 	width: 30%;
@@ -136,14 +145,11 @@
 }
 .rooms-main .cite-top .info-block p {
 	font-size: .88em;
-	margin: 0 0 10px 0;
+	margin: 0 0 20px 0;
 	line-height: 1.5em;
 }
-
-.rooms-main .cite-top .info-block .transparent-btn {
-	padding: 6px 10px;
-	border: 1px solid rgba(171, 205, 239, 0.05);
-    background: linear-gradient(0deg, rgba(171, 205, 239, 0.0769083) 0%, rgba(171, 205, 239, 0.0396534) 99%);
+.rooms-main .cite-top .transparent-btn i {
+	margin-right: 5px;
 }
 
 /* список комнат */

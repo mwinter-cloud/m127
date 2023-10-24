@@ -24,6 +24,16 @@
     width: 50%;
     border-radius: 0 0 3px 3px;
 }
+.login-page .restore-password-text {
+    position: absolute;
+    right: 0;
+    bottom: -32px;
+    font-size: .8em;
+}
+.login-page .back-arrow {
+    margin: 10px 0;
+    display: inline-block;
+}
 
 
 @media (max-width: 800px) {

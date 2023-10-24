@@ -1,25 +1,29 @@
 body {
-    --violet: #8673A1;
-    --red: #fc5e53;
-    --blue: #6694a2;
-    --d_blue: #409eff;
-    --green: #8ccc5e;
-    --yellow: #ffcf3f;
-    --cherry: #993365;
-    --pink: #ffcada;
-    --gray: #c2c2c4;
-    --orange: #f8943c;
+    --violet: transparent;
+    --red: transparent;
+    --blue: transparent;
+    --d_blue: transparent;
+    --green: transparent;
+    --yellow: transparent;
+    --cherry: transparent;
+    --pink: transparent;
+    --gray: transparent;
+    --orange: transparent;
 
-    --SC: #1999ff;
-    --RN: #6b99ad;
-    --AB: rgba(124, 161, 210, 0.6);
-    --EMC: #1999ff;
-    --MC: #1999ff;
-    --DAC: rgba(124, 161, 210, 0.6);
-    --EC: #fdefa1;
-    --SO: #699754;
-    --VB: linear-gradient(158deg, rgba(171, 249, 251, 0.6) 0%, rgba(150, 227, 243, 0.6) 34%, rgba(141, 206, 235, 0.7) 62%, rgba(131, 185, 229, 0.8) 72%);
-    --DC: rgba(124, 161, 210, 0.6);
+    --SC: #888;
+    --RN: #888;
+    --AB: transparent;
+    --EMC: transparent;
+    --MC: transparent;
+    --DAC: transparent;
+    --EC: transparent;
+    --SO: #888;
+    --VB: #888;
+    --DC: transparent;
+}
+
+.room-name {
+    color: var(--RN);
 }
 
 /* цвета палетки */

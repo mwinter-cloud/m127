@@ -266,7 +266,7 @@
 }
 .spoiler header {
     border: 1px solid rgba(255, 255, 255, 0.1);
-    height: 25px;
+    height: auto;
     padding: 2px 35px 2px 5px;
     display: inline-block;
     top: 0;
@@ -274,20 +274,22 @@
     margin: 0!important;
     position: relative;
     cursor: pointer;
+    border-radius: 2px;
     background: linear-gradient(0deg, rgba(171, 205, 239, 0.0769083) 0%, rgba(171, 205, 239, 0.0396534) 99%);
 }
 .spoiler button {
-    height: 25px;
+    height: 100%;
     width: 25px;
     margin: 0;
     position: absolute;
     border: 0;
     top: 0;
     right: 0;
-    background: transparent;
-    background-position: center center;
     border-left: 1px solid rgba(255, 255, 255, 0.1);
     cursor: pointer;
+    color: #888;
+    font-size: .8em;
+    background: transparent;
 }
 .spoiler button:focus {
     outline: none;
@@ -295,13 +297,13 @@
 .spoiler button::before {
   background-size: 10px 10px;
   background-repeat: no-repeat;
-  content: "";
+  content: "▼";
   position: relative;
   float: left;
-  margin: 2px 0px 0 1px;
   width: 15px;
   height: 15px;
   background-color: transparent;
+    margin: 3px 0 0 -1px;
 }
 .spoiler main {
     border: 0;

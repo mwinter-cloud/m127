@@ -32,7 +32,7 @@ class ThankButton extends React.Component {
 
 	addNotification = (data) => {
 		const recipient = this.props.author_user_id
-		let notification_data = {recipients: [this.props.author_id], text: data.ans_text, type: 0, object: data.answer}
+		let notification_data = {recipients: [this.props.author_user_id], text: data.ans_text, type: 0, object: data.answer, id: this.props.answer_id}
 		const set_sended = () => {
 			this.setState({is_sended: 1})
 			localStorage.setItem('thank_answer_'+this.props.answer_id,1)

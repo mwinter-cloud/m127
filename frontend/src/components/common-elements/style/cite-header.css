@@ -35,14 +35,18 @@
 }
 .main-header .small-logo {
     height: 30px;
+    width: 30px;
+    background: var(--L);
+    background-size: contain;
     margin-top: -4px;
+    display: inline-block;
 }
 
 
 /* main-menu */
 .main-header .cite-menu {
 	display: flex;
-	width: 20%;
+	width: 16%;
 	font-size: .9em;
 	height: 40px;
 }
@@ -96,12 +100,14 @@
     margin-right: 8%;
 }
 .main-header .profile-block .avatar {
-    margin-right: 5px;
-    margin-top: -6px;
+    margin: -9px 5px 0 0;
+}
+.main-header .profile-block .base-avatar {
+    margin: -9px 5px 0 0;
 }
 .main-header .profile-block .open-btn i {
     font-size: 1.4em;
-    margin-top: 5px;
+    margin-top: 1px;
     margin-left: 2px;
     color: #8f8f91;
     display: block;
@@ -111,7 +117,7 @@
 /* notifications section */
 .main-header .notifications-section .bell {
     font-size: 1.5em;
-    margin-top: 3px;
+    margin-top: 0;
     user-select: none;
     cursor: pointer;
 }
@@ -204,7 +210,7 @@
     height: 24px !important;
     width: 24px !important;
     top: 26px !important;
-    left: 39% !important;
+    left: 36% !important;
     position: fixed!important;
 }
 .search-page .search-result-block {

@@ -15,6 +15,29 @@ function mapStateToProps(component) {
 				}
 			}
 		}
+		case "LoginPage": {
+			return function (state) {
+				return {
+					illustrations: state.illustrations,
+				}
+			}
+		}
+		case "RegistrationPage": {
+			return function (state) {
+				return {
+					illustrations: state.illustrations,
+				}
+			}
+		}
+
+		/* настройки */
+		case "SettingsPage": {
+			return function (state) {
+				return {
+					member: state.member,
+				}
+			}
+		}
 
 		/* главная страница */
 		case "MainHeader": {
@@ -90,6 +113,7 @@ function mapStateToProps(component) {
 			return function (state) {
 				return {
 					member: state.member,
+					illustrations: state.illustrations,
 				}
 			}
 		}
@@ -151,6 +175,13 @@ function mapStateToProps(component) {
 			return function (state) {
 				return {
 					member: state.member,
+				}
+			}
+		}
+		case "Article": {
+			return function (state) {
+				return {
+					is_admin: state.member.profile.is_admin,
 				}
 			}
 		}

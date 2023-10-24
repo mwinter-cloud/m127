@@ -55,9 +55,8 @@ const AnswerForm = (props) => {
                             recipients: [user_id],
                             notif_type: 1,
                             text: specialtagsinnotification(formik.values.text).substring(0, 99),
-                            object: data.object,
+                            object: data.id,
                         }
-                        console.log(notification_data)
                         props.addNotification(notification_data)
                     })
                 } else {

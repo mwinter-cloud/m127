@@ -11,6 +11,11 @@
     width: 80%;
     margin: 20px 0;
 }
+.registration-code-block p .invite-page-icon {
+    font-size: 1.7em;
+    margin-bottom: 50px;
+    display: block;
+}
 .registration-code-block form {
     margin-top: 80px;
 }
@@ -35,11 +40,13 @@
     border: 1px solid rgba(0, 0, 0, 0.15);
     background: linear-gradient(158deg, rgba(171, 249, 251, 0.6) 0%, rgba(150, 227, 243, 0.6) 34%, rgba(141, 206, 235, 0.7) 62%, rgba(131, 185, 229, 0.8) 72%);
     color: rgba(255, 255, 255, 0.5);
-    font-size: .9em;
     border-radius: 4px;
     cursor: pointer;
     height: 60px;
     width: 15%;
     text-align: center;
     font-size: .85em;
+}
+.registration-code-block .error-msg {
+    font-size: .7em;
 }

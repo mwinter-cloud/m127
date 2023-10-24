@@ -43,10 +43,10 @@ class ReportBlock extends Component {
                     : null
                 }
                 <div className="report">
-                        <p><span className="blue underline-hover"
+                        <p><span className="room-name underline-hover"
                               onClick={this.openProfile} data-id={this.props.report.sender.id}>
                             {this.props.report.sender.name}</span> пожаловался на <span
-                        className="blue underline-hover"
+                        className="room-name underline-hover"
                               onClick={this.openProfile} data-id={this.props.report.violator.id}>
                         {this.props.report.violator.name}</span> {this.props.report.type==1?
                             ("сообщение в комнате"):("опрос")}</p>

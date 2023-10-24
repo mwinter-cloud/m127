@@ -1,0 +1,30 @@
+.message-win {
+    position: fixed;
+    bottom: 50px;
+    left: 3%;
+    width: 400px;
+    height: auto;
+    background: var(--SC);
+    padding: 20px;
+    border-radius: 3px;
+    z-index: 2;
+    font-size: .95em;
+    overflow: auto;
+    color: #EBEEF5;
+    opacity: .93;
+}
+.message-win p {
+    margin: 0;
+}
+.message-win .ok-btn {
+    background: rgba(255,255,255,.2);
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-size: .95em;
+    display: inline-block;
+    margin-top: 10px;
+    cursor: pointer;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+}

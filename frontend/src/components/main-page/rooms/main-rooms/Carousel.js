@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from "axios"
 import {Link} from "react-router-dom"
+import Rating from "./Rating";
 
 class Carousel extends Component {
     constructor(props) {
@@ -15,18 +16,20 @@ class Carousel extends Component {
     componentDidMount() {
         axios.get(window.location.origin + '/api/get-carousel-rooms').then(res => {
             const room_list = res.data
-            this.setState({rooms: room_list},() => {
-                this.props.setRoomId(this.state.rooms[0].id)
-            })
+            if (room_list.length != 0) {
+                this.setState({rooms: room_list})
+            }
         })
     }
 
     changeSelectedRoom = (e) => {
         let index = e.target.getAttribute('data-index')
-        this.setState({
-            selected_room: index
-        })
-        this.props.setRoomId(this.state.rooms[index].id)
+        if (this.state.rooms[index] != undefined) {
+            this.setState({
+                selected_room: index
+            })
+            this.props.setRoomId(this.state.rooms[index].id)
+        }
     }
 
     render() {
@@ -38,11 +41,12 @@ class Carousel extends Component {
                             <img
                                 src={this.state.rooms[this.state.selected_room].cover}
                                 className="picture"/>
-                            <Link to={"/room/" + this.state.rooms[this.state.selected_room].room.id}>
-                                <div className="header-text">
+                            <div className="header-text">
+                                <Link to={"/room/" + this.state.rooms[this.state.selected_room].room.id}>
                                     <h1>{this.state.rooms[this.state.selected_room].room.name}</h1>
-                                </div>
-                            </Link>
+                                </Link>
+                                <Rating room_id={this.state.rooms[this.state.selected_room].id}/>
+                            </div>
                         </div>
                     ) : (
                         <div className="mainroomslide">
@@ -50,7 +54,8 @@ class Carousel extends Component {
                                 src={this.state.rooms[0].cover}
                                 className="picture"/>
                             <Link to={"/room/" + this.state.rooms[this.state.selected_room].room.id}>
-                                <div className="header-text"><h1>{this.state.rooms[0].room.name}</h1>
+                                <div className="header-text">
+                                    <h1>{this.state.rooms[0].room.name}</h1>
                                 </div>
                             </Link>
                         </div>
@@ -66,7 +71,11 @@ class Carousel extends Component {
                 </div>
             )
         } else {
-            return (<main className="carousel"><i className="el-icon-loading loading-icon"></i></main>)
+            return (<div className="carousel">
+                <div className="mainroomslide">
+                    <div className="picture-block"></div>
+                </div>
+            </div>)
         }
     }
 }

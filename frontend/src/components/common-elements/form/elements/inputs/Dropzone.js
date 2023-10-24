@@ -24,7 +24,7 @@ const Dropzone = props => {
   return (
     <div {...getRootProps()} className="file-input-block">
       <input {...getInputProps()} name={props.field} style={{display:'block'}} id={props.field+"_img_input"} />
-      <p className="file-input">Выбрать файл</p>
+      <p className="file-input">{props.type=="plus"?(<i className="el-icon-plus"></i>):("Выбрать файл")}</p>
     </div>
   )
 }

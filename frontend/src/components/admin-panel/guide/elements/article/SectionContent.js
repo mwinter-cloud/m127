@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Article from "./Article"
+import Article_wrap from "../../../../../store/wraps/admin-panel/GuideArticle_wrap"
 
 class SectionContent extends Component {
     constructor(props) {
@@ -10,7 +10,7 @@ class SectionContent extends Component {
         return (
             <div className="article-list">
                 {this.props.articles.map((article, index) => {
-                    return (<Article article={article} key={index} setArticle={this.props.setArticle}
+                    return (<Article_wrap article={article} key={index} setArticle={this.props.setArticle}
                     setIllustrations={this.props.setIllustrations}/>)
                 })}
             </div>

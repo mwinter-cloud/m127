@@ -1,5 +1,5 @@
 import React from 'react'
-import ConfirmWindow from "../../common-elements/windows/ConfirmWindow";
+import ConfirmWindow from "../../common-elements/windows/ConfirmWindow"
 
 class ReportButton extends React.Component {
     constructor(props) {
@@ -129,6 +129,7 @@ class ReportButton extends React.Component {
             },
             'created_at': data.created_at,
             'notif_type': 3,
+            'id': {}
         }
         const send_socket_msg = () => {
             this['userSocket' + recipient].send(JSON.stringify(event_data))
@@ -154,9 +155,7 @@ class ReportButton extends React.Component {
                     {this.state.confirm_window ? (
                         <ConfirmWindow confirm_function={this.sendReport} close={this.openConfirmWindow}/>) : null}
                     <div className="btn" onClick={this.openConfirmWindow}>
-                        {this.state.is_sended ? (
-                                <img src="http://www.lenagold.ru/fon/clipart/z/zve/zvezd79.gif"
-                                     className="send-success"/>) :
+                        {this.state.is_sended ? (<i className="el-icon-check"></i>) :
                             (<i className="el-icon-help"></i>)} жалоба
                     </div>
                 </>

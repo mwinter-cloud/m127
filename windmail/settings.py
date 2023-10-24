@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #'django_crontab',
     'rest_framework',
     'api',
     'frontend',
@@ -149,3 +150,16 @@ CHANNEL_LAYERS = {
         },
     },
 }
+
+# настройки для почты
+EMAIL_HOST = "smtp.beget.com"
+EMAIL_HOST_USER = "maomail@windmail.ru"
+EMAIL_HOST_PASSWORD = "coupavankey111P@"
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True
+SERVER_EMAIL = "maomail@windmail.ru"
+DEFAULT_FROM_EMAIL = "maomail@windmail.ru"
+
+CRONJOBS = [
+   ('* 3 * * *', 'windmail.tasks.autodelete')
+] # каждый день в 3 часа запускать автоудаление материалов

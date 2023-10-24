@@ -24,7 +24,9 @@ class SimpleAnswerBlock extends Component {
 					<h3><i className="el-icon-arrow-right"></i> {this.state.answer.room.name}</h3>
 					<div className="answer">
 						<div className="author">
-							<img src={this.state.answer.author.avatar} className="base-avatar"/>
+												{this.state.answer.author.avatar != null ?
+													(<img src={this.state.answer.author.avatar} className="avatar"/>)
+													: null}
 							<div className="author-info">
 										<span
 											className={this.state.answer.author.color ? this.state.answer.author.color.type : null}>

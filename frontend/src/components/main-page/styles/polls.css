@@ -173,6 +173,11 @@
     user-select: none;
 	border-radius: 50%;
 }
+.null-poll-icon {
+	font-size: 4em;
+	margin-top: 10px;
+	color: #8f8f91;
+}
 .polls-page .col2 {
     width: 70%;
     padding: 0 0px 20px 60px;
@@ -232,14 +237,17 @@
     border-radius: 3px;
     position: relative;
     user-select: none;
-	cursor: pointer;
 }
 .polls-page .question-field .poll-options .sended-voice-poll li:hover{
     text-decoration: none;
-    color: inherit;
-	cursor: inherit!important;
+    color: inherit!important;
+	cursor: inherit;
 }
-.polls-page .question-field .poll-options ul li:hover {
+.polls-page .question-field .poll-options .sended-voice-poll .selected-option:hover{
+    color: var(--SO);
+}
+.polls-page .question-field .poll-options .empty-poll li:hover{
+	cursor: pointer;
 	color: var(--SO);
     text-decoration: underline;
 }
@@ -278,13 +286,14 @@
 .polls-page .question-field .send-btn {
 	display: inline-block;
 	padding: 5px 8px;
-	border: 1px solid rgba(0, 0, 0, 0.15);
+	border: 0;
 	background: var(--VB);
 	color: rgba(255, 255, 255, 0.5);
 	margin: 15px 0 0 0;
 	font-size: .8em;
 	border-radius: 4px;
 	cursor: pointer;
+	font-family: inherit;
 }
 .polls-page .poll-options ul li .progress {
 	width: 100%;
@@ -294,10 +303,11 @@
 	left: 0;
 	bottom: -5px;
 	border-radius: 3px;
+	transition: .15s;
 }
 .polls-page .poll-options ul .selected-option {
 	font-weight: 400;
-	color: #699754;
+	color: var(--RN);
 }
 /* комментарии */
 .polls-page .comments-field {

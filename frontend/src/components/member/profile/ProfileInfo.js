@@ -19,7 +19,9 @@ class ProfileInfo extends Component {
 				</li>
 				<li>
 					<span className="title">Сайт</span>
-					<span className="text">{this.props.webcite?this.props.webcite:"?"}</span>
+					<span className="text">
+						{this.props.webcite?(<a href={"../../"+this.props.webcite}>{this.props.webcite}</a>):"?"}
+					</span>
 				</li>
 			</ul>
         )
