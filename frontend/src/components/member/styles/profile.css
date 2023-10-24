@@ -251,11 +251,11 @@
 		padding: 10px 3% 50px 3%;
 	}
 	.profile-page .col1 {
-		width: 100%;
+		width: 100% !important;
 		margin-bottom: 20px;
 	}
 	.profile-page .col2 {
 		width: 100%!important;
-		margin-bottom: 20px;
+		margin-bottom: 50px!important;
 	}
 }

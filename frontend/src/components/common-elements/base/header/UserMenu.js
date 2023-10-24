@@ -17,7 +17,7 @@ class UserMenu extends Component {
 	}
 
 	handleClickOutside(event) {
-		if (this.wrapperRef && !this.wrapperRef.current.contains(event.target) && event.target != document.getElementById('notifications_btn')) {
+		if (this.wrapperRef && !this.wrapperRef.current.contains(event.target) && event.target != document.getElementById('user_menu_btn')) {
 			this.props.closeMenu()
 		}
 	}

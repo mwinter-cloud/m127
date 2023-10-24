@@ -30,7 +30,7 @@ class InfoBlock extends Component {
                 )
             } else {
                 return (
-                    <div className="transparent-btn">
+                    <div className="transparent-btn alone-info-btn">
                         <Link to="/info-page"><i className="el-icon-info"></i> Информация</Link>
                     </div>
                 )

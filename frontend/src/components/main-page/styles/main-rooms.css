@@ -151,6 +151,9 @@
 .rooms-main .cite-top .transparent-btn i {
 	margin-right: 5px;
 }
+.rooms-main .alone-info-btn {
+	margin: 0 20px;
+}
 
 /* список комнат */
 
@@ -235,16 +238,18 @@
 		height: 350px;
 	}
 
+	.rooms-main .cite-top .header-text {
+		padding: 20px 0;
+		margin-top: -70px;
+	}
+
 	.rooms-main .cite-top h1 {
 		position: absolute;
 		background: transparent;
-		top: 20px;
-		left: 0;
-		right: 0;
-		margin: auto;
-		text-align: center;
-		font-size: 1.8em;
-		mix-blend-mode: color-dodge;
+		top: 10px;
+		left: 5%;
+		margin: 0;
+		font-size: 1.1em;
 	}
 
 	.rooms-main .cite-top .aside {
@@ -262,21 +267,23 @@
 		top: 0;
 		left: 0;
 		height: 420px;
+		background: #1a1b20;
+		padding-top: 30px;
 	}
 
 	.rooms-main .cite-top .carousel .toggles {
-		bottom: -60px;
-		left: 5%;
+		bottom: -5px;
+		left: 6%;
 		justify-content: left;
 	}
 
 	.rooms-main .cite-top .rating-aside-field {
 		position: relative;
-		margin-top: 10px;
-		width: 100%;
+		margin-top: 20px;
+		width: auto;
 		font-size: .95em;
 		padding: 3px 5px;
-		left: 2%;
+		left: 3%;
 	}
 	.rooms-main .cite-top .rating-aside-field .rating-grade {
 		color: #afabab;

@@ -298,6 +298,7 @@
 
     .main-header .open-search-btn {
         margin-right: 0;
+        margin-top: -3px;
         font-size: 1.2em;
         width: 15%;
         text-align: right;
@@ -321,7 +322,7 @@
     }
 
     .main-header .profile-menu {
-        width: 50vw;
+        width: 60vw;
         margin-left: -36vw;
     }
 
@@ -330,7 +331,7 @@
     }
 
     .main-header .profile-menu ul li {
-        padding: 14px 10px;
+        padding: 12px 15px;
     }
 
     .main-header .profile-block .open-btn i {

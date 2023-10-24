@@ -24,7 +24,7 @@ class ProfileBlock extends Component {
                             (<img src={this.props.member.profile.avatar} className="avatar"/>) :
                             (<div className="base-avatar"></div> )}
                     </Link>
-                    <div className="open-btn" onClick={this.openMenu}><i className="el-icon-arrow-down"></i></div>
+                    <div className="open-btn"><i className="el-icon-arrow-down" onClick={this.openMenu} id="user_menu_btn"></i></div>
                 </div>
                 {this.state.open_menu?(<UserMenu closeMenu={this.openMenu}/>):null}
             </div>
