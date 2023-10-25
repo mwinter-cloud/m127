@@ -2,4 +2,3 @@ windmail/settings.py
 db.sqlite3
 media
 venv
-hello.txt
