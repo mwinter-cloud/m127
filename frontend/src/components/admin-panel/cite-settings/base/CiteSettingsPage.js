@@ -23,7 +23,7 @@ class CiteSettingsPage extends Component {
         const set_settings = (el) => {
             this.setState(el)
         }
-        axios.get('http://' + window.location.host + '/api/get-customization-settings').then(res => {
+        axios.get(window.location.origin + '/api/get-customization-settings').then(res => {
             const settings = res.data
             settings.map(item => set_settings({[item.type]: item.text}))
         })
