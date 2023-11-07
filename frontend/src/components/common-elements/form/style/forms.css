@@ -60,6 +60,7 @@
 	width: 20%;
 	padding: 5px 3% 0 0;
     align-items: center;
+	color: #888;
 }
 
 .simple-form .inputWrapper input {
@@ -225,6 +226,10 @@ select:-webkit-autofill {
 }
 .simple-form .form-list .active {
     background: #2b2c31;
+}
+.btn-img {
+	height: 16px;
+    vertical-align: middle;
 }
 
 

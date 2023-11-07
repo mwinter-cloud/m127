@@ -21,7 +21,7 @@ class Logo extends React.Component {
 	render() {
 		return (
 			<div className="logo-block">
-				<div className="small-logo"></div>
+				<img src="../../../../../static/frontend/images/small-logo.png" className="small-logo"/>
 				<MediaQuery minWidth={801}>
 						<span
 							className="citenamelogo">{this.state.citename}</span>

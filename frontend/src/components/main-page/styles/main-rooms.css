@@ -136,17 +136,50 @@
 /* info block */
 .rooms-main .cite-top .info-block {
     width: 100%;
-    background: var(--AB);
     height: auto;
-    padding: 20px;
-    border-right: 0;
+    padding: 10px;
+    border: 1px solid rgba(255,255,255,.05);
+	background: transparent;
     font-size: .95em;
 	border-radius: 2px;
+	position: relative;
+}
+.rooms-main .cite-top .info-block:hover {
+	border: 1px solid;
+	top: 0;
+	left: 0;
+	border-image: conic-gradient(from var(--angle), rgb(41 128 185 / 32%), rgb(109 213 250 / 44%), rgb(255 255 255 / 8%)) 1;
+	animation: .5s rotate linear;
+}
+@keyframes rotate {
+	to {
+		--angle: 360deg;
+	}
+}
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
 }
 .rooms-main .cite-top .info-block p {
 	font-size: .88em;
-	margin: 0 0 10px 0;
+	margin: 0;
 	line-height: 1.5em;
+	color: #888;
+	cursor: inherit;
+	user-select: none;
+}
+.rooms-main .cite-top .transparent-btn {
+	width: 100%;
+	padding: 8px 10px;
+	margin-top: 10px;
+	background: transparent;
+	font-size: .8em;
+	border-radius: 2px;
+}
+.rooms-main .cite-top .transparent-btn:hover {
+    background: var(--AB);
+	border: 1px solid var(--AB);
 }
 .rooms-main .cite-top .transparent-btn i {
 	margin-right: 5px;

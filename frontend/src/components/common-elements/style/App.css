@@ -23,6 +23,9 @@ h1 {
 .hide {
 	display: none!important;
 }
+.hidden {
+	opacity: 0!important;
+}
 
 ul {
 	list-style: none;

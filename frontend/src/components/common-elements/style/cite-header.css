@@ -36,7 +36,6 @@
 .main-header .small-logo {
     height: 30px;
     width: 30px;
-    background: var(--L);
     background-size: contain;
     margin-top: -4px;
     display: inline-block;

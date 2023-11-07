@@ -2,6 +2,48 @@ from asgiref.sync import async_to_sync
 from channels.generic.websocket import WebsocketConsumer
 import json
 
+class CommonConsumer(WebsocketConsumer):
+    def connect(self):
+        self.room_group_name = 'common-room'
+
+        async_to_sync(self.channel_layer.group_add)(
+            self.room_group_name,
+            self.channel_name
+        )
+        self.accept()
+
+    def disconnect(self, close_code):
+        async_to_sync(self.channel_layer.group_discard)(
+            self.room_group_name,
+            self.channel_name
+        )
+
+    def receive(self, text_data):
+        text_data_json = json.loads(text_data)
+        author = text_data_json['author']
+        style = text_data_json['style']
+        text = text_data_json['text']
+
+        async_to_sync(self.channel_layer.group_send)(
+            self.room_group_name,
+            {
+                'type': 'megafon',
+                'author': author,
+                'style': style,
+                'text': text,
+            }
+        )
+
+    def megafon(self, event):
+        author = event['author']
+        style = event['style']
+        text = event['text']
+
+        self.send(text_data=json.dumps({
+            'author': author,
+            'style': style,
+            'text': text,
+        }))
 
 class PollConsumer(WebsocketConsumer):
     def connect(self):

@@ -3,10 +3,10 @@ import React from 'react'
 class AnswerHideBtn extends React.Component {
 	constructor(props) {
 		super(props)
-		this.setHide = this.setHide.bind(this)
 		this.state = {
 			is_sended: 0,
 		}
+		this.setHide = this.setHide.bind(this)
 	}
 
 	setHide = () => {

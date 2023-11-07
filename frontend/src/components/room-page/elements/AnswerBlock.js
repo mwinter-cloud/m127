@@ -33,7 +33,7 @@ class AnswerBlock extends Component {
 	}
 
 	componentWillReceiveProps(nextProps, nextContext) {
-		if (nextProps.answer.text != this.props.answer.text && nextProps.answer.text != undefined) {
+		if (nextProps.answer.text != this.props.answer.text) {
 			//когда получим текст, установим его в state, чтобы потом могли менять при редактировании
 			this.setState({text: nextProps.answer.text})
 		}
@@ -127,7 +127,10 @@ class AnswerBlock extends Component {
 															   close={this.openConfirmWindow}/>) : null}
 											<div className="answer" id={"answer" + this.props.answer.id}>
 												<div className="author">
-													<img src={this.props.answer.author.avatar} className="base-avatar"/>
+													{this.props.answer.author.avatar ?
+														(<img src={this.props.answer.author.avatar}
+															  className="base-avatar"/>)
+														: null}
 													<div className="author-info"
 														 onClick={this.openProfile}>
 												<span
@@ -141,7 +144,7 @@ class AnswerBlock extends Component {
 														<i className="el-icon-delete"></i> Удалить
 													</div>
 													<div className="answer-input">
-														<AnswerForm text={this.props.answer.text}
+														<AnswerForm text={this.state.text}
 																	id={this.props.answer.id}
 																	form_name={"edit_answer" + this.props.answer.id}
 																	setAnswer={this.setAnswer}/>

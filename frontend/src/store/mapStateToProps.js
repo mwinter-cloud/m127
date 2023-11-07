@@ -63,6 +63,13 @@ function mapStateToProps(component) {
 				}
 			}
 		}
+		case "CreateMessage": {
+			return function (state) {
+				return {
+					member: state.member,
+				}
+			}
+		}
 		/* комната */
 		case "RoomPage": {
 			return function (state) {

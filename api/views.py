@@ -716,7 +716,7 @@ class CustomizationView(viewsets.ViewSet):
     def edit(self, request):
         customization_fields = ['AN', 'RL', 'SD', 'CT']
         color_fields = ['SC', 'RN', 'AB', 'EMC', 'MC', 'DAC', 'EC', 'SO', 'VB',
-                        'violet', 'red', 'yellow', 'd_blue', 'blue', 'pink', 'orange', 'cherry', 'gray']
+                        'violet', 'red', 'yellow', 'd_blue', 'blue', 'pink', 'green', 'orange', 'cherry', 'gray']
         for field in customization_fields:
             new_value = request.POST.get(field)
             try:

@@ -1,0 +1,363 @@
+.megafons-page {
+    display: flex;
+    padding: 30px 10px!important;
+}
+.megafons-page-info {
+    display: block!important;
+}
+.megafons-page-info .mf-illustration {
+    width: 48%;
+    height: auto;
+    margin: 20px 26%;
+}
+.payment-page {
+    text-align: center;
+}
+.payment-page p {
+    padding: 10px 5%;
+    margin-bottom: 20px;
+    line-height: 1.5em;
+}
+.payment-page .qr {
+    width: 30%;
+    margin: 0 5% 30px 3%;
+    float: left;
+    height: auto;
+}
+.payment-page .pay-link {
+    color: var(--SC);
+}
+.payment-page .pay-link:hover {
+    text-decoration: underline;
+}
+.megafons-page .simple-form textarea {
+    height: 60px!important;
+}
+.megafons-page .col-first {
+    width: 32%;
+    text-align: center;
+}
+.megafons-page .col-two {
+    width: 68%;
+    padding-left: 3%;
+}
+.megafons-page .illustration {
+    height: 150px;
+    width: 150px;
+    margin-top: 10px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.megafons-page h2 {
+    font-weight: 400;
+    text-align: left;
+    width: 100%;
+    font-size: 1.6em;
+    margin: 10px 0 20px 0;
+    line-height: 1.4em;
+    background: linear-gradient(to right, #888 30%, #6797d5 50%, #994b7f 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-fill-color: transparent;
+    background-size: 500% auto;
+    animation: textShine 5s ease-in-out infinite alternate;
+}
+
+@keyframes textShine {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+.megafons-page .mf-text {
+    font-size: .9em;
+    color: #888;
+}
+
+.megafons-page .btns {
+    display: flex;
+    margin-top: 15px;
+}
+
+.megafons-page .btns .btn {
+    border-radius: 3px;
+    background: #2b2c31;
+    color: #8f8f91;
+    padding: 8px 12px;
+    font-size: 0.8em;
+    margin-top: 15px;
+    font-family: inherit;
+    cursor: pointer;
+    border: 0;
+    margin-right: 10px;
+    user-select: none;
+}
+.megafons-page .btns .btn:hover {
+    background: #35363b;
+}
+
+.megafons-page p {
+    color: #888;
+    font-size: .9em;
+}
+
+.megafons-page .info-btns {
+    justify-content: center;
+}
+
+.megafons-page .info-btns {
+    justify-content: center;
+}
+.megafon-image-list {
+    display: flex;
+}
+
+.megafon-image-list li {
+    padding: 5px 0;
+    text-align: center;
+    height: 60px;
+    width: 60px;
+    border: 1px solid rgba(255,255,255,.05);
+    margin-right: 5px;
+    border-radius: 2px;
+}
+
+.megafon-image-list li:hover {
+	color: rgba(255, 255, 255, .6);
+	border: 1px solid rgba(255, 255, 255, .1);
+}
+
+.megafon-image-list .active {
+	color: rgba(255, 255, 255, .6);
+	border: 1px solid rgba(255, 255, 255, .1);
+}
+
+.megafon-image-list li img {
+    height: 50px;
+    width: 50px;
+    object-fit: contain;
+}
+
+.megafon-message {
+    position: fixed;
+    border-radius: 3px;
+    right: 10px;
+    bottom: 10px;
+    height: 65px;
+    width: 350px;
+    border: 0;
+    z-index: 10;
+    top: 75px;
+    padding: 5px;
+    display: flex;
+    opacity: 1;
+    transition: opacity 1s;
+}
+
+.summer-megafon-message {
+    background: rgb(33,147,176);
+    background: linear-gradient(90deg, rgba(33, 147, 176, 0.8075805322) 0%, rgba(62, 172, 199, 0.7259278711) 50%, rgba(109, 213, 237, 0.6755077031) 100%);
+}
+.summer-megafon-message .megafon-msg-image {
+    height: 70px!important;
+    margin-left: -5px!important;
+    user-select: none;
+    margin-top: -10px!important;
+    z-index: 5;
+    border-radius: 0 0 3px 0;
+}
+.summer-megafon-message::before {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: url(../../../../../static/frontend/images/summer-after.png);
+    background-size: cover;
+}
+.colors-megafon-message {
+    background: rgb(118,184,82);
+    background: linear-gradient(90deg, rgba(118,184,82,0.835171568627451) 0%, rgba(118,184,82,0.8715861344537815) 50%, rgba(141,194,111,0.9724264705882353) 100%);
+    background: #1a1b20e6;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+.colors-megafon-message .megafon-msg-image {
+    margin-left: -15px!important;
+}
+.cat-megafon-message {
+    background: rgb(118,184,82);
+    background: linear-gradient(90deg, rgba(118,184,82,0.835171568627451) 0%, rgba(118,184,82,0.8715861344537815) 50%, rgba(141,194,111,0.9724264705882353) 100%);
+}
+.cat-megafon-message .megafon-msg-image {
+    margin-left: -15px!important;
+}
+.winter-megafon-message {
+    border: 0;
+    background: linear-gradient(340deg, rgba(101, 199, 247, 0.85) 0%, rgba(101, 199, 247, 0.7) 50%, rgba(192, 192, 170, 0.3) 100%);
+}
+.winter-megafon-message .megafon-msg-image {
+    margin-left: -21px!important;
+    margin-top: -5px!important;
+}
+.winter-megafon-message::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 35px;
+    background: url(../../../../../static/frontend/images/snowberg.png);
+    background-size: 100%;
+    opacity: .5;
+}
+.megafon-message .moving-line {
+    width: 290px;
+    margin: 0 auto;
+    white-space: nowrap;
+    overflow: hidden;
+    position: relative;
+}
+@keyframes moving-line {
+ 0%   { transform: translate(0, 0); }
+ 100% { transform: translate(-100%, 0); }
+}
+.megafon-message .megafon-msg-image {
+    object-fit: cover;
+    margin-left: -30px;
+    margin-right: 5px;
+    height: 54px;
+}
+.megafon-message p {
+    font-size: 1em;
+    margin: 19px 0;
+    padding-left: 100%;
+    animation: moving-line 25s linear;
+    display: inline-block;
+    color: #f1f1f3;
+    font-weight: 500;
+}
+.megafon-message .author {
+    position: absolute;
+    bottom: -21px;
+    right: 5px;
+    color: #acacac;
+    font-size: .9em;
+    font-weight: 500;
+    cursor: pointer;
+}
+.snowflake {
+  color: #fff;
+  font-size: 1em;
+  font-family: Arial;
+  text-shadow: 0 0 1px #000;
+}
+.confetti-item-1::after {
+    content: "";
+    height: 20px;
+    width: 20px;
+    background: url(../../../../../static/frontend/images/yellow-confetti.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    right: 3vw;
+    top: -45vh;
+}
+.confetti-item-2::after {
+    content: "";
+    height: 20px;
+    width: 20px;
+    background: url(../../../../../static/frontend/images/pink-confetti.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    right: -5vw;
+    top: -15vh;
+}
+.confetti-item-3::after {
+    content: "";
+    height: 20px;
+    width: 20px;
+    background: url(../../../../../static/frontend/images/green-confetti.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    right: 10vw;
+    top: 8vh;
+}
+
+.fish-megafon-message {
+    background: #1a1b20e6;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+.fish-megafon-message::before {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: .05;
+    background: url(../../../../../static/frontend/images/waves.png);
+    background-size: cover;
+    z-index: 0;
+}
+.fish-megafon-message .megafon-msg-image {
+    height: 35px!important;
+    margin-left: 10px!important;
+    margin-top: 5px!important;
+    z-index: 1;
+}
+.bubble-position-1 {
+    margin: -5vh -10vw;
+}
+.bubble-position-2 {
+    margin: -7vh 10vw;
+}
+.blue-flower-megafon-message {
+    background: #1a1b20e6;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+.blue-flower-megafon-message .megafon-msg-image {
+    height: 35px!important;
+    margin-left: 10px!important;
+    margin-top: 5px!important;
+}
+.blue-flower-megafon-message::after {
+    content: "";
+    position: absolute;
+    right: 3px;
+    top: 3px;
+    width: 55px;
+    height: 100%;
+    background: url(../../../../../static/frontend/images/stars-after.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.pink-flower-megafon-message {
+    background: linear-gradient(279deg, rgba(238, 156, 167, .75) 0%, rgba(255, 221, 225, 0.7) 65%, rgba(192, 192, 170, 0.4) 100%);
+    border: 1px solid rgba(238, 156, 167, .03);
+    border-left: 0;
+}
+.pink-flower-megafon-message .megafon-msg-image {
+    height: 35px!important;
+    margin-left: 10px!important;
+    margin-top: 5px!important;
+}
+.pink-flower-megafon-message::after {
+    content: "";
+    position: absolute;
+    right: 3px;
+    top: 3px;
+    width: 55px;
+    height: 100%;
+    background: url(../../../../../static/frontend/images/stars-after.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+@-webkit-keyframes snowflakes-fall{0%{top:-10%}100%{top:100%}}@-webkit-keyframes snowflakes-shake{0%{-webkit-transform:translateX(0px);transform:translateX(0px)}50%{-webkit-transform:translateX(80px);transform:translateX(80px)}100%{-webkit-transform:translateX(0px);transform:translateX(0px)}}@keyframes snowflakes-fall{0%{top:-10%}100%{top:100%}}@keyframes snowflakes-shake{0%{transform:translateX(0px)}50%{transform:translateX(80px)}100%{transform:translateX(0px)}}.snowflake{position:fixed;top:-10%;z-index:9999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;cursor:default;-webkit-animation-name:snowflakes-fall,snowflakes-shake;-webkit-animation-duration:10s,3s;-webkit-animation-timing-function:linear,ease-in-out;-webkit-animation-iteration-count:infinite,infinite;-webkit-animation-play-state:running,running;animation-name:snowflakes-fall,snowflakes-shake;animation-duration:10s,3s;animation-timing-function:linear,ease-in-out;animation-iteration-count:infinite,infinite;animation-play-state:running,running}.snowflake:nth-of-type(0){left:1%;-webkit-animation-delay:0s,0s;animation-delay:0s,0s}.snowflake:nth-of-type(1){left:10%;-webkit-animation-delay:1s,1s;animation-delay:1s,1s}.snowflake:nth-of-type(2){left:20%;-webkit-animation-delay:6s,.5s;animation-delay:6s,.5s}.snowflake:nth-of-type(3){left:30%;-webkit-animation-delay:4s,2s;animation-delay:4s,2s}.snowflake:nth-of-type(4){left:40%;-webkit-animation-delay:2s,2s;animation-delay:2s,2s}.snowflake:nth-of-type(5){left:50%;-webkit-animation-delay:8s,3s;animation-delay:8s,3s}.snowflake:nth-of-type(6){left:60%;-webkit-animation-delay:6s,2s;animation-delay:6s,2s}.snowflake:nth-of-type(7){left:70%;-webkit-animation-delay:2.5s,1s;animation-delay:2.5s,1s}.snowflake:nth-of-type(8){left:80%;-webkit-animation-delay:1s,0s;animation-delay:1s,0s}.snowflake:nth-of-type(9){left:90%;-webkit-animation-delay:3s,1.5s;animation-delay:3s,1.5s}

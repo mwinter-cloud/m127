@@ -20,7 +20,7 @@ class Colorline extends React.Component {
         	break
         	case (MyHours >= 17) && (MyHours < 22):color_class = 'EC'
         	break
-        	default:color_class = 'night-color'
+        	default:color_class = 'EC'
         	break
         }
 		this.setState({

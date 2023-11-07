@@ -29,33 +29,43 @@ body {
 /* цвета палетки */
 .violet-block {
     background: var(--violet)!important;
+    border: 1px solid var(--violet)!important;
 }
 .red-block {
     background: var(--red)!important;
+    border: 1px solid var(--red)!important;
 }
-.d-blue-block {
+.d_blue-block {
     background: var(--d_blue)!important;
+    border: 1px solid var(--d_blue)!important;
 }
 .green-block {
     background: var(--green)!important;
+    border: 1px solid var(--green)!important;
 }
 .yellow-block {
     background: var(--yellow)!important;
+    border: 1px solid var(--yellow)!important;
 }
 .cherry-block {
     background: var(--cherry)!important;
+    border: 1px solid var(--cherry)!important;
 }
 .pink-block {
     background: var(--pink)!important;
+    border: 1px solid var(--pink)!important;
 }
 .blue-block {
     background: var(--blue)!important;
+    border: 1px solid var(--blue)!important;
 }
 .gray-block {
     background: var(--gray)!important;
+    border: 1px solid var(--gray)!important;
 }
 .orange-block {
     background: var(--orange)!important;
+    border: 1px solid var(--orange)!important;
 }
 
 .violet {
@@ -64,7 +74,7 @@ body {
 .red {
     color: var(--red)!important;
 }
-.d-blue {
+.d_blue {
     color: var(--d_blue)!important;
 }
 .green {
@@ -106,5 +116,5 @@ body {
     background: var(--EMC);
 }
 .EC {
-    background: var(--EMC);
+    background: var(--EC);
 }
