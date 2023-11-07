@@ -21,7 +21,7 @@ class AgreementPage extends Component {
 
     componentDidMount() {
         const set_data = (el) => {this.setState(el)}
-        axios.get('http://' + window.location.host + '/api/get-site-data').then(res => {
+        axios.get(window.location.origin + '/api/get-site-data').then(res => {
             const data = res.data
             data.map(item => set_data({[item.type]: item.text}))
         })
