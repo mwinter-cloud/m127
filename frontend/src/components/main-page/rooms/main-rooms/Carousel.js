@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import axios from "axios"
 import {Link} from "react-router-dom"
-import Rating from "./Rating";
+import Rating from "./Rating"
+import MediaQuery from 'react-responsive'
 
 class Carousel extends Component {
     constructor(props) {
@@ -17,7 +18,9 @@ class Carousel extends Component {
         axios.get(window.location.origin + '/api/get-carousel-rooms').then(res => {
             const room_list = res.data
             if (room_list.length != 0) {
-                this.setState({rooms: room_list})
+                this.setState({rooms: room_list}, () => {
+                    this.props.setRoomId(this.state.rooms[0].id)
+                })
             }
         })
     }
@@ -45,7 +48,9 @@ class Carousel extends Component {
                                 <Link to={"/room/" + this.state.rooms[this.state.selected_room].room.id}>
                                     <h1>{this.state.rooms[this.state.selected_room].room.name}</h1>
                                 </Link>
-                                <Rating room_id={this.state.rooms[this.state.selected_room].id}/>
+                                <MediaQuery minWidth={801}>
+                                    <Rating room_id={this.state.rooms[this.state.selected_room].id}/>
+                                </MediaQuery>
                             </div>
                         </div>
                     ) : (

@@ -7,7 +7,7 @@ class MobileMainRoomsBanner extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            selected_room: 0,
+            selected_room: 'undefined',
             section: "rooms"
         }
         this.setRoomId = this.setRoomId.bind(this)
@@ -27,7 +27,7 @@ class MobileMainRoomsBanner extends Component {
             <header className="cite-top container">
                 <div className="sections-btn" onClick={this.changeSection}><i className="el-icon-arrow-right"></i></div>
                 <Carousel setRoomId={this.setRoomId}/>
-                            {this.state.selected_room ?
+                            {this.state.selected_room!='undefined' ?
                                 (<Rating room_id={this.state.selected_room}/>)
                                 : null}
                 {this.state.section == 'rooms' ? null :

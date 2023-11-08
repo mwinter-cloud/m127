@@ -273,7 +273,8 @@
 
 	.rooms-main .cite-top .header-text {
 		padding: 20px 0;
-		margin-top: -70px;
+		margin-top: -40px;
+		border-radius: 0;
 	}
 
 	.rooms-main .cite-top h1 {
@@ -290,8 +291,13 @@
 	}
 
 	.rooms-main .cite-top .info-block {
-		height: 100%;
-		padding: 35px 8%;
+		height: auto;
+		padding: 15px 5%;
+	}
+
+	.rooms-main .cite-top .transparent-btn {
+		height: auto;
+		padding: 15px 5%;
 	}
 
 	.rooms-main .cite-top .mobile-info-block {
@@ -301,18 +307,18 @@
 		left: 0;
 		height: 420px;
 		background: #1a1b20;
-		padding-top: 30px;
+		padding: 30px 3%;
 	}
 
 	.rooms-main .cite-top .carousel .toggles {
-		bottom: -5px;
+		bottom: -27px;
 		left: 6%;
 		justify-content: left;
 	}
 
 	.rooms-main .cite-top .rating-aside-field {
 		position: relative;
-		margin-top: 20px;
+		margin-top: 43px;
 		width: auto;
 		font-size: .95em;
 		padding: 3px 5px;
