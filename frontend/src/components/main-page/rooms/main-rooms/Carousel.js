@@ -19,7 +19,9 @@ class Carousel extends Component {
             const room_list = res.data
             if (room_list.length != 0) {
                 this.setState({rooms: room_list}, () => {
-                    this.props.setRoomId(this.state.rooms[0].id)
+                    if(this.props.setRoomId) {
+                        this.props.setRoomId(this.state.rooms[0].id)
+                    }
                 })
             }
         })
