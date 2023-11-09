@@ -38,9 +38,13 @@ class ThankButton extends React.Component {
 			localStorage.setItem('thank_answer_'+this.props.answer_id,1)
 		}
 		const send_msg = (res_data) => {this.sendSocketMsg(res_data)}
+        let wsProtocol = ""
+        if (window.location.protocol == 'https:') {
+          wsProtocol = 'wss://'
+        } else {wsProtocol = 'ws://'}
 		const open_socket_and_send_msg = (res_data) => {
 			this['userSocket' + recipient] = new WebSocket(
-				'ws://' + window.location.host + '/ws/user/' + recipient)
+				wsProtocol + window.location.host + '/ws/user/' + recipient)
 			this['userSocket' + recipient].onopen = function () {
 				send_msg(res_data)
 			}

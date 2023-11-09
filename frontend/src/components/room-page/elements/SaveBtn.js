@@ -12,7 +12,8 @@ class SaveBtn extends Component {
 
     componentDidMount() {
         const set_saved_status = (val) => {this.setState({room_saved: val})}
-        axios.get('http://' + window.location.host + '/api/is-room-saved/' + this.props.room_id).then(res => {
+
+        axios.get(window.location.origin + '/api/is-room-saved/' + this.props.room_id).then(res => {
             set_saved_status(res.data)
         })
     }

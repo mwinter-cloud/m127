@@ -59,8 +59,14 @@ class WurningButton extends React.Component {
 		const set_sended = () => {this.setState({is_sended: 1})}
 		const send_msg = (res_data) => {this.sendSocketMsg(res_data)}
 		const open_socket_and_send_msg = (res_data) => {
+            let wsProtocol = ""
+            if (window.location.protocol == 'https:') {
+                wsProtocol = 'wss://'
+            } else {
+                wsProtocol = 'ws://'
+            }
 			this['userSocket' + event_recipient] = new WebSocket(
-				'ws://' + window.location.host + '/ws/user/' + event_recipient)
+				wsProtocol + window.location.host + '/ws/user/' + event_recipient)
 			this['userSocket' + event_recipient].onopen = function () {
 				send_msg(res_data)
 			}

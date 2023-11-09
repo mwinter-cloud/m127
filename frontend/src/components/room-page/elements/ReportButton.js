@@ -93,8 +93,14 @@ class ReportButton extends React.Component {
             this.sendSocketMsg(res_data)
         }
         const open_socket_and_send_msg = (res_data) => {
+            let wsProtocol = ""
+            if (window.location.protocol == 'https:') {
+                wsProtocol = 'wss://'
+            } else {
+                wsProtocol = 'ws://'
+            }
             this['userSocket' + recipient] = new WebSocket(
-                'ws://' + window.location.host + '/ws/user/' + recipient)
+                wsProtocol + window.location.host + '/ws/user/' + recipient)
             this['userSocket' + recipient].onopen = function () {
                 send_msg(res_data)
             }
