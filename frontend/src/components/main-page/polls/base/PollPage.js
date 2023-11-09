@@ -3,6 +3,7 @@ import axios from "axios"
 import '../../styles/polls.css'
 import PollCommentsField from "../comments/PollCommentsField"
 import PollContentField_wrap from "../../../../store/wraps/base/PollContentField_wrap"
+import MediaQuery from 'react-responsive'
 
 class PollPage extends Component {
     constructor(props) {
@@ -57,7 +58,16 @@ class PollPage extends Component {
                 <div className="col2">
                     {(() => {
                         if (this.props.id == undefined) {
-                            return (<i className="el-icon-arrow-left null-poll-icon"></i>)
+                            return (
+                                <>
+                                    <MediaQuery maxWidth={800}>
+                                        <i className="el-icon-arrow-up null-poll-icon"></i>
+                                    </MediaQuery>
+                                    <MediaQuery minWidth={801}>
+                                        <i className="el-icon-arrow-left null-poll-icon"></i>
+                                    </MediaQuery>
+                                </>
+                            )
                         } else {
                             if (this.state.error == "") {
                                 return (

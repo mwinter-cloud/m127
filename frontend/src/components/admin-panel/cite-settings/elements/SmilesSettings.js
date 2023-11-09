@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import axios from "axios"
 import AddSmileForm from "../forms/AddSmileForm"
 import SmileBlock from "./SmileBlock"
-import remove_array_item from "../../../../special-functions/remove-array-item";
+import remove_array_item from "../../../../special-functions/remove-array-item"
 
 class SmilesSettings extends Component {
     constructor(props) {

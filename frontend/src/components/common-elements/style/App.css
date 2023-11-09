@@ -14,6 +14,7 @@ body {
 	margin: 0;
 	font-family: 'Montserrat', sans-serif;
 	color: #c2c2c4;
+	overflow-x: hidden;
 }
 
 h1 {

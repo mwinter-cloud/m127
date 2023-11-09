@@ -8,6 +8,7 @@ import "../../../../../static/frontend/images/fish.png"
 import "../../../../../static/frontend/images/blue-flower.png"
 import "../../../../../static/frontend/images/pink-flower.png"
 import "../../../../../static/frontend/images/cat.png"
+import "../../../../../static/frontend/images/wow.png"
 
 class MegafonMessage extends Component {
     constructor(props) {
@@ -35,7 +36,7 @@ class MegafonMessage extends Component {
                 src="../../../../../static/frontend/images/fox-and-butterfly.png"
                 className="megafon-msg-image"/>
         } else if (this.props.message.style == "colors") {
-            illustration = <img src="https://3.downloader.disk.yandex.ru/preview/b5599b05776754f802eb5dc52d62e8feb56cdc01f62b61162b8a1ec7565c44dc/inf/O_wwQdZwr5PCjKrl8F3UxPmsIXXX9TqQY4lcCnWKwq4ww5tYDFw7NkgzU0SJBOihy9kvj87OviPM6-PVKEFX3g%3D%3D?uid=1484373914&filename=wow.png&disposition=inline&hash=&limit=0&content_type=image%2Fpng&owner_uid=1484373914&tknv=v2&size=1297x648"
+            illustration = <img src="../../../../../static/frontend/images/wow.png"
                                 className="megafon-msg-image"/>
         } else if (this.props.message.style == "winter") {
             illustration = <img

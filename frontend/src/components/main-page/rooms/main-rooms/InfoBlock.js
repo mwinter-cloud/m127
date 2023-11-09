@@ -31,7 +31,7 @@ class InfoBlock extends Component {
                     <>
                         {this.state.megafon_window?(<MegafonInfoWindow closeWindow={this.openMegafonWindow}/>):null}
                         <div className="info-block">
-                            <p>🌸 {this.state.announcement}</p>
+                            <p>{this.state.announcement}</p>
                         </div>
                         <div className="transparent-btn">
                             <Link to="/info-page">Информация</Link>

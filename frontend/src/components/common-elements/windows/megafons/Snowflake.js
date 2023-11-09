@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import "../../../../../static/frontend/images/bubble1.png"
-import "../../../../../static/frontend/images/bubble2.png"
 import "../../../../../static/frontend/images/blue-flower-smile.png"
 
 class Snowflake extends Component {
@@ -18,14 +16,22 @@ class Snowflake extends Component {
         let content2 = ""
         let content3 = ""
         if (this.props.type == "summer") {
-            content1 = (<img src="../../../../../static/frontend/images/bubble1.png"/>)
-            content2 = content1
-            content3 = (<img src="../../../../../static/frontend/images/bubble2.png"/>)
+            content1 = (<i className={"bubble-position-1"}></i>)
+            content2 = (<i className={"bubble-position-2"}></i>)
+            content3 = content1
         } else if (this.props.type == "colors") {
             content1 = (
                 <>
                     <i className={"confetti-item confetti-item-1"}></i>
+                </>
+            )
+            content2 = (
+                <>
                     <i className={"confetti-item confetti-item-2"}></i>
+                </>
+            )
+            content3 = (
+                <>
                     <i className={"confetti-item confetti-item-3"}></i>
                 </>
             )
@@ -35,9 +41,9 @@ class Snowflake extends Component {
             content3 = content1
         } else if (this.props.type == "fish") {
             const num = Math.floor(Math.random() * 2)+1
-            content1 = (<img src="../../../../../static/frontend/images/bubble1.png"/>)
-            content2 = (<img src={"../../../../../static/frontend/images/bubble"+num+".png"}/>)
-            content3 = (<img src="../../../../../static/frontend/images/bubble2.png"/>)
+            content1 = (<i className={"bubble-position-1"}></i>)
+            content2 = (<i className={"bubble-position-2"}></i>)
+            content2 = (<i className={"bubble-position-2"+num}></i>)
         } else if (this.props.type == "pink-flower") {
             content1 = "🌸"
             content2 = content1

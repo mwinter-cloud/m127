@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import ConfirmWindow from "../../../common-elements/windows/ConfirmWindow";
+import ConfirmWindow from "../../../common-elements/windows/ConfirmWindow"
 
 class SmileBlock extends Component {
     constructor(props) {

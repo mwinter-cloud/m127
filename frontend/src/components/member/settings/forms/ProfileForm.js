@@ -14,7 +14,7 @@ const ProfileForm = () => {
 
     const useMountEffect = () => {
 		useEffect(() => {
-			axios.get('http://'+window.location.host+'/api/get-my-profile').then(profile => {
+			axios.get(window.location.origin+'/api/get-my-profile').then(profile => {
 				setProfileData(profile.data)
 				setColor(profile.data.color)
                 formik.setFieldValue('name', profile.data.name)

@@ -176,10 +176,13 @@
 	background: transparent;
 	font-size: .8em;
 	border-radius: 2px;
+	transition: .4s;
 }
 .rooms-main .cite-top .transparent-btn:hover {
-    background: var(--AB);
-	border: 1px solid var(--AB);
+	border: 1px solid rgba(255, 255, 255, 0.1)!important;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.15)!important;
+	border-right: 1px solid rgba(255, 255, 255, 0.15)!important;
+	color: #a7a4a4!important;
 }
 .rooms-main .cite-top .transparent-btn i {
 	margin-right: 5px;
@@ -204,7 +207,7 @@
 	margin-right: 0;
 }
 .main-room-list .room {
-	width: 30%;
+	width: 100%;
 	height: 120px;
 	font-size: .95em;
 	margin-right: 2%;
@@ -302,7 +305,7 @@
 
 	.rooms-main .cite-top .mobile-info-block {
 		position: absolute!important;
-		z-index: 1;
+		z-index: 3;
 		top: 0;
 		left: 0;
 		height: 420px;
@@ -332,6 +335,10 @@
 	}
 	.rooms-main .cite-top .rating-aside-field .rating-arrow {
 		display: none;
+	}
+
+	.main-room-list {
+		height: auto;
 	}
 
 	.main-room-list .container {

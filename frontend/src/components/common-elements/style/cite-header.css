@@ -99,14 +99,14 @@
     margin-right: 8%;
 }
 .main-header .profile-block .avatar {
-    margin: -9px 5px 0 0;
+    margin: -7px 5px 0 0;
 }
 .main-header .profile-block .base-avatar {
-    margin: -9px 5px 0 0;
+    margin: -7px 5px 0 0;
 }
 .main-header .profile-block .open-btn i {
     font-size: 1.4em;
-    margin-top: 1px;
+    margin-top: 0;
     margin-left: 2px;
     color: #8f8f91;
     display: block;
@@ -255,11 +255,6 @@
 .main-header .profile-menu ul li:last-child {
     border-bottom: 0;
 }
-
-
-
-
-
 
 @media (max-width: 800px) {
     * {

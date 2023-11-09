@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Option from "./Option";
+import Option from "./Option"
 
 class Options extends Component {
     constructor(props) {

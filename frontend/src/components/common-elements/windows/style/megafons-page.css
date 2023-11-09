@@ -114,6 +114,7 @@
 }
 .megafon-image-list {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .megafon-image-list li {
@@ -124,6 +125,7 @@
     border: 1px solid rgba(255,255,255,.05);
     margin-right: 5px;
     border-radius: 2px;
+    margin-bottom: 3px;
 }
 
 .megafon-image-list li:hover {
@@ -264,8 +266,8 @@
     background-size: contain;
     background-repeat: no-repeat;
     position: absolute;
-    right: 3vw;
-    top: -45vh;
+    right: 5vh;
+    top: -5vw;
 }
 .confetti-item-2::after {
     content: "";
@@ -275,8 +277,8 @@
     background-size: contain;
     background-repeat: no-repeat;
     position: absolute;
-    right: -5vw;
-    top: -15vh;
+    right: 0;
+    top: 0;
 }
 .confetti-item-3::after {
     content: "";
@@ -286,8 +288,8 @@
     background-size: contain;
     background-repeat: no-repeat;
     position: absolute;
-    right: 10vw;
-    top: 8vh;
+    right: 0;
+    top: 0;
 }
 
 .fish-megafon-message {
@@ -312,11 +314,27 @@
     margin-top: 5px!important;
     z-index: 1;
 }
-.bubble-position-1 {
-    margin: -5vh -10vw;
+.bubble-position-1::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: auto;
+    height: auto;
+    background: url(../../../../../static/frontend/images/bubble1.png);
+    background-size: contain;
+    z-index: 0;
 }
-.bubble-position-2 {
-    margin: -7vh 10vw;
+.bubble-position-2::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: auto;
+    height: auto;
+    background: url(../../../../../static/frontend/images/bubble2.png);
+    background-size: contain;
+    z-index: 0;
 }
 .blue-flower-megafon-message {
     background: #1a1b20e6;
@@ -361,3 +379,18 @@
 }
 
 @-webkit-keyframes snowflakes-fall{0%{top:-10%}100%{top:100%}}@-webkit-keyframes snowflakes-shake{0%{-webkit-transform:translateX(0px);transform:translateX(0px)}50%{-webkit-transform:translateX(80px);transform:translateX(80px)}100%{-webkit-transform:translateX(0px);transform:translateX(0px)}}@keyframes snowflakes-fall{0%{top:-10%}100%{top:100%}}@keyframes snowflakes-shake{0%{transform:translateX(0px)}50%{transform:translateX(80px)}100%{transform:translateX(0px)}}.snowflake{position:fixed;top:-10%;z-index:9999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;cursor:default;-webkit-animation-name:snowflakes-fall,snowflakes-shake;-webkit-animation-duration:10s,3s;-webkit-animation-timing-function:linear,ease-in-out;-webkit-animation-iteration-count:infinite,infinite;-webkit-animation-play-state:running,running;animation-name:snowflakes-fall,snowflakes-shake;animation-duration:10s,3s;animation-timing-function:linear,ease-in-out;animation-iteration-count:infinite,infinite;animation-play-state:running,running}.snowflake:nth-of-type(0){left:1%;-webkit-animation-delay:0s,0s;animation-delay:0s,0s}.snowflake:nth-of-type(1){left:10%;-webkit-animation-delay:1s,1s;animation-delay:1s,1s}.snowflake:nth-of-type(2){left:20%;-webkit-animation-delay:6s,.5s;animation-delay:6s,.5s}.snowflake:nth-of-type(3){left:30%;-webkit-animation-delay:4s,2s;animation-delay:4s,2s}.snowflake:nth-of-type(4){left:40%;-webkit-animation-delay:2s,2s;animation-delay:2s,2s}.snowflake:nth-of-type(5){left:50%;-webkit-animation-delay:8s,3s;animation-delay:8s,3s}.snowflake:nth-of-type(6){left:60%;-webkit-animation-delay:6s,2s;animation-delay:6s,2s}.snowflake:nth-of-type(7){left:70%;-webkit-animation-delay:2.5s,1s;animation-delay:2.5s,1s}.snowflake:nth-of-type(8){left:80%;-webkit-animation-delay:1s,0s;animation-delay:1s,0s}.snowflake:nth-of-type(9){left:90%;-webkit-animation-delay:3s,1.5s;animation-delay:3s,1.5s}
+
+
+
+@media (max-width: 800px) {
+    .megafons-page {
+        display: block;
+    }
+    .payment-page .qr {
+        float: none;
+        width: 80%;
+    }
+    .payment-page p {
+        padding-top: 0;
+    }
+}
