@@ -45,7 +45,8 @@ class Profile extends Component {
                             <i className="el-icon-arrow-left"></i>
                         </div>) : null}
                     <Header cover={this.state.member.cover} avatar={this.state.member.avatar}
-                            color={this.state.member.color} name={this.state.member.name}/>
+                            color={this.state.member.color} name={this.state.member.name}
+                            is_admin={this.state.member.is_admin}/>
                     <div className="content">
                         <div className="col1">
                             <ProfilePost text={this.state.member.post_text} image={this.state.member.post_image}

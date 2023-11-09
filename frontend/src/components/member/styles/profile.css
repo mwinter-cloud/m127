@@ -238,6 +238,33 @@
     width: 4px;
 	background: transparent;
 }
+.profile-page .admin-icon {
+	border: 1px solid rgba(255, 255, 255, 0.05);
+	color: #888;
+	background: linear-gradient(0deg, rgba(171, 205, 239, 0.0769083) 0%, rgba(171, 205, 239, 0.0396534) 99%);
+	border-radius: 3px;
+	position: absolute;
+	right: 10px;
+	top: auto;
+	margin-top: -2px;
+	font-size: 1.3em;
+	cursor: pointer;
+}
+
+.profile-page .admin-icon:hover::after {
+	content: "Модератор";
+	background: #1a1b20bf;
+	color: #888;
+	height: auto;
+	width: auto;
+	position: absolute;
+	top: -24px;
+	right: 0;
+	font-family: inherit;
+	font-size: .75em;
+	padding: 1px 2px;
+	border-radius: 2px;
+}
 
 
 @media (max-width: 800px) {
