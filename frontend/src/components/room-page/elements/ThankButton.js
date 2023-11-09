@@ -1,5 +1,6 @@
 import React from 'react'
 import {specialtagsinnotification} from "../../common-elements/form/elements/editor/TextEditor"
+import '../../../../../frontend/static/frontend/images/stars.gif'
 
 class ThankButton extends React.Component {
 	constructor(props) {
@@ -91,7 +92,7 @@ class ThankButton extends React.Component {
 		return (
 			<div className="btn" onClick={this.sendThanks}>
 				{this.state.is_sended ? (
-						<img src="http://www.lenagold.ru/fon/clipart/z/zve/zvezd79.gif" className="send-success"/>) :
+						<img src="../../../../../frontend/static/frontend/images/stars.gif" className="send-success"/>) :
 					(<i className="el-icon-star-off"></i>)} спасибо
 			</div>
 		)
