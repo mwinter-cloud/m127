@@ -61,6 +61,7 @@ const CreatePollForm = (props) => {
                                 setTimeout(props.closeWindow(),1000)
                             }
                         })
+                        window.location.href = "/poll/"+res.poll_id
                     },
                     error: function (xhr, status, error) {
                         console.log(JSON.parse(xhr.responseText))

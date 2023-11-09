@@ -365,4 +365,12 @@
     .search-page .back-arrow {
         left: 3% !important;
     }
+
+    .main-header .profile-block .avatar {
+        margin: -4px 5px 0 0;
+    }
+
+    .main-header .profile-block .base-avatar {
+        margin: -4px 5px 0 0;
+    }
 }
