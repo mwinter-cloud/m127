@@ -363,6 +363,10 @@
         width: 100%;
         border: 0 !important;
     }
+    .input-header .editor-menu li:hover::after {
+        width: 100px;
+        top: -25px;
+    }
 
     .editor-btn {
         left: 6%;
