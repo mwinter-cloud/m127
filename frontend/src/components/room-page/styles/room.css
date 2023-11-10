@@ -416,40 +416,50 @@
 		text-align: left;
 		display: flex;
 	}
+
 	.answers .answer .author .author-info {
 		padding: 0 8px;
 	}
+
 	.answer .text {
 		width: 100%;
 		padding: 10px 0;
 	}
+
 	.answer .answer-text {
 		padding: 0 0 30px 0;
 	}
+
 	.room-header .options-block ul li {
 		padding: 3px 0;
 	}
+
 	.room-page .answer-input {
-		z-index: 3;
+		z-index: 2;
 		margin-bottom: 0;
 		padding: 10px;
 	}
+
 	.answer-input .send-btn {
 		width: 100%;
 	}
+
 	.btn-hider {
 		display: none;
 	}
+
 	.answer .answer-header .header-btns .btn {
 		margin: 3px 15px 0 0;
 	}
+
 	.answer .answer-header {
-		display: block!important;
+		display: block !important;
 	}
+
 	.answer .author .avatar {
-		height: 30px!important;
-		width: 30px!important;
-		margin-top: 0!important;
+		height: 30px !important;
+		width: 30px !important;
+		margin-top: 0 !important;
 		margin-bottom: 10px;
 	}
 }
