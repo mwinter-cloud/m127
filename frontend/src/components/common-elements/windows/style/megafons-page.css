@@ -386,11 +386,17 @@
     .megafons-page {
         display: block;
     }
+    .megafons-page .col-two {
+        width: 100%;
+    }
     .payment-page .qr {
         float: none;
         width: 80%;
     }
     .payment-page p {
         padding-top: 0;
+    }
+    .megafon-message {
+        left: 0;
     }
 }

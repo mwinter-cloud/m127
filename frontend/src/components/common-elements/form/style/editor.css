@@ -371,7 +371,7 @@
     }
 
     .fixed-editor {
-        height: 70vh!important;
+        height: 50vh!important;
         overflow: scroll;
     }
 }

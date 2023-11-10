@@ -60,12 +60,13 @@
 @media (max-width: 800px) {
 	.registration-page .registration-window {
 		margin-top: 0 !important;
+		height: 100vh;
 	}
 
 	.registration-page h1 {
 		position: relative;
 		writing-mode: lr;
-		font-size: 1.5em;
+		font-size: 1.2em;
 		left: 0;
 		top: 0;
 	}

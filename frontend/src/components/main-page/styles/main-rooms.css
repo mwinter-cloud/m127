@@ -261,6 +261,7 @@
 		position: relative;
 		text-align: center;
 		float: right;
+		height: 100%;
 	}
 
 	.rooms-main .cite-top .sections-btn i {
@@ -305,7 +306,7 @@
 
 	.rooms-main .cite-top .mobile-info-block {
 		position: absolute!important;
-		z-index: 3;
+		z-index: 2;
 		top: 0;
 		left: 0;
 		height: 420px;
@@ -339,6 +340,7 @@
 
 	.main-room-list {
 		height: auto;
+		min-height: 0;
 	}
 
 	.main-room-list .container {

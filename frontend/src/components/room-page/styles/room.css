@@ -233,7 +233,7 @@
     margin-top: 5px;
     padding: 25px;
     background: #26272c;
-	border-radius: 3px;
+	border-radius: 3px 3px 0 0;
 }
 .answers-header h3 {
 	font-weight: 500;
