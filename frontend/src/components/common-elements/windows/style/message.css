@@ -33,6 +33,6 @@
 @media (max-width: 800px) {
     .message-win {
         left: 0;
-        bottom: 8px;
+        bottom: 12px;
     }
 }
