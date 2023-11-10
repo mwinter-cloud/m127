@@ -50,3 +50,30 @@
 .registration-code-block .error-msg {
     font-size: .7em;
 }
+
+
+@media (max-width: 800px) {
+    .registration-code-block {
+        padding: 30px 3%;
+        width: 100%;
+        font-size: 1.1em;
+    }
+
+    .registration-code-block input {
+        float: none;
+        width: 100%;
+        margin-bottom: 8px;
+        height: auto;
+        padding: 8px 12px;
+    }
+
+    .registration-code-block button {
+        width: 100%;
+        height: auto;
+        padding: 5px 12px;
+    }
+    .registration-code-block p {
+        width: 100%;
+        margin: 0;
+    }
+}

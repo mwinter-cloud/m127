@@ -55,3 +55,18 @@
 	font-size: 1.2em;
 	margin-left: 70px;
 }
+
+
+@media (max-width: 800px) {
+	.registration-page .registration-window {
+		margin-top: 0 !important;
+	}
+
+	.registration-page h1 {
+		position: relative;
+		writing-mode: lr;
+		font-size: 1.5em;
+		left: 0;
+		top: 0;
+	}
+}
