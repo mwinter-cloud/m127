@@ -366,7 +366,7 @@
     .input-header .editor-menu li:hover::after {
         width: 100px;
         top: -25px;
-        z-index: 5;
+        z-index: 3;
     }
 
     .editor-btn {
@@ -374,6 +374,6 @@
     }
 
     .opened-editor-mobile-btn {
-        top: 40vh!important;
+        top: 43vh!important;
     }
 }
