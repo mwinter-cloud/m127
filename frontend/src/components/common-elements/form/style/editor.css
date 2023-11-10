@@ -369,9 +369,4 @@
     .opened-editor-mobile-btn {
         top: 40vh!important;
     }
-
-    .fixed-editor {
-        height: 50vh!important;
-        overflow: scroll;
-    }
 }
