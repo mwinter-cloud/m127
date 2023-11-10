@@ -28,3 +28,11 @@
     left: 50%;
     transform: translate(-50%, 0);
 }
+
+
+@media (max-width: 800px) {
+    .message-win {
+        left: 0;
+        bottom: 8px;
+    }
+}
