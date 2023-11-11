@@ -4,7 +4,7 @@ import * as Yup from 'yup'
 import CSRFToken from "../../../common-elements/form/CSRFToken"
 
 const RegistrationForm = (props) => {
-    const [loading, setLoading] = useState(0)
+    const [loading, setLoading] = useState(false)
     const formik = useFormik({
         initialValues: {
             username: '',
@@ -25,14 +25,22 @@ const RegistrationForm = (props) => {
         }),
         validateOnChange: false,
         onSubmit: (values, {setStatus, setErrors}) => {
-            setLoading(true)
+            const set_loading = (val) => {
+                setLoading(val)
+            }
             $.ajax({
                 type: 'post',
                 url: '/api/create-user',
                 cache: false,
                 data: values,
+                beforeSend: function () {
+                    set_loading(true)
+                },
                 success: function () {
                     window.location.reload()
+                },
+                complete: function () {
+                    set_loading(false)
                 },
                 error: function (xhr) {
                     for (const [key, value] of Object.entries(JSON.parse(xhr.responseText))) {
@@ -78,7 +86,10 @@ const RegistrationForm = (props) => {
             </div>
             <div className="send-form-block">
                 <button className="send-btn" type="submit">Вперёд!</button>
-                {loading ? (<i className="el-icon-loading"></i>) : null}
+                {loading ? (
+                    <div className="krutilka">
+                        <i className="el-icon-loading"></i>
+                    </div>) : null}
             </div>
         </form>
     )

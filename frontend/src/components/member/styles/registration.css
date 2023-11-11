@@ -48,12 +48,16 @@
 
 .registration-window .send-form-block {
 	position: relative;
-	width: 30%;
+	width: 100%;
 	margin: 0 auto;
 }
-.registration-window .send-form-block i {
+
+.registration-window .krutilka {
 	font-size: 1.2em;
-	margin-left: 70px;
+	position: absolute;
+	bottom: -23px;
+	text-align: center;
+	width: 100%;
 }
 
 
@@ -70,9 +74,5 @@
 		font-size: 1.2em;
 		left: 0;
 		top: 0;
-	}
-
-	.registration-window .send-form-block i {
-		margin-right: 43px;
 	}
 }
