@@ -24,7 +24,7 @@
 	padding: 5px 5px;
 	position: absolute;
 	right: 5px;
-	bottom: 5px;
+	bottom: 23px;
 }
 .rooms-main .cite-top .rating-aside-field .rating-grade {
 	color: #888;
@@ -72,15 +72,17 @@
 	justify-content: space-between;
 }
 .rooms-main .cite-top .header-text {
-    background: rgba(26,27,32,.7);
+    background: rgba(26,27,32,.5);
     position: relative;
     border-radius: 0 0 3px 3px;
     padding: 10px;
-	margin: -40px 0 0 0;
+	margin: 0;
+	height: 60px;
+	bottom: 60px;
 }
 .rooms-main .cite-top h1 {
     font-weight: 500;
-    font-size: 1.1em;
+    font-size: 1em;
 	margin: 0;
 	display: inline-block;
 }
@@ -277,17 +279,17 @@
 
 	.rooms-main .cite-top .header-text {
 		padding: 20px 0;
-		margin-top: -40px;
+		margin-top: 0px;
 		border-radius: 0;
 	}
 
 	.rooms-main .cite-top h1 {
 		position: absolute;
 		background: transparent;
-		top: 10px;
+		top: 5px;
 		left: 5%;
 		margin: 0;
-		font-size: 1.1em;
+		font-size: 1em;
 	}
 
 	.rooms-main .cite-top .aside {
@@ -315,14 +317,14 @@
 	}
 
 	.rooms-main .cite-top .carousel .toggles {
-		bottom: -27px;
+		bottom: 5px;
 		left: 6%;
 		justify-content: left;
 	}
 
 	.rooms-main .cite-top .rating-aside-field {
 		position: relative;
-		margin-top: 43px;
+		margin-top: -27px;
 		width: auto;
 		font-size: .95em;
 		padding: 3px 5px;
