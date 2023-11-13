@@ -6,10 +6,6 @@ class ProfilePost extends Component {
         super(props)
     }
 
-    componentDidMount() {
-        console.log(this.props)
-    }
-
     render() {
         if (this.props.title == "" && this.props.text == "" && this.props.image == null) {
             return (
