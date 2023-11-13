@@ -19,6 +19,8 @@ const Dropzone = props => {
         imgElement.onload = function (e) {
           if (imgElement.width > 1500 || imgElement.height > 1200) {
             setError('(・`ω´・) Размер изображения превышает допустимый. Выбери другое.')
+          } else {
+            setError(false)
           }
         }
         $('#' + props.field + '_img').attr('src', event.target.result)
