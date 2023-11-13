@@ -1,8 +1,9 @@
-import React, {useCallback} from 'react'
+import React, {useCallback, useState} from 'react'
 import {useDropzone} from 'react-dropzone'
 import '../../style/file-input.css'
 
 const Dropzone = props => {
+  const [error, setError] = useState(0)
   const onDrop = useCallback((acceptedFiles) => {
     acceptedFiles.forEach((file) => {
       const reader = new FileReader()
@@ -14,20 +15,11 @@ const Dropzone = props => {
       reader.onload = (event) => {
         const imgElement = document.createElement("img")
         imgElement.src = event.target.result
-        document.querySelector("#"+props.field+"_img_input").src = event.target.result
-
+        document.querySelector("#" + props.field + "_img_input").src = event.target.result
         imgElement.onload = function (e) {
-          const canvas = document.createElement("canvas")
-          const MAX_WIDTH = 900
-          const scaleSize = MAX_WIDTH / e.target.width
-          canvas.width = MAX_WIDTH
-          canvas.height = e.target.height * scaleSize
-
-          const ctx = canvas.getContext("2d")
-          ctx.drawImage(e.target, 0, 0, canvas.width, canvas.height)
-          const srcEncoded = ctx.canvas.toDataURL(e.target, "image/jpeg")
-          let outputFile = new File([srcEncoded], {type: 'image/jpg'})
-          $('#' + props.field + '_img_input').attr('val', outputFile)
+          if (imgElement.width > 1500 || imgElement.height > 1200) {
+            setError('(・`ω´・) Размер изображения превышает допустимый. Выбери другое.')
+          }
         }
         $('#' + props.field + '_img').attr('src', event.target.result)
       }
@@ -37,10 +29,13 @@ const Dropzone = props => {
   const {getRootProps, getInputProps} = useDropzone({onDrop})
 
   return (
-      <div {...getRootProps()} className="file-input-block">
-        <input {...getInputProps()} name={props.field} style={{display: 'block'}} id={props.field + "_img_input"}/>
-        <p className="file-input">{props.type == "plus" ? (<i className="el-icon-plus"></i>) : ("Выбрать файл")}</p>
-      </div>
+      <>
+        <div {...getRootProps()} className="file-input-block">
+          <input {...getInputProps()} name={props.field} style={{display: 'block'}} id={props.field + "_img_input"}/>
+          <p className="file-input">{props.type == "plus" ? (<i className="el-icon-plus"></i>) : ("Выбрать файл")}</p>
+        </div>
+        {error ? (<p>{error}</p>) : null}
+      </>
   )
 }
 export default Dropzone
