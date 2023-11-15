@@ -72,7 +72,7 @@ class Profile(models.Model):
     is_blocked = models.BooleanField(default=False)
     email_confirm = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
-    inviter = models.OneToOneField(User, on_delete=models.CASCADE, related_name='inviter', blank=True, null=True)
+    inviter = models.ForeignKey(User, on_delete=models.CASCADE, related_name='inviter', blank=True, null=True)
 
     def save(self, *args, **kwargs):
         super().save()

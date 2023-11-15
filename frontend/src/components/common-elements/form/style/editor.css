@@ -130,7 +130,7 @@
 	flex-wrap: wrap;
 }
 .smiles-block li {
-	margin-right: 7px;
+	margin-right: 0;
 	height: 32px;
 	margin-bottom: 0;
 	padding-bottom: 0;

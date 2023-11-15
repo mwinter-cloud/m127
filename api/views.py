@@ -34,19 +34,18 @@ class UserView(viewsets.ViewSet):
         user = serializer.save()
         Profile(name=user.username, user=user, color=None, inviter=operation.user).save()
         login(request, user)
-        #отправим письмо на почту
+        # отправим письмо на почту
         user = request.user
         oper_code = randint(0, 1000000)
         email = user.email
-        operation = Operation(code=oper_code, user=user, type=1, info=email)
-        operation.save()
+        confirm_operation = Operation(code=oper_code, user=user, type=1, info=email)
+        confirm_operation.save()
         origin = request.POST.get('origin')
         data = {'code': oper_code, 'email': email, 'origin': origin}
         msg_plain = render_to_string('emails/email_confirm.txt', data)
         msg_html = render_to_string('emails/email_confirm.html', data)
-        subject, from_email, to = 'Регистрация на сайте '+origin, 'maomail@windmail.ru', [email]
+        subject, from_email, to = 'Регистрация на сайте ' + origin, 'maomail@windmail.ru', [email]
         send_mail(subject, msg_plain, from_email, to, html_message=msg_html)
-        operation.delete()
         return JsonResponse(True, safe=False)
 
     def send_confirm_email(self, request):
@@ -59,7 +58,7 @@ class UserView(viewsets.ViewSet):
         data = {'code': oper_code, 'email': email, 'origin': origin}
         msg_plain = render_to_string('emails/email_confirm.txt', data)
         msg_html = render_to_string('emails/email_confirm.html', data)
-        subject, from_email, to = 'Регистрация на сайте '+origin, 'maomail@windmail.ru', [email]
+        subject, from_email, to = 'Регистрация на сайте ' + origin, 'maomail@windmail.ru', [email]
         send_mail(subject, msg_plain, from_email, to, html_message=msg_html)
         return JsonResponse(True, safe=False)
 
@@ -89,9 +88,7 @@ class UserView(viewsets.ViewSet):
         exist_operation = queryset.filter(code=code)
         if exist_operation:
             operation = get_object_or_404(queryset, code=code)
-            user = request.user
-            profile_queryset = Profile.objects.all()
-            profile = get_object_or_404(profile_queryset, user=user)
+            profile = get_object_or_404(Profile.objects.all(), user=operation.user)
             profile.email_confirm = True
             profile.save()
             operation.delete()
@@ -166,6 +163,7 @@ class UserView(viewsets.ViewSet):
         send_mail(subject, msg_plain, from_email, to, html_message=msg_html)
         return JsonResponse(True, safe=False)
 
+
 class ProfileView(viewsets.ViewSet):
     def create_base(self, request):
         user = request.user
@@ -184,8 +182,8 @@ class ProfileView(viewsets.ViewSet):
         if not serializer.is_valid():
             return JsonResponse(status=400, data=serializer.errors)
         serializer.save(is_active=1)
-        #выполним подписку на комнату с объявлениями
-        room = get_object_or_404(Room.objects, pk=35) #эта комната имеет id 35, при смене изменить
+        # выполним подписку на комнату с объявлениями
+        room = get_object_or_404(Room.objects, pk=35)  # эта комната имеет id 35, при смене изменить
         room.saved_by.add(profile)
         room.save()
         return Response(serializer.data)
@@ -225,7 +223,7 @@ class ProfileView(viewsets.ViewSet):
         profile = get_object_or_404(queryset, pk=request.user.profile.pk)
         serializer = ProfileSerializer(profile)
         return Response(serializer.data)
-    
+
     def blocked_list(self, request):
         profile_list = Profile.objects.all().filter(Q(is_blocked=True))
         serializer = ProfileSerializer(profile_list, many=True)
@@ -254,11 +252,14 @@ class ProfileView(viewsets.ViewSet):
         return Response(True)
 
     def get_invite_code(self, request):
-        queryset = Operation.objects.all()
+        queryset = Operation.objects
         user = request.user
         invite = queryset.filter(user=user, type=4)
         if invite.exists():
-            operation = get_object_or_404(queryset, user=user, type=4)
+            try:
+                operation = get_object_or_404(queryset, user=user, type=4)
+            except:
+                operation = queryset.filter(user=user, type=4).order_by('id').first()
             serializer = OperationCodeSerializer(operation, many=False)
             code = serializer.data.get('code')
         else:
@@ -282,7 +283,7 @@ class ProfileView(viewsets.ViewSet):
         queryset = Profile.objects.all()
         id = request.data.get('id')
         profile = get_object_or_404(queryset, pk=id)
-        if profile.is_admin==True:
+        if profile.is_admin == True:
             result = 2
         else:
             profile.is_admin = True
@@ -290,6 +291,7 @@ class ProfileView(viewsets.ViewSet):
             result = 1
         serializer = ProfileSerializer(profile)
         return JsonResponse({"profile": serializer.data, "result": result}, safe=False)
+
 
 class RoomView(viewsets.ViewSet):
     def create(self, request):
@@ -340,7 +342,7 @@ class RoomView(viewsets.ViewSet):
             room_list = room_list.order_by('-created_at')
         if section == "saves":
             room_list = room_list.filter(saved_by=(user_id)).distinct()
-        room_list = room_list[loaded_rooms_count:loaded_rooms_count+11]
+        room_list = room_list[loaded_rooms_count:loaded_rooms_count + 11]
         serializer = RoomListSerializer(room_list, many=True)
         if room_list.count() > 10:
             control_room = 1
@@ -384,12 +386,22 @@ class RoomView(viewsets.ViewSet):
     def save_main_room(self, request):
         data = request.data
         type = int(request.POST.get('type'))
+        room_id = int(request.POST.get('room_id'))
         _mutable = data._mutable
         data._mutable = True
-        data['room'] = int(request.POST.get('room_id'))
+        data['room'] = room_id
         data._mutable = _mutable
         if type == 1:
             carousel_rooms = Carousel_room.objects.all()
+            # проверим, вдруг эта комната уже добавлена
+            if (carousel_rooms.filter(room__id=room_id).exists()):
+                room = get_object_or_404(carousel_rooms, room__id=room_id)
+                serializer = CarouselRoomCreateSerializer(room, data=data)
+                if not serializer.is_valid():
+                    return JsonResponse(status=400, data=serializer.errors)
+                serializer.save()
+                return JsonResponse(serializer.data, safe=False)
+
             if carousel_rooms.count() >= 3:
                 carousel_rooms[0].cover.delete(save=True)
                 carousel_rooms[0].delete()
@@ -400,6 +412,17 @@ class RoomView(viewsets.ViewSet):
             return JsonResponse({"data": serializer.data}, safe=False)
         if type == 2:
             header_rooms = Header_room.objects.all()
+            # проверим, вдруг эта комната уже добавлена
+            if (header_rooms.filter(room__id=room_id).exists()):
+                try:
+                    room = get_object_or_404(header_rooms, room__id=room_id)
+                except:
+                    room = header_rooms.filter(room__id=room_id).order_by('id').first()
+                serializer = HeaderRoomCreateSerializer(room, data=data)
+                if not serializer.is_valid():
+                    return JsonResponse(status=400, data=serializer.errors)
+                serializer.save()
+                return JsonResponse(serializer.data, safe=False)
             if header_rooms.count() >= 5:
                 header_rooms[0].cover.delete(save=True)
                 header_rooms[0].delete()
@@ -432,6 +455,7 @@ class RoomView(viewsets.ViewSet):
         room.save()
         return Response(True)
 
+
 class RoomVoiceView(viewsets.ViewSet):
     def get_data(self, request, room_id):
         user = request.user
@@ -452,6 +476,7 @@ class RoomVoiceView(viewsets.ViewSet):
         voices = RoomVoice.objects.all().filter(room_id=room_id)
         serializer = RoomVoiceSerializer(voices, many=True)
         return JsonResponse({"voice_list": serializer.data, 'is_my_voice': 1}, safe=False)
+
 
 class TagView(viewsets.ViewSet):
     def list(self, request):
@@ -495,7 +520,7 @@ class PollView(viewsets.ViewSet):
             poll_list = poll_list.order_by('-created_at')
         if section == "saves":
             poll_list = poll_list.filter(saved_by=(user_id)).distinct()
-        poll_list = poll_list[loaded_polls_count:loaded_polls_count+11]
+        poll_list = poll_list[loaded_polls_count:loaded_polls_count + 11]
         serializer = PollListSerializer(poll_list, many=True)
         if poll_list.count() > 10:
             control_poll = 1
@@ -570,6 +595,7 @@ class OptionView(viewsets.ViewSet):
             return JsonResponse({"option": serializer.data}, safe=False)
         return JsonResponse(status=400, data=serializer.errors)
 
+
 class VoiceView(viewsets.ViewSet):
     def create(self, request):
         data = request.data
@@ -634,6 +660,7 @@ class CommentView(viewsets.ViewSet):
         comment.delete()
         return Response("Комментарий удален.")
 
+
 class SmileView(viewsets.ViewSet):
     def create(self, request):
         data = request.data
@@ -655,12 +682,14 @@ class SmileView(viewsets.ViewSet):
         serializer = SmileSerializer(smiles, many=True)
         return Response(serializer.data)
 
+
 class ColorView(viewsets.ViewSet):
     def list(self, request):
-        #получим палетку
+        # получим палетку
         colors = Color.objects.all()
         serializer = ColorSerializer(colors, many=True)
         return Response(serializer.data)
+
 
 class IllustrationView(viewsets.ViewSet):
     def list(self, request):
@@ -676,15 +705,16 @@ class IllustrationView(viewsets.ViewSet):
                 note = Illustration.objects.all().get(type=field)
                 old_value = note.text
                 if old_value != new_value:
-                    Update(name="Изменено значения для иллюстрации "+note.type, author=request.user.profile,
-                           description='Значение изменилось с "'+old_value+'" на "'+new_value+'"').save()
+                    Update(name="Изменено значения для иллюстрации " + note.type, author=request.user.profile,
+                           description='Значение изменилось с "' + old_value + '" на "' + new_value + '"').save()
                 note.text = new_value
                 note.save()
             except:
                 pass
             colors = Illustration.objects.all()
-            serializer = ColorSerializer(colors,many=True)
+            serializer = ColorSerializer(colors, many=True)
         return JsonResponse({"result": 1, "illustrations": serializer.data}, safe=False)
+
 
 class CustomizationView(viewsets.ViewSet):
     def list(self, request):
@@ -724,7 +754,7 @@ class CustomizationView(viewsets.ViewSet):
                 old_value = note.text
                 if old_value != new_value:
                     Update(name="Изменен текст объявления", author=request.user.profile,
-                           description='Значение изменилось с "'+old_value+'" на "'+new_value+'"').save()
+                           description='Значение изменилось с "' + old_value + '" на "' + new_value + '"').save()
                 note.text = new_value
                 note.save()
             except:
@@ -735,8 +765,8 @@ class CustomizationView(viewsets.ViewSet):
                 note = Color.objects.all().get(type=field)
                 old_value = note.text
                 if old_value != new_value:
-                    Update(name="Изменено значения для цвета "+note.type, author=request.user.profile,
-                           description='Значение изменилось с "'+old_value+'" на "'+new_value+'"').save()
+                    Update(name="Изменено значения для цвета " + note.type, author=request.user.profile,
+                           description='Значение изменилось с "' + old_value + '" на "' + new_value + '"').save()
                 note.text = new_value
                 note.save()
             except:
@@ -744,6 +774,7 @@ class CustomizationView(viewsets.ViewSet):
             colors = Color.objects.all()
             serializer = ColorSerializer(colors, many=True)
         return JsonResponse({"result": 1, "colors": serializer.data}, safe=False)
+
 
 class AnswerView(viewsets.ViewSet):
     def retrieve(self, request, id):
@@ -756,9 +787,9 @@ class AnswerView(viewsets.ViewSet):
         loaded_answers_count = int(request.POST.get('loaded_answers_count'))
         section = int(request.POST.get('section'))
         id = int(request.POST.get('id'))
-        if section==1:
+        if section == 1:
             answer_list = Answer.objects.all().filter(room__pk=id).order_by('-created_at')
-        if section==2:
+        if section == 2:
             answer_list = Answer.objects.all().filter(room__pk=id)
         answer_list = answer_list[loaded_answers_count:loaded_answers_count + 11]
         serializer = AnswerSerializer(answer_list, many=True)
@@ -823,7 +854,8 @@ class AnswerView(viewsets.ViewSet):
         answer.save()
         return Response(True)
 
-#уведомления
+
+# уведомления
 class NotificationView(viewsets.ViewSet):
     def list(self, request):
         user = request.user
@@ -835,7 +867,7 @@ class NotificationView(viewsets.ViewSet):
         data = request.data
         user = request.user
         type = int(data.get('type'))
-        if(type==3):
+        if (type == 3):
             recipients_list = Profile.objects.all().filter(is_admin=1)
             recipients = []
             viewed = ""
@@ -843,7 +875,7 @@ class NotificationView(viewsets.ViewSet):
             object = 0
             for rec in recipients_list:
                 recipients.append(rec.user.id)
-                viewed += str(rec.id)+','
+                viewed += str(rec.id) + ','
         else:
             recipients = data.getlist('recipients[]')
             viewed = ','.join(recipients)
@@ -864,7 +896,7 @@ class NotificationView(viewsets.ViewSet):
 
     def get_new(self, request):
         user = request.user
-        queryset = Notification.objects.all().filter(recipients__in=([user.id]),viewed__icontains=(user.id))
+        queryset = Notification.objects.all().filter(recipients__in=([user.id]), viewed__icontains=(user.id))
         if queryset.exists():
             res = 1
         else:
@@ -901,14 +933,14 @@ class NotificationView(viewsets.ViewSet):
         data = request.data
         violator_id = int(data.get('violator_id'))
         object_id = int(data.get('object_id'))
-        #проверим, получил ли участник 10 предупреждений
+        # проверим, получил ли участник 10 предупреждений
         queryset = Notification.objects.all().filter(recipients__in=([violator_id]),
                                                      type__in=[4, 5])[:10]
-        if len(queryset)==10:
+        if len(queryset) == 10:
             res = 1
         else:
             res = 0
-        #не заблокирован ли данный участник уже?
+        # не заблокирован ли данный участник уже?
         queryset = Profile.objects.all()
         profile = get_object_or_404(queryset, pk=violator_id)
         if (profile.is_blocked):
@@ -922,7 +954,8 @@ class NotificationView(viewsets.ViewSet):
         note.recipients.remove(request.user)
         return Response(True)
 
-#жалобы
+
+# жалобы
 class ReportView(viewsets.ViewSet):
     def list(self, request):
         report_list = Report.objects.all()
@@ -946,7 +979,8 @@ class ReportView(viewsets.ViewSet):
             serializer.save()
         return JsonResponse(serializer.data, safe=False)
 
-#поиск
+
+# поиск
 class SearchView(viewsets.ViewSet):
     def list(self, request):
         search_str = request.POST.get('search_str')
@@ -978,6 +1012,7 @@ class SearchView(viewsets.ViewSet):
                          'members': members_serializer.data, 'control_room': control_room,
                          'control_poll': control_poll, 'control_member': control_member,
                          })
+
 
 # admin-panel
 class WorkplanView(viewsets.ViewSet):
@@ -1019,18 +1054,19 @@ class WorkplanView(viewsets.ViewSet):
         plus_sended = int(request.data.get('plus_sended'))
         minus_sended = int(request.data.get('minus_sended'))
         note = get_object_or_404(queryset, pk=id)
-        if (type==0):
-            if plus_sended==1:
+        if (type == 0):
+            if plus_sended == 1:
                 note.rating -= 2
             else:
                 note.rating -= 1
-        if (type==1):
-            if minus_sended==1:
+        if (type == 1):
+            if minus_sended == 1:
                 note.rating += 2
             else:
                 note.rating += 1
         note.save()
         return JsonResponse(type, safe=False)
+
 
 class UpdateView(viewsets.ViewSet):
     def list(self, request):
@@ -1071,20 +1107,21 @@ class UpdateView(viewsets.ViewSet):
         plus_sended = int(request.data.get('plus_sended'))
         minus_sended = int(request.data.get('minus_sended'))
         note = get_object_or_404(queryset, pk=id)
-        if (type==0):
-            if plus_sended==1:
+        if (type == 0):
+            if plus_sended == 1:
                 note.rating -= 2
             else:
                 note.rating -= 1
-        if (type==1):
-            if minus_sended==1:
+        if (type == 1):
+            if minus_sended == 1:
                 note.rating += 2
             else:
                 note.rating += 1
         note.save()
         return JsonResponse(type, safe=False)
 
-#гайды
+
+# гайды
 class ArticleView(viewsets.ViewSet):
     def list(self, request, section_id):
         list = Article.objects.all().filter(section=section_id).distinct()
@@ -1111,6 +1148,7 @@ class ArticleView(viewsets.ViewSet):
         article.save()
         serializer = ArticleSerializer(article, many=False)
         return JsonResponse(serializer.data, safe=False)
+
 
 class ArticleIllustrationView(viewsets.ViewSet):
     def retrieve(self, request, id):
