@@ -8,7 +8,7 @@ import AnswerBtns_wrap from "../../../store/wraps/room-page/AnswerBtns_wrap"
 import AnswerHeaderBtns_wrap from "../../../store/wraps/room-page/AnswerHeaderBtns"
 import MediaQuery from 'react-responsive'
 import ConfirmWindow from "../../common-elements/windows/ConfirmWindow"
-import HiddenAnswer from "./HiddenAnswer";
+import HiddenAnswer from "./HiddenAnswer"
 
 class AnswerBlock extends Component {
 	constructor(props) {
@@ -129,7 +129,7 @@ class AnswerBlock extends Component {
 												<div className="author">
 													{this.props.answer.author.avatar ?
 														(<img src={this.props.answer.author.avatar}
-															  className="base-avatar"/>)
+															  className="avatar"/>)
 														: null}
 													<div className="author-info"
 														 onClick={this.openProfile}>

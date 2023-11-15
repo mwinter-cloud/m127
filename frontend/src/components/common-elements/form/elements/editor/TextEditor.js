@@ -4,6 +4,7 @@ import parse from "html-react-parser"
 import SmileBlock from "./SmileBlock"
 import EditorBtns from "./EditorBtns"
 import MediaQuery from 'react-responsive'
+import ShowedAnswer from "../../../../room-page/elements/ShowedAnswer";
 
 export function specialtagstohtml(text) {
     if(text) {
@@ -19,6 +20,7 @@ export function specialtagstohtml(text) {
         return html
     }
 }
+
 export function transformationforshow(text) {
     if(text) {
         let html = text.replace(new RegExp('<div class="spoiler">([^`]*?)<header>([^`]+?)</header>([^`]*?)<main>([^`]+?)</main>([^`]*?)</div>', 'g'), '<div class="spoiler"><header>$2<button></button></header><main>$4</main></div>')
@@ -34,19 +36,19 @@ export function specialtagsinnotification(text){
 class TextEditor extends React.Component {
     constructor(props) {
         super(props)
-		this.setShowedStatus = this.setShowedStatus.bind(this)
-		this.updateEditor = this.updateEditor.bind(this)
+        this.setShowedStatus = this.setShowedStatus.bind(this)
+        this.updateEditor = this.updateEditor.bind(this)
         this.onKeyDown = this.onKeyDown.bind(this)
         this.paste = this.paste.bind(this)
         this.inputTrigger = this.inputTrigger.bind(this)
-		this.state = {
-			design_win_status: 'hide',
-			showed_status: 0,
-		}
+        this.state = {
+            design_win_status: 'hide',
+            showed_status: 0,
+        }
     }
 
     setShowedStatus = () => {
-        if(this.state.showed_status == 1) {
+        if (this.state.showed_status == 1) {
             this.setState({
                 showed_status: 0,
             })
@@ -58,13 +60,13 @@ class TextEditor extends React.Component {
     }
 
     updateEditor = () => {
-        let div_editable = document.getElementById(this.props.form_name+"_div_editable")
+        let div_editable = document.getElementById(this.props.form_name + "_div_editable")
         let redactor_html = div_editable.innerHTML
         this.props.setText(redactor_html)
     }
 
     inputTrigger = () => {
-        let div_editable = document.getElementById(this.props.form_name+"_div_editable")
+        let div_editable = document.getElementById(this.props.form_name + "_div_editable")
         let event = new Event('input', {
             bubbles: true,
             cancelable: true,
@@ -74,7 +76,7 @@ class TextEditor extends React.Component {
 
     paste = (event) => {
         event.preventDefault()
-        let div_textarea = document.getElementById(this.props.form_name+"_div_editable")
+        let div_textarea = document.getElementById(this.props.form_name + "_div_editable")
         div_textarea.focus()
         let selection = window.getSelection(),
             range = selection.getRangeAt(0)
@@ -88,7 +90,7 @@ class TextEditor extends React.Component {
 
     onKeyDown = (e) => {
         if (e.keyCode === 13) {
-            let div_editable = document.getElementById(this.props.form_name+"_div_editable")
+            let div_editable = document.getElementById(this.props.form_name + "_div_editable")
             div_editable.focus()
             let selection = window.getSelection(),
                 range = selection.getRangeAt(0),
@@ -108,17 +110,20 @@ class TextEditor extends React.Component {
     render() {
         return (
             <>
-                <EditorBtns div_editable_name={this.props.form_name+"_div_editable"} inputTrigger={this.inputTrigger}/>
-                <div className="textarea-block">
-                    <div contentEditable onPaste={this.paste} id={this.props.form_name+"_div_editable"} className="editor-textarea" onInput={this.updateEditor}></div>
-                    <MediaQuery minWidth={801}>
-                        <SmileBlock div_editable_name={this.props.form_name+"_div_editable"}/>
-        			</MediaQuery>
+                {this.state.showed_status ? (<ShowedAnswer text={this.props.text_value}/>) : null}
+                <div className={this.state.showed_status ? 'hide' : ''}>
+                    <EditorBtns div_editable_name={this.props.form_name + "_div_editable"}
+                                inputTrigger={this.inputTrigger}/>
+                    <div className="textarea-block">
+                        <div contentEditable onPaste={this.paste} id={this.props.form_name + "_div_editable"}
+                             className="editor-textarea" onInput={this.updateEditor}></div>
+                        <MediaQuery minWidth={801}>
+                            <SmileBlock div_editable_name={this.props.form_name + "_div_editable"}/>
+                        </MediaQuery>
+                    </div>
                 </div>
-                <i className={this.state.showed_status==1?"i-btn el-icon-minus":"i-btn el-icon-view"} onClick={this.setShowedStatus}></i>
-                <div className={this.state.showed_status==1?"showed-msg":"hide"}>
-                    {this.props.text_value?parse(transformationforshow(specialtagstohtml(this.props.text_value))):'[ ]'}
-                </div>
+                <i className={this.state.showed_status == 1 ? "i-btn el-icon-minus" : "i-btn el-icon-view"}
+                   onClick={this.setShowedStatus}></i>
             </>
         )
     }

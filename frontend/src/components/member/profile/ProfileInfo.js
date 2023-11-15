@@ -20,7 +20,7 @@ class ProfileInfo extends Component {
 				<li>
 					<span className="title">Сайт</span>
 					<span className="text">
-						{this.props.webcite?(<a href={"../../"+this.props.webcite}>{this.props.webcite}</a>):"?"}
+						{this.props.webcite?(this.props.webcite):"?"}
 					</span>
 				</li>
 			</ul>
