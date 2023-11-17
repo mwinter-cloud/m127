@@ -350,6 +350,12 @@
     display: none;
 }
 
+.small-pic {
+    width: 210px;
+    margin: 4px 8px 4px 0;
+    display: inline-block;
+}
+
 @media (max-width: 800px) {
     .editor-textarea {
         width: 100%!important;
@@ -389,5 +395,15 @@
 
     .opened-editor-mobile-btn {
         top: 43vh!important;
+    }
+
+    .small-pic {
+        width: 48%;
+        margin-right: 1%;
+    }
+    .small-pic:nth-child(2n) {
+        width: 48%;
+        margin-right: 0;
+        margin-left: 1%;
     }
 }

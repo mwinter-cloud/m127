@@ -158,12 +158,34 @@
 	border-radius: 0 0 3px 3px;
 }
 .new-answers .answer:first-child {
-	border-radius: 3px;
+	border-radius: 0 0 3px 3px;
 }
 .answer iframe{
 	max-width: 100%!important;
 	height: auto;
 	border-radius: 3px;
+}
+.answer img {
+    max-width: 100%;
+}
+.answer .open-block img {
+    max-width: 100%;
+}
+.answer h3 {
+	font-weight: 500;
+	margin: 12px 0;
+}
+.answer h2 {
+	font-weight: 500;
+	margin: 12px 0;
+}
+.answer h1 {
+	font-weight: 500;
+	margin: 12px 0;
+}
+.answer h4 {
+	font-weight: 500;
+	margin: 12px 0;
 }
 .answers .show-more {
     user-select: none;
