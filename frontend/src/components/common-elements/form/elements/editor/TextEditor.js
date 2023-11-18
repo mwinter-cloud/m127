@@ -1,16 +1,15 @@
 import React from 'react'
 import '../../style/editor.css'
-import parse from "html-react-parser"
 import SmileBlock from "./SmileBlock"
 import EditorBtns from "./EditorBtns"
 import MediaQuery from 'react-responsive'
-import ShowedAnswer from "../../../../room-page/elements/ShowedAnswer";
+import ShowedAnswer from "../../../../room-page/elements/ShowedAnswer"
 
 export function specialtagstohtml(text) {
     if(text) {
         let html = text.replace(new RegExp('&lt;appeal to=([0-9]+) color=([a-z-]*) answer=([0-9]+)&gt;([^`]+?)&lt;/appeal&gt;','g'),'<span class="answer-link $2" data-id="$3">$4</span>')
         html = html.replace(new RegExp('&lt;img src="/media/smiles/([^`]+?).png" class="smile"', 'g'), '<img src="/media/smiles/$1.png" class="smile">')
-        html = html.replace(new RegExp('&lt;img src="([^`]+?)" /&gt;', 'g'), '<img src="$1" class="answer-illustration">')
+        html = html.replace(new RegExp('&lt;img src="([^`]+?)" class="middle-pic" /&gt;', 'g'), '<img src="$1" class="answer-illustration middle-pic">')
         html = html.replace(new RegExp('&lt;div&gt;&lt;/div&gt;', 'g'), '')
         html = html.replace(new RegExp('&lt;p&gt;&lt;/p&gt;', 'g'), '')
         html = html.replace(new RegExp('&lt;b&gt;&lt;/b&gt;', 'g'), '')

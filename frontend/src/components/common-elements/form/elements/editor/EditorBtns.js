@@ -171,7 +171,7 @@ class EditorBtns extends React.Component {
         let selection = window.getSelection(),
             range = selection.getRangeAt(0)
         let temp = document.createElement('div');
-        temp.textContent = '<img src="?" />';
+        temp.textContent = '<img src="?" class="middle-pic"/>';
         range.insertNode(temp.firstChild);
         selection.collapseToEnd()
     }

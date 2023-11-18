@@ -352,8 +352,18 @@
 
 .small-pic {
     width: 210px;
+    height: 130px;
     margin: 4px 8px 4px 0;
     display: inline-block;
+    object-fit: cover;
+}
+
+.middle-pic {
+    max-width: 50%;
+    max-height: 350px;
+    margin: 4px 8px 4px 0;
+    display: inline-block;
+    object-fit: contain;
 }
 
 @media (max-width: 800px) {
