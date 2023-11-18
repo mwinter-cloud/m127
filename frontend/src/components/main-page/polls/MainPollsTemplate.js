@@ -21,9 +21,9 @@ class MainPollsTemplate extends Component {
             <main className="main-page polls-page">
                 <div className="flex container">
                     <MediaQuery minWidth={801}>
-                        <div className="col1">
+                        <aside className="col1">
                             <PollsFilter/>
-                        </div>
+                        </aside>
                     </MediaQuery>
                     <MediaQuery maxWidth={800}>
                         {this.state.open_menu ? (

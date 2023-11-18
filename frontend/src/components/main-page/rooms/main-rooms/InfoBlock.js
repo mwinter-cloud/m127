@@ -28,7 +28,7 @@ class InfoBlock extends Component {
         if (this.state.announcement != "undefined") {
             if (this.state.announcement) {
                 return (
-                    <>
+                    <aside>
                         {this.state.megafon_window?(<MegafonInfoWindow closeWindow={this.openMegafonWindow}/>):null}
                         <div className="info-block">
                             <p>{this.state.announcement}</p>
@@ -39,7 +39,7 @@ class InfoBlock extends Component {
                         <div className="transparent-btn" onClick={this.openMegafonWindow}>
                             Специальный канал
                         </div>
-                    </>
+                    </aside>
                 )
             } else {
                 return (

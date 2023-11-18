@@ -42,7 +42,7 @@ class Carousel extends Component {
             return (
                 <div className="carousel">
                     {this.state.rooms[this.state.selected_room] ? (
-                        <div className="mainroomslide">
+                        <article className="mainroomslide">
                             <img
                                 src={this.state.rooms[this.state.selected_room].cover}
                                 className="picture"/>
@@ -54,9 +54,9 @@ class Carousel extends Component {
                                     <Rating room_id={this.state.rooms[this.state.selected_room].id}/>
                                 </MediaQuery>
                             </div>
-                        </div>
+                        </article>
                     ) : (
-                        <div className="mainroomslide">
+                        <article className="mainroomslide">
                             <img
                                 src={this.state.rooms[0].cover}
                                 className="picture"/>
@@ -65,7 +65,7 @@ class Carousel extends Component {
                                     <h1>{this.state.rooms[0].room.name}</h1>
                                 </div>
                             </Link>
-                        </div>
+                        </article>
                     )}
                     <div className="toggles">
                         <div className={"toggle " + (this.state.selected_room == 0 ? "active" : null)}

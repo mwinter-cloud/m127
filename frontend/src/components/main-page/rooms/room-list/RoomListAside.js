@@ -8,9 +8,9 @@ class RoomListAside extends Component {
 
     render() {
         return (
-            <div className="col1">
+            <aside className="col1">
                 <TagFilter popular_tags="true" tags={this.props.tags} items="rooms" onTagSelect={this.props.onTagSelect}/>
-            </div>
+            </aside>
         )
     }
 }

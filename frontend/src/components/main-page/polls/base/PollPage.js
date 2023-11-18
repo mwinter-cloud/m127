@@ -55,7 +55,7 @@ class PollPage extends Component {
     render() {
         return (
             <>
-                <div className="col2">
+                <main className="col2">
                     {(() => {
                         if (this.props.id == undefined) {
                             return (
@@ -82,7 +82,7 @@ class PollPage extends Component {
                             }
                         }
                     })()}
-                </div>
+                </main>
             </>
         )
     }

@@ -91,7 +91,7 @@ class AnswerBlock extends Component {
 							{(() => {
 								if (this.state.edit_status == 0) {
 									return (
-										<div className="answer" id={"answer" + this.props.answer.id}>
+										<section className="answer" id={"answer" + this.props.answer.id}>
 											<MediaQuery maxWidth={800}>
 												<AnswerHeaderBtns_wrap answer={this.props.answer}/>
 											</MediaQuery>
@@ -117,7 +117,7 @@ class AnswerBlock extends Component {
 												<AnswerBtns_wrap answer={this.props.answer}
 																 openEditForm={this.openEditForm}/>
 											</div>
-										</div>
+										</section>
 									)
 								} else {
 									return (
@@ -125,7 +125,7 @@ class AnswerBlock extends Component {
 											{this.state.confirm_window ? (
 												<ConfirmWindow confirm_function={this.deleteAnswer}
 															   close={this.openConfirmWindow}/>) : null}
-											<div className="answer" id={"answer" + this.props.answer.id}>
+											<section className="answer" id={"answer" + this.props.answer.id}>
 												<div className="author">
 													{this.props.answer.author.avatar ?
 														(<img src={this.props.answer.author.avatar}
@@ -150,7 +150,7 @@ class AnswerBlock extends Component {
 																	setAnswer={this.setAnswer}/>
 													</div>
 												</div>
-											</div>
+											</section>
 										</>
 									)
 								}
@@ -161,10 +161,10 @@ class AnswerBlock extends Component {
 					return (<HiddenAnswer answer={this.props.answer}/>)
 				}
 			} else {
-				return (<div className="answer"><i className="el-icon-loading loading-icon"></i></div>)
+				return (<section className="answer"><i className="el-icon-loading loading-icon"></i></section>)
 			}
 		} else {
-			return (<div className="answer"><i className="el-icon-loading loading-icon"></i></div>)
+			return (<section className="answer"><i className="el-icon-loading loading-icon"></i></section>)
 		}
 	}
 }

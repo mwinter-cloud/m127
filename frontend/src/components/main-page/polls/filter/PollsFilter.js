@@ -20,15 +20,10 @@ class PollsFilter extends Component {
 		this.onPollSearch = this.onPollSearch.bind(this)
 		this.onSelectSection = this.onSelectSection.bind(this)
 		this.changeSection = this.changeSection.bind(this)
-		this.reloadPoll = this.reloadPoll.bind(this)
 	}
 
 	componentDidMount() {
 		this.loadPolls()
-	}
-
-	reloadPoll = (data) => {
-		// что это
 	}
 
 	loadPolls = () => {
@@ -133,13 +128,14 @@ class PollsFilter extends Component {
 					</ul>
 				</div>
 				<div className="poll-tag-search">
-				<TagFilter items="polls" onTagSelect={this.onTagSelect}/>
+					<TagFilter items="polls" onTagSelect={this.onTagSelect}/>
 					<MediaQuery maxWidth={800}>
 						<CreateFormBtn/>
 					</MediaQuery>
-					</div>
+				</div>
 				<PollList polls={this.state.polls} loadPolls={this.loadPolls} section={this.state.section}
-						  onPollSearch={this.onPollSearch} control_poll={this.state.control_poll} closeMenu={this.props.closeMenu}/>
+						  onPollSearch={this.onPollSearch} control_poll={this.state.control_poll}
+						  closeMenu={this.props.closeMenu}/>
 			</>
 		)
 	}

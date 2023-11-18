@@ -22,10 +22,10 @@ class MainRoomList extends Component {
         if (this.state.rooms != "undefined") {
             if (this.state.rooms.length != 0) {
                 return (
-                    <div className="main-room-list container">
+                    <section className="main-room-list container">
                         {this.state.rooms.map((room, index) => {
                             return (
-                                <div className="room" key={index}>
+                                <article className="room" key={index}>
                                     <Link to={"./room/" + room.room.id}>
                                         <img src={room.cover}/>
                                         <div className="room-info">
@@ -33,10 +33,10 @@ class MainRoomList extends Component {
                                         </div>
                                         <div className="shadow-blur"></div>
                                     </Link>
-                                </div>
+                                </article>
                             )
                         })}
-                    </div>
+                    </section>
                 )
             } else {
                 return null
