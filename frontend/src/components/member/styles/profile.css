@@ -3,7 +3,7 @@
 	scrollbar-width: none;
 	position: relative;
 	height: 100vh;
-	overflow: auto;
+	overflow-y: auto;
 	font-size: .9em;
 }
 .profile-page::-webkit-scrollbar {
@@ -270,7 +270,6 @@
 @media (max-width: 800px) {
 	.profile-page {
 		padding: 0;
-		height: auto;
 	}
 	.profile-page .content {
 		display: block;
