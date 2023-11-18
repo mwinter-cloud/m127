@@ -9,14 +9,14 @@ class ProfilePost extends Component {
     render() {
         if (this.props.title == "" && this.props.text == "" && this.props.image == null) {
             return (
-                <article className="post">
-                    <main>
+                <main className="post">
+                    <article>
                         <p className="null-post">
                             <i className="el-icon-question"></i>
                             Пользователь не рассказал о себе. Наверное, он что-то скрывает.
                         </p>
-                    </main>
-                </article>
+                    </article>
+                </main>
             )
         } else {
             return (

@@ -16,11 +16,6 @@ class Profile extends Component {
 
     componentDidMount() {
         this.loadProfile(this.props.id)
-        document.querySelector('body').style.overflow_y = "hidden"
-    }
-
-    componentWillUnmount() {
-        document.querySelector('body').style.overflow_y = "auto"
     }
 
     componentWillReceiveProps(nextProps, nextContext) {

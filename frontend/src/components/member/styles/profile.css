@@ -36,9 +36,9 @@
 }
 /* шапка */
 .profile-page .main-profile-header {
-	position: relative;
 	height: 260px;
 	margin-top: 0;
+	position: relative;
 }
 .profile-page .user-info {
 	position: relative;
@@ -270,7 +270,7 @@
 @media (max-width: 800px) {
 	.profile-page {
 		padding: 0;
-		overflow: scroll;
+		height: auto;
 	}
 	.profile-page .content {
 		display: block;

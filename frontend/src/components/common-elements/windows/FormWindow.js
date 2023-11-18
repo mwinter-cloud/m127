@@ -6,6 +6,14 @@ class FormWindow extends Component {
         super(props)
     }
 
+    componentDidMount() {
+        document.querySelector('body').classList.add('hidden-y-scroll')
+    }
+
+    componentWillUnmount() {
+        document.querySelector('body').classList.remove('hidden-y-scroll')
+    }
+
     render() {
         return (
             <div className="shadow">

@@ -45,6 +45,9 @@ a {
 a:focus {
 	outline: 0;
 }
+.hidden-y-scroll {
+	overflow-y: hidden;
+}
 
 input {
 	font-family: inherit;
