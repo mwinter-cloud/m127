@@ -16,6 +16,13 @@ class Profile extends Component {
 
     componentDidMount() {
         this.loadProfile(this.props.id)
+        if(!document.querySelector('body').classList.contains('hidden-y-scroll')) {
+            document.querySelector('body').classList.add('hidden-y-scroll')
+        }
+    }
+
+    componentWillUnmount() {
+        document.querySelector('body').classList.remove('hidden-y-scroll')
     }
 
     componentWillReceiveProps(nextProps, nextContext) {
