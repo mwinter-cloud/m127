@@ -113,7 +113,7 @@ class FormBlock extends Component {
 	render() {
 		if ((this.props.room_type == "ADM" && this.props.is_admin) || (this.props.room_type != "ADM")) {
 			return (
-				<section>
+				<>
 					<MediaQuery minWidth={801}>
 						<button onMouseEnter={this.btnHover} onMouseLeave={this.editorHide} onClick={this.openEditor}
 								className='editor-btn'><i className="el-icon-chat-round"></i></button>
@@ -130,7 +130,7 @@ class FormBlock extends Component {
 									addNotification={this.addNotification} savers={this.props.savers}
 									room_name={this.props.room_name}/>
 					</div>
-				</section>
+				</>
 			)
 		} else {
 			return null
