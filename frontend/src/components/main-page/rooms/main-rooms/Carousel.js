@@ -19,7 +19,7 @@ class Carousel extends Component {
             const room_list = res.data
             if (room_list.length != 0) {
                 this.setState({rooms: room_list}, () => {
-                    if(this.props.setRoomId) {
+                    if (this.props.setRoomId) {
                         this.props.setRoomId(this.state.rooms[0].id)
                     }
                 })
@@ -43,9 +43,11 @@ class Carousel extends Component {
                 <div className="carousel">
                     {this.state.rooms[this.state.selected_room] ? (
                         <article className="mainroomslide">
-                            <img
-                                src={this.state.rooms[this.state.selected_room].cover}
-                                className="picture"/>
+                            <Link to={"/room/" + this.state.rooms[this.state.selected_room].room.id}>
+                                <img
+                                    src={this.state.rooms[this.state.selected_room].cover}
+                                    className="picture"/>
+                            </Link>
                             <div className="header-text">
                                 <Link to={"/room/" + this.state.rooms[this.state.selected_room].room.id}>
                                     <h1>{this.state.rooms[this.state.selected_room].room.name}</h1>
@@ -57,14 +59,17 @@ class Carousel extends Component {
                         </article>
                     ) : (
                         <article className="mainroomslide">
-                            <img
-                                src={this.state.rooms[0].cover}
-                                className="picture"/>
                             <Link to={"/room/" + this.state.rooms[this.state.selected_room].room.id}>
-                                <div className="header-text">
-                                    <h1>{this.state.rooms[0].room.name}</h1>
-                                </div>
+                                <img
+                                    src={this.state.rooms[0].cover}
+                                    className="picture"/>
                             </Link>
+
+                            <div className="header-text">
+                                <Link to={"/room/" + this.state.rooms[this.state.selected_room].room.id}>
+                                    <h1>{this.state.rooms[0].room.name}</h1>
+                                </Link>
+                            </div>
                         </article>
                     )}
                     <div className="toggles">

@@ -2,6 +2,8 @@ import React from 'react'
 import ColorsBlock_wrap from "../../../../../store/wraps/forms/ColorsBlock_wrap"
 import MediaQuery from 'react-responsive'
 import SmileBlock from "./SmileBlock"
+import "../../../../../../static/frontend/stickers-btn.png"
+import "../../../../../../static/frontend/smiles-btn.png"
 
 class EditorBtns extends React.Component {
     constructor(props) {
@@ -34,6 +36,9 @@ class EditorBtns extends React.Component {
 
     openDesignWin = (e) => {
         let win_type = e.target.getAttribute('data-type')
+        if(win_type=="smiles"||win_type=="spotti") {
+            this.props.setSmilesSection(win_type)
+        }
         if (this.state.design_win_status == win_type) {
             this.setState({
                 design_win_status: 'hide',
@@ -60,6 +65,7 @@ class EditorBtns extends React.Component {
         range.insertNode(temp.firstChild);
         selection.collapseToEnd()
     }
+
     makeBold = (e) => {
         let div_textarea = document.getElementById(this.props.div_editable_name)
         div_textarea.focus()
@@ -165,7 +171,7 @@ class EditorBtns extends React.Component {
         })
     }
 
-    addImage = (e) => {
+    addImage = () => {
         let div_editable = document.getElementById(this.props.div_editable_name)
         div_editable.focus()
         let selection = window.getSelection(),
@@ -193,9 +199,10 @@ class EditorBtns extends React.Component {
                                     <li onClick={this.addBlock4}>цветной квадрат</li>
                                 </ul>
                             )
-                        } else if (this.state.design_win_status === 'smiles') {
+                        } else if (this.state.design_win_status === 'smiles' || this.state.design_win_status === 'spotti') {
                             return (
-                                <SmileBlock div_editable_name={this.props.div_editable_name}/>
+                                <SmileBlock smiles_section={this.props.smiles_section}
+                                            div_editable_name={this.props.div_editable_name}/>
                             )
                         }
                     })()}
@@ -216,10 +223,22 @@ class EditorBtns extends React.Component {
                         <li data-title="изображение" onClick={this.addImage} onMouseDown={this.onMouse}><i
                             className="el-icon-picture-outline"></i></li>
                         <li data-title="слайдер" onClick={this.addSpoiler}><i className="el-icon-files"></i></li>
+                        <MediaQuery minWidth={801}>
+                            <li data-title="стикеры" className="block-btn"><img
+                                src={this.props.smiles_section == "spotti" ?
+                                    ("../../../../../../static/frontend/smiles-btn.png") :
+                                    ("../../../../../../static/frontend/stickers-btn.png")}
+                                onClick={this.props.setSmilesSection}/></li>
+                        </MediaQuery>
                         <MediaQuery maxWidth={800}>
-                            <li data-title="смайлы" onMouseDown={this.onMouse}><img
-                                src="https://cdn-icons-png.flaticon.com/512/1656/1656373.png"
-                                onClick={this.openDesignWin} data-type="smiles"/></li>
+                            <li data-title="смайлы" onMouseDown={this.onMouse}>
+                                <img
+                                    src="https://cdn-icons-png.flaticon.com/512/1656/1656373.png"
+                                    onClick={this.openDesignWin} data-type="smiles"/>
+                            </li>
+                            <li data-title="стикеры" className="block-btn">
+                                <img src="../../../../../../static/frontend/stickers-btn.png"
+                                     onClick={this.openDesignWin} data-type="spotti"/></li>
                         </MediaQuery>
                     </ul>
                 </div>

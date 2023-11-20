@@ -40,9 +40,11 @@ class TextEditor extends React.Component {
         this.onKeyDown = this.onKeyDown.bind(this)
         this.paste = this.paste.bind(this)
         this.inputTrigger = this.inputTrigger.bind(this)
+        this.setSmilesSection = this.setSmilesSection.bind(this)
         this.state = {
             design_win_status: 'hide',
             showed_status: 0,
+            smiles_section: "smiles",
         }
     }
 
@@ -106,18 +108,29 @@ class TextEditor extends React.Component {
         }
     }
 
+    setSmilesSection = (e, section="") => {
+        if(section) {
+            this.setState({smiles_section: section})
+        } else {
+            let smiles_section = this.state.smiles_section == "smiles" ? "spotti" : "smiles"
+            this.setState({smiles_section: smiles_section})
+        }
+    }
+
     render() {
         return (
             <>
                 {this.state.showed_status ? (<ShowedAnswer text={this.props.text_value}/>) : null}
                 <div className={this.state.showed_status ? 'hide' : ''}>
                     <EditorBtns div_editable_name={this.props.form_name + "_div_editable"}
-                                inputTrigger={this.inputTrigger}/>
+                                smiles_section={this.state.smiles_section}
+                                inputTrigger={this.inputTrigger} setSmilesSection={this.setSmilesSection}/>
                     <div className="textarea-block">
                         <div contentEditable onPaste={this.paste} id={this.props.form_name + "_div_editable"}
                              className="editor-textarea" onInput={this.updateEditor}></div>
                         <MediaQuery minWidth={801}>
-                            <SmileBlock div_editable_name={this.props.form_name + "_div_editable"}/>
+                            <SmileBlock div_editable_name={this.props.form_name + "_div_editable"}
+                                        smiles_section={this.state.smiles_section}/>
                         </MediaQuery>
                     </div>
                 </div>

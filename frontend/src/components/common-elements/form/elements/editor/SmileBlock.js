@@ -1,11 +1,13 @@
 import React from 'react'
 import axios from "axios"
+import SpottiStickersWindow from "./SpottiStickersWindow"
+import MediaQuery from 'react-responsive'
 
 class SmileBlock extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			smiles: []
+			smiles: [],
 		}
 		this.addSmile = this.addSmile.bind(this)
 	}
@@ -44,13 +46,17 @@ class SmileBlock extends React.Component {
 	render() {
 		return (
 			<div className="smiles-block">
-				<ul>
-					{this.state.smiles.map((smile, index) => {
-						return (
-							<li key={index}><img src={smile.file} onClick={this.addSmile} className="smile"/></li>
-						)
-					})}
-				</ul>
+				{this.props.smiles_section == "smiles" ? (
+					<ul>
+						{this.state.smiles.map((smile, index) => {
+							return (
+								<li key={index}><img src={smile.file} onClick={this.addSmile} className="smile"/></li>
+							)
+						})}
+					</ul>
+				) : (
+					<SpottiStickersWindow div_editable_name={this.props.div_editable_name}/>
+				)}
 			</div>
 		)
 	}
