@@ -136,7 +136,18 @@
 	font-size: 1.15em;
 	margin-bottom: 3px;
 }
-
+.all-rooms .room .new-icon {
+	height: 6px;
+    width: 6px;
+    margin-top: 5px;
+    margin-right: 7px;
+    margin-left: 5px;
+    display: block;
+    float: left;
+    background: var(--SC);
+    border-radius: 50%;
+	box-shadow: 0 0 3px 2px #fff, /* inner white */ 0 0 4px 2px #f0f, /* middle magenta */ 0 0 5px 2px #0ff;
+}
 
 @media (max-width: 800px) {
 	.room-list header .toggle {

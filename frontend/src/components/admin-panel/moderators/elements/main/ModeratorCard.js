@@ -24,7 +24,9 @@ class ModeratorCard extends Component {
     }
 
     removeItem = () => {
-        const remove = () => {this.props.removeItem(this.props.moderator.id)}
+        const remove = () => {
+            this.props.removeItem(this.props.moderator.id)
+        }
         const id = this.props.moderator.id
         $.ajax({
             type: 'post',
@@ -50,8 +52,8 @@ class ModeratorCard extends Component {
                 <li>
                     {this.state.confirm_window ? (
                         <ConfirmWindow confirm_function={this.removeItem} close={this.openConfirmWindow}/>) : ""}
-                    <img src={this.props.moderator.avatar}
-                         className="avatar base-avatar"/>
+                    {this.props.moderator.avatar ?
+                        <img src={this.props.moderator.avatar} className="avatar base-avatar"/> : null}
                     <h3 onClick={this.openProfile}>
                         {this.props.moderator.user.is_staff ?
                             (<div className="admin-key" data-title="администратор">

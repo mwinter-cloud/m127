@@ -216,6 +216,9 @@
 	padding: 8px;
 	font-size: .95em;
 }
+.admin-list .profile-page .col2 .profile-info li {
+	margin-bottom: 0;
+}
 .profile-page .col2 .profile-info li:last-child {
 	border-bottom: 0;
 }

@@ -37,7 +37,7 @@ class EditorBtns extends React.Component {
     openDesignWin = (e) => {
         let win_type = e.target.getAttribute('data-type')
         if(win_type=="smiles"||win_type=="spotti") {
-            this.props.setSmilesSection(win_type)
+            this.props.setSmilesSection(e,win_type)
         }
         if (this.state.design_win_status == win_type) {
             this.setState({
