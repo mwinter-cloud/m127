@@ -55,7 +55,9 @@ class Header extends Component {
                                 closeWindow={this.openBannerForm}/>) : ""}
                 <header className="room-header">
                     <div className="room-info">
-                        <h2 className={this.props.room.color ? this.props.room.color.type : null}>{this.props.room.name}</h2>
+                        <div className="room-title">
+                            <h2 className={this.props.room.color ? this.props.room.color.type : null}>{this.props.room.name}</h2>
+                        </div>
                         <div className="options">
                             <div className="options-field">
                                 <div className="options-btn" onClick={this.openRoomMenu} id="options_btn">

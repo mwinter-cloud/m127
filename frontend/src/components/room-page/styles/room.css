@@ -24,11 +24,15 @@
 	object-fit: cover;
 	display: none;
 }
+.room-page .room-header .cite-title {
+	display: block;
+	margin-top: 30px;
+	margin-bottom: 25px;
+}
 .room-page .room-header h2 {
 	font-weight: 500;
 	font-size: 1.4em;
-	margin-top: 30px;
-	margin-bottom: 25px;
+	display: inline-block;
 }
 .room-page .room-header p {
 	font-size: .95em;

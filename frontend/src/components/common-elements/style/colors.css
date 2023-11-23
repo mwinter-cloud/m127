@@ -9,6 +9,8 @@ body {
     --pink: transparent;
     --gray: transparent;
     --orange: transparent;
+    --white: transparent;
+    --black: transparent;
 
     --SC: #888;
     --RN: #888;
@@ -67,7 +69,21 @@ body {
     background: var(--orange)!important;
     border: 1px solid var(--orange)!important;
 }
+.white-block {
+    background: var(--white)!important;
+    border: 1px solid var(--white)!important;
+}
+.black-block {
+    background: var(--black)!important;
+    border: 1px solid var(--black)!important;
+}
 
+.white {
+    color: var(--white)!important;
+}
+.black {
+    color: var(--black)!important;
+}
 .violet {
     color: var(--violet)!important;
 }
