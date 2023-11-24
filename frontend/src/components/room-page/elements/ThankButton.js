@@ -82,6 +82,7 @@ class ThankButton extends React.Component {
 	sendSocketMsg = (data) => {
 		const recipient = this.props.author_user_id
 		const event_data = {
+			'id': this.props.answer_id,
 			'object': data.object,
 			'text': data.text,
 			'sender': {
