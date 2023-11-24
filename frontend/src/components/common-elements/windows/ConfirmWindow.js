@@ -4,6 +4,15 @@ import './style/confirm_window.css'
 class ConfirmWindow extends Component {
     constructor(props) {
         super(props)
+		this.confirmEvent = this.confirmEvent.bind(this)
+    }
+
+    confirmEvent = (e) => {
+        e.preventDefault()
+        const form = document.getElementById('submit_form')
+        if (form.hasAttribute('data-submitting')) return
+        form.setAttribute('data-submitting',"")
+        this.props.confirm_function()
     }
 
     render() {
@@ -13,7 +22,9 @@ class ConfirmWindow extends Component {
                 <div className="confirm-window">
                     <p>Вы уверены, что хотите сделать это?</p>
                     <div className="btns">
-                        <div className="btn confirm-btn" onClick={this.props.confirm_function}>Да</div>
+                        <form id="submit_form" onSubmit={this.confirmEvent}>
+                            <button className="btn confirm-btn" type="submit">Да</button>
+                        </form>
                         <div className="btn close-btn" onClick={this.props.close}>Отмена</div>
                     </div>
                 </div>

@@ -24,6 +24,10 @@
 .confirm-window .confirm-btn {
     padding: 0 15px 0 0!important;
     margin: 0 5px 0 0!important;
+    background: transparent;
+    border: 0;
+    color: inherit;
+    font-family: inherit;
 }
 .confirm-window .btn:hover {
     text-decoration: underline;

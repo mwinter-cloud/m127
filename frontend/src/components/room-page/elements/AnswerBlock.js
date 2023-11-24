@@ -56,7 +56,7 @@ class AnswerBlock extends Component {
 		this.setState({confirm_window: (this.state.confirm_window ? 0 : 1)})
 	}
 
-	deleteAnswer = (e) => {
+	deleteAnswer = () => {
 		const answer_id = this.props.answer.id
 		const remove_answer = () => {
 			document.getElementById('answer' + answer_id).classList.add('hide')
