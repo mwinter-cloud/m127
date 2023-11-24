@@ -16,10 +16,14 @@ const AnswerForm = (props) => {
         }),
         validateOnChange: false,
         onSubmit: (values, {setStatus, setErrors}) => {
+            const form = document.getElementById('answer_form')
+            if (form.hasAttribute('data-submitting')) return
+            form.setAttribute('data-submitting',"")
             const send_socket = (data) => {
                 props.sendSocketEvent(data)
             }
             const clear_textarea = () => {
+                form.removeAttribute('data-submitting')
                 document.getElementById(props.form_name + "_div_editable").innerHTML = ""
                 formik.setFieldValue('text', "")
             }
@@ -97,7 +101,7 @@ const AnswerForm = (props) => {
     }
     useMountEffect()
     return (
-        <form className="answer-textarea" onSubmit={formik.handleSubmit}>
+        <form className="answer-textarea" id="answer_form" onSubmit={formik.handleSubmit}>
             <CSRFToken/>
             <input name="text" type="hidden" onChange={formik.handleChange} value={formik.values.text}/>
             <TextEditor setText={set_text} text_value={formik.values.text} form_name={props.form_name}/>
