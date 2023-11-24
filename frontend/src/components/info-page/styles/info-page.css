@@ -17,6 +17,7 @@
     margin: 20px 0 50px 50px;
     font-size: 2em;
     color: var(--SC);
+    font-display: block;
     font-family: 'chava', serif;
 }
 .info-page .header .arrow-back {

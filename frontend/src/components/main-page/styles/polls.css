@@ -307,7 +307,7 @@
 }
 .polls-page .poll-options ul .selected-option {
 	font-weight: 400;
-	color: var(--RN);
+	color: var(--SO);
 }
 /* комментарии */
 .polls-page .comments-field {

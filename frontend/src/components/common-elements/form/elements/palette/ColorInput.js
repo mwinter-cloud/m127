@@ -1,6 +1,6 @@
 import React from 'react'
 import '../../style/palette.css'
-import PaletteWindow from "./PaletteWindow";
+import PaletteWindow from "./PaletteWindow"
 
 class ColorInput extends React.Component {
 	constructor(props) {

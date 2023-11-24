@@ -59,6 +59,9 @@ const ProfileForm = () => {
 
     const saveProfile = () => {
         const formData = new FormData(document.getElementById('profile_settings_form'))
+        if (selectedColor) {
+            formData.append('color', selectedColor)
+        }
         $.ajax({
             type: 'post',
             url: '../api/edit-profile',
