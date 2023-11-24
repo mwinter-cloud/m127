@@ -50,7 +50,10 @@ const CreateRoomForm = (props) => {
     })
 
     const formConfirm = () => {
-        const formData = new FormData(document.getElementById('create_room_form'))
+        const form = document.getElementById('create_room_form')
+        if (form.hasAttribute('data-submitting')) return
+        form.setAttribute('data-submitting',"")
+        const formData = new FormData(form)
         if (selectedColor) {
             formData.append('color', selectedColor)
         }

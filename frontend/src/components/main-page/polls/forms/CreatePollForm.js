@@ -2,14 +2,13 @@ import React, {useEffect, useState} from 'react'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { Navigate } from "react-router-dom"
-import InputWrapper from "../../../common-elements/form/elements/wrappers/InputWrapper";
-import TagFilter from "../../../common-elements/form/elements/tag-filter/TagFilter";
+import InputWrapper from "../../../common-elements/form/elements/wrappers/InputWrapper"
+import TagFilter from "../../../common-elements/form/elements/tag-filter/TagFilter"
 
 const CreatePollForm = (props) => {
     const [navigate, setNavigate] = useState(0)
     const [selectedTags, setSelectedTags] = useState([])
 
-    
     const formik = useFormik({
         initialValues: {
             question: '',
@@ -21,6 +20,9 @@ const CreatePollForm = (props) => {
         }),
         validateOnChange: false,
         onSubmit: (values, {setStatus, setErrors}) => {
+            const form = document.getElementById('create_poll_form')
+            if (form.hasAttribute('data-submitting')) return
+            form.setAttribute('data-submitting',"")
             let is_option = 0
             document.querySelectorAll('.option-input').forEach((input) => {
                 if (input.value != '') {
@@ -96,7 +98,7 @@ const CreatePollForm = (props) => {
     }
 
     return (
-        <form className="simple-form" onSubmit={formik.handleSubmit}>
+        <form className="simple-form" id="create_poll_form" onSubmit={formik.handleSubmit}>
             {navigate?(<Navigate to={"/poll/"+navigate} />):null}
             <InputWrapper label="Название"
                           handleChange={formik.handleChange}

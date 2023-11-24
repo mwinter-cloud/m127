@@ -9,6 +9,8 @@ const BannerRoomForm = (props) => {
 
     const saveRoom = (e) => {
         e.preventDefault()
+        if (e.target.hasAttribute('data-submitting')) return
+        e.target.setAttribute('data-submitting',"")
         const formData = new FormData(document.getElementById('main_room_form'))
         formData.append('room_id', props.room_id)
         let type_int = (type=='carousel'?1:2)
