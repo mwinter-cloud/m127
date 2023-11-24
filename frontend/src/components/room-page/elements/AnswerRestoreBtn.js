@@ -9,7 +9,9 @@ class AnswerRestoreBtn extends React.Component {
 		}
 	}
 
-	restore = () => {
+	restore = (e) => {
+        if (e.target.hasAttribute('data-submitting')) return
+        e.target.setAttribute('data-submitting',"")
 		const set_sended = () => {
 			this.setState({is_sended: 1})
 		}

@@ -9,7 +9,9 @@ class AnswerHideBtn extends React.Component {
 		this.setHide = this.setHide.bind(this)
 	}
 
-	setHide = () => {
+	setHide = (e) => {
+        if (e.target.hasAttribute('data-submitting')) return
+        e.target.setAttribute('data-submitting',"")
 		const set_sended = () => {
 			this.setState({is_sended: 1})
 		}
