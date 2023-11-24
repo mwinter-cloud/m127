@@ -19,7 +19,7 @@ class WurningButton extends React.Component {
 		const violator_id = this.props.recipient_profile_id
 		let object_id = 0
 		let type = 0
-		if(this.props.answer_id) {
+		if (this.props.answer_id) {
 			object_id = this.props.answer_id
 			type = 4
 		}
@@ -29,7 +29,7 @@ class WurningButton extends React.Component {
 			cache: false,
 			data: {violator_id: violator_id, object_id: object_id, type: type},
 			success: function (result) {
-				if(result==0) {
+				if (result == 0) {
 					set_sended()
 				}
 			},
@@ -39,8 +39,12 @@ class WurningButton extends React.Component {
 		})
 	}
 
-	sendWarning = () => {
-		if(!this.state.is_sended) {
+	sendWarning = (e) => {
+		e.preventDefault()
+        const form = e.target
+        if (form.hasAttribute('data-submitting')) return
+        form.setAttribute('data-submitting',"")
+		if (!this.state.is_sended) {
 			this.addNotification()
 		}
 	}
@@ -52,19 +56,23 @@ class WurningButton extends React.Component {
 			recipients: [this.props.recipient_user_id],
 			sender: this.props.my_profile.id,
 		}
-		if(this.props.answer_id) {
+		if (this.props.answer_id) {
 			notification_data.object = this.props.answer_id
 			notification_data.type = 4
 		}
-		const set_sended = () => {this.setState({is_sended: 1})}
-		const send_msg = (res_data) => {this.sendSocketMsg(res_data)}
+		const set_sended = () => {
+			this.setState({is_sended: 1})
+		}
+		const send_msg = (res_data) => {
+			this.sendSocketMsg(res_data)
+		}
 		const open_socket_and_send_msg = (res_data) => {
-            let wsProtocol = ""
-            if (window.location.protocol == 'https:') {
-                wsProtocol = 'wss://'
-            } else {
-                wsProtocol = 'ws://'
-            }
+			let wsProtocol = ""
+			if (window.location.protocol == 'https:') {
+				wsProtocol = 'wss://'
+			} else {
+				wsProtocol = 'ws://'
+			}
 			this['userSocket' + event_recipient] = new WebSocket(
 				wsProtocol + window.location.host + '/ws/user/' + event_recipient)
 			this['userSocket' + event_recipient].onopen = function () {
@@ -92,12 +100,13 @@ class WurningButton extends React.Component {
 			'id': this.props.answer_id,
 			'object': data.object,
 			'text': "",
-			'sender': {'id': this.props.my_profile.id, 'name': this.props.my_profile.name,
-				'avatar': this.props.my_profile.avatar},
+			'sender': {
+				'id': this.props.my_profile.id, 'name': this.props.my_profile.name,
+				'avatar': this.props.my_profile.avatar
+			},
 			'created_at': data.created_at,
-			'notif_type': this.props.answer_id?4:5,
+			'notif_type': this.props.answer_id ? 4 : 5,
 		}
-		console.log(event_data)
 		const send_socket_msg = () => {
 			this['userSocket' + event_recipient].send(JSON.stringify(event_data))
 		}
@@ -114,10 +123,12 @@ class WurningButton extends React.Component {
 	render() {
 		if (this.state.is_sended != 2) {
 			return (
-				<div className="btn" onClick={this.sendWarning}>
-					{this.state.is_sended ? (<AnswerHideBtn answer_id={this.props.answer_id}/>)
+				<form onSubmit={this.sendWarning}>
+					<button type="submit" className="btn">{this.state.is_sended ?
+						(<AnswerHideBtn answer_id={this.props.answer_id}/>)
 						: (<><i className="el-icon-aim"></i> предупреждение</>)}
-				</div>
+					</button>
+				</form>
 			)
 		} else {
 			return null

@@ -338,6 +338,10 @@
 .answer .answer-header .header-btns .btn {
 	margin: 0 0 0 15px;
 	cursor: pointer!important;
+	background: transparent;
+	border: 0;
+    color: inherit;
+    font-family: inherit;
 }
 .answer .answer-header .btn {
     display: block!important;
@@ -346,6 +350,10 @@
 	margin: 0;
 	font-size: 1em!important;
 	user-select: none;
+	background: transparent;
+	border: 0;
+    color: inherit;
+    font-family: inherit;
 }
 .answer .answer-header .btn:first-child {
 	cursor: inherit;
