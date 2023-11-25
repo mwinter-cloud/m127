@@ -25,6 +25,9 @@ const RegistrationForm = (props) => {
         }),
         validateOnChange: false,
         onSubmit: (values, {setStatus, setErrors}) => {
+            const form = document.getElementById('register_form')
+            if (form.hasAttribute('data-submitting')) return
+            form.setAttribute('data-submitting', "")
             const set_loading = (val) => {
                 setLoading(val)
             }
@@ -51,12 +54,13 @@ const RegistrationForm = (props) => {
                             setErrors({'email': value[0]})
                         }
                     }
+                    form.removeAttribute('data-submitting')
                 }
             })
         },
     })
     return (
-        <form className="simple-form" onSubmit={formik.handleSubmit}>
+        <form className="simple-form" id="register_form" onSubmit={formik.handleSubmit}>
             <div className="error-block">
                 {formik.errors.email ? <p>{formik.errors.email}</p> : null}
                 {formik.errors.password ? <p>{formik.errors.password}</p> : null}

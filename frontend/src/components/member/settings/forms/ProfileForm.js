@@ -59,7 +59,10 @@ const ProfileForm = () => {
     })
 
     const saveProfile = () => {
-        const formData = new FormData(document.getElementById('profile_settings_form'))
+        const form = document.getElementById('profile_settings_form')
+        if (form.hasAttribute('data-submitting')) return
+        form.setAttribute('data-submitting', "")
+        const formData = new FormData(form)
         if (selectedColor) {
             formData.append('color', selectedColor)
         }
@@ -71,9 +74,11 @@ const ProfileForm = () => {
             contentType: false,
             success: function () {
                 setNavigation(1)
+                form.removeAttribute('data-submitting')
             },
             error: function (xhr, status, error) {
                 console.log(JSON.parse(xhr.responseText))
+                form.removeAttribute('data-submitting')
             }
         })
     }

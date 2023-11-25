@@ -21,18 +21,22 @@ const LoginForm = () => {
         }),
         validateOnChange: false,
         onSubmit: (values, {setStatus, setErrors}) => {
+            const form = document.getElementById('login_form')
+            if (form.hasAttribute('data-submitting')) return
+            form.setAttribute('data-submitting', "")
             $.ajax({
                 type: 'post',
                 url: '/api/signin',
                 cache: false,
                 data: values,
-                success: function (res) {
+                success: function () {
                     window.location.replace('/')
                 },
                 error: function (xhr) {
                     if (xhr.status == 400) {
                         setErrors(xhr.responseJSON)
                     }
+                    form.removeAttribute('data-submitting')
                 }
             })
         },
@@ -75,7 +79,7 @@ const LoginForm = () => {
     }
     if (formType == "login-form") {
         return (
-            <form className="simple-form" onSubmit={formik.handleSubmit}>
+            <form className="simple-form" id="login_form" onSubmit={formik.handleSubmit}>
                 <div className="error-block">
                     {formik.errors.username ? <p>{formik.errors.username}</p> : null}
                     {formik.errors.password ? <p>{formik.errors.password}</p> : null}

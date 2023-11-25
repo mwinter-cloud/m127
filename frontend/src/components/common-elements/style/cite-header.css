@@ -145,7 +145,7 @@
 	border-radius: 4px;
     background-color: rgba(255, 255, 255, 0.08);
 }
-.main-header .notifications-block ul li {
+.main-header .notifications-block ul .notif-note {
 	padding: 8px 10px;
     font-size: .95em;
 	cursor: pointer;
@@ -153,29 +153,29 @@
 	user-select: none;
     min-height: 55px;
 }
-.main-header .notifications-block ul li .icon {
+.main-header .notifications-block ul .notif-note .icon {
     font-size: 2.2em;
     display: block;
 	float: left;
 	margin: 0 10px 15px 0;
 }
-.main-header .notifications-block ul li .avatar {
+.main-header .notifications-block ul .notif-note .avatar {
 	height: 28px;
 	width: 28px;
 	border-radius: 50%;
 	margin: 5px 5px 20px 0;
 	float: left;
 }
-.main-header .notifications-block ul li .smile {
+.main-header .notifications-block ul .notif-note .smile {
     height: 18px;
     width: 18px;
 }
-.main-header .notifications-block ul li .date {
+.main-header .notifications-block ul .notif-note .date {
 	color: #8f8f91;
     font-size: .9em;
     margin-left: 5px;
 }
-.main-header .notifications-block ul li p {
+.main-header .notifications-block ul .notif-note p {
 	margin: 5px 0;
 	font-size: .95em;
 }

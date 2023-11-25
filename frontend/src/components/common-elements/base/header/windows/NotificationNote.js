@@ -20,7 +20,7 @@ class NotificationNote extends React.Component {
     render() {
         if (this.props.notification.type == 3) {
             return (
-                <li>
+                <li className="notif-note">
                     <p><Link to="/admin-panel/reports"><i className="el-icon-help icon main-color"></i>
                         <span className="text-notif">Получена жалоба. Загляните в админ-панель
                                 <i className="el-icon-right"></i></span></Link>
@@ -29,7 +29,7 @@ class NotificationNote extends React.Component {
             )
         } else if (this.props.notification.type == 4 || this.props.notification.type == 5) {
             return (
-                <li>
+                <li className="notif-note">
                     <p><i className="el-icon-warning icon warning"></i>
                         <span
                             className="text-notif">Получено предупреждение. Постарайся не нарушать правила сообщества</span>
@@ -38,7 +38,7 @@ class NotificationNote extends React.Component {
             )
         } else {
             return (
-                <li>
+                <li className="notif-note">
                     {this.state.message_window ?
                                 (<SmallWindow closeWindow={this.setMessageWindow}
                                               children={<SimpleAnswerBlock closeWindow={this.setMessageWindow} id={this.props.notification.object}/>}
