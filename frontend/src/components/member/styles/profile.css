@@ -133,7 +133,7 @@
 .profile-page .post h2 {
 	margin: 0;
 	font-size: 1em;
-}
+}v
 .profile-page .post header {
 	background: transparent;
 	padding: 3px;
@@ -267,6 +267,9 @@
 	font-size: .75em;
 	padding: 1px 2px;
 	border-radius: 2px;
+}
+.settings-page .form-field .avatar-img {
+	margin-top: 10px;
 }
 
 

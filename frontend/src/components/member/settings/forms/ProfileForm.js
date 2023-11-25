@@ -9,14 +9,15 @@ import {Navigate} from "react-router-dom"
 
 const ProfileForm = () => {
 	const [profile_data, setProfileData] = useState({})
-    const [selectedColor, setColor] = useState('transparent')
+    const [selectedColor, setColor] = useState({})
     const [navigation, setNavigation] = useState(0)
+    const [initColor, setInitColor] = useState()
 
     const useMountEffect = () => {
 		useEffect(() => {
 			axios.get(window.location.origin+'/api/get-my-profile').then(profile => {
 				setProfileData(profile.data)
-				setColor(profile.data.color)
+				setInitColor(profile.data.color)
                 formik.setFieldValue('name', profile.data.name)
                 formik.setFieldValue('email', profile.data.email)
                 formik.setFieldValue('webcite', profile.data.webcite)
@@ -89,7 +90,7 @@ const ProfileForm = () => {
                     <input name="name" placeholder=" = ^ᴗ^ = " onChange={formik.handleChange}
                            value={formik.values.name}/>
                 </div>
-                <ColorInput_wrap setColor={setColor} selectedColor={selectedColor}/>
+                <ColorInput_wrap setColor={setColor} initColor={initColor}/>
                 <FileInputWrapper label="Аватар"
                                   src={profile_data.avatar}
                                   field="avatar"/>

@@ -1,10 +1,22 @@
-import React, {useCallback, useState} from 'react'
+import React, {useCallback, useState, useEffect} from 'react'
 import {useDropzone} from 'react-dropzone'
 import '../../style/file-input.css'
 
 const Dropzone = props => {
   const [error, setError] = useState(0)
+  const [isSelectedFile, setIsSelectedFile] = useState(null)
+
+  const useMountEffect = () => {
+    useEffect(() => {
+      if (props.src) {
+        setIsSelectedFile(true)
+      }
+    }, [props.src])
+  }
+  useMountEffect()
+
   const onDrop = useCallback((acceptedFiles) => {
+    setIsSelectedFile(true)
     acceptedFiles.forEach((file) => {
       const reader = new FileReader()
       reader.onabort = () => console.log('file reading was aborted')
@@ -23,12 +35,19 @@ const Dropzone = props => {
             setError(false)
           }
         }
-        $('#' + props.field + '_img').attr('src', event.target.result)
+        props.setSrc(event.target.result)
       }
       reader.readAsDataURL(file)
     })
   }, [])
   const {getRootProps, getInputProps} = useDropzone({onDrop})
+
+  const resetInput = (e) => {
+    e.preventDefault()
+    document.querySelector("#" + props.field + "_img_input").value = ''
+    props.setSrc("")
+    setIsSelectedFile(false)
+  }
 
   return (
       <>
@@ -36,6 +55,8 @@ const Dropzone = props => {
           <input {...getInputProps()} name={props.field} style={{display: 'block'}} id={props.field + "_img_input"}/>
           <p className="file-input">{props.type == "plus" ? (<i className="el-icon-plus"></i>) : ("Выбрать файл")}</p>
         </div>
+        {isSelectedFile ? (<button className="text-button" onClick={resetInput}>
+          <i className="el-icon-minus"></i> Очистить</button>) : null}
         {error ? (<p>{error}</p>) : null}
       </>
   )

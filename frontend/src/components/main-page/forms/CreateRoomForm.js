@@ -7,7 +7,7 @@ import InputWrapper from "../../common-elements/form/elements/wrappers/InputWrap
 import TextEditor from "../../common-elements/form/elements/editor/TextEditor"
 import TagFilter from "../../common-elements/form/elements/tag-filter/TagFilter"
 import { Navigate } from "react-router-dom"
-import ConfirmWindow from "../../common-elements/windows/ConfirmWindow";
+import ConfirmWindow from "../../common-elements/windows/ConfirmWindow"
 
 const CreateRoomForm = (props) => {
     const [navigate, setNavigate] = useState(0)
@@ -18,7 +18,7 @@ const CreateRoomForm = (props) => {
     const [roomData, setRoomData] = useState({})
     const useMountEffect = () => {
         useEffect(() => {
-            if(props.room) {
+            if (props.room) {
                 document.getElementById('create_room_form_div_editable').innerHTML = props.room.message
                 setRoomData(props.room)
                 if (props.room.color) {
@@ -52,7 +52,7 @@ const CreateRoomForm = (props) => {
     const formConfirm = () => {
         const form = document.getElementById('create_room_form')
         if (form.hasAttribute('data-submitting')) return
-        form.setAttribute('data-submitting',"")
+        form.setAttribute('data-submitting', "")
         const formData = new FormData(form)
         if (selectedColor) {
             formData.append('color', selectedColor)
@@ -77,7 +77,7 @@ const CreateRoomForm = (props) => {
                 if (props.room) {
                     reloadRoom(data)
                 } else {
-                    setNavigate("/room/"+data.room_id)
+                    setNavigate("/room/" + data.room_id)
                 }
             },
             error: function (xhr, status, error) {
@@ -114,38 +114,41 @@ const CreateRoomForm = (props) => {
     }
 
     const openConfirmWindow = () => {
-        setConfirmWindow(confirm_window?0:1)
+        setConfirmWindow(confirm_window ? 0 : 1)
     }
 
     return (
-        <form className="simple-form" id="create_room_form" onSubmit={formik.handleSubmit}
-         encType="multipart/form-data" method="post">
-            {confirm_window?(<ConfirmWindow confirm_function={deleteRoom} close={openConfirmWindow}/>) : null}
-            {navigate?(<Navigate to={navigate} />):null}
-            <InputWrapper label="Название"
-                          handleChange={formik.handleChange}
-                          value={formik.values.name}
-                          field="name"/>
-            <input name="message" type="hidden" onChange={formik.handleChange} value={formik.values.message}/>
-            <TextEditor setText={set_text} text_value={formik.values.message} form_name="create_room_form"/>
-            <FileInputWrapper label="Обложка"
-                              src={roomData.cover}
-                              field="cover"/>
-            <ColorInput_wrap setColor={setColor} initColor={initColor}/>
-            <div className="inputWrapper">
-                <label>Теги</label>
-                <TagFilter items="rooms" onTagSelect={onTagSelect} type="form"
-                           tags={props.room ? props.room.tags : null}/>
-            </div>
-            {props.room ? (
-                <span className="text-btn" onClick={openConfirmWindow}><i className="el-icon-delete"></i> Удалить</span>
-            ) : null}
-            <div className="error-block">
-                {formik.errors.name ? <p>{formik.errors.name}</p> : null}
-                {formik.errors.message ? <p>{formik.errors.message}</p> : null}
-            </div>
-            <button className="send-btn" type="submit">Вперёд</button>
-        </form>
+        <>
+            {confirm_window ? (<ConfirmWindow confirm_function={deleteRoom} close={openConfirmWindow}/>) : null}
+            <form className="simple-form" id="create_room_form" onSubmit={formik.handleSubmit}
+                  encType="multipart/form-data" method="post">
+                {navigate ? (<Navigate to={navigate}/>) : null}
+                <InputWrapper label="Название"
+                              handleChange={formik.handleChange}
+                              value={formik.values.name}
+                              field="name"/>
+                <input name="message" type="hidden" onChange={formik.handleChange} value={formik.values.message}/>
+                <TextEditor setText={set_text} text_value={formik.values.message} form_name="create_room_form"/>
+                <FileInputWrapper label="Обложка"
+                                  src={roomData.cover}
+                                  field="cover"/>
+                <ColorInput_wrap setColor={setColor} initColor={initColor}/>
+                <div className="inputWrapper">
+                    <label>Теги</label>
+                    <TagFilter items="rooms" onTagSelect={onTagSelect} type="form"
+                               tags={props.room ? props.room.tags : null}/>
+                </div>
+                {props.room ? (
+                    <span className="text-btn" onClick={openConfirmWindow}><i
+                        className="el-icon-delete"></i> Удалить</span>
+                ) : null}
+                <div className="error-block">
+                    {formik.errors.name ? <p>{formik.errors.name}</p> : null}
+                    {formik.errors.message ? <p>{formik.errors.message}</p> : null}
+                </div>
+                <button className="send-btn" type="submit">Вперёд</button>
+            </form>
+        </>
     )
 }
 
