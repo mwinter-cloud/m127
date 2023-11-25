@@ -77,11 +77,11 @@ class PollsContentField extends Component {
 
     openSocket = (poll_id, resolve_data) => {
         let wsProtocol = ""
-			if (window.location.protocol == 'https:') {
-				wsProtocol = 'wss://'
-			} else {
-				wsProtocol = 'ws://'
-			}
+        if (window.location.protocol == 'https:') {
+            wsProtocol = 'wss://'
+        } else {
+            wsProtocol = 'ws://'
+        }
         if (this['pollSocket' + poll_id] == undefined) {
             this['pollSocket' + poll_id] = new WebSocket(
                 wsProtocol + window.location.host + '/ws/poll/' + poll_id)
@@ -176,7 +176,7 @@ class PollsContentField extends Component {
     }
 
     setVoiceSendedStatus = (status) => {
-        if(status!=0) {
+        if (status != 0) {
             this.setState({voice_sended: 1})
         } else {
             this.setState({voice_sended: 0})
@@ -213,6 +213,10 @@ class PollsContentField extends Component {
                                     saved={this.state.saved}
                                     savePoll={this.savePoll}/>
                         )
+                    } else {
+                        return (
+                            <header className="header"></header>
+                        )
                     }
                 })()}
                 {(() => {
@@ -223,6 +227,10 @@ class PollsContentField extends Component {
                                      voices={this.state.voices} selectOption={this.selectOption}
                                      selected_option={this.state.selected_option}/>
                         )
+                    } else {
+                        return (
+                            <div className="poll-options"></div>
+                        )
                     }
                 })()}
                 {(() => {
@@ -232,6 +240,13 @@ class PollsContentField extends Component {
                                         member={this.props.member} voice_sended={this.state.voice_sended}
                                         voices_count={this.state.voices_count} sendVoice={this.sendVoice}
                                         deleteVoice={this.deleteVoice}/>
+                        )
+                    } else {
+                        return (
+                            <>
+                                <footer></footer>
+                                <div className="to-comments"></div>
+                            </>
                         )
                     }
                 })()}
