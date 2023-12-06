@@ -153,3 +153,24 @@
 .dropzone-img[src=""] {
    display: none;
 }
+.checkboxWrapper {
+    cursor: inherit;
+    user-select: none;
+}
+.checkboxWrapper input[type="checkbox"] {
+    padding: 2px 3px!important;
+    vertical-align: middle;
+    font-weight: normal;
+    width: auto!important;
+    margin-right: 1px;
+    position: relative;
+}
+.checkboxWrapper input[type="checkbox"]::before {
+    position: absolute;
+    top: 9px;
+    left: 1px;
+    height: 13px;
+    width: 11px;
+    content: "";
+    background: rgba(37, 36, 36, 0.38);
+}
