@@ -222,7 +222,7 @@ class EditorBtns extends React.Component {
                             data-type="colors"/></li>
                         <li data-title="изображение" onClick={this.addImage} onMouseDown={this.onMouse}><i
                             className="el-icon-picture-outline"></i></li>
-                        <li data-title="слайдер" onClick={this.addSpoiler}><i className="el-icon-files"></i></li>
+                        <li data-title="спойлер" onClick={this.addSpoiler}><i className="el-icon-files"></i></li>
                         <MediaQuery minWidth={801}>
                             <li data-title="стикеры" className="block-btn"><img
                                 src={this.props.smiles_section == "spotti" ?
