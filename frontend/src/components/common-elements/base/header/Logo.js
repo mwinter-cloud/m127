@@ -2,6 +2,7 @@ import React from 'react'
 import '../../../../../static/frontend/images/small-logo.png'
 import MediaQuery from 'react-responsive'
 import axios from "axios"
+import logo from "./small-logo.png"
 
 class Logo extends React.Component {
 	constructor(props) {
@@ -22,6 +23,7 @@ class Logo extends React.Component {
 		return (
 			<div className="logo-block">
 				<MediaQuery minWidth={801}>
+						<img src={logo} />
 						<span
 							className="citenamelogo">{this.state.citename}</span>
 				</MediaQuery>

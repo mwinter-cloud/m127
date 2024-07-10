@@ -22,6 +22,8 @@ class Color(models.Model):
     CHERRY = 'cherry'
     ORANGE = 'orange'
     RED = 'red'
+    WHITE = 'white'
+    BLACK = 'black'
     TYPES_CHOICES = [
         (SITE_COLOR, 'Основной цвет сайта'),
         (ROOM_NAME, 'Название комнаты'),
@@ -42,6 +44,8 @@ class Color(models.Model):
         (GRAY, 'Серый'),
         (CHERRY, 'Вишневый'),
         (ORANGE, 'Оранжевый'),
+        (WHITE, 'Белый'),
+        (BLACK, 'Черный'),
     ]
     type = models.CharField(
         max_length=6,
@@ -323,8 +327,8 @@ class Smile(models.Model):
         if self.file:
             img = Image.open(self.file.path)
 
-            if img.height > 500 or img.width > 500:
-                output_size = (500, 500)
+            if img.height > 64 or img.width > 64:
+                output_size = (64, 64)
                 img.thumbnail(output_size)
                 img.save(self.file.path)
 

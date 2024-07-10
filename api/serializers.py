@@ -50,8 +50,16 @@ class UserAdminSerializer(serializers.ModelSerializer):
         model = User
         fields = ['id', 'is_staff']
 
+
+class ProfileUpdateSerializer(serializers.ModelSerializer):
+    user = UserAdminSerializer(many=False, read_only=True)
+    class Meta:
+        model = Profile
+        fields = ['id', 'name', 'city', 'email', 'avatar', 'cover', 'post_text', 'post_image', 'post_title', 'post_created_at', 'webcite', 'color', 'is_admin', 'is_blocked', 'is_active', 'email_confirm', 'user']
+
+
 class ProfileSerializer(serializers.ModelSerializer):
-    color = ColorNameSerializer(many=False, read_only=True)
+    color = ColorNameIdSerializer(many=False, read_only=True)
     user = UserAdminSerializer(many=False, read_only=True)
     class Meta:
         model = Profile
@@ -103,9 +111,15 @@ class RoomListSerializer(serializers.ModelSerializer):
         source='answers.count',
         read_only=True
     )
+    last_answer = serializers.SerializerMethodField()
+    def get_last_answer(self, instance):
+        if instance.answers.exists():
+            return AnswerSerializer(instance.answers.order_by('created_at').last()).data
+        else:
+            return 0
     class Meta:
         model = Room
-        fields = ['id', 'name', 'author', 'answers_count', 'cover']
+        fields = ['id', 'name', 'author', 'answers_count', 'cover', 'last_answer']
 
 class CreateRoomSerializer(serializers.ModelSerializer):
     tags = TagNameSerializer(many=True, read_only=True)

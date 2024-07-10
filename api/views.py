@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
-from .serializers import UserRegistrationSerializer, UserSerializer, ProfileSerializer, RoomListSerializer, \
+from .serializers import UserRegistrationSerializer, UserSerializer, ProfileSerializer, ProfileUpdateSerializer,\
+    RoomListSerializer, \
     TagNameSerializer, PollListSerializer, PollSerializer, VoiceSerializer, CommentSerializer, \
     CreateCommentSerializer, SmileSerializer, RoomSerializer, AnswerSerializer, ColorSerializer, \
     CreateAnswerSerializer, NotificationSerializer, NotificationCreateSerializer, CustomizationSerializer, \
@@ -212,9 +213,15 @@ class ProfileView(viewsets.ViewSet):
         data['email_confirm'] = True
         data['is_admin'] = request.user.profile.is_admin
         data._mutable = _mutable
-        serializer = ProfileSerializer(profile, data=data)
+        serializer = ProfileUpdateSerializer(profile, data=data)
         if not serializer.is_valid():
             return JsonResponse(status=400, data=serializer.errors)
+        if data.get("clear_avatar"):
+            profile.avatar.delete(save=True)
+        if data.get("clear_cover"):
+            profile.cover.delete(save=True)
+        if data.get("clear_post_image"):
+            profile.post_image.delete(save=True)
         serializer.save()
         return JsonResponse(serializer.data, safe=False)
 
@@ -312,6 +319,8 @@ class RoomView(viewsets.ViewSet):
         serializer = CreateRoomSerializer(room, data=request.data)
         if not serializer.is_valid():
             return JsonResponse(status=400, data=serializer.errors)
+        if request.POST.get("clear_cover"):
+            room.cover.delete(save=True)
         room = serializer.save(tags=tags)
         show_serializer = RoomSerializer(room)
         return JsonResponse({"room": show_serializer.data}, safe=False)
@@ -342,9 +351,11 @@ class RoomView(viewsets.ViewSet):
             room_list = room_list.order_by('-created_at')
         if section == "saves":
             room_list = room_list.filter(saved_by=(user_id)).distinct()
-        room_list = room_list[loaded_rooms_count:loaded_rooms_count + 11]
+        start = loaded_rooms_count
+        end = loaded_rooms_count+10
+        room_list = room_list[start:end]
         serializer = RoomListSerializer(room_list, many=True)
-        if room_list.count() > 10:
+        if room_list.count() > 9:
             control_room = 1
         else:
             control_room = 0
@@ -787,13 +798,15 @@ class AnswerView(viewsets.ViewSet):
         loaded_answers_count = int(request.POST.get('loaded_answers_count'))
         section = int(request.POST.get('section'))
         id = int(request.POST.get('id'))
-        if section == 1:
-            answer_list = Answer.objects.all().filter(room__pk=id).order_by('-created_at')
         if section == 2:
+            answer_list = Answer.objects.all().filter(room__pk=id).order_by('-created_at')
+        if section == 1:
             answer_list = Answer.objects.all().filter(room__pk=id)
-        answer_list = answer_list[loaded_answers_count:loaded_answers_count + 11]
+        start = loaded_answers_count
+        end = loaded_answers_count+10
+        answer_list = answer_list[start:end]
         serializer = AnswerSerializer(answer_list, many=True)
-        if answer_list.count() > 10:
+        if answer_list.count() > 9:
             control_answer = 1
         else:
             control_answer = 0
