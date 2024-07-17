@@ -1,11 +1,18 @@
 from django.views.generic import TemplateView
-from api.models import Operation
+from api.models import Operation, Illustration
 from django.shortcuts import get_object_or_404
 from .forms import UserPasswordChangeForm
 from django.shortcuts import redirect, render
 
 class IndexView(TemplateView):
     template_name = 'frontend/index.html'
+    
+    def get_context_data(self, * args, ** kwargs):
+        context = super().get_context_data( * args, ** kwargs)
+        queryset = Illustration.objects.all()
+        logo, created = queryset.get_or_create(type='L')
+        context['logo'] = logo.text
+        return context
 
 def change_password(request, code):
     queryset = Operation.objects.all()
@@ -27,3 +34,4 @@ def change_password(request, code):
         return render(request, 'forms/change-password.html', context=context)
     else:
         return redirect("../")
+        
