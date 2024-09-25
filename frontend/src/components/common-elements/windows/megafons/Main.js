@@ -15,9 +15,9 @@ class Main extends Component {
                 </div>
                 <div className="col-two">
                     <h2>Сообщи о чем-то особенном!</h2>
-                    <span className="mf-text">Ты можешь поблагодарить разработчика и поддержать его донатом. Отправив донат, создай сообщение, которое будет заметно на всем форуме. Впрочем, ты можешь воспользоваться мегафоном и просто так.</span>
+                    <span className="mf-text">В этом разделе ты можешь создать сообщение, которое высветится на всем форуме.</span>
                     <div className="btns">
-                        <div className="btn" data-type="payment" onClick={this.props.setSection}>Вперед!</div>
+                        <div className="btn" data-type="create-message" onClick={this.props.setSection}>Вперед!</div>
                     </div>
                 </div>
             </main>
