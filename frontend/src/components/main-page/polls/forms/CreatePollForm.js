@@ -30,18 +30,21 @@ const CreatePollForm = (props) => {
                 }
             })
             if(is_option!=0) {
-                let data = {question: values.question}
+				const formData = new FormData(form)
+                formData.append('question', values.question)
                 if (props.poll) {
-                    data.append('poll_id', props.poll.id)
+                    formData.append('poll_id', props.poll.id)
                 }
                 selectedTags.map(tag => {
-                    data.append('tags[]', tag)
+                    formData.append('tags[]', tag)
                 })
                 $.ajax({
                     type: 'post',
                     url: '/api/create-poll',
                     cache: false,
-                    data: data,
+                    data: formData,
+					processData: false,
+					contentType: false,
                     success: function (res) {
                         document.querySelectorAll('.option-form').forEach(function (form, idx, array) {
                             const formOptionsData = new FormData(form)

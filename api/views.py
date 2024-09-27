@@ -505,8 +505,8 @@ class TagView(viewsets.ViewSet):
 class PollView(viewsets.ViewSet):
     def create(self, request):
         data = request.data
-        tags = request.POST.getlist('tags[]')
         serializer = PollSerializer(data=data)
+        tags = request.POST.getlist('tags[]')
         user = request.user.profile
         if not serializer.is_valid():
             return JsonResponse(status=400, data=serializer.errors)

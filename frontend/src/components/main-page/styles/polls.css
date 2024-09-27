@@ -133,7 +133,7 @@
 	font-size: .95em;
 }
 .polls-page .col1 .list .themes li {
-	border-bottom: 0 solid rgba(255,255,255,.3);
+	border-bottom: 1px solid rgba(255,255,255,.05);
 	cursor: pointer;
 	color: inherit;
 	font-size: .8em;
@@ -143,8 +143,9 @@
 }
 .polls-page .col1 .list .themes li a {
 	display: block;
-	padding: 4px 10px;
+	padding: 3px 10px;
 	width: 100%;
+	color: #8f8f91;
 }
 .polls-page .col1 .add-btn {
 	position: relative;
