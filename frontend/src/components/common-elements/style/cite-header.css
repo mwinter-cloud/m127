@@ -274,8 +274,10 @@
         width: 5%;
     }
     .main-header .logo-block img {
-        height: 28px;
-        margin-top: -5px;
+        height: 26px;
+        max-width: 24px;
+        object-fit: contain;
+        margin-top: -4px;
     }
 
     .main-header .cite-menu {
@@ -367,10 +369,11 @@
     }
 
     .main-header .profile-block .avatar {
-        margin: -4px 5px 0 0;
+        margin: -5px 5px 0 0;
     }
 
     .main-header .profile-block .base-avatar {
-        margin: -4px 5px 0 0;
+        margin: -6px 5px 0 0;
     }
+	
 }

@@ -27,6 +27,9 @@ class Logo extends React.Component {
 						<span
 							className="citenamelogo">{this.state.citename}</span>
 				</MediaQuery>
+				<MediaQuery maxWidth={800}>
+						<img src={logo} />
+				</MediaQuery>
 			</div>
 		)
 	}
