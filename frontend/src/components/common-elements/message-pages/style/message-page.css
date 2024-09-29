@@ -18,6 +18,9 @@
     font-size: .9em;
     max-height: 100px;
 }
+.center-container .text-block {
+	user-select: none;
+}
 .text-block img {
     width: 60px;
     margin-right: 10px;
@@ -45,7 +48,7 @@
     display: inline-block;
 }
 .text-block a {
-    display: block;
+    display: inline-block;
     font-size: .9em;
 }
 .text-block a:hover {

@@ -45,7 +45,7 @@ class UserView(viewsets.ViewSet):
         data = {'code': oper_code, 'email': email, 'origin': origin}
         msg_plain = render_to_string('emails/email_confirm.txt', data)
         msg_html = render_to_string('emails/email_confirm.html', data)
-        subject, from_email, to = 'Регистрация на сайте ' + origin, 'maomail@windmail.ru', [email]
+        subject, from_email, to = 'Регистрация на сайте ' + origin, 'hello@windmail.space', [email]
         send_mail(subject, msg_plain, from_email, to, html_message=msg_html)
         return JsonResponse(True, safe=False)
 
@@ -59,7 +59,7 @@ class UserView(viewsets.ViewSet):
         data = {'code': oper_code, 'email': email, 'origin': origin}
         msg_plain = render_to_string('emails/email_confirm.txt', data)
         msg_html = render_to_string('emails/email_confirm.html', data)
-        subject, from_email, to = 'Регистрация на сайте ' + origin, 'maomail@windmail.ru', [email]
+        subject, from_email, to = 'Регистрация на сайте ' + origin, 'hello@windmail.space', [email]
         send_mail(subject, msg_plain, from_email, to, html_message=msg_html)
         return JsonResponse(True, safe=False)
 
@@ -111,7 +111,7 @@ class UserView(viewsets.ViewSet):
         data = {'code': oper_code, 'old_email': email, 'new_email': new_email, 'origin': origin}
         msg_plain = render_to_string('emails/email_change.txt', data)
         msg_html = render_to_string('emails/email_change.html', data)
-        subject, from_email, to = f'Смена почты на сайте {origin}', 'maomail@windmail.ru', [email]
+        subject, from_email, to = f'Смена почты на сайте {origin}', 'hello@windmail.space', [email]
         send_mail(subject, msg_plain, from_email, to, html_message=msg_html)
         return JsonResponse(True, safe=False)
 
@@ -141,7 +141,7 @@ class UserView(viewsets.ViewSet):
         data = {'code': oper_code, 'origin': origin}
         msg_plain = render_to_string('emails/password_change.txt', data)
         msg_html = render_to_string('emails/password_change.html', data)
-        subject, from_email, to = f'Смена пароля на сайте {origin}', 'maomail@windmail.ru', [email]
+        subject, from_email, to = f'Смена пароля на сайте {origin}', 'hello@windmail.space', [email]
         send_mail(subject, msg_plain, from_email, to, html_message=msg_html)
         return JsonResponse(True, safe=False)
 
@@ -160,7 +160,7 @@ class UserView(viewsets.ViewSet):
         data = {'code': oper_code, 'origin': origin}
         msg_plain = render_to_string('emails/password_change.txt', data)
         msg_html = render_to_string('emails/password_change.html', data)
-        subject, from_email, to = f'Смена пароля на сайте {origin}', 'maomail@windmail.ru', [email]
+        subject, from_email, to = f'Смена пароля на сайте {origin}', 'hello@windmail.space', [email]
         send_mail(subject, msg_plain, from_email, to, html_message=msg_html)
         return JsonResponse(True, safe=False)
 
