@@ -43,7 +43,7 @@
     margin: 0 8px;
 }
 .text-block .result-text {
-    color: var(--SC);
+    color: white;
     margin-right: 8px;
     display: inline-block;
 }
