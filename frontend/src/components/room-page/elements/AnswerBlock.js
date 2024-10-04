@@ -98,7 +98,7 @@ class AnswerBlock extends Component {
 											<div className="author">
 												{this.props.answer.author.avatar != null ?
 													(<img src={this.props.answer.author.avatar} className="avatar"/>)
-													: null}
+													: (<div className="avatar base-avatar"></div>)}
 												<div className="author-info"
 													 onClick={this.openProfile}>
 										<span
