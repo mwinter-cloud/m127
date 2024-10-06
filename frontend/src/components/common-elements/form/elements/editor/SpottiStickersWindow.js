@@ -4,20 +4,20 @@ class SpottiStickersWindow extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			stickers: ['spotti1.png', 'spotti2.png', 'spotti3.png',
-				'spotti4.png', 'spotti5.png', 'spotti6.png',
-				'spotti7.png', 'spotti8.png', 'spotti9.png',
-				'spotti10.png', 'spotti11.png', 'spotti12.png',
-				'spotti13.png', 'spotti14.png', 'spotti15.png',
-				'spotti16.png', 'spotti17.png', 'spotti18.png',
-				'spotti19.png', 'spotti20.png', 'spotti21.png',
-				'spotti22.png', 'spotti23.png', 'spotti24.png',
-				'spotti25.png', 'spotti26.png', 'spotti27.png',
-				'spotti28.png', 'spotti29.png',
-				'spotti30.png', 'spotti31.png', 'spotti32.png',
-				'spotti33.png', 'spotti34.png', 'spotti35.png',
-				'spotti36.png', 'spotti37.png', 'spotti38.png',
-				'spotti39.png'],
+			stickers: ['spotti1.webp', 'spotti2.webp', 'spotti3.gif',
+				'spotti4.gif', 'spotti5.gif', 'spotti6.png',
+				'spotti7.gif', 'spotti8.gif', 'spotti9.gif',
+				'spotti10.gif', 'spotti11.gif', 'spotti12.gif',
+				'spotti13.gif', 'spotti14.gif', 'spotti15.gif',
+				'spotti16.gif', 'spotti17.webp', 'spotti18.webp',
+				'spotti19.webp', 'spotti20.webp', 'spotti21.webp',
+				'spotti22.webp', 'spotti23.webp', 'spotti24.webp',
+				'spotti25.webp', 'spotti26.webp', 'spotti27.webp',
+				'spotti28.webp', 'spotti29.webp',
+				'spotti30.webp', 'spotti31.webp', 'spotti32.webp',
+				'spotti33.webp', 'spotti34.png', 'spotti35.webp',
+				'spotti36.webp', 'spotti37.webp', 'spotti38.webp',
+				'spotti39.webp'],
 		}
 		this.addSticker = this.addSticker.bind(this)
 	}
@@ -51,7 +51,7 @@ class SpottiStickersWindow extends React.Component {
 				<ul>
 					{this.state.stickers.map((sticker, index) => {
 						return (
-							<li key={index}><img src={"../../../../../../static/frontend/spotti-stickers/"+sticker}
+							<li className="sticker-item" key={index}><img src={"../../../../../../static/frontend/spotti-stickers/"+sticker}
 												 onClick={this.addSticker} className="sticker"/></li>
 						)
 					})}

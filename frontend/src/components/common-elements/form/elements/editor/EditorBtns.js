@@ -2,7 +2,7 @@ import React from 'react'
 import ColorsBlock_wrap from "../../../../../store/wraps/forms/ColorsBlock_wrap"
 import MediaQuery from 'react-responsive'
 import SmileBlock from "./SmileBlock"
-import "../../../../../../static/frontend/stickers-btn.png"
+import "../../../../../../static/frontend/stickers-btn.jpg"
 import "../../../../../../static/frontend/smiles-btn.png"
 
 class EditorBtns extends React.Component {
@@ -227,7 +227,7 @@ class EditorBtns extends React.Component {
                             <li data-title="стикеры" className="block-btn"><img
                                 src={this.props.smiles_section == "spotti" ?
                                     ("../../../../../../static/frontend/smiles-btn.png") :
-                                    ("../../../../../../static/frontend/stickers-btn.png")}
+                                    ("../../../../../../static/frontend/stickers-btn.jpg")}
                                 onClick={this.props.setSmilesSection}/></li>
                         </MediaQuery>
                         <MediaQuery maxWidth={800}>
@@ -237,7 +237,7 @@ class EditorBtns extends React.Component {
                                     onClick={this.openDesignWin} data-type="smiles"/>
                             </li>
                             <li data-title="стикеры" className="block-btn">
-                                <img src="../../../../../../static/frontend/stickers-btn.png"
+                                <img src="../../../../../../static/frontend/stickers-btn.jpg"
                                      onClick={this.openDesignWin} data-type="spotti"/></li>
                         </MediaQuery>
                     </ul>

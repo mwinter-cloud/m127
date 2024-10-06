@@ -180,15 +180,15 @@
 }
 .answer h3 {
 	font-weight: 500;
-	margin: 12px 0;
+	margin: 6px 0;
 }
 .answer h2 {
 	font-weight: 500;
-	margin: 12px 0;
+	margin: 6px 0;
 }
 .answer h1 {
 	font-weight: 500;
-	margin: 12px 0;
+	margin: 10px 0;
 }
 .answer h4 {
 	font-weight: 500;
@@ -202,8 +202,8 @@
     cursor: pointer;
     width: auto;
     display: inline-block;
-    font-size: .85em;
-    padding: 5px 10px;
+    font-size: 13px;
+    padding: 3px 10px;
     font-weight: 400;
     border-radius: 3px;
 	background: rgb(38 39 44 / 83%);
@@ -232,10 +232,10 @@
     color: #6694a2;
 }
 .answer .answer-text .smile {
-	height: 28px!important;
-    width: 28px!important;
+	height: 25px!important;
+    width: 25px!important;
     object-fit: contain;
-    margin: 0 5px!important;
+    margin: 0 3px!important;
     user-select: none!important;
     vertical-align: middle!important;
 }
