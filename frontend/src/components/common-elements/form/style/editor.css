@@ -262,7 +262,7 @@
 .room-page .fixed-editor {
     opacity: .98;
     position: sticky;
-    bottom: 0;
+    bottom: 5px;
     width: 100%;
 }
 .answer .text-btn {
@@ -428,7 +428,7 @@
     }
 
     .redactor-design-win {
-        height: 90px !important;
+        height: 120px !important;
         overflow: auto;
         z-index: 5;
         width: 100% !important;
@@ -460,7 +460,7 @@
     }
 
     .opened-editor-mobile-btn {
-        bottom: 46vh !important;
+        bottom: 45vh !important;
     }
 
     .small-pic {
@@ -474,4 +474,7 @@
         margin-left: 1%;
     }
 	
+	.textarea-block {
+		height: 200px;
+	}
 }
