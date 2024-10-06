@@ -159,8 +159,8 @@ button:focus {
 }
 
 .smile {
-    height: 25px;
-    width: 25px;
+    height: 24px;
+    width: 24px;
     object-fit: contain;
 	margin: 0 3px;
 	user-select: none;

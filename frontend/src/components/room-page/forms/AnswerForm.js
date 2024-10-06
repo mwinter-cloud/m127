@@ -4,6 +4,7 @@ import * as Yup from 'yup'
 import TextEditor from "../../common-elements/form/elements/editor/TextEditor"
 import CSRFToken from "../../common-elements/form/CSRFToken"
 import {specialtagsinnotification} from "../../common-elements/form/elements/editor/TextEditor"
+import MediaQuery from 'react-responsive'
 
 const AnswerForm = (props) => {
     const formik = useFormik({
@@ -105,7 +106,7 @@ const AnswerForm = (props) => {
             <CSRFToken/>
             <input name="text" type="hidden" onChange={formik.handleChange} value={formik.values.text}/>
             <TextEditor setText={set_text} text_value={formik.values.text} form_name={props.form_name}/>
-            <button className='send-btn' type="submit">Отправить
+            <button className='send-btn el-icon-s-promotion' type="submit">
                 <div type="submit" className="progress-btn-line"></div>
             </button>
         </form>

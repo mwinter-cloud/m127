@@ -148,7 +148,7 @@
 	width: 27px;
 	font-size: 1.25em;
 }
-.textarea-btns .input-icon i{
+.textarea-btns .input-icon i {
 	color: rgba(0,0,0,.5);
 }
 .answer-input .send-btn{
@@ -423,6 +423,10 @@
         padding: 5px 10px !important;
     }
 
+    .input-header {
+        padding: 9px 10px!important;
+    }
+
     .redactor-design-win {
         height: 90px !important;
         overflow: auto;
@@ -452,7 +456,7 @@
     }
 
     .editor-btn {
-        left: 6%;
+        left: 3%;
     }
 
     .opened-editor-mobile-btn {
@@ -469,4 +473,5 @@
         margin-right: 0;
         margin-left: 1%;
     }
+	
 }
