@@ -416,8 +416,8 @@
 	border: 0;
 	width: auto;
 }
-.answer-input .send-btn:before {
-	content: 'Отправить';
+.answer-input .send-btn:after {
+	content: ' отправить';
 }
 .answer-form-field {
 	position: relative;
@@ -491,7 +491,7 @@
 	}
 	
 	.answer-input .textarea-block {
-		margin-bottom: 0;
+		margin-bottom: 0!important;
 	}
 
 	.answer-input .send-btn {
@@ -510,8 +510,8 @@
 		margin: 0;
 	}
 	
-	.answer-input .send-btn:before {
-		content: "\e7ba";
+	.answer-input .send-btn:after {
+		content: "";
 	}
 	
 	.answer-input .i-btn {

@@ -106,7 +106,8 @@ const AnswerForm = (props) => {
             <CSRFToken/>
             <input name="text" type="hidden" onChange={formik.handleChange} value={formik.values.text}/>
             <TextEditor setText={set_text} text_value={formik.values.text} form_name={props.form_name}/>
-            <button className='send-btn el-icon-s-promotion' type="submit">
+            <button className='send-btn' type="submit">
+				<i className="el-icon-s-promotion"></i>
                 <div type="submit" className="progress-btn-line"></div>
             </button>
         </form>

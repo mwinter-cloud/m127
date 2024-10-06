@@ -76,7 +76,7 @@
 .input-header ul{
 	display: flex;
 }
-.input-header .editor-menu li{
+.input-header .editor-menu li {
 	margin-right: 15px;
 	font-size: 1.25em;
     color: #8f8f91;
