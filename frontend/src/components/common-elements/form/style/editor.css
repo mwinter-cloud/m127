@@ -448,9 +448,7 @@
 	}
 
     .input-header .editor-menu li:hover::after {
-        width: 100px;
-        top: -25px;
-        z-index: 3;
+        display: none;
     }
 
     .editor-btn {
