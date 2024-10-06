@@ -12,8 +12,7 @@ class ProfilePost extends Component {
                 <main className="post">
                     <article>
                         <p className="null-post">
-                            <i className="el-icon-question"></i>
-                            Пользователь не рассказал о себе. Наверное, он что-то скрывает.
+                            <i className="el-icon-question"></i> Пользователь не рассказал о себе. Наверное, он что-то скрывает.
                         </p>
                     </article>
                 </main>

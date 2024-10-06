@@ -457,6 +457,8 @@
 
     .editor-btn {
         left: 3%;
+		border: 1px solid rgba(171, 205, 239, 0.1);
+        background: linear-gradient(0deg, rgba(171, 205, 239, 0.1769083) 0%, rgba(171, 205, 239, 0.196534) 99%);
     }
 
     .opened-editor-mobile-btn {

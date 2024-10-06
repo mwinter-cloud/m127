@@ -19,7 +19,7 @@
     width: 30px;
     position: absolute;
     top: 20px;
-    left: 10%;
+    left: 8px;
     padding: 5px 3px;
     color: #9b9797;
     font-size: 1em;
@@ -142,6 +142,7 @@
 .profile-page .post main .null-post {
 	padding: 30px 20px!important;
 	text-align: center;
+	line-height: 1.6em;
 }
 .profile-page .post main .null-post i {
 	font-size: 1.1em;
