@@ -442,6 +442,10 @@
         width: 100%;
         border: 0 !important;
     }
+	
+	.stickers-block .sticker-item {
+		width: 29%;
+	}
 
     .input-header .editor-menu li:hover::after {
         width: 100px;
