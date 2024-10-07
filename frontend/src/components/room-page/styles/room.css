@@ -551,6 +551,8 @@
         right: 3px;
 		border: 1px solid rgba(171, 205, 239, 0.1);
         background: rgba(26, 27, 32, 0.3);
+		padding: 6px;
+		font-size: 1.2em;
 	}
 
 	.btn-hider {
