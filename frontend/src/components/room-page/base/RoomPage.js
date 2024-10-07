@@ -21,6 +21,7 @@ class RoomPage extends Component {
     }
 
     componentDidMount() {
+		this.setState({header_visibility: 'hidden'})
         this.props.set_section('')
         window.scrollTo(0, 0)
         const get_room = axios.get(window.location.origin + '/api/get-room/' + this.props.id).catch((err) => {
@@ -79,7 +80,6 @@ class RoomPage extends Component {
 	}
 
     componentWillUnmount() {
-		this.setState({header_visibility: 'hidden'})
         this.roomSocket.close()
     }
 
