@@ -447,6 +447,11 @@
         border: 0 !important;
     }
 	
+	.redactor-design-win li {
+		display: inline-block;
+		padding-top: 5px;
+	}
+	
 	.stickers-block .sticker-item {
 		width: 29%;
 	}
