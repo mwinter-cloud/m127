@@ -12,10 +12,12 @@ class RoomPage extends Component {
         this.state = {
             room: {},
             new_answers: [],
+			header_visibility: 'hidden',
         }
         this.sendSocketEvent = this.sendSocketEvent.bind(this)
         this.clearNewAnswers = this.clearNewAnswers.bind(this)
         this.reloadRoom = this.reloadRoom.bind(this)
+        this.scrollHandler = this.scrollHandler.bind(this)
     }
 
     componentDidMount() {
@@ -58,7 +60,23 @@ class RoomPage extends Component {
                 this.setState({new_answers: [answer,].concat(this.state.new_answers)})
             }
         }
+		document.addEventListener('scroll', this.scrollHandler); 
+		return function () {
+			document.removeEventListener('scroll', this.scrollHandler);
+		};
     }
+	
+	scrollHandler = (e) => {
+		if(e.target.documentElement.offsetHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 50) {
+			this.setState({header_visibility: 'opened'})
+		} else {
+			this.setState({header_visibility: 'hidden'})
+		}
+	}
+	
+	scrollToTop = (e) => {
+		window.scrollTo(0, 0);
+	}
 
     componentWillUnmount() {
         this.roomSocket.close()
@@ -101,6 +119,7 @@ class RoomPage extends Component {
                             if (this.state.room.author) {
                                 return (
                                     <>
+										<div className={"room-scroll-header room-scroll-header-"+this.state.header_visibility} onClick={this.scrollToTop}>{this.state.room.name}</div>
                                         <MainAnswer
                                             room_id={this.props.id}
                                             answer={{

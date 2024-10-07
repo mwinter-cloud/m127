@@ -79,7 +79,7 @@ class Answers extends Component {
 
     render() {
         return (
-            <div className="answers" id="answer_list">
+            <div className="answers" id="answer_list" ref={this.props.answersRef}>
                 <header className="answers-header">
                     <div className="filter" onClick={this.changeSection}>
                         <span id="active_section" data-section={this.state.section}>

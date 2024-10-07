@@ -1,6 +1,30 @@
 .room-page {
     padding: 0 15% 20px 15%;
 }
+
+
+.room-page .room-scroll-header-hidden {
+	display: none;
+}
+
+.room-page .room-scroll-header-opened {
+	display: block;
+}
+
+.room-page .room-scroll-header {
+	position: fixed;
+    height: 30px;
+    background: rgba(26, 27, 32, 0.8);
+    width: 70%;
+    top: 61px;
+    z-index: 10;
+    left: 15%;
+    border-radius: 3px;
+    padding: 3px 8px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+	cursor: pointer;
+}
+
 .room-page .room-cover {
     height: 36vh;
     width: 100%;
@@ -442,6 +466,11 @@
 		padding: 0 2% 10px 2%;
 	}
 	
+	.room-page .room-scroll-header {
+		width: 100%;
+		left: 0;
+	}
+	
 	.answers-header {
 		padding: 10px;
 	}
@@ -528,6 +557,7 @@
 	
 	.answer .answer-header .btn:first-child {
 		padding-top: 3px;
+		margin-left: 0;
 	}
 	
 	.answer .answer-header .btn:last-child {
