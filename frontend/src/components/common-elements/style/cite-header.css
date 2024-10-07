@@ -7,7 +7,7 @@
     width: 100%;
     background: #2b2c31;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    padding: 20px 3%;
+    padding: 23px 3%;
     display: flex;
     justify-content: space-between;
     position: sticky;
@@ -99,10 +99,12 @@
     margin-right: 8%;
 }
 .main-header .profile-block .avatar {
-    margin: -7px 5px 0 0;
+    margin: -8px 5px 0 0;
 }
 .main-header .profile-block .base-avatar {
-    margin: -7px 5px 0 0;
+    margin: -8px 5px 0 0;
+	height: 28px;
+    width: 28px;
 }
 .main-header .profile-block .open-btn i {
     font-size: 1.4em;
@@ -267,7 +269,7 @@
     }
 
     .main-header {
-        padding: 20px 3%;
+        padding: 23px 3%;
     }
 
     .main-header .logo-block {
@@ -331,11 +333,10 @@
     }
 
     .main-header .profile-block .open-btn i {
-        margin: 1px 0 0 0;
+        margin: -1px 0 0 0;
     }
 
     .main-header .notifications-section .bell {
-        margin-top: 1px;
         font-size: 1.3em;
     }
 
@@ -347,10 +348,7 @@
         left: 0;
         background: #26272c;
     }
-}
-
-
-@media (max-width: 800px) {
+	
     .main-header .notifications-block {
         width: 100%;
         right: 0;
