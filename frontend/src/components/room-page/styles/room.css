@@ -3,7 +3,7 @@
 }
 
 .room-page .room-scroll-header-opened {
-	display: block;
+	display: block!important;
 }
 
 .room-page .room-scroll-header {
