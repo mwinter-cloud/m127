@@ -23,7 +23,7 @@ class Logo extends React.Component {
 		return (
 			<div className="logo-block">
 				<MediaQuery minWidth={801}>
-						<img src={logo} />
+						<img src={logo} className="main-logo" />
 						<span
 							className="citenamelogo">{this.state.citename}</span>
 				</MediaQuery>
