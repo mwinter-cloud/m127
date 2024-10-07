@@ -469,6 +469,11 @@
 	.room-page .room-scroll-header {
 		width: 100%;
 		left: 0;
+		border-radius: 0;
+		font-size: 13px;
+		padding-top: 5px;
+		top: 60px;
+		border-top: 0;
 	}
 	
 	.answers-header {
