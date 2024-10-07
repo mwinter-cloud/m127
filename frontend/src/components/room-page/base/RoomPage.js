@@ -79,6 +79,7 @@ class RoomPage extends Component {
 	}
 
     componentWillUnmount() {
+		this.setState({header_visibility: 'hidden'})
         this.roomSocket.close()
     }
 
