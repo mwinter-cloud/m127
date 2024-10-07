@@ -553,7 +553,7 @@
         bottom: 3px;
         right: 3px;
 		border: 1px solid rgba(171, 205, 239, 0.1);
-        background: linear-gradient(0deg, rgba(171, 205, 239, 0.1769083) 0%, rgba(171, 205, 239, 0.196534) 99%);
+        background: rgba(26, 27, 32, 0.8);
 	}
 
 	.btn-hider {

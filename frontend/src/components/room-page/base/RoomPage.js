@@ -62,7 +62,6 @@ class RoomPage extends Component {
         }
 		document.addEventListener('scroll', this.scrollHandler); 
 		return function () {
-			this.setState({header_visibility: 'hidden'})
 			document.removeEventListener('scroll', this.scrollHandler);
 		};
     }
@@ -80,6 +79,7 @@ class RoomPage extends Component {
 	}
 
     componentWillUnmount() {
+		this.setState({header_visibility: 'hidden'})
         this.roomSocket.close()
     }
 
