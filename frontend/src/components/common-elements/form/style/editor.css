@@ -233,6 +233,8 @@
 	margin-right: 10px !important;
 	cursor: pointer;
 	user-select: none;
+	display: inline-block;
+	padding-top: 10px;
 }
 .editor-btn {
     height: 30px;

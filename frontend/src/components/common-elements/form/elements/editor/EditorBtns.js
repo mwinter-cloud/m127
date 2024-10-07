@@ -48,6 +48,7 @@ class EditorBtns extends React.Component {
                 design_win_status: win_type,
             })
         }
+		window.scrollTo(0, e.target.documentElement.offsetHeight);
     }
 
     onMouse = (e) => {

@@ -56,6 +56,7 @@
 	background: rgba(26, 27, 32, 0.7);
     padding: 3px 10px;
     border-radius: 3px;
+	border: 1px solid rgba(255, 255, 255, 0.05);
 }
 .room-page .room-header p {
 	font-size: .95em;
