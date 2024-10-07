@@ -19,7 +19,7 @@
     width: 30px;
     position: absolute;
     top: 20px;
-    left: 8px;
+    left: 10%;
     padding: 5px 3px;
     color: #9b9797;
     font-size: 1em;
@@ -290,5 +290,9 @@
 	.profile-page .col2 {
 		width: 100%!important;
 		margin-bottom: 50px!important;
+	}
+	.profile-page .back-arrow {
+		left: 8px;
+		background: rgba(26, 27, 32, 0.5);
 	}
 }

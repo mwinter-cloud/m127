@@ -2,16 +2,12 @@
     padding: 0 15% 20px 15%;
 }
 
-
-.room-page .room-scroll-header-hidden {
-	display: none;
-}
-
 .room-page .room-scroll-header-opened {
 	display: block;
 }
 
 .room-page .room-scroll-header {
+	display: none;
 	position: fixed;
     background: rgba(26, 27, 32, 0.8);
     width: 70%;
@@ -531,7 +527,7 @@
 	.answer-input .send-btn {
 		width: 100%;
 		border: 1px solid rgba(171, 205, 239, 0.1);
-        background: rgba(26, 27, 32, 0.8);
+        background: rgba(26, 27, 32, 0.5);
         color: white;
         width: 40px;
         height: 40px;
@@ -553,7 +549,7 @@
         bottom: 3px;
         right: 3px;
 		border: 1px solid rgba(171, 205, 239, 0.1);
-        background: rgba(26, 27, 32, 0.8);
+        background: rgba(26, 27, 32, 0.5);
 	}
 
 	.btn-hider {
