@@ -65,9 +65,7 @@ const ProfileForm = () => {
         const formData = new FormData(form)
         if (selectedColor) {
             formData.append('color', selectedColor)
-        } else {
-			formData.append('color', 17)
-		}
+        }
         $.ajax({
             type: 'post',
             url: '../api/edit-profile',

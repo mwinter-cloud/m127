@@ -16,8 +16,11 @@ class ColorInput extends React.Component {
 	componentWillReceiveProps(nextProps, nextContext) {
 		if (nextProps.initColor != this.props.initColor) {
 			if(nextProps.initColor) {
+				console.log(nextProps.initColor.id)
 				this.props.setColor(nextProps.initColor.id)
 				this.setState({selected_color_name: nextProps.initColor.type})
+			} else {
+				console.log(17)
 			}
 		}
 	}
