@@ -12,15 +12,17 @@ class ColorInput extends React.Component {
 		this.selectColor = this.selectColor.bind(this)
 		this.openPaletteWindow = this.openPaletteWindow.bind(this)
 	}
+	
+	componentDidMount() {
+		this.props.setColor(17)
+		this.setState({selected_color_name: 'gray'})
+	}
 
 	componentWillReceiveProps(nextProps, nextContext) {
 		if (nextProps.initColor != this.props.initColor) {
 			if(nextProps.initColor) {
-				console.log(nextProps.initColor.id)
 				this.props.setColor(nextProps.initColor.id)
 				this.setState({selected_color_name: nextProps.initColor.type})
-			} else {
-				console.log(17)
 			}
 		}
 	}
