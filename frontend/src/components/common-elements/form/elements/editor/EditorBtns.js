@@ -3,7 +3,7 @@ import ColorsBlock_wrap from "../../../../../store/wraps/forms/ColorsBlock_wrap"
 import MediaQuery from 'react-responsive'
 import SmileBlock from "./SmileBlock"
 import "../../../../../../static/frontend/stickers-btn.jpg"
-import "../../../../../../static/frontend/smiles-btn.png"
+import "../../../../../../static/frontend/smiles-btn.gif"
 
 class EditorBtns extends React.Component {
     constructor(props) {
@@ -227,14 +227,14 @@ class EditorBtns extends React.Component {
                         <MediaQuery minWidth={801}>
                             <li data-title="стикеры" className="block-btn"><img
                                 src={this.props.smiles_section == "spotti" ?
-                                    ("../../../../../../static/frontend/smiles-btn.png") :
+                                    ("../../../../../../static/frontend/smiles-btn.gif") :
                                     ("../../../../../../static/frontend/stickers-btn.jpg")}
                                 onClick={this.props.setSmilesSection}/></li>
                         </MediaQuery>
                         <MediaQuery maxWidth={800}>
                             <li data-title="смайлы" onMouseDown={this.onMouse}>
                                 <img
-                                    src="https://cdn-icons-png.flaticon.com/512/1656/1656373.png"
+                                    src="../../../../../../static/frontend/smiles-btn.gif"
                                     onClick={this.openDesignWin} data-type="smiles"/>
                             </li>
                             <li data-title="стикеры" className="block-btn">

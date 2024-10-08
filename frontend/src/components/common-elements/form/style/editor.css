@@ -419,15 +419,20 @@
     }
 
     .input-header .editor-menu li {
-        font-size: 17px;
+        font-size: 19px;
     }
+	
+	.input-header ul li img {
+		height: 17px;
+		width: 17px;
+	}
 
     .answer .answer-input .input-header {
         padding: 5px 10px !important;
     }
 
     .input-header {
-        padding: 9px 10px!important;
+        padding: 8px 10px!important;
     }
 
     .redactor-design-win {
