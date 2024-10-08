@@ -265,7 +265,7 @@
 .room-page .fixed-editor {
     opacity: .98;
     position: sticky;
-    bottom: 5px;
+    bottom: 0;
     width: 100%;
 }
 .answer .text-btn {

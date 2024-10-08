@@ -10,15 +10,18 @@
 	display: none;
 	position: fixed;
     background: rgba(26, 27, 32, 0.8);
+	background: #26272ced;
     width: 70%;
     top: 61px;
     z-index: 2;
     left: 15%;
-    border-radius: 3px;
     padding: 6px 8px;
 	font-size: 15px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 	cursor: pointer;
+	font-size: 15px;
+    font-weight: 500;
+    padding: 10px 8px;
 }
 
 .room-page .room-cover {
