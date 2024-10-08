@@ -326,6 +326,14 @@ class Smile(models.Model):
         super().save()
         if self.file:
             img = Image.open(self.file.path)
+            if img.format.lower() != 'gif':
+                return False
+            try:
+                img.seek(1)
+            except EOFError:
+                return False
+            else:
+                return True
 
             if img.height > 64 or img.width > 64:
                 output_size = (64, 64)
@@ -334,6 +342,8 @@ class Smile(models.Model):
 
     def __str__(self):
         return self.name
+        
+    
 
 #admin-panel
 class Workplan(models.Model):
