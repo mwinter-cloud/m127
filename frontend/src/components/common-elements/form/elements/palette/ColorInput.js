@@ -25,7 +25,6 @@ class ColorInput extends React.Component {
 	selectColor = (e) => {
 		const colorname = e.target.getAttribute('data-colorname')
 		const color_id = e.target.getAttribute('data-colorid')
-		console.log(color_id)
 		this.props.setColor(color_id)
 		this.setState({selected_color_name: colorname})
 		this.openPaletteWindow()
