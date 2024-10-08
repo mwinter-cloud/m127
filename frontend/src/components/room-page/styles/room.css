@@ -469,9 +469,8 @@
 	.room-page .room-scroll-header {
 		width: 100%;
 		left: 0;
-		border-radius: 0;
-		font-size: 14px;
-		padding: 8px 8px;
+		font-size: 15px;
+		padding: 12px 8px;
 		top: 60px;
 		border-top: 0;
 	}
