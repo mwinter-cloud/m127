@@ -33,4 +33,9 @@
     .profile-create-page {
         padding: 0;
     }
+	
+	.profile-create-page .file-input-block {
+		width: 100%!important;
+		height: 35px!important;
+	}
 }
