@@ -34,5 +34,8 @@
     .message-win {
         left: 0;
         bottom: 12px;
+		width: 100%;
+		bottom: 0;
+		border-radius: 3px 3px 0 0;
     }
 }

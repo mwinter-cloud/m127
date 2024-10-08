@@ -67,9 +67,6 @@ class RoomPage extends Component {
     }
 	
 	scrollHandler = (e) => {
-		console.log('e.target.documentElement.offsetHeight - ' + e.target.documentElement.offsetHeight)
-		console.log('e.target.documentElement.scrollTop - ' + e.target.documentElement.scrollTop)
-		console.log('window.innerHeight - ' + window.innerHeight)
 		if(e.target.documentElement.scrollTop > 400) {
 			this.setState({header_visibility: 'opened'})
 		} else {
