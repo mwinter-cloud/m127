@@ -132,7 +132,6 @@ class EditorBtns extends React.Component {
                 design_win_status: win_type,
             })
         }
-		window.scrollTo(0, document.body.scrollHeight);
     }
 
     handleClickOutside(event) {
