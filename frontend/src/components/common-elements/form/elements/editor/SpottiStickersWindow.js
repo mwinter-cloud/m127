@@ -15,7 +15,7 @@ class SpottiStickersWindow extends React.Component {
 				'spotti25.webp', 'spotti26.webp', 'spotti27.webp',
 				'spotti28.webp', 'spotti29.webp',
 				'spotti30.webp', 'spotti31.webp', 'spotti32.webp',
-				'spotti33.webp', 'spotti34.png', 'spotti35.webp',
+				'spotti33.webp', 'spotti34.webp', 'spotti35.webp',
 				'spotti36.webp', 'spotti37.webp', 'spotti38.webp',
 				'spotti39.webp'],
 		}

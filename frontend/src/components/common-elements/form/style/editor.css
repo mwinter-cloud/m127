@@ -88,11 +88,11 @@
     content: attr(data-title);
     position: absolute;
     left: 0;
-    top: -35px;
+    top: -30px;
     z-index: 0;
-    background: rgba(0,0,0,.5);
-    color: #8f8f91;
-    font-size: .7em;
+    background: rgba(0,0,0,.3);
+    color: #a5a3a3;
+    font-size: 12px;
     padding: 5px;
     z-index: 1;
     display: inline-block;
@@ -113,7 +113,7 @@
 	border-left: 1px solid rgba(255,255,255,.1)!important;
 	top: 0;
 	right: 0;
-	padding: 10px 10px;
+	padding: 5px;
 	overflow-y: auto;
 }
 .smiles-block::-webkit-scrollbar {
@@ -135,6 +135,8 @@
 	height: 32px;
 	margin-bottom: 0;
 	padding-bottom: 0;
+	width: 16.5%!important;
+    text-align: center;
 }
 .textarea-btns {
 	display: flex;
@@ -412,8 +414,8 @@
 }
 .stickers-block .sticker-item {
     height: auto;
-    width: 33%;
-    padding: 5px;
+    width: 33%!important;
+    padding: 2px;
 }
 .stickers-block .sticker {
 	width: 100%;
@@ -470,7 +472,12 @@
 	}
 	
 	.stickers-block .sticker-item {
-		width: 29%;
+		width: 25% !important;
+	}
+	
+	.smiles-block li {
+		width: 12.5% !important;
+		margin-right: 0!important;
 	}
 
     .input-header .editor-menu li:hover::after {
