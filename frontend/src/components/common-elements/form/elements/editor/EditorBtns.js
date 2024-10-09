@@ -34,23 +34,6 @@ class EditorBtns extends React.Component {
         document.removeEventListener("mousedown", this.handleClickOutside)
     }
 
-    openDesignWin = (e) => {
-        let win_type = e.target.getAttribute('data-type')
-        if(win_type=="smiles"||win_type=="spotti") {
-            this.props.setSmilesSection(e,win_type)
-        }
-        if (this.state.design_win_status == win_type) {
-            this.setState({
-                design_win_status: 'hide',
-            })
-        } else {
-            this.setState({
-                design_win_status: win_type,
-            })
-        }
-		window.scrollTo(0, e.target.documentElement.offsetHeight);
-    }
-
     onMouse = (e) => {
         e.preventDefault()
     }
@@ -133,6 +116,23 @@ class EditorBtns extends React.Component {
         range.insertNode(temp.firstChild)
         selection.collapseToEnd()
         this.props.inputTrigger()
+    }
+
+    openDesignWin = (e) => {
+        let win_type = e.target.getAttribute('data-type')
+        if(win_type=="smiles"||win_type=="spotti") {
+            this.props.setSmilesSection(e, win_type)
+        }
+        if (this.state.design_win_status == win_type) {
+            this.setState({
+                design_win_status: 'hide',
+            })
+        } else {
+            this.setState({
+                design_win_status: win_type,
+            })
+        }
+		window.scrollTo(0, document.body.scrollHeight);
     }
 
     handleClickOutside(event) {
