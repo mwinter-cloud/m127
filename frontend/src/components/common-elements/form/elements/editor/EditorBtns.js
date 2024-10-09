@@ -16,6 +16,7 @@ class EditorBtns extends React.Component {
         this.addImage = this.addImage.bind(this)
         this.makeCursive = this.makeCursive.bind(this)
         this.makeBold = this.makeBold.bind(this)
+        this.closeDesignWin = this.closeDesignWin.bind(this)
         this.openDesignWin = this.openDesignWin.bind(this)
         this.handleClickOutside = this.handleClickOutside.bind(this)
         this.selectColor = this.selectColor.bind(this)
@@ -155,6 +156,12 @@ class EditorBtns extends React.Component {
             }
         }
     }
+	
+	closeDesignWin = () => {
+		this.setState({
+            design_win_status: 'hide',
+        })
+	}
 
     selectColor = (color) => {
         let div_editable = document.getElementById(this.props.div_editable_name)
@@ -189,20 +196,31 @@ class EditorBtns extends React.Component {
                      ref={this.wrapperRef}>
                     {(() => {
                         if (this.state.design_win_status === 'colors') {
-                            return <ColorsBlock_wrap selectColor={this.selectColor}/>
+                            return (
+								<>
+									<header>Цветной текст <div className="el-icon-close close-btn" onClick={this.closeDesignWin}></div></header>
+									<ColorsBlock_wrap selectColor={this.selectColor}/>
+								</>
+							)
                         } else if (this.state.design_win_status === 'blocks') {
                             return (
-                                <ul>
-                                    <li onClick={this.addBlock1}>с полоской</li>
-                                    <li onClick={this.addBlock2}>с фоном</li>
-                                    <li onClick={this.addBlock3}>с границей</li>
-                                    <li onClick={this.addBlock4}>цветной квадрат</li>
-                                </ul>
+								<>
+									<header>Контейнер <div className="el-icon-close close-btn" onClick={this.closeDesignWin}></div></header>
+									<ul>
+										<li onClick={this.addBlock1}>с полоской</li>
+										<li onClick={this.addBlock2}>с фоном</li>
+										<li onClick={this.addBlock3}>с границей</li>
+										<li onClick={this.addBlock4}>цветной квадрат</li>
+									</ul>
+								</>
                             )
                         } else if (this.state.design_win_status === 'smiles' || this.state.design_win_status === 'spotti') {
                             return (
-                                <SmileBlock smiles_section={this.props.smiles_section}
+								<>
+									<header>=^-^= <div className="el-icon-close close-btn" onClick={this.closeDesignWin}></div></header>
+									<SmileBlock smiles_section={this.props.smiles_section}
                                             div_editable_name={this.props.div_editable_name}/>
+								</>
                             )
                         }
                     })()}
