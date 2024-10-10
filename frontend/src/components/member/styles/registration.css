@@ -25,6 +25,8 @@
 	left: -10%;
 	top: 10px;
 	z-index: 2;
+	width: 10%;
+	padding-right: 20px;
 }
 .registration-page .registration-window {
 	padding: 50px 3%;
@@ -60,12 +62,17 @@
 	width: 100%;
 }
 
+.moderation-card .form-group:last-child {
+	border-bottom: 0;
+}
+
 
 @media (max-width: 800px) {
 	.registration-page .registration-window {
 		margin-top: 0 !important;
 		height: 100%;
 		min-height: 100vh;
+		padding-top: 30px;
 	}
 
 	.registration-page h1 {
@@ -74,5 +81,27 @@
 		font-size: 1.2em;
 		left: 0;
 		top: 0;
+	}
+	
+	.registration-page .banner {
+		position: relative;
+		height: 120px;
+	}
+	
+	.profile-create-page p {
+		font-size: 14px;
+		line-height: 1.5em;
+	}
+	
+	.simple-form .form-group {
+		padding: 0;
+	}
+	
+	.simple-form .form-group p {
+		font-size: 14px;
+	}
+	
+	.error-block {
+		margin-bottom: 10px;
 	}
 }

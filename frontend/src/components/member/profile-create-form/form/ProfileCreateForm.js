@@ -1,10 +1,12 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import CSRFToken from "../../../common-elements/form/CSRFToken"
 import FileInputWrapper from "../../../common-elements/form/elements/wrappers/FileInputWrapper"
 
 const ProfileCreateForm = () => {
+	const [error, setError] = useState("");
+	
     const formik = useFormik({
         initialValues: {
             name: '',
@@ -39,7 +41,7 @@ const ProfileCreateForm = () => {
                 window.location.reload()
             },
             error: function () {
-                window.location.reload()
+				setError('Произошла ошибка. Чтобы получить помощь, обратись в Telegram https://t.me/mao_maaao и мы разберемся с этой неприятностью!');
             }
         })
     }
@@ -48,9 +50,10 @@ const ProfileCreateForm = () => {
               encType="multipart/form-data" method="post">
             <h2><i className="el-icon-sunset"></i> Создание профиля</h2>
             <p>
-                Отлично! Давай познакомимся!
+                Прекрасно, давай познакомимся чуть получше. Укажи информацию, которую увидят другие участники.
             </p>
             <div className="error-block">
+				{error ? <p>{error}</p>}
                 {formik.errors.name ? <p>{formik.errors.name}</p> : null}
                 {formik.errors.email ? <p>{formik.errors.email}</p> : null}
                 {formik.errors.city ? <p>{formik.errors.city}</p> : null}
@@ -60,21 +63,21 @@ const ProfileCreateForm = () => {
                 <div className="inputWrapper">
                     <label><span>Имя</span></label>
                     <input name="name" placeholder=" = ^ᴗ^ = " onChange={formik.handleChange}
-                           value={formik.values.name}/>
+                           value={formik.values.name} maxlength="30"/>
                 </div>
             </div>
             <div className="form-group">
                 <div className="inputWrapper">
                     <label><span>Город</span></label>
                     <input type="city" name="city" onChange={formik.handleChange} value={formik.values.city}
-                           placeholder=" = ^ᴗ^ = "/>
+                           placeholder=" = ^ᴗ^ = " maxlength="30"/>
                 </div>
             </div>
             <div className="form-group">
                 <div className="inputWrapper">
                     <label><span>Почта для связи</span></label>
                     <input type="email" name="email" onChange={formik.handleChange} value={formik.values.email}
-                           placeholder=" = ^ᴗ^ = "/>
+                           placeholder=" = ^ᴗ^ = " maxlength="50"/>
                 </div>
             </div>
             <div className="form-group">
