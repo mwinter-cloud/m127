@@ -53,7 +53,7 @@ const ProfileCreateForm = () => {
                 Прекрасно, давай познакомимся чуть получше. Укажи информацию, которую увидят другие участники.
             </p>
             <div className="error-block">
-				{error ? <p>{error}</p>}
+				{error && <p>{error}</p>}
                 {formik.errors.name ? <p>{formik.errors.name}</p> : null}
                 {formik.errors.email ? <p>{formik.errors.email}</p> : null}
                 {formik.errors.city ? <p>{formik.errors.city}</p> : null}
