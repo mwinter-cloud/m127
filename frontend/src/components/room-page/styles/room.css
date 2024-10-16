@@ -19,8 +19,8 @@
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 	cursor: pointer;
 	font-size: 15px;
-    font-weight: 500;
-    padding: 10px 10px;
+    font-weight: 400;
+    padding: 10px 15px;
 }
 
 .room-page .room-cover {
@@ -283,7 +283,7 @@
 }
 .answers-header {
     margin-top: 5px;
-    padding: 25px;
+    padding: 25px 15px 25px 15px;
     background: #26272c;
 	border-radius: 3px 3px 0 0;
 }
@@ -431,13 +431,18 @@
     border-radius: 3px;
     background: #2b2c31;
     color: #8f8f91;
-    padding: 8px 12px;
+    padding: 8px 20px;
     font-size: .8em;
-    margin-top: 15px;
+    margin-top: 0;
+    margin-bottom: 5px;
     font-family: inherit!important;
     cursor: pointer;
 	border: 0;
 	width: auto;
+}
+
+.answer-input .send-btn i {
+	display: none;
 }
 .answer-input .send-btn:after {
 	content: ' Отправить';
@@ -457,12 +462,32 @@
 
 
 .room-page .answer-input {
-	padding: 20px;
+	padding: 15px;
 }
 /* для ответа в окне */
 .small-window .answer {
 	background: transparent;
 	padding: 0;
+}
+
+.new-items-section {
+	margin-top: 10px;
+	padding: 20px 0;
+}
+
+.new-items-section h3 {
+	font-weight: 600;
+	font-size: 1.9em;
+	color: #4f515f;
+	margin-bottom: 25px;
+}
+
+.new-items-section ul li {
+	font-size: .95em;
+	margin-bottom: 5px;
+}
+
+.new-items-section ul li a {
 }
 
 @media (max-width: 800px) {
@@ -534,18 +559,21 @@
 
 	.answer-input .send-btn {
 		width: 100%;
-		border: 1px solid rgba(171, 205, 239, 0.1);
+		border-left: 1px solid rgba(171, 205, 239, 0.1);
         background: rgba(26, 27, 32, 0.3);
         color: white;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
+        width: 38px;
+        height: 38px;
+        border-radius: 0;
 		position: absolute;
-		top: -15px;
-		right: 8px;
+		top: 0;
+		right: 0;
 		font-size: 1.15em;
 		padding: 0;
 		margin: 0;
+	}
+	.answer-input .send-btn i {
+		display: inline;
 	}
 	
 	.answer-input .send-btn:after {
@@ -569,6 +597,7 @@
 	.answer .answer-header .btn:first-child {
 		padding-top: 3px;
 		margin-left: 0;
+		padding-left: 0;
 	}
 	
 	.answer .answer-header .btn:last-child {

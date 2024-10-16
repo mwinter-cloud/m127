@@ -78,6 +78,7 @@ urlpatterns = [
     path('get-header-rooms/<int:count>', RoomView.as_view({'get': 'header_room_list'})),
     path('get-room-voices/<int:room_id>', RoomVoiceView.as_view({'get': 'get_data'})),
     path('send-room-voice', RoomVoiceView.as_view({'post': 'add'})),
+    path('get-new-rooms', RoomView.as_view({'get': 'new_rooms'})),
     #уведомления
     path('get-notifications', NotificationView.as_view({'get': 'list'})),
     path('add-notification', NotificationView.as_view({'post': 'create'})),

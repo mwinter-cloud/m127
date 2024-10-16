@@ -235,9 +235,9 @@ class EditorBtns extends React.Component {
                                                                        onClick={this.openDesignWin}
                                                                        data-type="blocks"></i>
                         </li>
-                        <li data-title="цветной текст" className="block-btn"><img
-                            src="https://cdn-icons-png.flaticon.com/512/3953/3953405.png" onClick={this.openDesignWin}
-                            data-type="colors"/></li>
+                        <li data-title="цветной текст" className="block-btn">
+							<span className="color-text-icon" data-type="colors" onClick={this.openDesignWin}>С</span>
+						</li>
                         <li data-title="изображение" onClick={this.addImage} onMouseDown={this.onMouse}><i
                             className="el-icon-picture-outline"></i></li>
                         <li data-title="спойлер" onClick={this.addSpoiler}><i className="el-icon-files"></i></li>

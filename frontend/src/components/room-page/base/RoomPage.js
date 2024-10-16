@@ -4,6 +4,7 @@ import Header from "../elements/Header"
 import Answers from "../elements/Answers"
 import FormBlock from "../elements/FormBlock"
 import MainAnswer from "../elements/MainAnswer"
+import NewItems from "../elements/NewItems"
 import axios from "axios"
 
 class RoomPage extends Component {
@@ -120,8 +121,10 @@ class RoomPage extends Component {
                             if (this.state.room.author) {
                                 return (
                                     <>
-										<div className={"room-scroll-header room-scroll-header-"+this.state.header_visibility} onClick={this.scrollToTop}>{this.state.room.name}</div>
-                                        <MainAnswer
+										<div className={"room-scroll-header room-scroll-header-"+this.state.header_visibility} onClick={this.scrollToTop}>
+											{this.state.room.name}
+										</div>   
+										<MainAnswer
                                             room_id={this.props.id}
                                             answer={{
                                                 id: this.state.room.id,
@@ -134,13 +137,14 @@ class RoomPage extends Component {
                                                     color: this.state.room.author.color ? this.state.room.author.color.type : null,
                                                 }
                                             }}/>
+										<FormBlock id={this.props.id} room_name={this.state.room.name}
+                                                savers={this.state.room.saved_by}
+                                                room_type={this.state.room.type}
+                                                is_admin={this.props.my_profile.is_admin}
+                                                sendSocketEvent={this.sendSocketEvent}/>
                                         <Answers id={this.props.id} new_answers={this.state.new_answers}
                                                  clearNewAnswers={this.clearNewAnswers}/>
-                                        <FormBlock id={this.props.id} room_name={this.state.room.name}
-                                                   savers={this.state.room.saved_by}
-                                                   room_type={this.state.room.type}
-                                                   is_admin={this.props.my_profile.is_admin}
-                                                   sendSocketEvent={this.sendSocketEvent}/>
+										<NewItems />
                                     </>
                                 )
                             }

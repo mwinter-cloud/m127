@@ -9,7 +9,7 @@ class Answers extends Component {
             answers: [],
             loaded_answers_count: 0,
             new_answers: [],
-            section: 1, //1-сначала старые, 2-сначала новые
+            section: 2, //1-сначала старые, 2-сначала новые
         }
         this.changeSection = this.changeSection.bind(this)
         this.loadAnswers = this.loadAnswers.bind(this)

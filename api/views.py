@@ -361,6 +361,11 @@ class RoomView(viewsets.ViewSet):
             control_room = 0
         return Response({'rooms': serializer.data, 'control_room': control_room})
 
+    def new_rooms(self, request):
+        room_list = Room.objects.all().exclude(type="ADM").exclude(type="OFC")[:7]
+        serializer = RoomListSerializer(room_list, many=True)
+        return Response({'rooms': serializer.data})
+        
     def delete(self, request):
         queryset = Room.objects.all()
         room_id = int(request.POST.get('room_id'))
