@@ -134,7 +134,7 @@ class TextEditor extends React.Component {
                         </MediaQuery>
                     </div>
                 </div>
-                <div className={this.state.showed_status == 1 ? "i-btn el-icon-minus" : "i-btn el-icon-view"}
+                <div className={this.state.showed_status == 1 ? "i-btn el-icon-edit" : "i-btn el-icon-view"}
                    onClick={this.setShowedStatus}></div>
             </>
         )
