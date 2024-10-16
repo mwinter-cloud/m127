@@ -501,7 +501,7 @@
     }
 
     .opened-editor-mobile-btn {
-        bottom: 37vh !important;
+        bottom: 38vh !important;
     }
 
     .small-pic {
@@ -520,6 +520,7 @@
 	}
 	
 	.showed-msg {
+		height: 36vh;
 		padding: 10px;
 	}
 	
