@@ -550,7 +550,7 @@
 
 	.room-page .answer-input {
 		z-index: 2;
-		margin-top: 5px;
+		margin-top: 10px;
 		margin-bottom: 10px;
 		padding: 0;
 	}
@@ -586,7 +586,7 @@
 		position: absolute;
         bottom: 3px;
         right: 3px;
-		border: 1px solid rgba(171, 205, 239, 0.1);
+		border: 0;
         background: rgba(26, 27, 32, 0.1);
 		padding: 6px;
 		font-size: 1.15em;

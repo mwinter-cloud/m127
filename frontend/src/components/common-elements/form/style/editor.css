@@ -501,7 +501,7 @@
     }
 
     .opened-editor-mobile-btn {
-        bottom: 36vh !important;
+        bottom: 37vh !important;
     }
 
     .small-pic {
@@ -524,10 +524,10 @@
 	}
 	
 	.room-page .editor-opacity {
-		width: 100%;
+		width: 96%;
 	}
 	
 	.room-page .fixed-editor {
-		width: 100%;
+		width: 96%;
 	}
 }
