@@ -522,7 +522,7 @@
 	.showed-msg {
 		height: 34vh;
 		padding: 10px;
-		margin-bottom: 5px;
+		margin-bottom: 0!important;
 	}
 	
 	.room-page .editor-opacity {
