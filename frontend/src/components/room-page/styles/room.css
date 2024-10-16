@@ -473,7 +473,7 @@
 .new-items-section {
 	margin-top: 10px;
 	padding: 20px 0;
-	padding-bottom: 50px;
+	padding-bottom: 20px;
 }
 
 .new-items-section h3 {
@@ -550,8 +550,8 @@
 
 	.room-page .answer-input {
 		z-index: 2;
-		margin-top: 10px;
-		margin-bottom: 5px;
+		margin-top: 5px;
+		margin-bottom: 10px;
 		padding: 0;
 	}
 	
@@ -626,5 +626,11 @@
 		padding: 8px 10px;
 		margin-top: 3px;
 		text-align: left;
+	}
+	
+	.new-items-section {
+		margin-top: 10px;
+		padding: 0;
+		padding-bottom: 60px;
 	}
 }
