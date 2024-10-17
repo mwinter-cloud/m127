@@ -363,7 +363,7 @@ class RoomView(viewsets.ViewSet):
         return Response({'rooms': serializer.data, 'control_room': control_room})
 
     def new_rooms(self, request):
-        room_list = Room.objects.all().exclude(type="ADM").exclude(type="OFC").order_by('created_at')[:7]
+        room_list = Room.objects.all().exclude(type="ADM").exclude(type="OFC").order_by('-created_at')[:7]
         serializer = RoomListSerializer(room_list, many=True)
         return Response({'rooms': serializer.data})
         
