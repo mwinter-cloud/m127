@@ -495,7 +495,7 @@
 
 @media (max-width: 800px) {
 	.room-page {
-		padding: 0 2% 10px 2%;
+		padding: 0 1% 10px 1%;
 	}
 	
 	.room-page .room-scroll-header {
@@ -554,7 +554,7 @@
 		z-index: 2;
 		margin-top: -2px;
 		margin-bottom: 8px;
-		padding: 5px;
+		padding: 10px;
 	}
 	
 	.answer-input .textarea-block {
@@ -570,8 +570,8 @@
         height: 38px;
         border-radius: 0;
 		position: absolute;
-		top: 5px;
-		right: 5px;
+		top: 10px;
+		right: 10px;
 		font-size: 1.15em;
 		padding: 0;
 		margin: 0;
