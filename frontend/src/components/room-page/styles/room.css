@@ -586,8 +586,8 @@
 	
 	.answer-input .i-btn {
 		position: absolute;
-        bottom: 3px;
-        right: 3px;
+        bottom: 12px;
+        right: 12px;
 		border: 0;
         background: rgba(26, 27, 32, 0.1);
 		padding: 6px;
