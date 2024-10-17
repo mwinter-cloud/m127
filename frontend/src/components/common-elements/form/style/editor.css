@@ -540,18 +540,18 @@
 	}
 	
 	.showed-msg {
-		height: 34vh;
+		height: 34.5vh;
 		padding: 10px;
 		margin-bottom: 0!important;
 	}
 	
 	.room-page .editor-opacity {
 		width: 98%;
-		margin-bottom: 0;
+		margin-bottom: 0!important;
 	}
 	
 	.room-page .fixed-editor {
 		width: 98%;
-		margin-bottom: 0;
+		margin-bottom: 0!important;
 	}
 }
