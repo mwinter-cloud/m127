@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import NewAnswers from "./NewAnswers"
 import AnswerBlock from "./AnswerBlock"
+import FormBlock from "../elements/FormBlock"
 
 class Answers extends Component {
     constructor(props) {
@@ -90,6 +91,11 @@ class Answers extends Component {
                     <h3>Ответы</h3>
                 </header>
                     {this.state.section == 2 ? (<NewAnswers answers={this.props.new_answers}/>) : ""}
+				<FormBlock id={this.props.id} room_name={this.props.room_name}
+                    savers={this.props.room_saved_by}
+                    room_type={this.props.room_type}
+                    is_admin={this.props.is_admin}
+                    sendSocketEvent={this.props.sendSocketEvent} />
                 <div className="main-answers">
                     {this.state.answers.map((answer, index) => {
                         return (
@@ -101,7 +107,7 @@ class Answers extends Component {
                             <div className="show-more" onClick={this.loadAnswers}>Показать больше записей</div>
                         </div>) : null}
                 </div>
-                    {this.state.section == 1 ? (<NewAnswers answers={this.props.new_answers}/>) : ""}
+                {this.state.section == 1 ? (<NewAnswers answers={this.props.new_answers}/>) : ""}
             </div>
         )
     }

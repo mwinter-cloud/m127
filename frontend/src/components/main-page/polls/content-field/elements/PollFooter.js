@@ -13,7 +13,7 @@ class PollFooter extends Component {
                         (<button className="send-btn" onClick={this.props.sendVoice}>Ответить</button>)}
                     <p>Голосов отправлено: {this.props.voices_count}</p>
                 </footer>
-                <div className="to-comments" onClick={this.props.setComments}><i className="el-icon-chat-round"></i> комментарии</div>
+                <div className="to-comments hide" onClick={this.props.setComments}><i className="el-icon-chat-round"></i> комментарии</div>
             </>
         )
     }

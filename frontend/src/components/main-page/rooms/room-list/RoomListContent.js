@@ -31,7 +31,7 @@ class RoomListContent extends Component {
                     })}
                 </div>
                 {this.props.control_room == 1 ? (
-                    <div className="simple-btn" onClick={this.props.loadRooms}>Ещё комнаты</div>) : ""}
+                    <div className="simple-btn" onClick={this.props.loadRooms}>Показать больше</div>) : ""}
             </div>
         )
     }

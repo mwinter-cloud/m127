@@ -353,16 +353,17 @@ class RoomView(viewsets.ViewSet):
             room_list = room_list.filter(saved_by=(user_id)).distinct()
         start = loaded_rooms_count
         end = loaded_rooms_count+10
+        control_room = 1
+        try:
+            control_item = room_list[end]
+        except IndexError:
+            control_room = 0
         room_list = room_list[start:end]
         serializer = RoomListSerializer(room_list, many=True)
-        if room_list.count() > 9:
-            control_room = 1
-        else:
-            control_room = 0
         return Response({'rooms': serializer.data, 'control_room': control_room})
 
     def new_rooms(self, request):
-        room_list = Room.objects.all().exclude(type="ADM").exclude(type="OFC")[:7]
+        room_list = Room.objects.all().exclude(type="ADM").exclude(type="OFC").order_by('created_at')[:7]
         serializer = RoomListSerializer(room_list, many=True)
         return Response({'rooms': serializer.data})
         
@@ -536,12 +537,14 @@ class PollView(viewsets.ViewSet):
             poll_list = poll_list.order_by('-created_at')
         if section == "saves":
             poll_list = poll_list.filter(saved_by=(user_id)).distinct()
-        poll_list = poll_list[loaded_polls_count:loaded_polls_count + 11]
-        serializer = PollListSerializer(poll_list, many=True)
-        if poll_list.count() > 10:
-            control_poll = 1
-        else:
+        end = loaded_polls_count + 10
+        control_poll = 1
+        try:
+            control_item = poll_list[end]
+        except IndexError:
             control_poll = 0
+        poll_list = poll_list[loaded_polls_count:end]
+        serializer = PollListSerializer(poll_list, many=True)
         return Response({'polls': serializer.data, 'control_poll': control_poll})
 
     def retrieve(self, request, pk=None):
@@ -809,12 +812,13 @@ class AnswerView(viewsets.ViewSet):
             answer_list = Answer.objects.all().filter(room__pk=id)
         start = loaded_answers_count
         end = loaded_answers_count+10
+        control_answer = 1
+        try:
+            control_item = answer_list[end]
+        except IndexError:
+            control_answer = 0
         answer_list = answer_list[start:end]
         serializer = AnswerSerializer(answer_list, many=True)
-        if answer_list.count() > 9:
-            control_answer = 1
-        else:
-            control_answer = 0
         return Response({'answers': serializer.data, 'control_answer': control_answer})
 
     def create(self, request):

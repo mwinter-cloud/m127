@@ -27,9 +27,9 @@ class RoomMenu extends Component {
         return (
             <div className="options-block" ref={this.wrapperRef}>
                 <ul>
-                    <li className="underline-hover blue-text"
-                        onClick={this.props.openEditWindow}>Редактированить
-                    </li>
+					{this.props.my_id==this.props.room_author_id && (<li className="underline-hover blue-text"
+							onClick={this.props.openEditWindow}>Редактированить
+					</li>)}
                     <CreateBannerRoomBtn_wrap room_id={this.props.room_id}
                                               openBannerForm={this.props.openBannerForm}/>
                     <SaveBtn room_id={this.props.room_id}/>

@@ -19,7 +19,7 @@ const SearchForm = (props) => {
     return (
         <form className="search-block" onSubmit={formik.handleSubmit}>
             <div className="input">
-                <input className="search" placeholder="Искать очень замечательного котика" onChange={formik.handleChange} text_value={formik.values.search_string} name="search_string"/>
+                <input className="search" placeholder="Поиск" onChange={formik.handleChange} text_value={formik.values.search_string} name="search_string"/>
                 <i className="el-icon-search"></i>
             </div>
             <input type="submit" hidden />

@@ -106,8 +106,23 @@
     z-index: 2;
 	margin-top: 1px;
 }
+.input-header ul .bold-text-btn {
+	font-size: 1.3em;
+	margin-top: -1px;
+}
+.input-header ul .color-text-btn {
+	padding-left: 4px;
+}
 .input-header ul li .color-text-icon {
-	color: #1ca284;
+	font-size: 18px;
+	display: block;
+}
+.input-header ul .color-text-btn .color-text-line {
+	height: 2px;
+    width: 130%;
+	margin-left: -15%;
+    background: var(--violet);
+    margin-top: -3px;
 }
 .smiles-block {
 	width: 25%;
@@ -434,12 +449,17 @@
     }
 
     .input-header .editor-menu li {
-        font-size: 19px;
+        font-size: 20px;
+		margin-right: 19px;
     }
 	
 	.input-header ul li img {
-		height: 17px;
-		width: 17px;
+		height: 18px;
+		width: 18px;
+	}
+	
+	.input-header ul .bold-text-btn {
+		font-size: 21px;
 	}
 
     .answer .answer-input .input-header {

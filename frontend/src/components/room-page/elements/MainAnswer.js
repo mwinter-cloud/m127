@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import parse from "html-react-parser"
 import {specialtagstohtml, transformationforshow} from "../../common-elements/form/elements/editor/TextEditor"
 import MediaQuery from 'react-responsive'
-import FullScreenWindow from "../../common-elements/windows/FullScreenWindow";
-import Profile from "../../member/profile/Profile";
+import FullScreenWindow from "../../common-elements/windows/FullScreenWindow"
+import Profile from "../../member/profile/Profile"
 
 class MainAnswer extends Component {
     constructor(props) {

@@ -161,7 +161,8 @@
 
 .polls-page .col1 .list .show-more {
 	padding: 4px 10px;
-    font-size: .85em;
+    font-size: .8em;
+	color: #8f8f91;
 	cursor: pointer;
 }
 .polls-page .col1 .list .show-more:hover {
@@ -213,7 +214,7 @@
 	cursor: pointer;
 	user-select: none;
 }
-.polls-page .question-field p {
+.polls-page .question-field .question-header-info {
     font-size: .85em;
     color: #8f8f91;
     margin: 8px 0;
@@ -259,7 +260,7 @@
 .polls-page .question-field footer {
 	position: relative;
 	margin-top: 0;
-	border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+	border-bottom: 0px solid rgba(255, 255, 255, 0.05);
 	padding: 10px 15px;
 	min-height: 50px;
 }

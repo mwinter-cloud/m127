@@ -59,6 +59,7 @@ class RoomList extends Component {
 			cache: false,
 			data: data,
 			success: function (res) {
+				console.log(res)
 				set_rooms(res.rooms)
 				set_control_room(res.control_room)
 				set_rooms_count()

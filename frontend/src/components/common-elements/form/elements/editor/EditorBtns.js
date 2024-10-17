@@ -211,6 +211,7 @@ class EditorBtns extends React.Component {
 										<li onClick={this.addBlock2}>с фоном</li>
 										<li onClick={this.addBlock3}>с границей</li>
 										<li onClick={this.addBlock4}>цветной квадрат</li>
+										<li onClick={this.addSpoiler}>спойлер</li>
 									</ul>
 								</>
                             )
@@ -229,18 +230,18 @@ class EditorBtns extends React.Component {
                     <ul className="editor-menu">
                         <li data-title="курсив" onClick={this.makeCursive} onMouseDown={this.onMouse}><i
                             className="el-icon-edit"></i></li>
-                        <li data-title="жирный шрифт" onClick={this.makeBold} onMouseDown={this.onMouse}><i
+                        <li className="bold-text-btn" data-title="жирный шрифт" onClick={this.makeBold} onMouseDown={this.onMouse}><i
                             className="">B</i></li>
+                        <li data-title="цветной текст" className="color-text-btn">
+							<span className="color-text-icon" data-type="colors" onClick={this.openDesignWin}>A</span>
+							<div className="color-text-line"></div>
+						</li>
                         <li data-title="блок" className="block-btn"><i className="el-icon-menu"
                                                                        onClick={this.openDesignWin}
                                                                        data-type="blocks"></i>
                         </li>
-                        <li data-title="цветной текст" className="block-btn">
-							<span className="color-text-icon" data-type="colors" onClick={this.openDesignWin}>С</span>
-						</li>
                         <li data-title="изображение" onClick={this.addImage} onMouseDown={this.onMouse}><i
                             className="el-icon-picture-outline"></i></li>
-                        <li data-title="спойлер" onClick={this.addSpoiler}><i className="el-icon-files"></i></li>
                         <MediaQuery minWidth={801}>
                             <li data-title="стикеры" className="block-btn"><img
                                 src={this.props.smiles_section == "spotti" ?

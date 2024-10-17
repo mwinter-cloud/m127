@@ -3,7 +3,7 @@ import FormWindow from "../../common-elements/windows/FormWindow"
 import CreateRoomForm from "../../main-page/forms/CreateRoomForm"
 import BannerRoomForm from "../forms/BannerRoomForm"
 import MediaQuery from 'react-responsive'
-import RoomMenu from "./RoomMenu";
+import RoomMenu from "./RoomMenu"
 
 class Header extends Component {
     constructor(props) {
@@ -65,6 +65,7 @@ class Header extends Component {
                                 </div>
                                 {this.state.room_menu ? (
                                     <RoomMenu room_id={this.props.room.id} openBannerForm={this.openBannerForm}
+									room_author_id={this.props.room.author.id} my_id={this.props.my_id} is_admin={this.props.is_admin}
                                     openEditWindow={this.openEditWindow} openMenuWindow={this.openRoomMenu}/>)
                                     : null}
                             </div>

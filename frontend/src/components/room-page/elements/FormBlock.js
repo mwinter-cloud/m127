@@ -123,7 +123,6 @@ class FormBlock extends Component {
 								className={this.state.editor_status ? "editor-btn opened-editor-mobile-btn" : "editor-btn"}>
 							<i className="el-icon-chat-round"></i></button>
 					</MediaQuery>
-					<div className="btn-hider"></div>
 					<div className={this.state.editor_status + " answer-input"}>
 						<AnswerForm id={this.props.id} form_name="new_answer_form"
 									sendSocketEvent={this.props.sendSocketEvent}

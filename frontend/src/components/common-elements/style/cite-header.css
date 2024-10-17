@@ -21,8 +21,8 @@
     display: flex;
 }
 .main-header .main-logo {
-    height: 18px;
-	margin-top: -2px;
+    height: 15px;
+	margin-top: 0;
 }
 .citenamelogo {
     margin-left: 7px;
@@ -41,7 +41,6 @@
     display: inline-block;
 }
 
-
 /* main-menu */
 .main-header .cite-menu {
 	display: flex;
@@ -57,7 +56,7 @@
 .main-header .cite-menu li a {
 	padding: 0 8px;
 }
-.main-header .cite-menu li .line{
+.main-header .cite-menu li .line {
 	background: var(--SC);
 	height: 2px;
 	width: 40%;
@@ -68,6 +67,7 @@
 /* search-block */
 .main-header .search-block {
     width: 30%;
+	margin-top: -2px;
 }
 .main-header .input {
     position: relative;
@@ -90,7 +90,7 @@
 
 /* profile-block */
 .main-header .flex-end {
-    width: 23%;
+    width: 28%;
     display: flex;
     justify-content: flex-end;
 }

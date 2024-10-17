@@ -245,7 +245,6 @@ class PollsContentField extends Component {
                         return (
                             <>
                                 <footer></footer>
-                                <div className="to-comments"></div>
                             </>
                         )
                     }

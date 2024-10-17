@@ -463,6 +463,7 @@
 
 .room-page .answer-input {
 	padding: 15px;
+	margin-top: -2px;
 }
 /* для ответа в окне */
 .small-window .answer {

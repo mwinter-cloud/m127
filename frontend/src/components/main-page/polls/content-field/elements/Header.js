@@ -57,15 +57,15 @@ class Header extends Component {
                 {this.state.confirm_window?(<ConfirmWindow confirm_function={this.deletePoll} close={this.openConfirmWindow}/>):null}
                 <header className="header">
                     <h3>{this.props.poll.question}</h3>
-                    <p className="author">
+                    <p className="author" className="question-header-info">
                         Автор: <span className="room-name underline-hover" onClick={this.openProfile}>{this.props.poll.author.name}</span>
                     </p>
-                    <p>
+                    <p className="question-header-info">
                     <span className="room-name underline-hover"
                           onClick={this.props.savePoll}>{this.props.saved == 1 ? 'Сохранено' : 'В закладки'}</span>
                     </p>
                     {this.props.member.profile.id == this.props.poll.author.id ?
-                        (<p><span className="room-name underline-hover" onClick={this.openConfirmWindow}>Удалить</span></p>)
+                        (<p className="question-header-info"><span className="room-name underline-hover" onClick={this.openConfirmWindow}>Удалить</span></p>)
                         : null}
                 </header>
             </>

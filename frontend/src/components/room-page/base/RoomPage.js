@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import Cover from "../elements/Cover"
 import Header from "../elements/Header"
 import Answers from "../elements/Answers"
-import FormBlock from "../elements/FormBlock"
 import MainAnswer from "../elements/MainAnswer"
 import NewItems from "../elements/NewItems"
 import axios from "axios"
@@ -112,7 +111,7 @@ class RoomPage extends Component {
                                 return (
                                     <>
                                         <Cover cover={this.state.room.cover}/>
-                                        <Header room={this.state.room} reloadRoom={this.reloadRoom}/>
+                                        <Header room={this.state.room} reloadRoom={this.reloadRoom} is_admin={this.props.my_profile.is_admin} my_id={this.props.my_profile.id}/>
                                     </>
                                 )
                             }
@@ -137,13 +136,11 @@ class RoomPage extends Component {
                                                     color: this.state.room.author.color ? this.state.room.author.color.type : null,
                                                 }
                                             }}/>
-										<FormBlock id={this.props.id} room_name={this.state.room.name}
-                                                savers={this.state.room.saved_by}
-                                                room_type={this.state.room.type}
-                                                is_admin={this.props.my_profile.is_admin}
-                                                sendSocketEvent={this.sendSocketEvent}/>
                                         <Answers id={this.props.id} new_answers={this.state.new_answers}
-                                                 clearNewAnswers={this.clearNewAnswers}/>
+                                                clearNewAnswers={this.clearNewAnswers} is_admin={this.props.my_profile.is_admin}
+												room_saved_by={this.state.saved_by} room_type={this.state.room.type}
+												room_name={this.state.room.name} sendSocketEvent={this.sendSocketEvent}
+										/>
 										<NewItems />
                                     </>
                                 )
