@@ -547,9 +547,11 @@
 	
 	.room-page .editor-opacity {
 		width: 98%;
+		margin-bottom: 0;
 	}
 	
 	.room-page .fixed-editor {
 		width: 98%;
+		margin-bottom: 0;
 	}
 }
