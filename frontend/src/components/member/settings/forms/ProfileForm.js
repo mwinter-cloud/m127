@@ -79,7 +79,7 @@ const ProfileForm = () => {
             },
             error: function (xhr, status, error) {
                 if(xhr.status == 413) {
-					setError('Изображение слишком много весит.')
+					setError('Выбери менее тяжелое изображение.')
 				}
                 form.removeAttribute('data-submitting')
             }

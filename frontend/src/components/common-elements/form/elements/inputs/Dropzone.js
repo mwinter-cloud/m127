@@ -7,26 +7,27 @@ const Dropzone = props => {
 
   const onDrop = useCallback((acceptedFiles) => {
 	  const file_input = document.querySelector("#" + props.field + "_img_input")
-    acceptedFiles.forEach((file) => {
-      const reader = new FileReader()
-      reader.onabort = () => console.log('file reading was aborted')
-      reader.onerror = () => console.log('file reading has failed')
+      acceptedFiles.forEach((file) => {
+        const reader = new FileReader()
+        reader.onabort = () => console.log('file reading was aborted')
+        reader.onerror = () => console.log('file reading has failed')
       /*reader.onprogress = (e) => {
         const loadingPercentage = 100 * e.loaded / e.total;
       }*/
-      reader.onload = (event) => {
-        const imgElement = document.createElement("img")
-        imgElement.src = event.target.result
-        file_input.src = event.target.result
-        imgElement.onload = function (e) {
-          if (imgElement.width > 1500 || imgElement.height > 1200) {
-            setError('(・`ω´・) Размер изображения превышает допустимый. Выбери другое.')
-			file_input.value = null
-          } else {
-            setError(false)
-          }
-        }
-        props.setSrc(event.target.result)
+        reader.onload = (event) => {
+            const imgElement = document.createElement("img")
+            imgElement.src = event.target.result
+            //file_input.src = event.target.result
+            imgElement.onload = function (e) {
+				console.log(file.size)
+				if (imgElement.width > 1500 || imgElement.height > 1200 || file.size>1000000) {
+					setError('(・`ω´・) Размер изображения превышает допустимый. Выбери другое.')
+					file_input.value = null
+				} else {
+					setError(false)
+				}
+			}
+			props.setSrc(event.target.result)
       }
       reader.readAsDataURL(file)
     })
