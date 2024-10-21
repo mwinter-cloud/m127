@@ -3,6 +3,7 @@ import Cover from "../elements/Cover"
 import Header from "../elements/Header"
 import Answers from "../elements/Answers"
 import MainAnswer from "../elements/MainAnswer"
+import NewItems from "../elements/NewItems"
 import axios from "axios"
 
 class RoomPage extends Component {
@@ -140,6 +141,7 @@ class RoomPage extends Component {
 												room_saved_by={this.state.saved_by} room_type={this.state.room.type}
 												room_name={this.state.room.name} sendSocketEvent={this.sendSocketEvent}
 										/>
+										<NewItems />
                                     </>
                                 )
                             }
