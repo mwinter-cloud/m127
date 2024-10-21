@@ -9,7 +9,7 @@ class RoomListHeader extends Component {
 
     render() {
         return (
-            <header>
+            <header className="rooms-header">
                 <MediaQuery minWidth={801}>
                     <CreateRoomBtn/>
                 </MediaQuery>

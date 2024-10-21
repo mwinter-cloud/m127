@@ -244,7 +244,6 @@ select:-webkit-autofill {
     vertical-align: middle;
 }
 
-
 @media (max-width: 800px) {
 	.inputWrapper {
 		display: block !important;

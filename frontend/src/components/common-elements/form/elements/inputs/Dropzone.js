@@ -5,8 +5,8 @@ import '../../style/file-input.css'
 const Dropzone = props => {
   const [error, setError] = useState(0)
 
-
   const onDrop = useCallback((acceptedFiles) => {
+	  const file_input = document.querySelector("#" + props.field + "_img_input")
     acceptedFiles.forEach((file) => {
       const reader = new FileReader()
       reader.onabort = () => console.log('file reading was aborted')
@@ -17,10 +17,11 @@ const Dropzone = props => {
       reader.onload = (event) => {
         const imgElement = document.createElement("img")
         imgElement.src = event.target.result
-        document.querySelector("#" + props.field + "_img_input").src = event.target.result
+        file_input.src = event.target.result
         imgElement.onload = function (e) {
           if (imgElement.width > 1500 || imgElement.height > 1200) {
             setError('(・`ω´・) Размер изображения превышает допустимый. Выбери другое.')
+			file_input.value = null
           } else {
             setError(false)
           }
@@ -31,6 +32,10 @@ const Dropzone = props => {
     })
   }, [])
   const {getRootProps, getInputProps} = useDropzone({onDrop})
+  
+  const clearInput = () => {
+	file_input.value = null
+  }
 
 
   return (
@@ -41,7 +46,7 @@ const Dropzone = props => {
         </div>
         {props.src ? (
             <p className="checkboxWrapper">
-              <input type="checkbox" name={"clear_" + props.field} className="simple-checkbox"/> Очистить
+              <input type="checkbox" name={"clear_" + props.field} className="simple-checkbox" onClick={clearInput}/> Удалить файл
             </p>) : null}
         {error ? (<p>{error}</p>) : null}
       </>

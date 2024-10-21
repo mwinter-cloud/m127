@@ -77,7 +77,7 @@ const ProfileForm = () => {
                 form.removeAttribute('data-submitting')
             },
             error: function (xhr, status, error) {
-                console.log(JSON.parse(xhr.responseText))
+                console.log(JSON.parse(xhr))
                 form.removeAttribute('data-submitting')
             }
         })

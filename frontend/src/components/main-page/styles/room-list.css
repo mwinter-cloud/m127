@@ -5,32 +5,32 @@
 	background: #26272c;
 }
 /* шапка списка комнат */
-.room-list header {
+.room-list .rooms-header {
 	width: 100%;
 	position: relative;
 	height: auto;
 	padding-top: 20px;
 	border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
-.room-list header .toggle {
+.room-list .rooms-header .toggle {
 	display: flex;
 	justify-content: space-between;
 	float: right;
 }
-.room-list header .toggle .line {
+.room-list .rooms-header .toggle .line {
 	height: 1px;
 	margin-top: 4px;
 	width: 40%;
     background: #fff;
 }
-.room-list header .toggle li {
+.room-list .rooms-header .toggle li {
 	padding: 0 6px;
 	margin: 0;
 	font-size: .9em;
 	user-select: none;
 	cursor: pointer;
 }
-.room-list header .toggle .active {
+.room-list .rooms-header .toggle .active {
 	font-weight: 500;
 	color: inherit;
 }

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import NewAnswers from "./NewAnswers"
 import AnswerBlock from "./AnswerBlock"
 import FormBlock from "../elements/FormBlock"
+import NewItems from "./NewItems"
 
 class Answers extends Component {
     constructor(props) {
@@ -96,6 +97,7 @@ class Answers extends Component {
                     room_type={this.props.room_type}
                     is_admin={this.props.is_admin}
                     sendSocketEvent={this.props.sendSocketEvent} />
+				<NewItems />
                 <div className="main-answers">
                     {this.state.answers.map((answer, index) => {
                         return (

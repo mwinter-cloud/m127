@@ -272,6 +272,15 @@
 	display: inline-block;
 	padding-top: 10px;
 }
+.simple-form .redactor-design-win {
+	width: 100%!important;
+    left: 0!important;
+    height: 90px!important;
+    position: absolute;
+    top: -38px!important;
+    padding: 0!important;
+	z-index: 2;
+}
 .editor-btn {
     height: 30px;
     width: 30px;
