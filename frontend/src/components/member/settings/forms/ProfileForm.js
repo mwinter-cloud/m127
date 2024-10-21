@@ -12,6 +12,7 @@ const ProfileForm = () => {
     const [selectedColor, setColor] = useState({})
     const [navigation, setNavigation] = useState(0)
     const [initColor, setInitColor] = useState()
+    const [error, setError] = useState()
 
     const useMountEffect = () => {
 		useEffect(() => {
@@ -77,9 +78,9 @@ const ProfileForm = () => {
                 form.removeAttribute('data-submitting')
             },
             error: function (xhr, status, error) {
-                console.log(status)
-                console.log(xhr)
-                console.log(error)
+                if(xhr.status == 413) {
+					setError('Изображение слишком много весит.')
+				}
                 form.removeAttribute('data-submitting')
             }
         })
@@ -146,6 +147,7 @@ const ProfileForm = () => {
                                   src={profile_data.post_image}
                                   field="post_image"/>
             </div>
+			{error && <p>{error}</p>}
             <button className="send-btn" type="submit">Сохранить</button>
         </form>
     )
