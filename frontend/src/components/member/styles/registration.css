@@ -1,6 +1,8 @@
 .registration-page {
 	padding: 0;
 	position: relative;
+	background: var(--dark-background);
+	min-height: 100vh;
 }
 .registration-page .banner {
 	margin-top: 0;
@@ -17,9 +19,9 @@
 }
 .registration-page h1 {
 	font-size: 2.5em;
-	font-weight: 400;
+	font-weight: 500;
 	margin: 0;
-	color: rgb(194, 194, 196);
+	color: var(--middle-color);
 	position: absolute;
 	writing-mode: tb-rl;
 	left: -10%;
@@ -27,10 +29,11 @@
 	z-index: 2;
 	width: 10%;
 	padding-right: 20px;
+	opacity: .6;
 }
 .registration-page .registration-window {
 	padding: 50px 3%;
-	background: #26272c;
+	background: var(--background);
 	width: 60%;
 	margin: 150px 20% 50px 20%;
 	z-index: 2;
@@ -42,8 +45,16 @@
 	margin-top: 8vh!important;
 }
 
+.night-mode .registration-window .send-btn {
+	background: #333438;
+}
+
+.night-mode .simple-form .inputWrapper input {
+	background: #2b2c31;
+}
+
 .registration-window .send-btn:hover {
-    background-image: linear-gradient(to right, #f78ca0 0%, #f9748f 19%, #fd868c 60%, #fe9a8b 100%);
+    background-image: linear-gradient(to right, #f78ca0 0%, #f9748f 19%, #fd868c 60%, #fe9a8b 100%)!important;
     color: white;
     cursor: pointer;
 }

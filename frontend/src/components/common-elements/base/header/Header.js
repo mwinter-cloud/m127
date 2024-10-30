@@ -47,10 +47,10 @@ class MainHeader extends Component {
                 {this.state.megafon_message?(<MegafonMessage message={this.state.megafon_message}/>):null}
                 <Colorline/>
     		    <MediaQuery maxWidth={800}>
-    			    <MobileMainHeader_wrap/>
+    			    <MobileMainHeader_wrap changeMode={this.props.changeMode}/>
     			</MediaQuery>
     		    <MediaQuery minWidth={801}>
-                    <MainHeader_wrap/>
+                    <MainHeader_wrap changeMode={this.props.changeMode}/>
     			</MediaQuery>
             </>
         )

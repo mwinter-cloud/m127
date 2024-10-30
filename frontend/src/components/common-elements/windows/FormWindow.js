@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './style/form_window.css'
+import './style/form-window.css'
 
 class FormWindow extends Component {
     constructor(props) {

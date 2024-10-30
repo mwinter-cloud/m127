@@ -58,14 +58,14 @@ class Header extends Component {
                 <header className="header">
                     <h3>{this.props.poll.question}</h3>
                     <p className="author" className="question-header-info">
-                        Автор: <span className="room-name underline-hover" onClick={this.openProfile}>{this.props.poll.author.name}</span>
+                        Автор: <span className="color-name underline-hover" onClick={this.openProfile}>{this.props.poll.author.name}</span>
                     </p>
                     <p className="question-header-info">
-                    <span className="room-name underline-hover"
+                    <span className="color-name underline-hover"
                           onClick={this.props.savePoll}>{this.props.saved == 1 ? 'Сохранено' : 'В закладки'}</span>
                     </p>
                     {this.props.member.profile.id == this.props.poll.author.id ?
-                        (<p className="question-header-info"><span className="room-name underline-hover" onClick={this.openConfirmWindow}>Удалить</span></p>)
+                        (<p className="question-header-info"><span className="color-name underline-hover" onClick={this.openConfirmWindow}>Удалить</span></p>)
                         : null}
                 </header>
             </>

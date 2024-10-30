@@ -15,6 +15,8 @@
 }
 .color-select-block .open-palette-btn {
     font-size: 13px;
+	border: 1px solid var(--dark-border);
+	padding: 4px 12px;
 }
 .simple-form .redactor-design-win {
     width: 96%;
@@ -34,7 +36,9 @@
 .form-window .color-select-win {
     width: 80%;
     left: 20%;
-    top: -11vh;
+    top: -3vh;
     z-index: 2;
     height: 10vh;
+	min-height: 48px;
+	background: var(--middle-background);
 }

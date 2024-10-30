@@ -3,8 +3,7 @@
 	position: relative;
 }
 .simple-form .send-btn {
-    background: #333438;
-    color: rgba(255, 255, 255, 0.5);
+    color: var(--color);
     display: inline-block;
     border-radius: 3px;
     padding: 8px 18px;
@@ -19,6 +18,16 @@
     cursor: pointer;
 	user-select: none;
 }
+.day-mode .simple-form .send-btn {
+    background: var(--dark-background);
+}
+.night-mode .simple-form .send-btn {
+    background: var(--light-background);
+}
+
+.simple-form .send-btn:focus {
+	outline: 0;
+}
 
 .text-button {
 	border: 0;
@@ -30,10 +39,6 @@
 	margin: 0;
 	display: block;
 	cursor: pointer;
-}
-
-.simple-form .send-btn:focus {
-	outline: 0;
 }
 
 .simple-form .form-group {
@@ -77,12 +82,17 @@
 
 .simple-form .inputWrapper input {
 	border: 0;
-	background: #2b2c31;
 	width: 80%;
     border-radius: 3px;
     padding: 8px 10px;
-    color: #8f8f91;
+    color: var(--pale-color);
 	height: 30px;
+}
+.day-mode .simple-form .inputWrapper input {
+	background: var(--light-background);
+}
+.night-mode .simple-form .inputWrapper input {
+	background: var(--middle-background);
 }
 .simple-form .fullInputWrapper input {
 	width: 100%!important;
@@ -90,30 +100,34 @@
 .simple-form .inputWrapper input:focus {
 	outline: 0;
 	border: 0;
-	color: #c2c2c4;
+	color: var(--pale-color);
 }
 
 input:-webkit-autofill,
 textarea:-webkit-autofill,
 select:-webkit-autofill {
   border: 0;
-  -webkit-text-fill-color: #8f8f91;
-  -webkit-box-shadow: 0 0 0px 1000px #2b2c31 inset;
+  -webkit-text-fill-color: var(--color);
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset;
   transition: background-color 5000s ease-in-out 0s;
 	outline: 0;
 }
 
 .simple-form textarea {
 	width: 80%;
-	background: #2b2c31;
+	background: var(--middle-background);
 	border-radius: 4px;
 	padding: 8px 10px;
 	border: 0;
-	color: #8f8f91;
+	color: var(--pale-color);
 	resize: none;
     height: 140px;
     font-family: inherit;
 	scrollbar-width: none;
+}
+
+.day-mode .simple-form textarea {
+	background: var(--light-background);
 }
 
 .simple-form textarea::-webkit-scrollbar {
@@ -123,13 +137,14 @@ select:-webkit-autofill {
 
 .simple-form textarea::-webkit-scrollbar-thumb {
 	border-radius: 4px;
-    background-color: rgba(255, 255, 255, 0.08);
+    background-color: var(--middle-background);
 }
 
 .simple-form textarea:focus {
 	outline: 0;
 	border: 0;
   	color: inherit;
+	background: var(--light-background);
 }
 
 .simple-form p {
@@ -143,12 +158,12 @@ select:-webkit-autofill {
 }
 
 .simple-btn {
-	background: #333438;
-	color: #8f8f91;
+	background: var(--light-background);
+	color: var(--pale-color);
 	display: inline-block;
 	border-radius: 3px;
 	padding: 6px 10px;
-	font-size: .8em;
+	font-size: 13px;
 	font-family: inherit;
 	border: 0;
 	position: relative;
@@ -161,8 +176,8 @@ select:-webkit-autofill {
 }
 
 .big-simple-btn {
-	background: #333438;
-	color: #8f8f91;
+	background: var(--dark-background);
+	color: var(--color);
 	display: inline-block;
 	border-radius: 3px;
 	padding: 10px 30px;
@@ -190,7 +205,7 @@ select:-webkit-autofill {
 	font-size: 1.1em;
 }
 .text-btn:hover {
-	color: inherit;
+	color: var(--active-color);
 }
 
 .simple-form .error-block {

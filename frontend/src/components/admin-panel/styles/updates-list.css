@@ -1,5 +1,5 @@
 .updates-card {
-	background: rgb(36,37,41,.9);
+	background: var(--transparent-background);
 	padding: 20px 0 5px 0;
 	position: relative;
 	border-radius: 3px;
@@ -29,7 +29,7 @@
 	cursor: pointer;
 }
 .updates-card ul .note:hover {
-	background: #3c3a3ab0;
+	background: var(--dark-background);
 }
 .updates-card ul .active {
 	background: #3c3a3ab0;

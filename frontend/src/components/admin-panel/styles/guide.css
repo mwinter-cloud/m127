@@ -1,5 +1,5 @@
 .guide-section {
-	margin-top: 30px;
+	padding-top: 30px;
 	display: flex;
 }
 .guide-section aside {
@@ -76,15 +76,15 @@
 .guide-main .guide-title ul li {
 	margin-bottom: 3px;
 	font-size: .85em;
-	color: #888;
+	color: var(--color);
 	cursor: pointer;
 	user-select: none;
 }
 .guide-main .guide-title ul li:hover {
-	color: white;
+	color: var(--active-color);
 }
 .guide-card {
-	background: rgb(36,37,41,.9);
+	background: var(--middle-background);
 	padding: 20px 10px 20px 20px;
 	border-radius: 3px;
 	margin-bottom: 50px;
@@ -117,8 +117,8 @@
 	max-height: 290px;
 	overflow-y: auto;
 	padding: 5px 10px;
-	background: rgb(50, 51, 56);
-	border: 1px solid #43454c;
+	background: var(--background);
+	border: 1px solid var(--border);
     border-radius: 2px;
 	scrollbar-width: none;
 }
@@ -130,7 +130,7 @@
 
 .guide-card .illustrations::-webkit-scrollbar-thumb {
 	border-radius: 4px;
-    background-color: rgba(255, 255, 255, 0.08);
+    background-color: var(--middle-background);
 }
 
 .guide-card .illustrations .illustration {
@@ -139,7 +139,7 @@
 
 .guide-card .illustrations p {
     font-size: .85em;
-	color: #8f8f91;
+	color: var(--color);
     margin: 0 0 8px 0;
 }
 .guide-card .illustrations .illustration img {
@@ -212,7 +212,7 @@
 	border: 0;
 	position: absolute;
 	right: 2px;
-	top: 0;
+	top: 2px;
 	height: 100%;
 	width: 25px;
 	font-size: 1em;

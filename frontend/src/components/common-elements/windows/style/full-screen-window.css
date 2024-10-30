@@ -1,7 +1,7 @@
 .full-screen-window {
     width: 100vw;
     height: 100vh;
-    background: #1a1b20;
+    background: var(--dark-background);
     z-index: 5;
     padding: 0;
     position: fixed;

@@ -9,7 +9,7 @@
 	height: 25px;
     position: relative;
     width: 125px;
-    margin-bottom: 15px;
+    margin-bottom: 0;
 }
 .file-input-block:focus {
     outline: 0;
@@ -56,15 +56,15 @@
 	margin-top: 20px;
 	padding: 4px 8px;
 	font-size: 13px;
-	background: #2b2c31;
+	background: var(--middle-background);
 	display: inline-block;
-    color: #8f8f91;
+    color: var(--color);
 	cursor: pointer;
 }
 
 .avatar-file-input {
-    border: 1px dashed #8c939d;
-    color: #8c939d;
+    border: 1px dashed var(--border);
+    color: var(--color);
     border-radius: 50%;
     height: 120px;
     width: 120px;

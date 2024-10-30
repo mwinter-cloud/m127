@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './style/confirm_window.css'
+import './style/confirm-window.css'
 
 class ConfirmWindow extends Component {
     constructor(props) {

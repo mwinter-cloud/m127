@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 
 class Color(models.Model):
     SITE_COLOR = 'SC'
-    ROOM_NAME = 'RN'
     ANNOUNCEMENT_BLOCK = 'AB'
     EARLY_MORNING_COLORLINE = 'EMC'
     MORNING_COLORLINE = 'MC'
@@ -26,7 +25,6 @@ class Color(models.Model):
     BLACK = 'black'
     TYPES_CHOICES = [
         (SITE_COLOR, 'Основной цвет сайта'),
-        (ROOM_NAME, 'Название комнаты'),
         (ANNOUNCEMENT_BLOCK, 'Блок с объявлением'),
         (EARLY_MORNING_COLORLINE, 'Цветная полоса рано утром'),
         (MORNING_COLORLINE, 'Цветная полоса утром'),
@@ -50,7 +48,7 @@ class Color(models.Model):
     type = models.CharField(
         max_length=6,
         choices=TYPES_CHOICES,
-        default=ROOM_NAME
+        default=SITE_COLOR
     )
     text = models.CharField(max_length=150, blank=True)
     is_palette = models.BooleanField(default=False)

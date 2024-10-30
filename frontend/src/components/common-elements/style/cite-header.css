@@ -6,7 +6,8 @@
     height: 60px;
     width: 100%;
     background: #2b2c31;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+	color: var(--color);
+    border-bottom: 1px solid var(--transparent-border);
     padding: 23px 3%;
     display: flex;
     justify-content: space-between;
@@ -14,6 +15,12 @@
     top: 0;
     z-index: 3;
     font-size: .9em;
+}
+.day-mode .main-header {
+	background: var(--light-background);
+}
+.night-mode .main-header {
+	background: var(--middle-background);
 }
 
 /* logo */
@@ -75,7 +82,7 @@
 .main-header .search-block .search {
     width: 100%;
     margin-top: -2px;
-    border: 1px solid #505053;
+    border: 1px solid var(--border);
     padding: 3px 25px;
     border-radius: 6px;
     background: transparent;
@@ -189,6 +196,7 @@
 /* search-page */
 .search-page {
     padding: 90px 25% 30px 25%!important;
+	background: var(--light-background);
 }
 .search-page .back-btn {
     font-size: 1.2em;
@@ -210,11 +218,14 @@
 }
 .search-page .back-arrow {
     padding: 2px 3px !important;
-    height: 24px !important;
-    width: 24px !important;
-    top: 26px !important;
-    left: 36% !important;
-    position: fixed!important;
+    height: 22px !important;
+    width: 20px !important;
+    top: 20px !important;
+    left: 34% !important;
+    position: fixed !important;
+}
+.profile-page .back-arrow:hover {
+	color: var(--color);
 }
 .search-page .search-result-block {
     padding: 20px 0;
@@ -223,7 +234,7 @@
 .search-page .search-result-block h3 {
     font-weight: 400;
     font-size: 1.2em;
-    color: #6b99ad;
+    color: var(--active-color);
     margin: 0;
 }
 .search-page .search-result-block ul {
@@ -238,20 +249,21 @@
     overflow-x: hidden;
     position: absolute;
     overflow-y: auto;
-    top: 60px;
+    top: 62px;
     right: 6%;
     width: 10%;
-    background: #2b2c31;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: var(--background);
+    border: 1px solid var(--transparent-border);
     border-top: 0;
-    border-radius: 0 0 3px 3px;
+    border-radius: 3px 3px;
     padding: 0 0;
     font-size: 0.95em;
     transition: 0.1s;
 }
 .main-header .profile-menu ul li {
     padding: 5px 10px;
-    border-bottom: 1px solid rgba(255,255,255,.05);
+    border-bottom: 1px solid var(--transparent-border);
+	cursor: pointer;
 }
 .main-header .profile-menu ul li i {
     font-size: 1.1em;

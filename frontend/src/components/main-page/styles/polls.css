@@ -1,10 +1,9 @@
 .polls-page {
 	height: auto;
-	min-height: 85vh;
-	margin-top: 10px;
-	background: #1a1b20;
+	min-height: 95vh;
+	background: var(--dark-background);
 	color: inherit;
-	padding-top: 40px;
+	padding-top: 50px;
 }
 .polls-page .col1 {
 	width: 30%;
@@ -26,6 +25,7 @@
 	margin: 0;
 	font-weight: 400;
 	font-size: .85em;
+	color: var(--color);
 }
 .polls-page .col1 .toggle {
 	position: relative;
@@ -81,7 +81,7 @@
 	overflow-y: auto;
 	scrollbar-width: none;
 	border-radius: 3px;
-	background: rgba(38, 39, 44, 0.8);
+	background: var(--pale-background);
 }
 .polls-page .col1 .list::-webkit-scrollbar {
     width: 5px;
@@ -92,8 +92,7 @@
     background-color: #2b2c31;
 }
 .polls-page .col1 .list header {
-	padding: 0px 0px;
-	border-bottom: 0px solid rgba(0,0,0,.1);
+	padding: 0;
 	opacity: 1;
 	animation: 1s;
 }
@@ -105,7 +104,7 @@
 }
 .polls-page .col1 .list header li {
 	margin-right: 8px;
-	border: 1px solid rgba(255,255,255,.4);
+	border: 1px solid var(--border);
 	width: 50%;
 }
 .polls-page .col1 .list header .active {
@@ -115,12 +114,12 @@
 	font-size: .9em;
 }
 .polls-page .col1 .search {
-	background: rgba(38, 39, 44, 0.8);
-	padding: 7px 10px;
+	background: transparent;
+	padding: 5px 10px;
 	border-radius: 3px 3px 0 0;
-	border-bottom: 0px solid rgba(255,255,255,.1);
 	margin-bottom: 0;
 	margin-top: 0;
+	border-bottom: 1px solid var(--transparent-border);
 }
 .polls-page .col1 .list .themes ul {
 	overflow-y: scroll;
@@ -133,27 +132,27 @@
 	font-size: .95em;
 }
 .polls-page .col1 .list .themes li {
-	border-bottom: 1px solid rgba(255,255,255,.05);
+	border-bottom: 1px solid var(--transparent-border);
 	cursor: pointer;
 	color: inherit;
 	font-size: .8em;
 }
 .polls-page .col1 .list .themes li:hover {
-	background: #2e2f33;
+	background: var(--light-background);
 }
 .polls-page .col1 .list .themes li a {
 	display: block;
 	padding: 3px 10px;
 	width: 100%;
-	color: #8f8f91;
+	color: var(--pale-color);
 }
 .polls-page .col1 .add-btn {
 	position: relative;
 	margin: 0 0;
 	top: -20px;
 	float: right;
-	color: #8f8f91;
-    background: #2b2c31;
+	color: var(--pale-color);
+    background: var(--background);
 	cursor: pointer;
 	padding: 5px 12px;
     font-size: .8em;
@@ -162,7 +161,7 @@
 .polls-page .col1 .list .show-more {
 	padding: 4px 10px;
     font-size: .8em;
-	color: #8f8f91;
+	color: var(--pale-color);
 	cursor: pointer;
 }
 .polls-page .col1 .list .show-more:hover {
@@ -193,22 +192,30 @@
 	text-align: left;
     position: relative;
     height: auto;
-    background: rgba(38, 39, 44, 0.5);
     padding: 0;
     border: 0;
     border-radius: 3px;
 }
+
+.night-mode .polls-page .question-field {
+	background: var(--pale-background);
+}
+
+.day-mode .polls-page .question-field {
+    background: var(--middle-background);
+}
+
 .polls-page .question-field .header {
     padding: 15px;
-    color: rgba(0, 0, 0, 0.7);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    color: var(--pale-color);
+    border-bottom: 1px solid var(--transparent-border);
 	min-height: 80px;
 }
 .polls-page .question-field .header h3 {
 	font-size: .95em;
     margin: 0 0 15px 0;
     font-weight: 400;
-    color: #d6d6d9;
+    color: var(--active-color);
 }
 .underline {
 	cursor: pointer;
@@ -223,17 +230,11 @@
 	margin-top: 0;
     width: 100%;
     padding: 10px 15px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid var(--transparent-border);
 	min-height: 50px;
-}
-.polls-page .sended-voice-poll .selected-option {
-	color: rgba(255,255,255,.6)!important;
 }
 .polls-page .sended-voice-poll li:hover {
 	color: #b5b5b5!important;
-}
-.polls-page .question-field .poll-options .selected-option:hover {
-    color: rgba(255,255,255,.6)!important;
 }
 .polls-page .question-field .poll-options ul li {
     padding: 6px 10% 5px 0;
@@ -243,10 +244,12 @@
     border-radius: 3px;
     position: relative;
     user-select: none;
+	color: var(--color);
+	cursor: pointer;
 }
 .polls-page .question-field .poll-options .sended-voice-poll li:hover{
     text-decoration: none;
-    color: inherit!important;
+    color: var(--color);
 	cursor: inherit;
 }
 .polls-page .question-field .poll-options .sended-voice-poll .selected-option:hover{
@@ -296,7 +299,7 @@
 	padding: 5px 8px;
 	border: 0;
 	background: var(--VB);
-	color: rgba(255, 255, 255, 0.5);
+	color: var(--active-color);
 	margin: 15px 0 0 0;
 	font-size: .8em;
 	border-radius: 4px;

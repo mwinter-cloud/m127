@@ -14,7 +14,7 @@ class RoomListHeader extends Component {
                     <CreateRoomBtn/>
                 </MediaQuery>
                 <ul className="toggle">
-                    <li className="active" data-section="popular" onClick={this.props.selectSection}>популярное
+                    <li data-section="popular" onClick={this.props.selectSection}>популярное
                         <div className={this.props.section == "popular" ? "line" : "hide"}></div>
                     </li>
                     <li data-section="new" onClick={this.props.selectSection}>новое

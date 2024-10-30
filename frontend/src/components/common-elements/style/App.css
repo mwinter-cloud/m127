@@ -10,11 +10,55 @@
 	box-sizing: border-box;
 }
 body {
-	background: #1a1b20;
 	margin: 0;
 	font-family: 'Montserrat', sans-serif;
-	color: #a7a4a4;
-	overflow-x: hidden;
+}
+
+.day-mode {
+	--background: #f6f7f9;
+	--dark-background: #ececed;
+	--middle-background: #fdfeff;
+	--light-background: #fdfeff;
+	--middle-dark-background: #ececed;
+	--super-light-background: white;
+	--transparent-background: #fefefefa;
+	--transparent-span: rgba(255, 255, 255, .35);
+	--pale-background: rgba(255, 255, 255, 0.5);
+	--gradient-background: linear-gradient(0deg, rgb(26 31 36 / 8%) 0%, rgb(138 163 189 / 4%) 99%);
+	--color: #101011e5;
+	--active-color: black;
+	--pale-color: #767575;
+	--middle-color: #545454;
+	--border: #eceff2;
+	--dark-border: #cfd1d3;
+	--transparent-border: rgba(0, 0, 0, 0.05);
+	--active-border: 1px solid rgba(0, 0, 0, 0.2);
+	
+	background: var(--background);
+	min-height: 100vh;
+}
+
+.night-mode {
+	--background: #26272c;
+	--dark-background: #1a1b20;
+	--middle-background: #2b2c31;
+	--light-background: #333438;
+	--middle-dark-background: #1a1b20;
+	--transparent-background: rgba(26, 27, 32, 0.7);
+	--pale-background: rgba(38, 39, 44, 0.5);
+	--gradient-background: linear-gradient(0deg, rgba(171, 205, 239, 0.0769083) 0%, rgba(171, 205, 239, 0.0396534) 99%);
+	--transparent-span: rgba(0, 0, 0, .25);
+	--color: #a7a4a4;
+	--middle-color: #acaeb7;
+	--active-color: rgba(255,255,255,.7);
+	--pale-color: #888;
+	--border: #505053;
+	--dark-border: rgba(255,255,255,.2);
+	--active-border: 1px solid rgba(255, 255, 255, 0.2);
+	--transparent-border: rgba(255, 255, 255, 0.07);
+	
+	background: var(--background);
+	min-height: 100vh;
 }
 
 h1 {
@@ -89,14 +133,14 @@ button:focus {
 }
 .add-btn {
 	padding: 6px 15px;
-    font-size: .85em;
+    font-size: .8em;
     height: auto;
     display: inline-block;
     margin-top: 0;
     border-radius: 3px;
     margin-left: 0;
-    color: #8f8f91;
-    background: #2b2c31;
+    color: var(--color);
+    background: var(--background);
     cursor: pointer;
 	user-select: none;
 }
@@ -107,11 +151,11 @@ button:focus {
 }
 
 .active-text {
-	color: rgba(255,255,255,.7)!important;
+	color: var(--active-color)!important;
 }
 
 .mute-text {
-	color: #888;
+	color: var(--pale-color);
 }
 
 .right-align {
@@ -119,7 +163,7 @@ button:focus {
 }
 
 .pale-text {
-	color: #888;
+	color: var(--pale-color);
 }
 
 .underline-hover {
@@ -132,14 +176,14 @@ button:focus {
 }
 
 .simple-button {
-	background: #2b2c31;
+	background: var(--light-background);
     padding: 4px 6px;
     border-radius: 3px;
     margin-right: 8px;
     font-size: 13px;
     margin-bottom: 8px;
     display: block;
-    color: #8f8f91;
+    color: var(--color);
 }
 
 /* базовые изображения */

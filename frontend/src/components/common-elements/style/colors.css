@@ -13,7 +13,6 @@ body {
     --black: transparent;
 
     --SC: #888;
-    --RN: #888;
     --AB: transparent;
     --EMC: transparent;
     --MC: transparent;
@@ -24,8 +23,8 @@ body {
     --DC: transparent;
 }
 
-.room-name {
-    color: var(--RN);
+.color-name {
+	color: rgb(110,144,171);
 }
 
 /* цвета палетки */

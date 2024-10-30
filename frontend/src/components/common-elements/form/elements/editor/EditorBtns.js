@@ -3,7 +3,7 @@ import ColorsBlock_wrap from "../../../../../store/wraps/forms/ColorsBlock_wrap"
 import MediaQuery from 'react-responsive'
 import SmileBlock from "./SmileBlock"
 import "../../../../../../static/frontend/stickers-btn.jpg"
-import "../../../../../../static/frontend/smiles-btn.gif"
+import "../../../../../../static/frontend/smiles-btn.png"
 
 class EditorBtns extends React.Component {
     constructor(props) {
@@ -184,7 +184,7 @@ class EditorBtns extends React.Component {
         let selection = window.getSelection(),
             range = selection.getRangeAt(0)
         let temp = document.createElement('div');
-        temp.textContent = '<img src="?" class="middle-pic"/>';
+        temp.textContent = '<img src="?"/>';
         range.insertNode(temp.firstChild);
         selection.collapseToEnd()
     }
@@ -245,14 +245,14 @@ class EditorBtns extends React.Component {
                         <MediaQuery minWidth={801}>
                             <li data-title="стикеры" className="block-btn"><img
                                 src={this.props.smiles_section == "spotti" ?
-                                    ("../../../../../../static/frontend/smiles-btn.gif") :
+                                    ("../../../../../../static/frontend/smiles-btn.png") :
                                     ("../../../../../../static/frontend/stickers-btn.jpg")}
                                 onClick={this.props.setSmilesSection}/></li>
                         </MediaQuery>
                         <MediaQuery maxWidth={800}>
                             <li data-title="смайлы" onMouseDown={this.onMouse}>
                                 <img
-                                    src="../../../../../../static/frontend/smiles-btn.gif"
+                                    src="../../../../../../static/frontend/smiles-btn.png"
                                     onClick={this.openDesignWin} data-type="smiles"/>
                             </li>
                             <li data-title="стикеры" className="block-btn">

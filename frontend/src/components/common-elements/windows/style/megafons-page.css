@@ -85,7 +85,7 @@
 
 .megafons-page .btns .btn {
     border-radius: 3px;
-    background: #2b2c31;
+    background: var(--middle-background);
     color: #8f8f91;
     padding: 8px 12px;
     font-size: 0.8em;
@@ -97,7 +97,7 @@
     user-select: none;
 }
 .megafons-page .btns .btn:hover {
-    background: #35363b;
+    background: var(--dark-background);
 }
 
 .megafons-page p {

@@ -1,5 +1,8 @@
 .info-page {
     padding: 10px 20% 30px 3%;
+	background: var(--middle-dark-background);
+	color: var(--color);
+	min-height: 100vh;
 }
 .info-page .main-block {
     display: flex;
@@ -53,6 +56,7 @@
 }
 .info-page .col-1 .social-menu-ul li:hover {
     cursor: pointer;
+	color: var(--active-color);
     background: linear-gradient(90deg, rgba(14,64,101,0.6) 0%, rgba(11,86,126,0.4) 17%, rgba(6,97,141,0.227328431372549) 35%, rgba(13,105,148,0.07) 58%, rgba(18,111,154,0) 100%);
 }
 .info-page .col-1 .social-menu-ul .invite-img {
@@ -86,21 +90,30 @@
 }
 .admin-panel-link {
     padding: 10px;
-    background: #141417;
-    border: 1px solid #2b2c31;
+    background: var(--dark-background);
+    border: 1px solid var(--border);
     width: 100%;
     font-size: .9em;
     border-radius: 3px;
     font-weight: 500;
     position: relative;
     vertical-align: center;
-    color: #a6a5a5;
+    color: var(--color);
 }
+
+.night-mode .admin-panel-link {
+	background: #141417;
+}
+
+.day-mode .admin-panel-link {
+	background: white;
+}
+
 .admin-panel-link .icon {
     font-size: 1.35em;
     margin-right: 6px;
     margin-top: -2px;
-    color: #888;
+    color: var(--pale-color);
     float: left;
 }
 .admin-panel-link .arrow {
@@ -108,7 +121,7 @@
     position: absolute;
     right: 10px;
     top: 10px;
-    color: #888;
+    color: var(--pale-color);
 }
 .admin-panel-link:hover {
     color: var(--SC);

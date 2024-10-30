@@ -18,7 +18,7 @@ class App extends Component {
         return (
             <React.StrictMode>
                 <Provider store={store}>
-                    <PagesAccess_wrap/>
+					<PagesAccess_wrap/>
                 </Provider>
             </React.StrictMode>
         )

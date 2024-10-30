@@ -18,7 +18,7 @@
 .moderators-section aside .add-moderator-btn {
 	padding: 10px 10px;
 	border: 1px solid rgba(255, 255, 255, 0.05);
-	background: linear-gradient(0deg, rgba(171, 205, 239, 0.0769083) 0%, rgba(171, 205, 239, 0.0396534) 99%);
+	background: var(--gradient-background);
 	font-size: .95em;
 	margin: 50px 0 20px 0;
 	border-radius: 3px;

@@ -6,7 +6,15 @@
 	justify-content: space-between;
 	z-index: 1;
     position: relative;
-    background: #1a1b20;
+	color: var(--color);
+}
+
+.day-mode .admin-page-header {
+	background: var(--light-background);
+}
+
+.night-mode .admin-page-header {
+    background: var(--dark-background);
 }
 
 .admin-page-header .moderation-title {
@@ -53,7 +61,7 @@
 }
 
 .admin-page-header ul li:hover {
-	color: white;
+	color: var(--active-color);
 }
 
 .admin-page-header ul .active {
@@ -62,6 +70,12 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 	font-weight: 500;
+}
+
+.day-mode .admin-page-header ul .active {
+	background: linear-gradient(90deg, rgb(0 133 169) 0%, rgb(78 235 94) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .admin-page-header ul .guide-link {
@@ -85,25 +99,32 @@ main {
 
 .settings-container {
 	padding: 100px 10%;
+	background: var(--dark-background);
 }
 
 .big-container {
 	padding: 40px 3%;
+	background: var(--dark-background);
+	color: var(--color);
+	min-height: 100vh;
 }
 
 /*---------- настройки сайта в админ-панели ----------*/
 
 .moderation-card .form-group {
-	border-bottom: 1px solid rgba(255, 255, 255, .1);
+	border-bottom: 1px solid var(--transparent-border);
+}
+
+.moderation-card .form-group:last-child {
+	border-bottom: 0;
 }
 
 .admin-panel-form footer {
 	width: 100%;
-	padding-top: 30px;
+	padding-top: 10px;
 }
 .admin-panel-form .send-btn:hover {
 	border: 0;
-	background: #535358;
 }
 
 /* форма определения цветной полосы в шапке */
@@ -135,13 +156,16 @@ main {
 
 .color-inputs {
 	display: flex;
-	flex-wrap: wrap;
 }
 .color-inputs .colorInputWrapper {
-	width: 80px;
-	height: 80px;
+	width: 100%;
+	height: 70px;
 	position: relative;
-	margin-right: 12px;
+	margin-right: .5%;
+}
+
+.color-inputs .colorInputWrapper:last-child {
+	margin-right: 0;
 }
 
 .admin-panel-form .colorInputWrapper label {
@@ -218,7 +242,8 @@ main {
 }
 
 .moderation-card {
-	background: rgb(36,37,41,.9);
+	background: var(--transparent-background);
+	color: var(--color);
 	padding: 40px 50px;
 	position: relative;
 	border-radius: 3px;
@@ -236,14 +261,14 @@ main {
 	margin-right: 10px;
 	vertical-align: middle;
 	margin-top: -5px;
-	color: #fff;
+	color: var(--active-color);
 }
 .moderation-card .card-menu {
 	display: flex;
 	list-style: none;
 	margin: 20px 0 0 0;
 	font-size: .9em;
-	border-bottom: 1px solid rgba(255, 255, 255, .1);
+	border-bottom: 1px solid var(--transparent-border);
 	padding: 16px 0;
 }
 .moderation-card .card-menu li {
@@ -253,7 +278,7 @@ main {
 	user-select: none;
 }
 .card-menu li:hover {
-	color: white;
+	color: var(--active-color);
 }
 .moderation-card .card-menu .active {
 	background: rgb(0,201,255);
@@ -262,6 +287,13 @@ main {
     -webkit-text-fill-color: transparent;
 	font-weight: 500;
 }
+
+.day-mode .moderation-card .card-menu .active {
+	background: linear-gradient(90deg, rgb(0 133 169) 0%, rgb(78 235 94) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 .moderation-card .card-menu li .line {
 	background: rgb(0,201,255);
 	background: linear-gradient(90deg, rgba(0,201,255,1) 0%, rgba(146,254,157,1) 100%);
@@ -274,7 +306,7 @@ main {
 /* форма редактирования смайлов */
 
 .smiles-edit-block {
-	background: rgba(36, 37, 41, 0.9);
+	background: var(--transparent-background);
 	padding: 40px 50px;
 	position: relative;
 	border-radius: 3px;
@@ -287,13 +319,14 @@ main {
     margin: 0;
     font-weight: 500;
 	margin-bottom: 30px;
+	color: var(--color);
 }
 .smiles-edit-block h2 i {
     font-size: 2em;
     margin-right: 10px;
     vertical-align: middle;
     margin-top: -5px;
-    color: #fff;
+    color: var(--active-color);
 }
 
 .smiles-edit-block .addSmileInputWrapper {
@@ -307,7 +340,7 @@ main {
 	display: inline-block;
 	margin-right: 10px;
 	font-size: .85em;
-	color: #888;
+	color: var(--pale-color);
 }
 
 .smiles-edit-block .file-input-block {
@@ -354,9 +387,13 @@ main {
 	border-radius: 3px;
     padding: 4px 8px;
     font-size: 13px;
-    background: #2b2c31;
+    background: var(--middle-background);
     display: inline-block;
-    color: #8f8f91;
+    color: var(--color);
+}
+
+.day-mode .smiles-edit-block .inputWrapper input {
+	background: var(--dark-background);
 }
 .addSmileInputWrapper button {
 	background: transparent;
@@ -392,7 +429,7 @@ main {
 .smiles-edit-block .added-smiles .smile-edit-block .text-btn {
 	margin-top: 6px;
 	font-size: 1em;
-    color: #8f8f91;
+    color: var(--color);
 	cursor: pointer;
 }
 .smiles-edit-block .added-smiles .smile-edit-block .text-btn:hover {
@@ -456,6 +493,7 @@ main {
 	}
 
 	.color-inputs {
+		flex-wrap: wrap;
 		justify-content: space-between;
 	}
 

@@ -31,7 +31,6 @@ class MainRoomList extends Component {
                                         <div className="room-info">
                                             <h4>{room.room.name}</h4>
                                         </div>
-                                        <div className="shadow-blur"></div>
                                     </Link>
                                 </article>
                             )

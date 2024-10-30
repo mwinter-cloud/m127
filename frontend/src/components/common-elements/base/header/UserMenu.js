@@ -6,6 +6,9 @@ class UserMenu extends Component {
 		super(props)
 		this.wrapperRef = React.createRef()
 		this.handleClickOutside = this.handleClickOutside.bind(this)
+		this.state = {
+			'mode': localStorage.getItem('mode')
+		}
 	}
 
 	componentDidMount() {
@@ -28,6 +31,9 @@ class UserMenu extends Component {
 				<ul>
 					<li data-link="/settings">
 						<Link to="/settings"><i className="el-icon-setting"></i> Настройки</Link>
+					</li>
+					<li onClick={this.props.changeMode}>
+						<i className={this.state.mode == 'night' ? "el-icon-sunset" : "el-icon-moon"}></i> Сменить тему
 					</li>
 					<li>
 						<a href="/api/logout"><i className="el-icon-mobile"></i> Выход</a>

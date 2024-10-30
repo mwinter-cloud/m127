@@ -26,7 +26,7 @@ class ProfileBlock extends Component {
                     </Link>
                     <div className="open-btn"><i className="el-icon-arrow-down" onClick={this.openMenu} id="user_menu_btn"></i></div>
                 </div>
-                {this.state.open_menu?(<UserMenu closeMenu={this.openMenu}/>):null}
+                {this.state.open_menu?(<UserMenu closeMenu={this.openMenu} changeMode={this.props.changeMode}/>):null}
             </div>
         )
     }

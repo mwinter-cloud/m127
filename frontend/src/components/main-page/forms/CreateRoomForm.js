@@ -139,7 +139,7 @@ const CreateRoomForm = (props) => {
                                tags={props.room ? props.room.tags : null}/>
                 </div>
                 {props.room ? (
-                    <span className="text-btn" onClick={openConfirmWindow}><i
+                    <span className="simple-btn" onClick={openConfirmWindow}><i
                         className="el-icon-delete"></i> Удалить</span>
                 ) : null}
                 <div className="error-block">

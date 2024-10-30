@@ -1,5 +1,7 @@
 .room-page {
     padding: 0 15% 20px 15%;
+	background: var(--dark-background);
+	min-height: 100vh;
 }
 
 .room-page .room-scroll-header-opened {
@@ -9,18 +11,18 @@
 .room-page .room-scroll-header {
 	display: none;
 	position: fixed;
-    background: rgba(26, 27, 32, 0.8);
-	background: #26272ced;
+	background: var(--transparent-background);
     width: 70%;
     top: 60px;
     z-index: 2;
     left: 15%;
 	font-size: 15px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid var(--transparent-border);
 	cursor: pointer;
 	font-size: 15px;
     font-weight: 400;
-    padding: 10px 15px;
+    padding: 10px 12px;
+	color: var(--color);
 }
 
 .room-page .room-cover {
@@ -55,10 +57,13 @@
 	font-weight: 500;
 	font-size: 1.3em;
 	display: inline-block;
-	background: rgba(26, 27, 32, 0.7);
     padding: 3px 10px;
     border-radius: 3px;
-	border: 1px solid rgba(255, 255, 255, 0.05);
+	border: 1px solid var(--transparent-border);
+	background: var(--transparent-background);
+}
+.room-page .room-header .gray {
+	color: var(--color)!important;
 }
 .room-page .room-header p {
 	font-size: .95em;
@@ -137,10 +142,11 @@
 	display: inline-block;
 	font-size: .8em;
 	border-radius: 3px;
-    color: #aba8a8;
-	border: 1px solid rgba(255, 255, 255, 0.05);
-	background: #1a1b20c9;
+    color: var(--color);
+	border: 1px solid var(--transparent-border);
+	background: var(--transparent-background);
 }
+
 .room-header .options i {
 	margin-left: 6px;
 	font-size: 1.15em;
@@ -160,7 +166,7 @@
     position: absolute;
     padding: 8px;
     margin-top: 8px;
-	background: #1a1b20c9;
+	background: var(--transparent-background);
     z-index: 1;
     border-radius: 3px;
     left: -5px;
@@ -221,7 +227,7 @@
     user-select: none;
     text-align: center;
     margin: 0 0 15px auto;
-    color: #aba8a8;
+    color: var(--color);
     cursor: pointer;
     width: 100%;
     display: inline-block;
@@ -229,16 +235,17 @@
     padding: 8px 15px;
     font-weight: 400;
     border-radius: 3px;
-	background: rgb(38 39 44 / 83%);
+	background: var(--background);
+	opacity: .9;
     border: 0;
 }
 .answers .show-more:hover {
-    color: rgba(255, 255, 255, 0.4);
+    color: var(--pale-color);
 }
 .answer {
 	height: auto;
 	width: 100%;
-	background: #26272c;
+	background: var(--middle-background);
 	margin-bottom: 5px;
 	border-radius: 3px;
 	padding: 10px 10px;
@@ -249,6 +256,7 @@
     padding: 15px 0 20px 0;
     font-size: 13px;
 	line-height: 1.3em;
+	color: var(--color);
 }
 .answer .answer-text a {
     text-decoration: underline;
@@ -284,20 +292,21 @@
 .answers-header {
     margin-top: 5px;
     padding: 25px 15px 25px 15px;
-    background: #26272c;
+    background: var(--middle-background);
 	border-radius: 3px 3px 0 0;
 }
 .answers-header h3 {
 	font-weight: 500;
 	margin: 0;
 	font-size: 1.05em;
+	color: var(--color);
 }
 .answers-header .filter {
     font-size: .85em;
     float: right;
     cursor: pointer;
     user-select: none;
-	color: #8f8f91;
+	color: var(--pale-color);
 }
 .answer div {
 	border: 1px solid transparent;
@@ -355,11 +364,11 @@
 	margin-bottom: 15px;
 }
 .answer .answer-header {
-    padding: 0 0 5px 0;
-    border-bottom: 1px solid rgba(255,255,255,.05);
+    padding: 0 0 4px 0;
+    border-bottom: 1px solid var(--transparent-border);
 	display: flex;
 	justify-content: space-between;
-	color: #8f8f91;
+	color: var(--color);
     font-size: 13px;
 }
 .answer .answer-header .header-btns {
@@ -408,12 +417,18 @@
 .answers .answer .btn {
 	margin-right: 8px;
 	font-size: .8em;
-	background: #2b2c31;
+	background: var(--middle-background);
 	padding: 4px 5px;
 	display: inline;
 	cursor: pointer;
 	border-radius: 2px;
-	color: #8f8f91;
+	color: var(--pale-color);
+}
+.answers .answer .answer-header .btn:first-child {
+	padding-left: 0;
+}
+.answers .answer .answer-header .btn:last-child {
+	padding-right: 0;
 }
 .answers .answer .btn img {
     height: 14px;
@@ -429,8 +444,8 @@
 }
 .answer-input .send-btn {
     border-radius: 3px;
-    background: #2b2c31;
-    color: #8f8f91;
+    background: var(--middle-background);
+    color: var(--color);
     padding: 8px 20px;
     font-size: .8em;
     margin-top: 0;
@@ -451,7 +466,7 @@
 	position: relative;
 }
 .btn-hider {
-	background: #1a1b20;
+	background: var(--middle-background);
     height: 45vh;
     width: 30vw;
     left: -15.5vw;
@@ -464,6 +479,7 @@
 .room-page .answer-input {
 	padding: 15px;
 	margin-top: -2px;
+	background: var(--middle-background);
 }
 /* для ответа в окне */
 .small-window .answer {
@@ -472,21 +488,28 @@
 }
 
 .new-items-section {
-	margin-top: 10px;
-	padding: 20px 0;
+	padding: 25px 0;
 	padding-bottom: 20px;
 }
 
 .new-items-section h3 {
 	font-weight: 600;
 	font-size: 1.9em;
-	color: #3e3f44;
 	margin-bottom: 25px;
+}
+
+.day-mode .new-items-section h3 {
+	color: #aaadb9;
+}
+
+.night-mode .new-items-section h3 {
+	color: #3e3f44;
 }
 
 .new-items-section ul li {
 	font-size: .95em;
 	margin-bottom: 5px;
+	color: var(--color);
 }
 
 .new-items-section ul li a:hover {
@@ -563,7 +586,6 @@
 
 	.answer-input .send-btn {
 		width: 100%;
-		border-left: 0px solid rgba(171, 205, 239, 0.1);
         background: transparent;
         color: white;
         width: 38px;

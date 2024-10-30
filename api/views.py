@@ -336,11 +336,12 @@ class RoomView(viewsets.ViewSet):
         search_str = request.POST.get('search_str')
         section = request.POST.get('section')
         loaded_rooms_count = int(request.POST.get('loaded_rooms_count'))
-        user_id = request.user.profile.id
+        user_id = request.user.id
+        profile_id = request.user.profile.id
         # системные записи отмечены типом "служебные" и "административные". их не отображаем в общем списке
         room_list = Room.objects.all().exclude(type="ADM").exclude(type="OFC")
         if section == "my":
-            room_list = room_list.filter(author__pk=(user_id)).distinct()
+            room_list = room_list.filter(author__pk=(profile_id)).distinct()
         if section == "popular":
             room_list = room_list.order_by('-views')
         if search_str != '':
@@ -764,7 +765,7 @@ class CustomizationView(viewsets.ViewSet):
 
     def edit(self, request):
         customization_fields = ['AN', 'RL', 'SD', 'CT']
-        color_fields = ['SC', 'RN', 'AB', 'EMC', 'MC', 'DAC', 'EC', 'SO', 'VB',
+        color_fields = ['SC', 'AB', 'EMC', 'MC', 'DAC', 'EC', 'SO', 'VB',
                         'violet', 'red', 'yellow', 'd_blue', 'blue', 'pink', 'green', 'orange', 'cherry', 'gray']
         for field in customization_fields:
             new_value = request.POST.get(field)

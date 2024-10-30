@@ -1,7 +1,7 @@
 .registration-code-block {
     padding: 30px 5%;
     width: 80%;
-    font-size: 2.2em;
+    font-size: 1.8em;
 }
 .registration-code-block .textsmile {
     font-size: 1.5em;
@@ -20,7 +20,7 @@
     margin-top: 80px;
 }
 .registration-code-block input {
-    background: rgba(38, 39, 44, 0.5);
+    background: var(--dark-background);
     padding: 20px;
     width: 70%;
     outline: 0;
@@ -29,7 +29,7 @@
     height: 60px;
     float: left;
     margin-right: 1%;
-    color: #c2c2c4;
+    color: var(--color);
     font-family: inherit;
     font-size: .9em;
 }
@@ -37,9 +37,9 @@
     display: block;
     padding: 8px auto;
     box-sizing: border-box;
-    border: 1px solid rgba(0, 0, 0, 0.15);
+    border: 1px solid var(--border);
     background: linear-gradient(158deg, rgba(171, 249, 251, 0.6) 0%, rgba(150, 227, 243, 0.6) 34%, rgba(141, 206, 235, 0.7) 62%, rgba(131, 185, 229, 0.8) 72%);
-    color: rgba(255, 255, 255, 0.5);
+    color: var(--color);
     border-radius: 4px;
     cursor: pointer;
     height: 60px;

@@ -18,7 +18,7 @@ class MainHeader extends Component {
                 <CiteMenu active_section={this.props.main_section}/>
                 <CiteSearch/>
                 <div className="flex-end">
-                    <ProfileBlock member={this.props.member}/>
+                    <ProfileBlock member={this.props.member} changeMode={this.props.changeMode}/>
                     <NotificationsSection_wrap/>
                 </div>
             </header>

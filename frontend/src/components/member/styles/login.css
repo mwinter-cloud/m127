@@ -1,11 +1,15 @@
+.login-page {
+	padding-top: 20px;
+}
+
 .login-page .banner {
     object-fit: cover;
     border-radius: 3px 3px 0 0;
     display: block;
-    width: 50%;
+    width: 54%;
     height: 210px;
-    margin-left: 25%;
-    margin-top: 20px;
+    margin-left: 23%;
+    margin-top: 0;
     position: relative;
     background: var(--LP);
     background-size: cover;
@@ -16,14 +20,24 @@
     font-size: 1.2em;
     position: relative;
     writing-mode: horizontal-tb;
+	color: var(--color);
     left: 0;
     top: 0;
 }
 .login-page .registration-window {
-    margin: 0 25% 50px 25%;
-    width: 50%;
+    margin: 0 23% 50px 23%;
+    width: 54%;
     border-radius: 0 0 3px 3px;
 }
+
+.day-mode .login-page .registration-window {
+	background: var(--light-background);
+}
+
+.night-mode .login-page .registration-window {
+	background: var(--background);
+}
+
 .login-page .restore-password-text {
     position: absolute;
     right: 0;
@@ -34,7 +48,6 @@
     margin: 10px 0;
     display: inline-block;
 }
-
 
 @media (max-width: 800px) {
     .login-page {
