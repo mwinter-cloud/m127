@@ -13,7 +13,7 @@ class BaseTemplate extends Component {
 	
 	componentDidMount() {
 		if(!localStorage.getItem('mode')) {
-			localStorage.setItem("mode", "day")
+			localStorage.setItem("mode", "night")
 		}
 		const catchNewMode = () => {
 			this.setState({'mode': localStorage.getItem('mode')})
