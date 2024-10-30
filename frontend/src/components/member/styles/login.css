@@ -20,7 +20,7 @@
     font-size: 1.2em;
     position: relative;
     writing-mode: horizontal-tb;
-	color: var(--color);
+	color: var(--active-color);
     left: 0;
     top: 0;
 }

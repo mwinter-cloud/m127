@@ -20,7 +20,7 @@ class LoginPage extends Component {
 
     render() {
         return (
-            <main className="registration-page login-page">
+            <main className="registration-page login-page night-mode">
                 {this.state.banner ?
                     (<div className="banner"></div>) : null}
                 <div className={this.state.banner ? "registration-window" : "registration-window no-banner-window"}>

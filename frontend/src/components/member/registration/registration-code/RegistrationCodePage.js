@@ -31,7 +31,7 @@ const RegistrationCodePage = () => {
 		})
 	}
 	return (
-		<main className="registration-code-block">
+		<main className="registration-code-block night-mode">
 			<p className="textsmile"><i className="el-icon-key invite-page-icon"></i></p>
 			<p>Привет! Чтобы перейти к регистрации, введи код, полученный в приглашении:</p>
 			<form onSubmit={sendCode} id="register_code_form">

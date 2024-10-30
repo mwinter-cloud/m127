@@ -16,7 +16,7 @@ class ProfileCreatePage extends Component {
 
     render() {
         return (
-            <main className="profile-create-page">
+            <main className="profile-create-page night-mode">
                 <div className="container">
                     <div className="moderation-card">
                         <ProfileCreateForm/>

@@ -12,6 +12,26 @@
 body {
 	margin: 0;
 	font-family: 'Montserrat', sans-serif;
+	--background: #26272c;
+	--dark-background: #1a1b20;
+	--middle-background: #2b2c31;
+	--light-background: #333438;
+	--middle-dark-background: #1a1b20;
+	--transparent-background: rgba(26, 27, 32, 0.7);
+	--pale-background: rgba(38, 39, 44, 0.5);
+	--gradient-background: linear-gradient(0deg, rgba(171, 205, 239, 0.0769083) 0%, rgba(171, 205, 239, 0.0396534) 99%);
+	--transparent-span: rgba(0, 0, 0, .25);
+	--color: #a7a4a4;
+	--middle-color: #acaeb7;
+	--active-color: rgba(255,255,255,.7);
+	--pale-color: #888;
+	--border: #505053;
+	--dark-border: rgba(255,255,255,.2);
+	--active-border: 1px solid rgba(255, 255, 255, 0.2);
+	--transparent-border: rgba(255, 255, 255, 0.07);
+	
+	
+	min-height: 100vh;
 }
 
 .day-mode {
@@ -35,7 +55,6 @@ body {
 	--active-border: 1px solid rgba(0, 0, 0, 0.2);
 	
 	background: var(--background);
-	min-height: 100vh;
 }
 
 .night-mode {
@@ -58,7 +77,6 @@ body {
 	--transparent-border: rgba(255, 255, 255, 0.07);
 	
 	background: var(--background);
-	min-height: 100vh;
 }
 
 h1 {
