@@ -85,7 +85,7 @@
 	width: 80%;
     border-radius: 3px;
     padding: 8px 10px;
-    color: var(--pale-color);
+    color: var(--color);
 	height: 30px;
 }
 .day-mode .simple-form .inputWrapper input {
@@ -100,7 +100,7 @@
 .simple-form .inputWrapper input:focus {
 	outline: 0;
 	border: 0;
-	color: var(--pale-color);
+	color: var(--color);
 }
 
 input:-webkit-autofill,
@@ -227,7 +227,7 @@ select:-webkit-autofill {
 .settings-line {
     width: 100%;
     height: 1px;
-    background: #2b2c31;
+    background: var(--transparent-border);
     margin: 20px 0;
 }
 .form-window .error-block {

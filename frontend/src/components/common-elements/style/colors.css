@@ -23,6 +23,10 @@ body {
     --DC: transparent;
 }
 
+.day-mode {
+	--gray: #69696a;
+}
+
 .color-name {
 	color: rgb(110,144,171);
 }
@@ -70,13 +74,15 @@ body {
 }
 .white-block {
     background: var(--white)!important;
-    border: 1px solid var(--white)!important;
+    border: 1px solid var(--gray)!important;
 }
 .black-block {
     background: var(--black)!important;
-    border: 1px solid var(--black)!important;
+    border: 1px solid var(--gray)!important;
 }
-
+.black-block {
+	color: white;
+}
 .white {
     color: var(--white)!important;
 }

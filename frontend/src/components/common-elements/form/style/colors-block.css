@@ -17,6 +17,7 @@
     font-size: 13px;
 	border: 1px solid var(--dark-border);
 	padding: 4px 12px;
+	color: var(--color); 
 }
 .simple-form .redactor-design-win {
     width: 96%;

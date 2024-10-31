@@ -363,6 +363,19 @@
 	word-wrap: break-word;
 	margin-bottom: 15px;
 }
+
+.answer .author-info span {
+	font-weight: 500;
+}
+
+.night-mode .answer .author-info .black {
+	color: white!important;
+}
+
+.day-mode .answer .author-info .white {
+	color: black!important;
+}
+
 .answer .answer-header {
     padding: 0 0 4px 0;
     border-bottom: 1px solid var(--transparent-border);

@@ -173,7 +173,7 @@
 	font-size: 1em;
 	line-height: 1.6em;
 	padding: 10px;
-	background: #26272c;
+	background: var(--dark-background);
 	border-radius: 3px;
 }
 .profile-page .col1 .post main img {

@@ -264,6 +264,7 @@
     padding: 5px 10px;
     border-bottom: 1px solid var(--transparent-border);
 	cursor: pointer;
+	user-select: none;
 }
 .main-header .profile-menu ul li i {
     font-size: 1.1em;

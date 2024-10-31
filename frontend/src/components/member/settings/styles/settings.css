@@ -10,6 +10,7 @@
     color: inherit;
     margin: 0;
     font-weight: 500;
+	opacity: .8;
 }
 
 .settings-page .settings-flex {
@@ -37,12 +38,16 @@
 }
 .settings-page .settings-flex .menu ul .active {
     color: #6b99ad;
+	font-weight: 500;
 }
 .settings-page .settings-flex .col1 ul li:hover {
 	cursor: pointer;
 	text-decoration: underline;
 	color: #6495ED;
 	user-select: none;
+}
+.settings-page .color-select-block .color-select-win {
+	background: var(--middle-background);
 }
 .settings-page .simple-form .form-group {
     padding: 0;
@@ -60,17 +65,17 @@
 }
 .settings-page .form-field .post-textarea {
     width: 80%;
-    background: #2b2c31;
+    background: var(--light-background);
     border-radius: 3px;
     padding: 8px 10px;
     border: 0;
-    color: #8f8f91;
+    color: var(--color);
     resize: none;
     height: 200px;
     font-family: inherit;
 }
 .settings-page .form-field .send-btn {
-    background: linear-gradient(158deg, rgba(171, 249, 251, 0.6) 0%, rgba(150, 227, 243, 0.6) 34%, rgba(141, 206, 235, 0.7) 62%, rgba(131, 185, 229, 0.8) 72%);
+    background: linear-gradient(158deg, rgba(131, 185, 229, 0.8) 62%, rgba(131, 185, 229, 0.95) 100%);
     display: inline-block;
     border-radius: 3px;
     padding: 5px 12px;
