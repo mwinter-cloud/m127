@@ -28,7 +28,7 @@ class InfoPage extends Component {
 
     render() {
         return (
-            <main className="info-page">
+            <main className="info-page night-mode">
                 <Header/>
                 <div className="main-block">
                     <div className="col-1">

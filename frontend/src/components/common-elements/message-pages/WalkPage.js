@@ -30,7 +30,7 @@ function WalkPage(props) {
 	}
 	useMountEffect()
   	return (
-          <main className="error-page">
+          <main className="error-page night-mode">
               <header className="error-msg-header"><i className="el-icon-warning-outline"></i> {id!='4'?'Ошибка :D':''} {String(error_msg)}<div id="error_msg"></div></header>
               <p>Для прогулки хороша любая погода! Почему бы тебе не прогуляться?</p>
               <div className="walk-img"></div>

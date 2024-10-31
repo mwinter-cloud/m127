@@ -42,7 +42,7 @@ class AgreementPage extends Component {
     render() {
         if(this.state.RL!="undefined") {
             return (
-                <div className="agreement-page">
+                <div className="agreement-page night-mode">
                     <header className="main-agreement-header">
                         <img src="../../../../static/frontend/images/small-logo.png" className="small-logo"/>
                         <h3 className="citename">{this.state.citename?this.state.citename:window.location.hostname}</h3>

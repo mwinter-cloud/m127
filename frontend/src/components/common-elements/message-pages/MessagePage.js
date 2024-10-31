@@ -30,7 +30,7 @@ function MessagePage(props) {
 	}
 	return (
 		<>
-			<main className="center-container">
+			<main className="center-container night-mode">
 				<div className="text-block middle-content-block">
 					{type == 'email_confirm' ? (
 						<i className="el-icon-message message-page-icon"></i>) : ''}

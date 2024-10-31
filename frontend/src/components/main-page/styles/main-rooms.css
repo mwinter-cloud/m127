@@ -27,7 +27,7 @@
 	bottom: 23px;
 }
 .rooms-main .cite-top .rating-aside-field .rating-grade {
-	color: var(--pale-color);
+	color: var(--active-color);
 	font-size: .9em;
 	margin-top: 1px;
 	margin-left: 8px;
@@ -113,6 +113,7 @@
 	margin-right: 5px;
 	transition-duration: .2s;
 	cursor: pointer;
+	background: #c2c2c4;
 }
 .day-mode .rooms-main .cite-top .carousel .toggles .toggle {
 	background: #8c8c8c;
@@ -125,6 +126,7 @@
 	width: 26px;
 	border-radius: 10px;
 	transition-duration: .2s;
+	background: white;
 }
 .day-mode .rooms-main .cite-top .carousel .toggles .active {
 	background: #393b3c;
@@ -139,6 +141,7 @@
     z-index: 0;
 	border-radius: 3px;
 	display: block;
+    filter: brightness(85%);
 }
 .day-mode .rooms-main .cite-top .carousel .picture {
     filter: brightness(100%);
@@ -298,6 +301,7 @@
 		text-align: center;
 		float: right;
 		height: 100%;
+		color: var(--color);
 	}
 
 	.rooms-main .cite-top .sections-btn i {
@@ -346,7 +350,7 @@
 		top: 0;
 		left: 0;
 		height: 420px;
-		background: #1a1b20;
+		background: var(--dark-background);
 		padding: 30px 3%;
 	}
 
@@ -365,7 +369,7 @@
 		left: 3%;
 	}
 	.rooms-main .cite-top .rating-aside-field .rating-grade {
-		color: #afabab;
+		color: var(--color);
 	}
 	.rooms-main .cite-top .rating-block .null-rating-block {
 		background: transparent;
