@@ -140,8 +140,8 @@
     top: 60px;
     right: 2%;
     width: 23%;
-    background: #2b2c31;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: var(--background);
+    border: 1px solid var(--pale-border);
     border-top: 0;
     border-radius: 0 0 3px 3px;
     padding: 0 0;

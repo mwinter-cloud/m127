@@ -382,7 +382,7 @@
 	.main-room-list {
 		height: auto;
 		min-height: 0;
-		overflow-x: hidden;
+		overflow: hidden;
 	}
 
 	.main-room-list .container {
