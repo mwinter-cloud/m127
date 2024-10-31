@@ -1,7 +1,8 @@
 .small-window {
     width: 56%;
     margin-left: 22%;
-    background: #1a1b20;
+    background: var(--background);
+	color: var(--color);
     position: relative;
     height: auto;
     z-index: 4;

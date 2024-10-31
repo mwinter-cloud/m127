@@ -62,6 +62,12 @@
 	border: 1px solid var(--transparent-border);
 	background: var(--transparent-background);
 }
+.room-page .room-header .white {
+	color: var(--color)!important;
+}
+.room-page .room-header .black {
+	color: var(--color)!important;
+}
 .room-page .room-header .gray {
 	color: var(--color)!important;
 }
