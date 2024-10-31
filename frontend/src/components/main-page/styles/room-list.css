@@ -197,7 +197,7 @@
 		font-size: .95em;
 		position: relative;
 		padding: 10px 3%;
-		float: left;
+		float: left!important;
 	}
 	
 	.room-list .rooms-header .toggle li:first-child {
