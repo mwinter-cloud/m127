@@ -197,7 +197,11 @@
 		font-size: .95em;
 		position: relative;
 		padding: 10px 3%;
-		float: none;
+		float: left;
+	}
+	
+	.room-list .rooms-header .toggle li:first-child {
+		padding-left: 0;
 	}
 
 	.mobile-room-list-header {
