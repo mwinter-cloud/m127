@@ -119,6 +119,10 @@
 	width: 100%;
     cursor: pointer;
 }
+.night-mode .all-rooms .room h3 {
+	color: var(--active-color);
+	font-weight: 400;
+}
 
 .all-rooms .room .room-info .author {
 	color: var(--color);

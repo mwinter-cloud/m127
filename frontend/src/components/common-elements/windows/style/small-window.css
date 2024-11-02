@@ -55,8 +55,8 @@
 
 @media (max-width: 800px) {
     .small-window {
-        width: 94%;
-        margin: 3%;
+        width: 98%;
+        margin: 1%;
         min-height: 96vh;
     }
     .small-window main {
