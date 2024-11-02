@@ -143,6 +143,7 @@
 
 	.simple-form .tag-search-block {
 		width: 70%;
+		display: block!important;
 	}
 
 	.simple-form .inputWrapper .tags-select-input {
