@@ -55,6 +55,7 @@ body {
 .cherry-block {
     background: var(--cherry)!important;
     border: 1px solid var(--cherry)!important;
+	color: white;
 }
 .pink-block {
     background: var(--pink)!important;
@@ -63,10 +64,14 @@ body {
 .blue-block {
     background: var(--blue)!important;
     border: 1px solid var(--blue)!important;
+	color: white;
 }
 .gray-block {
     background: var(--gray)!important;
     border: 1px solid var(--gray)!important;
+}
+.day-mode .gray-block {
+	color: white;
 }
 .orange-block {
     background: var(--orange)!important;
