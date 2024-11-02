@@ -5,7 +5,7 @@
 	height: 100vh;
 	overflow-y: auto;
 	font-size: .9em;
-	background: var(--dark-background);
+	background: var(--background);
 }
 .profile-page::-webkit-scrollbar {
     width: 5px;
@@ -47,7 +47,7 @@
 	padding: 8px 1%;
 	display: flex;
 	width: 100%;
-    background: var(--background);
+    background: var(--light-background);
     border-radius: 0 0 3px 3px;
 	z-index: 1;
 }
@@ -120,7 +120,7 @@
 .profile-page .col1 {
 	width: 63%!important;
 	text-align: left;
-	padding: 0 0;
+	padding: 0!important;
 }
 .profile-page .col2 {
 	width: 32%!important;
@@ -173,7 +173,7 @@
 	font-size: 1em;
 	line-height: 1.6em;
 	padding: 10px;
-	background: var(--dark-background);
+	background: var(--light-background);
 	border-radius: 3px;
 }
 .profile-page .col1 .post main img {
@@ -198,7 +198,7 @@
 	margin-bottom: 20px;
 }
 .profile-page .col2 .profile-info header {
-	background: var(--background);
+	background: var(--light-background);
 	border-bottom: 1px solid var(--transparent-border);
 	padding: 8px;
 	border-radius: 2px 2px 0 0;
@@ -300,5 +300,8 @@
 	.profile-page .back-arrow {
 		left: 8px;
 		background: rgba(26, 27, 32, 0.5);
+	}
+	.profile-page .user-info {
+		border-radius: 0;
 	}
 }

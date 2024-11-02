@@ -366,14 +366,14 @@
 	}
 
 	.rooms-main .cite-top .carousel .toggles {
-		bottom: 5px;
+		bottom: 15px;
 		left: 6%;
 		justify-content: left;
 	}
 
 	.rooms-main .cite-top .rating-aside-field {
 		position: relative;
-		margin-top: -27px;
+		margin-top: -37px;
 		width: auto;
 		font-size: .95em;
 		padding: 3px 5px;
