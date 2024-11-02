@@ -4,16 +4,16 @@
 .color-select-block .selected-color {
 	height: 28px;
 	width: auto;
-	padding: 3px 10px;
+	padding: 5px 10px;
 	border-radius: 2px;
 	margin-right: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--border);
 }
 .color-select-block .open-palette-btn{
-	padding: 6px 12px;
-	border: 1px solid rgba(171,205,239,.2);
+	padding: 5px 10px;
+	border: 1px solid var(--border);
 	border-radius: 2px;
-	color: #8f8f91;
+	color: var(--color);
 	font-size: .85em;
 	width: auto;
     height: 28px;

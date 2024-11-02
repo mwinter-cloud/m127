@@ -163,6 +163,7 @@
     font-weight: normal;
     width: auto!important;
     margin-right: 1px;
+	margin-top: -1px;
     position: relative;
 }
 .checkboxWrapper input[type="checkbox"]::before {

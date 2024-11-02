@@ -27,7 +27,7 @@
     font-size: 1.3em;
     margin-right: 10px;
     cursor: pointer;
-    margin-top: 4px;
+    margin-top: 6px;
 }
 
 .form-window header h4 {
@@ -73,6 +73,7 @@
 		padding: 10px 0!important;
 	}
 	.form-window header h4 {
-		font-size: 15px!important;
+		font-size: 14px!important;
+		padding: 6px 10px;
 	}
 }
