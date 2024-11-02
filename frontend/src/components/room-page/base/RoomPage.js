@@ -151,7 +151,7 @@ class RoomPage extends Component {
             } else {
                 return (
                     <main className="room-page">
-                        <h2>Запись не найдена.</h2>
+                        <h2 className="not-found-title">Запись не найдена.</h2>
                     </main>
                 )
             }
