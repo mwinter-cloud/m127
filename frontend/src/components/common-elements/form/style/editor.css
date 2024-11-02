@@ -303,7 +303,7 @@
 }
 
 .day-mode .editor-btn {
-	border: 1px solid var(--border);
+	border: 1px solid var(--transparent-border);
     background: var(--gradient-background);
 }
 .room-page .editor-opacity {

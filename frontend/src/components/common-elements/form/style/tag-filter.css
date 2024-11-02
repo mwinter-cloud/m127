@@ -2,7 +2,7 @@
 	position: relative;
 }
 .simple-form .tag-search-block{
-	width: 50%;
+	width: 40%;
 }
 .tag-search-block .icon {
 	position: absolute;
@@ -80,12 +80,6 @@
 .tag-search-block .search-result::-webkit-scrollbar-thumb {
 	border-radius: 4px;
     background-color: var(--middle-background);
-}
-
-/* фильтр тегов в разделе опросов */
-.polls-page .tag-search {
-    background: var(--transparent-background);
-	background: var(--background);
 }
 
 /* input выбора тега */

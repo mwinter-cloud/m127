@@ -25,9 +25,10 @@
     top: 0;
 }
 .login-page .registration-window {
-    margin: 0 23% 50px 23%;
+    margin: 0 23% 0 23%;
     width: 54%;
     border-radius: 0 0 3px 3px;
+	padding-bottom: 50px;
 }
 
 .day-mode .login-page .registration-window {

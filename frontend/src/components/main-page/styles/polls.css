@@ -1,9 +1,12 @@
 .polls-page {
 	height: auto;
 	min-height: 95vh;
-	background: var(--dark-background);
+	background: var(--background);
 	color: inherit;
 	padding-top: 50px;
+}
+.night-mode .polls-page {
+	background: var(--dark-background);
 }
 .polls-page .col1 {
 	width: 30%;
@@ -40,15 +43,15 @@
 .polls-page .col1 .toggle li {
 	margin-left: 10px;
 	padding-left: 0;
-	color: #8f8f91;
+	color: var(--pale-color);
 	width: auto;
 	display: flex;
 	cursor: pointer;
 	user-select: none;
 }
 .polls-page .col1 .toggle li i {
-	color: #8f8f91;
-	margin-top: 4px;
+	color: var(--pale-color);
+	margin-top: 3px;
 	margin-right: 2px;
 	margin-left: 8px;
 }
@@ -114,11 +117,13 @@
 	font-size: .9em;
 }
 .polls-page .col1 .search {
-	background: transparent;
+	background: var(--transparent-background);
 	padding: 5px 10px;
 	border-radius: 3px 3px 0 0;
 	margin-bottom: 0;
 	margin-top: 0;
+	position: sticky;
+    top: 0;
 	border-bottom: 1px solid var(--transparent-border);
 }
 .polls-page .col1 .list .themes ul {
@@ -222,7 +227,7 @@
 	user-select: none;
 }
 .polls-page .question-field .question-header-info {
-    font-size: .85em;
+    font-size: 13px;
     color: #8f8f91;
     margin: 8px 0;
 }
@@ -240,7 +245,7 @@
     padding: 6px 10% 5px 0;
     margin: 9px 0;
     text-align: left;
-    font-size: .85em;
+    font-size: 13px;
     border-radius: 3px;
     position: relative;
     user-select: none;
@@ -249,11 +254,8 @@
 }
 .polls-page .question-field .poll-options .sended-voice-poll li:hover{
     text-decoration: none;
-    color: var(--color);
+    color: var(--color)!important;
 	cursor: inherit;
-}
-.polls-page .question-field .poll-options .sended-voice-poll .selected-option:hover{
-    color: var(--SO);
 }
 .polls-page .question-field .poll-options .empty-poll li:hover{
 	cursor: pointer;
@@ -299,9 +301,9 @@
 	padding: 5px 8px;
 	border: 0;
 	background: var(--VB);
-	color: var(--active-color);
+	color: white;
 	margin: 15px 0 0 0;
-	font-size: .8em;
+	font-size: 13px;
 	border-radius: 4px;
 	cursor: pointer;
 	font-family: inherit;
@@ -506,6 +508,10 @@
 }
 .smiles-block .smile {
 	cursor: pointer;
+}
+
+.polls-page .tag-search {
+    background: var(--transparent-background);
 }
 
 

@@ -87,6 +87,7 @@
     padding: 8px 10px;
     color: var(--color);
 	height: 30px;
+	background: var(--light-background);
 }
 .day-mode .simple-form .inputWrapper input {
 	background: var(--light-background);
@@ -196,8 +197,8 @@ select:-webkit-autofill {
 }
 
 .text-btn {
-	color: #888;
-	font-size: .85em;
+	color: var(--color);
+	font-size: .8em;
 	cursor: pointer;
 	margin: 10px 0;
 }

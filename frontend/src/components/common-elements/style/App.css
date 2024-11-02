@@ -43,8 +43,8 @@ body {
 	--super-light-background: white;
 	--transparent-background: #fefefefa;
 	--transparent-span: rgba(255, 255, 255, .35);
-	--pale-background: rgba(255, 255, 255, 0.5);
-	--gradient-background: linear-gradient(0deg, rgb(26 31 36 / 8%) 0%, rgb(138 163 189 / 4%) 99%);
+	--pale-background: rgba(255, 255, 255, 0.7);
+	--gradient-background: linear-gradient(0deg, rgb(26 31 36 / 12%) 0%, rgb(138 163 189 / 12%) 99%);
 	--color: #101011e5;
 	--active-color: black;
 	--pale-color: #767575;
