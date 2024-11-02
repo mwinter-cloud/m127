@@ -1,3 +1,6 @@
+.editor-container {
+	position: relative;
+}
 .textarea-block {
 	border: 1px solid var(--transparent-border);
 	width: 100%;
@@ -243,10 +246,21 @@
 	border: 1px solid var(--dark-border);
 	background: var(--transparent-background);
 	border-radius: 2px;
-    position: absolute;
-    font-size: .85em;
+    font-size: 13px;
     padding: 0;
 	overflow: hidden;
+	color: var(--color);
+}
+.simple-form .redactor-design-win {
+	width: 100%;
+	left: 0!important;
+	height: 120px!important;
+	position: absolute!important;
+	top: -120px!important;
+	border: 1px solid var(--dark-border);
+    padding: 0!important;
+	overflow: hidden!important;
+	z-index: 4;
 }
 .redactor-design-win header {
 	border-bottom: 1px solid var(--dark-border);
@@ -273,15 +287,6 @@
 	user-select: none;
 	display: inline-block;
 	padding-top: 10px;
-}
-.simple-form .redactor-design-win {
-	width: 100%!important;
-    left: 0!important;
-    height: 90px!important;
-    position: absolute;
-    top: -38px!important;
-    padding: 0!important;
-	z-index: 2;
 }
 .editor-btn {
     height: 30px;

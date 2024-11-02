@@ -121,7 +121,7 @@ class TextEditor extends React.Component {
         return (
             <>
                 {this.state.showed_status ? (<ShowedAnswer text={this.props.text_value}/>) : null}
-                <div className={this.state.showed_status ? 'hide' : ''}>
+                <div className={this.state.showed_status ? 'hide' : 'editor-container'}>
                     <EditorBtns div_editable_name={this.props.form_name + "_div_editable"}
                                 smiles_section={this.state.smiles_section}
                                 inputTrigger={this.inputTrigger} setSmilesSection={this.setSmilesSection}/>
