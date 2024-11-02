@@ -90,6 +90,7 @@
 	margin-bottom: 15px;
 	background: var(--middle-background);
 	display: flex;
+	border: 1px solid var(--transparent-border);
 }
 .all-rooms .room:nth-child(2n) {
 	margin-left: 0%;

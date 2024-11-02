@@ -14,6 +14,23 @@
 .tag-search:focus {
 	outline: 0;
 }
+.tag-search-block .tag-list {
+	margin-top: 0;
+}
+.tag-search-block .tag-list li  {
+	padding: 3px 6px;
+	margin: 2px 5px;
+	font-size: 13px;
+	color: var(--color);
+	border-radius: 2px;
+	display: inline-block;
+    background: transparent;
+	user-select: none;
+}
+
+.tag-search-block .tag-list li i {
+	cursor: pointer;
+}
 .tag-search-block .selected-tags {
 	margin-top: 5px;
 }
@@ -24,16 +41,19 @@
 	color: var(--color);
 	border-radius: 2px;
 	display: inline-block;
-    background: var(--background);
+    background: var(--middle-background);
 	user-select: none;
 }
 
-.tag-search-block .selected-tags li:first-child  {
+.tag-search-block .selected-tags li:first-child {
 	margin-left: 0;
 }
 
 .tag-search-block .selected-tags li i {
 	cursor: pointer;
+}
+.tag-search-block .inputWrapper input {
+	width: 100%!important;
 }
 .tag-search {
 	width: 100%;
@@ -58,7 +78,7 @@
 	border-radius: 3px;
 	padding: 5px 0;
 	font-size: .9em;
-	border: 1px solid var(--border);
+	border: 1px solid var(--transparent-border);
 	position: absolute;
 	top: 25px;
     transition: .1s;
@@ -69,7 +89,7 @@
 	scrollbar-width: none;
 }
 .tag-search-block .search-result li {
-	padding: 0 10px;
+	padding: 0;
 	cursor: pointer;
 	width: 100%;
 }

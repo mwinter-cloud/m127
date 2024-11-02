@@ -14,8 +14,9 @@ class TagFilter extends React.Component {
 		this.onTagSelect = this.onTagSelect.bind(this)
 		this.appendStateTag = this.appendStateTag.bind(this)
 		this.onRemoveTag = this.onRemoveTag.bind(this)
-		this.wrapperRef = React.createRef()
 		this.handleClickOutside = this.handleClickOutside.bind(this)
+		this.openTagList = this.openTagList.bind(this)
+		this.wrapperRef = React.createRef()
 	}
 
 	componentDidMount() {
@@ -37,6 +38,13 @@ class TagFilter extends React.Component {
 
 	componentWillUnmount() {
 		document.removeEventListener("mousedown", this.handleClickOutside)
+	}
+	
+	openTagList = () => {
+		if(this.state.searched_tags.length == 0) {
+			const popular_tags = this.state.popular_tags
+			this.setState({searched_tags: popular_tags})
+		}
 	}
 
 	onTagSearch = (e) => {
@@ -108,10 +116,10 @@ class TagFilter extends React.Component {
 			<>
 				<div className="tag-search-block">
 					<input className={this.props.type == "form" ? ("tags-select-input") : ("tag-search")}
-						   placeholder="Выберите тэг" onInput={this.onTagSearch}/>
+						   placeholder="Категории" onInput={this.onTagSearch} onClick={this.openTagList}/>
 					<div className={this.state.searched_tags.length == 0 ? "hide" : "search-result tags-list"}
 						 ref={this.wrapperRef}>
-						<ul className="selected-tags">
+						<ul className="tag-list">
 							{this.state.searched_tags.map((tag, index) => {
 								return (
 									<li key={index} data-id={tag.id} onClick={this.onTagSelect}>
