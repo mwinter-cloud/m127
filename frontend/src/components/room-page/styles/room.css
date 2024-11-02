@@ -607,7 +607,7 @@
 	.answer-input .send-btn {
 		width: 100%;
         background: transparent;
-        color: white;
+        color: var(--color);
         width: 38px;
         height: 38px;
         border-radius: 0;

@@ -270,8 +270,8 @@
 	min-height: 50px;
 }
 .polls-page .question-field footer p {
-    font-size: 0.8em;
-    color: #8f8f91;
+    font-size: 13px;
+    color: var(--color);
     margin-top: 10px;
 }
 .polls-page .question-field footer .revoice {
@@ -279,17 +279,17 @@
 	user-select: none;
 }
 .polls-page .question-field footer .revoice:hover {
-	color: #b5b5b5;
+	color: var(--active-color);
 	text-decoration: underline;
 }
 .polls-page .question-field .to-comments {
     margin: 0;
     padding: 15px;
-    font-size: .8em;
+    font-size: 13px;
     display: flex;
     cursor: pointer;
 	user-select: none;
-	color: #888;
+	color: var(--color);
 	min-height: 30px;
 }
 .polls-page .question-field .to-comments i {
