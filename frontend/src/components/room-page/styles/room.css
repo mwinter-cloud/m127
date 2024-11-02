@@ -4,6 +4,12 @@
 	min-height: 100vh;
 }
 
+.room-page h2 {
+	padding: 20px 0;
+	margin: 0;
+	font-weight: 500;
+}
+
 .room-page .room-scroll-header-opened {
 	display: block!important;
 }
