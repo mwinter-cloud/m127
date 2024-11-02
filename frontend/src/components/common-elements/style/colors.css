@@ -74,11 +74,11 @@ body {
 }
 .white-block {
     background: var(--white)!important;
-    border: 1px solid var(--gray)!important;
+    border: 1px solid var(--border)!important;
 }
 .black-block {
     background: var(--black)!important;
-    border: 1px solid var(--gray)!important;
+    border: 1px solid var(--border)!important;
 }
 .black-block {
 	color: white;

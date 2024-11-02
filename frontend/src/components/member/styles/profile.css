@@ -300,7 +300,7 @@
 	}
 	.profile-page .back-arrow {
 		left: 8px;
-		background: rgba(26, 27, 32, 0.5);
+		background: var(--light-background);
 	}
 	.profile-page .user-info {
 		border-radius: 0;

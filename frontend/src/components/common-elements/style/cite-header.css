@@ -86,13 +86,13 @@
     padding: 3px 25px;
     border-radius: 6px;
     background: transparent;
-    color: #8f8f91;
+    color: var(--color);
 }
 .main-header .search-block .input i {
     position: absolute;
     left: 5px;
     top: 3px;
-    color: #8f8f91;
+    color: var(--color);
 }
 
 /* profile-block */
@@ -374,6 +374,7 @@
 
     .main-header .search-block .search {
         background: var(--light-background);
+		padding-left: 10px;
     }
 
     .search-page .back-arrow {
