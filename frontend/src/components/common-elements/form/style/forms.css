@@ -233,7 +233,7 @@ select:-webkit-autofill {
 }
 .form-window .error-block {
 	font-size: .9em;
-	color: #8f8f91;
+	color: var(--color);
 }
 .simple-form h5 {
 	font-size: 13px;
@@ -242,7 +242,7 @@ select:-webkit-autofill {
 }
 /* список для выбора */
 .simple-form .form-list {
-	color: #888;
+	color: var(--color);
 	font-size: .85em;
 }
 .simple-form .form-list li {
@@ -250,10 +250,10 @@ select:-webkit-autofill {
     border-radius: 3px;
     padding: 5px 8px;
 	cursor: pointer;
-	color: #8f8f91;
+	color: var(--color);
 }
 .simple-form .form-list .active {
-    background: #2b2c31;
+    background: var(--light-background);
 }
 .btn-img {
 	height: 16px;
