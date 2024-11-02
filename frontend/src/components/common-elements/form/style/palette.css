@@ -61,10 +61,12 @@
 	.color-select-block .selected-color {
 		width: 50%;
 		height: 30px;
+		padding: 5px 10px!important;
 	}
 
 	.color-select-block .color-select-win {
 		height: auto;
 		min-height: 40px;
+		padding: 5px 10px!important;
 	}
 }
