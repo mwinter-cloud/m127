@@ -170,7 +170,7 @@
 }
 .profile-page .col1 .post main p {
 	margin: 5px 0;
-	font-size: 1em;
+	font-size: 13px;
 	line-height: 1.6em;
 	padding: 10px;
 	background: var(--light-background);
@@ -193,7 +193,7 @@
 }
 .profile-page .col2 .profile-info {
 	border-radius: 2px;
-	background: var(--background);
+	background: var(--light-background);
 	font-size: .95em;
 	margin-bottom: 20px;
 }
@@ -249,7 +249,7 @@
 	background: transparent;
 }
 .profile-page .admin-icon {
-	border: 1px solid rgba(255, 255, 255, 0.05);
+	border: 1px solid var(--transparent-border);
 	color: #888;
 	background: linear-gradient(0deg, rgba(171, 205, 239, 0.0769083) 0%, rgba(171, 205, 239, 0.0396534) 99%);
 	border-radius: 3px;
@@ -263,7 +263,8 @@
 
 .profile-page .admin-icon:hover::after {
 	content: "Модератор";
-	background: var(--dark-background);
+	background: var(--light-background);
+	border: 1px solid var(--transparent-border);
 	color: var(--color);
 	height: auto;
 	width: auto;
