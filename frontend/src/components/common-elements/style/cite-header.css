@@ -363,7 +363,7 @@
         bottom: -30px;
         padding: 5px 3%;
         left: 0;
-        background: #26272c;
+        background: var(--background);
     }
 	
     .main-header .notifications-block {
@@ -376,7 +376,7 @@
     }
 
     .main-header .search-block .search {
-        background: #2b2c31c4;
+        background: var(--light-background);
     }
 
     .search-page .back-arrow {
