@@ -137,6 +137,7 @@
     border-radius: 3px;
     margin-bottom: 5px;
     margin-top: 15px;
+	min-width: 180px;
 }
 .file-img {
     width: 40%;
@@ -145,6 +146,7 @@
     border-radius: 3px;
     margin-bottom: 5px;
     margin-top: 15px;
+	min-width: 180px;
 }
 .settings-page .form-field .avatar-img {
     width: 120px;

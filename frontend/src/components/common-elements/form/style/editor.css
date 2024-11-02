@@ -264,7 +264,7 @@
 }
 .redactor-design-win header {
 	border-bottom: 1px solid var(--dark-border);
-	padding: 5px 10px;
+	padding: 5px 10px!important;
 	display: flex;
 	justify-content: space-between;
 	background: var(--transparent-background);
