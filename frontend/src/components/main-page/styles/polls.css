@@ -558,9 +558,9 @@
 		font-weight: 400;
 		display: inline-block;
 		border-radius: 3px;
-		color: #888;
-		border: 1px solid rgba(171, 205, 239, 0.05);
-		background: linear-gradient(0deg, rgba(171, 205, 239, 0.0769083) 0%, rgba(171, 205, 239, 0.0396534) 99%);
+		color: var(--color);
+		border: 1px solid var(--transparent-border);
+		background: var(--gradient-background);
 	}
 
 	.polls-page .col2 {
