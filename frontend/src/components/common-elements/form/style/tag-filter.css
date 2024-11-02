@@ -131,6 +131,10 @@
 }
 
 @media (max-width: 800px) {
+	.tag-search-block {
+		height: auto !important;
+	}
+	
 	.tag-search {
 		padding: 5px 0;
 	}
