@@ -374,7 +374,7 @@
 
     .main-header .search-block .search {
         background: var(--light-background);
-		padding-left: 10px;
+		padding-left: 20px;
     }
 
     .search-page .back-arrow {

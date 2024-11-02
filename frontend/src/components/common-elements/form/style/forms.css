@@ -160,7 +160,7 @@ select:-webkit-autofill {
 
 .simple-btn {
 	background: var(--light-background);
-	color: var(--pale-color);
+	color: var(--color);
 	display: inline-block;
 	border-radius: 3px;
 	padding: 6px 10px;
