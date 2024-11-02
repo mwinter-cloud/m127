@@ -43,6 +43,7 @@ body {
 .d_blue-block {
     background: var(--d_blue)!important;
     border: 1px solid var(--d_blue)!important;
+	color: white;
 }
 .green-block {
     background: var(--green)!important;
@@ -64,7 +65,6 @@ body {
 .blue-block {
     background: var(--blue)!important;
     border: 1px solid var(--blue)!important;
-	color: white;
 }
 .gray-block {
     background: var(--gray)!important;
