@@ -517,6 +517,11 @@
     background: var(--background);
 }
 
+.day-mode .polls-page .tag-search {
+    background: var(--transparent-background);
+}
+
+
 
 @media (max-width: 800px) {
 	.polls-page {
