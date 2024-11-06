@@ -137,14 +137,14 @@
 	list-style: none;
 }
 .room-tags-aside .tag {
-	background: #2b2c31;
+	background: var(--light-background);
 	padding: 4px 6px;
 	border-radius: 3px;
 	margin-right: 8px;
 	font-size: .8em;
 	margin-bottom: 8px;
 	display: block;
-	color: #8f8f91;
+	color: var(--color);
 }
 
 .room-header .options {
@@ -345,7 +345,7 @@
 }
 .delete-btn {
 	font-size: .8em;
-	color: #888;
+	color: var(--color);
 	cursor: pointer;
 	width: 100%;
 	text-align: right;
@@ -355,7 +355,7 @@
 	font-size: 1.1em;
 }
 .delete-btn:hover {
-	color: inherit;
+	color: var(--active-color);
 }
 .answer .author .avatar {
 	height: 60px!important;

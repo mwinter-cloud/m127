@@ -1,5 +1,6 @@
 .rooms-main {
 	height: auto;
+    background: var(--dark-background);
 }
 .rooms-main .cite-top {
     padding-top: 25px;

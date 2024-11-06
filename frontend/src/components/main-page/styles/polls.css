@@ -126,6 +126,9 @@
     top: 0;
 	border-bottom: 1px solid var(--transparent-border);
 }
+.night-mode .polls-page .col1 .search {
+	background: rgb(32, 33, 38);
+}
 .polls-page .col1 .list .themes ul {
 	overflow-y: scroll;
 	overflow-x: hidden;
@@ -511,7 +514,7 @@
 }
 
 .polls-page .tag-search {
-    background: var(--transparent-background);
+    background: var(--background);
 }
 
 

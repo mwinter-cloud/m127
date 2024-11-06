@@ -1,7 +1,8 @@
 .confirm-window {
     width: 36%;
     margin-left: 32%!important;
-    background: #2b2c31;
+    background: var(--background);
+	color: var(--color);
     position: fixed;
     height: auto;
     z-index: 5;
@@ -39,7 +40,7 @@
 }
 
 .confirm-window .close-btn {
-    color: #8f8f91;
+    color: var(--pale-color);
 }
 
 
