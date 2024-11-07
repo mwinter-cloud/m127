@@ -619,7 +619,7 @@
 		height: 32px;
 	}
 	.polls-page .col1 .add-btn {
-		top: -3px;
+		top: 0;
 		position: relative;
 		height: 35px;
 		width: 35px;

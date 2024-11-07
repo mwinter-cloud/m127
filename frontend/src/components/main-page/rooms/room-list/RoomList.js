@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import RoomListHeader from "./RoomListHeader"
 import RoomListAside from "./RoomListAside"
-import RoomListContent from "./RoomListContent"
+import {RoomListMarkup} from "./RoomListMarkup"
 import '../../styles/room-list.css'
 import MediaQuery from 'react-responsive'
 
@@ -105,8 +105,8 @@ class RoomList extends Component {
 					<MediaQuery minWidth={801}>
 						<RoomListAside onTagSelect={this.onTagSelect}/>
 					</MediaQuery>
-					<RoomListContent tags={this.state.full_tag_list} rooms={this.state.rooms} onSearch={this.onSearch} loadRooms={this.loadRooms}
-									 control_room={this.state.control_room} onTagSelect={this.onTagSelect}/>
+					<RoomListMarkup tags={this.state.full_tag_list} rooms={this.state.rooms} onSearch={this.onSearch} loadRooms={this.loadRooms}
+						control_room={this.state.control_room} onTagSelect={this.onTagSelect}/>
 				</div>
 			</div>
 		)
