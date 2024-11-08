@@ -124,6 +124,12 @@ a:focus {
 	overflow-y: hidden;
 }
 
+.loading-icon {
+	font-size: 2em;
+	color: var(--color);
+	margin: 20px 0;
+}
+
 input {
 	font-family: inherit;
 	color: inherit;
