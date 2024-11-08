@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {MainRooms} from "../main-rooms/MainRooms"
+import {MainRoomsMarkup} from "../main-rooms/MainRoomsMarkup"
 import RoomList from "../room-list/RoomList"
 import Message from "../../../common-elements/windows/Message"
 
@@ -31,7 +31,7 @@ class RoomsPage extends Component {
         return (
             <main className="main-page">
                 {this.state.special_message=="showed" && <Message type="hello" confirmWindow={this.confirmWindow}/>}
-                <MainRooms/>
+                <MainRoomsMarkup/>
                 <RoomList/>
             </main>
         )

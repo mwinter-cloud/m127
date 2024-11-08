@@ -40,11 +40,13 @@ export const MainRoomList = ({device}) => {
 		)
 	} else if (roomsLoadingStatus == "loading") {
 		return (
-			<div className="el-icon-loading loading-icon"></div>
+			<div className="main-room-list container">
+				<div className="loading-icon"><i className="el-icon-loading"></i></div>
+			</div>
 		)
 	} else if (roomsLoadingStatus == "error") {
 		return (
-			<>Возникла ошибка</>
+			<div className="main-room-list container"></div>
 		)
 	} else {
 		return (<div className="main-room-list container"></div>)

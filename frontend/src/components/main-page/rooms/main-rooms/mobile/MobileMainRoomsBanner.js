@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Carousel from "../Carousel"
-import InfoBlock from "../InfoBlock"
+import {InfoBlock} from "../InfoBlock"
 import Rating from "../Rating"
 
 class MobileMainRoomsBanner extends Component {

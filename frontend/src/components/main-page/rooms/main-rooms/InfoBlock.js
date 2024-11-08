@@ -1,55 +1,51 @@
-import React, { Component } from 'react'
+import React, {Component, useState, useEffect} from 'react'
 import {Link} from "react-router-dom"
 import axios from "axios"
 import MegafonInfoWindow from "../../../common-elements/windows/MegafonInfoWindow"
 
-class InfoBlock extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            announcement: "undefined",
-            megafon_window: 0
-        }
-		this.openMegafonWindow = this.openMegafonWindow.bind(this)
-    }
+export const InfoBlock = () => {
+	const [megafonWindow, setMegafonWindow] = useState()
+	const [announcement, setAnnouncement] = useState("")
+	const [announcementLoadingStatus, setAnnouncementLoadingStatus] = useState("undefined")
 
-    openMegafonWindow = () => {
-        this.setState({megafon_window: (this.state.megafon_window ? 0 : 1)})
+    const openMegafonWindow = () => {
+        setMegafonWindow(megafonWindow ? 0 : 1)
     }
-
-    componentDidMount() {
-        axios.get('/api/get-announcement').then(res => {
-            const text = res.data.text
-            this.setState({announcement: text})
+	
+    useEffect(() => {
+        axios.get('/api/get-announcement', {
+			onDownloadProgress: () => {
+				setAnnouncementLoadingStatus('loading')
+			}
+		}).catch(() => {
+			setAnnouncementLoadingStatus('error')
+		}).then(({data}) => {
+			setAnnouncementLoadingStatus('loaded')
+            const text = data.text
+            setAnnouncement(text)
         })
-    }
+    }, [])
 
-    render() {
-        if (this.state.announcement != "undefined") {
-            if (this.state.announcement) {
-                return (
-                    <aside>
-                        {this.state.megafon_window?(<MegafonInfoWindow closeWindow={this.openMegafonWindow}/>):null}
-                        <div className="info-block">
-                            <p>{this.state.announcement}</p>
-                        </div>
-                        <div className="transparent-btn">
-                            <Link to="/info-page">Информация</Link>
-                        </div>
-                        <div className="transparent-btn" onClick={this.openMegafonWindow}>
-                            Специальный канал
-                        </div>
-                    </aside>
-                )
-            } else {
-                return (
-                    <div className="transparent-btn alone-info-btn">
-                        <Link to="/info-page"><i className="el-icon-info"></i> Информация</Link>
-                    </div>
-                )
-            }
-        }
-    }
+	if (announcementLoadingStatus == "loaded") {
+		return (
+			<aside>
+				{megafonWindow && <MegafonInfoWindow closeWindow={openMegafonWindow} />}
+				<div className="info-block">
+					<p>{announcement}</p>
+				</div>
+				<div className="transparent-btn">
+					<Link to="/info-page">Информация</Link>
+				</div>
+				<div className="transparent-btn" onClick={openMegafonWindow}>
+					Специальный канал
+				</div>
+			</aside>
+		)
+	} else {
+		return (
+			<aside>
+				<div className="loading-icon"><i className="el-icon-loading"></i></div>
+			</aside>
+		)
+	}
 }
-
-export default InfoBlock
