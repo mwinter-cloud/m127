@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import '../../style/editor.css'
 import SmileBlock from "./SmileBlock"
 import EditorBtns from "./EditorBtns"
@@ -32,53 +32,38 @@ export function specialtagsinnotification(text){
     return html
 }
 
-class TextEditor extends React.Component {
-    constructor(props) {
-        super(props)
-        this.setShowedStatus = this.setShowedStatus.bind(this)
-        this.updateEditor = this.updateEditor.bind(this)
-        this.onKeyDown = this.onKeyDown.bind(this)
-        this.paste = this.paste.bind(this)
-        this.inputTrigger = this.inputTrigger.bind(this)
-        this.setSmilesSection = this.setSmilesSection.bind(this)
-        this.state = {
-            design_win_status: 'hide',
-            showed_status: 0,
-            smiles_section: "smiles",
-        }
+export const TextEditor = ({textValue, setText, initialText=null}) => {
+	const textareaRef = useRef(null)
+	const [designWinStatus, setDesignWinStatus] = useState('hide')
+	const [editorVisibilityStatus, setEditorVisibilityStatus] = useState('editor-container')
+	const [smilesSection, setSmilesSection] = useState('smiles')
+
+	useEffect(() => {
+		if(initialText) {
+			textareaRef.current.innerHTML = initialText
+		}
+	}, [])
+
+    const upShowedStatus = () => {
+		setEditorVisibilityStatus(editorVisibilityStatus == 'editor-container' ? 'editor-hide' : 'editor-container')
     }
 
-    setShowedStatus = () => {
-        if (this.state.showed_status == 1) {
-            this.setState({
-                showed_status: 0,
-            })
-        } else {
-            this.setState({
-                showed_status: 1,
-            })
-        }
+    const updateEditor = () => {
+        let redactor_html = textareaRef.current.innerHTML
+        setText(redactor_html)
     }
 
-    updateEditor = () => {
-        let div_editable = document.getElementById(this.props.form_name + "_div_editable")
-        let redactor_html = div_editable.innerHTML
-        this.props.setText(redactor_html)
-    }
-
-    inputTrigger = () => {
-        let div_editable = document.getElementById(this.props.form_name + "_div_editable")
+    const inputTrigger = () => {
         let event = new Event('input', {
             bubbles: true,
             cancelable: true,
         })
-        div_editable.dispatchEvent(event)
+        textareaRef.current.dispatchEvent(event)
     }
 
-    paste = (event) => {
+    const paste = (event) => {
         event.preventDefault()
-        let div_textarea = document.getElementById(this.props.form_name + "_div_editable")
-        div_textarea.focus()
+        textareaRef.current.focus()
         let selection = window.getSelection(),
             range = selection.getRangeAt(0)
         let temp = document.createElement('div')
@@ -86,13 +71,12 @@ class TextEditor extends React.Component {
         range.deleteContents()
         range.insertNode(temp.firstChild)
         selection.collapseToEnd()
-        this.inputTrigger()
+        inputTrigger()
     }
 
-    onKeyDown = (e) => {
+    const onKeyDown = (e) => {
         if (e.keyCode === 13) {
-            let div_editable = document.getElementById(this.props.form_name + "_div_editable")
-            div_editable.focus()
+            textareaRef.current.focus()
             let selection = window.getSelection(),
                 range = selection.getRangeAt(0),
                 temp = document.createElement('br'),
@@ -100,44 +84,38 @@ class TextEditor extends React.Component {
             range.deleteContents()
             range.insertNode(insertion)
             selection.collapseToEnd()
-            this.inputTrigger()
+            inputTrigger()
             return false
         }
         if (e.keyCode === 8) {
-            this.inputTrigger()
+            inputTrigger()
         }
     }
 
-    setSmilesSection = (e, section="") => {
+    const upSmilesSection = (e, section = "") => {
         if(section) {
-            this.setState({smiles_section: section})
+            setSmilesSection(section)
         } else {
-            let smiles_section = this.state.smiles_section == "smiles" ? "spotti" : "smiles"
-            this.setState({smiles_section: smiles_section})
+            setSmilesSection(smilesSection == "smiles" ? "spotti" : "smiles")
         }
     }
 
-    render() {
-        return (
-            <>
-                {this.state.showed_status ? (<ShowedAnswer text={this.props.text_value}/>) : null}
-                <div className={this.state.showed_status ? 'hide' : 'editor-container'}>
-                    <EditorBtns div_editable_name={this.props.form_name + "_div_editable"}
-                                smiles_section={this.state.smiles_section}
-                                inputTrigger={this.inputTrigger} setSmilesSection={this.setSmilesSection}/>
-                    <div className="textarea-block">
-                        <div contentEditable onPaste={this.paste} id={this.props.form_name + "_div_editable"}
-                             className="editor-textarea" onInput={this.updateEditor}></div>
-                        <MediaQuery minWidth={801}>
-                            <SmileBlock div_editable_name={this.props.form_name + "_div_editable"}
-                                        smiles_section={this.state.smiles_section}/>
-                        </MediaQuery>
-                    </div>
-                </div>
-                <div className={this.state.showed_status == 1 ? "i-btn el-icon-edit" : "i-btn el-icon-view"}
-                   onClick={this.setShowedStatus}></div>
-            </>
-        )
-    }
+	return (
+		<>
+			{editorVisibilityStatus == 'editor-hide' && <ShowedAnswer text={textValue}/>}
+			<div className={editorVisibilityStatus}>
+				<EditorBtns textareaRef={textareaRef.current}
+							smilesSection={smilesSection}
+							inputTrigger={inputTrigger} setSmilesSection={upSmilesSection}/>
+				<div className="textarea-block">
+					<div contentEditable onPaste={paste} ref={textareaRef}
+						 className="editor-textarea" onInput={updateEditor}></div>
+					<MediaQuery minWidth={801}>
+						<SmileBlock textareaRef={textareaRef.current} smilesSection={smilesSection} />
+					</MediaQuery>
+				</div>
+			</div>
+			<div className={"i-btn el-icon-" + editorVisibilityStatus} onClick={upShowedStatus}></div>
+		</>
+	)
 }
-export default TextEditor

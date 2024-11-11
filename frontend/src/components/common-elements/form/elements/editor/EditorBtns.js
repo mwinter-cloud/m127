@@ -41,8 +41,7 @@ class EditorBtns extends React.Component {
 
 
     makeCursive = (e) => {
-        let div_textarea = document.getElementById(this.props.div_editable_name)
-        div_textarea.focus()
+        this.props.textareaRef.focus()
         let selection = window.getSelection(),
             range = selection.getRangeAt(0)
         let temp = document.createElement('div');
@@ -52,8 +51,7 @@ class EditorBtns extends React.Component {
     }
 
     makeBold = (e) => {
-        let div_textarea = document.getElementById(this.props.div_editable_name)
-        div_textarea.focus()
+        this.props.textareaRef.focus()
         let selection = window.getSelection(),
             range = selection.getRangeAt(0)
         let temp = document.createElement('div');
@@ -63,8 +61,7 @@ class EditorBtns extends React.Component {
     }
 
     addSpoiler = () => {
-        let div_editable = document.getElementById(this.props.div_editable_name)
-        div_editable.focus()
+        this.props.textareaRef.focus()
         let selection = window.getSelection(),
             range = selection.getRangeAt(0)
         let temp = document.createElement('div')
@@ -75,8 +72,7 @@ class EditorBtns extends React.Component {
     }
 
     addBlock1 = () => {
-        let div_editable = document.getElementById(this.props.div_editable_name)
-        div_editable.focus()
+        this.props.textareaRef.focus()
         let selection = window.getSelection(),
             range = selection.getRangeAt(0)
         let temp = document.createElement('div')
@@ -86,8 +82,7 @@ class EditorBtns extends React.Component {
         this.props.inputTrigger()
     }
     addBlock2 = () => {
-        let div_editable = document.getElementById(this.props.div_editable_name)
-        div_editable.focus()
+        this.props.textareaRef.focus()
         let selection = window.getSelection(),
             range = selection.getRangeAt(0)
         let temp = document.createElement('div')
@@ -97,8 +92,7 @@ class EditorBtns extends React.Component {
         this.props.inputTrigger()
     }
     addBlock3 = () => {
-        let div_editable = document.getElementById(this.props.div_editable_name)
-        div_editable.focus()
+        this.props.textareaRef.focus()
         let selection = window.getSelection(),
             range = selection.getRangeAt(0)
         let temp = document.createElement('div')
@@ -108,8 +102,7 @@ class EditorBtns extends React.Component {
         this.props.inputTrigger()
     }
     addBlock4 = () => {
-        let div_editable = document.getElementById(this.props.div_editable_name)
-        div_editable.focus()
+        this.props.textareaRef.focus()
         let selection = window.getSelection(),
             range = selection.getRangeAt(0)
         let temp = document.createElement('div')
@@ -164,8 +157,7 @@ class EditorBtns extends React.Component {
 	}
 
     selectColor = (color) => {
-        let div_editable = document.getElementById(this.props.div_editable_name)
-        div_editable.focus()
+        this.props.textareaRef.focus()
         let selection = window.getSelection(),
             range = selection.getRangeAt(0)
         let temp = document.createElement('div')
@@ -179,8 +171,7 @@ class EditorBtns extends React.Component {
     }
 
     addImage = () => {
-        let div_editable = document.getElementById(this.props.div_editable_name)
-        div_editable.focus()
+        this.props.textareaRef.focus()
         let selection = window.getSelection(),
             range = selection.getRangeAt(0)
         let temp = document.createElement('div');
@@ -219,8 +210,7 @@ class EditorBtns extends React.Component {
                             return (
 								<>
 									<header>=^-^= <div className="el-icon-close close-btn" onClick={this.closeDesignWin}></div></header>
-									<SmileBlock smiles_section={this.props.smiles_section}
-                                            div_editable_name={this.props.div_editable_name}/>
+									<SmileBlock textareaRef={textareaRef}/>
 								</>
                             )
                         }
@@ -244,7 +234,7 @@ class EditorBtns extends React.Component {
                             className="el-icon-picture-outline"></i></li>
                         <MediaQuery minWidth={801}>
                             <li data-title="стикеры" className="block-btn"><img
-                                src={this.props.smiles_section == "spotti" ?
+                                src={this.props.smilesSection == "spotti" ?
                                     ("../../../../../../static/frontend/smiles-btn.png") :
                                     ("../../../../../../static/frontend/stickers-btn.jpg")}
                                 onClick={this.props.setSmilesSection}/></li>

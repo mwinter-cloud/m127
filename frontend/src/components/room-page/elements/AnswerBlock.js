@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import FullScreenWindow from "../../common-elements/windows/FullScreenWindow"
 import Profile from "../../member/profile/Profile"
-import AnswerForm from "../forms/AnswerForm"
+import {AnswerForm} from "../forms/AnswerForm"
 import parse from "html-react-parser"
 import {specialtagstohtml, transformationforshow} from "../../common-elements/form/elements/editor/TextEditor"
 import AnswerBtns_wrap from "../../../store/wraps/room-page/AnswerBtns_wrap"

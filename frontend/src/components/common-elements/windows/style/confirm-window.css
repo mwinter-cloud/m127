@@ -41,6 +41,7 @@
 
 .confirm-window .close-btn {
     color: var(--pale-color);
+	margin-top: 1px;
 }
 
 

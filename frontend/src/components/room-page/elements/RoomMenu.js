@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import CreateBannerRoomBtn_wrap from "../../../store/wraps/room-page/CreateBannerRoomBtn_wrap";
-import SaveBtn from "./SaveBtn";
+import CreateBannerRoomBtn_wrap from "../../../store/wraps/room-page/CreateBannerRoomBtn_wrap"
+import SaveBtn from "./SaveBtn"
 
 class RoomMenu extends Component {
     constructor(props) {

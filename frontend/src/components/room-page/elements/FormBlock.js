@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import AnswerForm from "../forms/AnswerForm"
+import {AnswerForm} from "../forms/AnswerForm"
 import MediaQuery from 'react-responsive'
 
 class FormBlock extends Component {
@@ -124,7 +124,7 @@ class FormBlock extends Component {
 							<i className="el-icon-chat-round"></i></button>
 					</MediaQuery>
 					<div className={this.state.editor_status + " answer-input"}>
-						<AnswerForm id={this.props.id} form_name="new_answer_form"
+						<AnswerForm id={this.props.id}
 									sendSocketEvent={this.props.sendSocketEvent}
 									addNotification={this.addNotification} savers={this.props.savers}
 									room_name={this.props.room_name}/>

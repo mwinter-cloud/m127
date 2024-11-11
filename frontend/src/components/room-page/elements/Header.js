@@ -9,7 +9,7 @@ class Header extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            room_menu: 0,
+            room_menu: 'closed',
             edit_window: 0,
             banner_form: 0,
         }
@@ -20,7 +20,7 @@ class Header extends Component {
     }
 
     openRoomMenu = () => {
-        this.setState({room_menu: this.state.room_menu ? 0 : 1})
+        this.setState({room_menu: this.state.room_menu == 'closed' ? 'opened' : 'closed'})
     }
 
     openEditWindow = () => {
@@ -34,7 +34,7 @@ class Header extends Component {
 
     handleClickOutside(event) {
         if (this.wrapperRef && !this.wrapperRef.current.contains(event.target) && event.target != document.getElementById('options_btn')) {
-            this.setState({room_menu: 0})
+            this.setState({room_menu: 'closed'})
         }
     }
 
@@ -63,11 +63,9 @@ class Header extends Component {
                                 <div className="options-btn" onClick={this.openRoomMenu} id="options_btn">
                                     Опции темы
                                 </div>
-                                {this.state.room_menu ? (
-                                    <RoomMenu room_id={this.props.room.id} openBannerForm={this.openBannerForm}
+                                {this.state.room_menu == 'opened' && <RoomMenu room_id={this.props.room.id} openBannerForm={this.openBannerForm}
 									room_author_id={this.props.room.author.id} my_id={this.props.my_id} is_admin={this.props.is_admin}
-                                    openEditWindow={this.openEditWindow} openMenuWindow={this.openRoomMenu}/>)
-                                    : null}
+                                    openEditWindow={this.openEditWindow} openMenuWindow={this.openRoomMenu}/>}
                             </div>
                         </div>
                     </div>

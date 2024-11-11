@@ -1,15 +1,20 @@
 import React, {useEffect, useState} from 'react'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
-import TextEditor from "../../common-elements/form/elements/editor/TextEditor"
+import {TextEditor} from "../../common-elements/form/elements/editor/TextEditor"
 import CSRFToken from "../../common-elements/form/CSRFToken"
 import {specialtagsinnotification} from "../../common-elements/form/elements/editor/TextEditor"
 import MediaQuery from 'react-responsive'
 
-const AnswerForm = (props) => {
+export const AnswerForm = ({text, sendSocketEvent, savers, room_name, addNotification, setAnswer, id}) => {
+    const set_text = (text) => {
+        //записываем текст в поле из редактора
+        formik.setFieldValue('text', text)
+    }
+	
     const formik = useFormik({
         initialValues: {
-            text: props.text ? props.text : "",
+            text: text ? text : "",
         },
         validationSchema: Yup.object({
             text: Yup.string()
@@ -21,27 +26,26 @@ const AnswerForm = (props) => {
             if (form.hasAttribute('data-submitting')) return
             form.setAttribute('data-submitting',"")
             const send_socket = (data) => {
-                props.sendSocketEvent(data)
+                sendSocketEvent(data)
             }
             const clear_textarea = () => {
                 form.removeAttribute('data-submitting')
-                document.getElementById(props.form_name + "_div_editable").innerHTML = ""
                 formik.setFieldValue('text', "")
             }
             const add_notification_for_savers = (data) => {
                 let sender = (({id, name, avatar}) => ({id, name, avatar}))(data.author)
-                let recipients = props.savers.filter((el) => {
+                let recipients = savers.filter((el) => {
                     return el !== data.author.id
                 })
                 let notification_data = {
                     sender: sender,
                     recipients: recipients,
                     notif_type: 2,
-                    text: props.room_name,
+                    text: room_name,
                     object: data.id,
                 }
                 if(recipients.length!=0) {
-                    props.addNotification(notification_data)
+                    addNotification(notification_data)
                 }
             }
             const add_notification = (data) => {
@@ -62,22 +66,22 @@ const AnswerForm = (props) => {
                             text: specialtagsinnotification(formik.values.text).substring(0, 99),
                             object: data.id,
                         }
-                        props.addNotification(notification_data)
+                        addNotification(notification_data)
                     })
                 } else {
                     add_notification_for_savers(data)
                 }
             }
-            const url = props.text ? ("../api/edit-answer") : ("../api/create-answer")
+            const url = text ? ("../api/edit-answer") : ("../api/create-answer")
             $.ajax({
                 type: 'post',
                 url: url,
                 cache: false,
-                data: {text: values.text, id: props.id},
+                data: {text: values.text, id: id},
                 success: function (data) {
                     clear_textarea()
-                    if (props.text) {
-                        props.setAnswer(data.text)
+                    if (text) {
+                        setAnswer(data.text)
                     } else {
                         send_socket(data)
                         add_notification(data)
@@ -89,23 +93,12 @@ const AnswerForm = (props) => {
             })
         },
     })
-    const useMountEffect = () => {
-        useEffect(() => {
-            if (props.text) {
-                document.getElementById(props.form_name + "_div_editable").innerHTML = formik.values.text
-            }
-        }, [props.text])
-    }
-    const set_text = (text) => {
-        //записываем текст в поле из редактора
-        formik.setFieldValue('text', text)
-    }
-    useMountEffect()
+	
     return (
         <form className="answer-textarea" id="answer_form" onSubmit={formik.handleSubmit}>
             <CSRFToken/>
-            <input name="text" type="hidden" onChange={formik.handleChange} value={formik.values.text}/>
-            <TextEditor setText={set_text} text_value={formik.values.text} form_name={props.form_name}/>
+            <input name="text" type="hidden" onChange={formik.handleChange} value={formik.values.text} />
+            <TextEditor setText={set_text} textValue={formik.values.text} initialText={formik.values.text} />
             <button className='send-btn' type="submit">
 				<i className="el-icon-s-promotion"></i>
                 <div type="submit" className="progress-btn-line"></div>
@@ -113,5 +106,3 @@ const AnswerForm = (props) => {
         </form>
     )
 }
-
-export default AnswerForm

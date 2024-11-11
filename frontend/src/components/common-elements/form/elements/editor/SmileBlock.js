@@ -23,8 +23,7 @@ class SmileBlock extends React.Component {
 	addSmile = (e) => {
 		//добавим элемент в div contenteditable
 		let img = e.target.cloneNode(true)
-		let div_editable = document.getElementById(this.props.div_editable_name)
-		div_editable.focus()
+		this.props.textareaRef.focus()
 		let selection = window.getSelection(),
 			range = selection.getRangeAt(0),
 			temp = document.createElement('div'),
@@ -40,13 +39,13 @@ class SmileBlock extends React.Component {
 			bubbles: true,
 			cancelable: true,
 		})
-		div_editable.dispatchEvent(event)
+		this.props.textareaRef.dispatchEvent(event)
 	}
 
 	render() {
 		return (
 			<div className="smiles-block">
-				{this.props.smiles_section == "smiles" ? (
+				{this.props.smilesSection == "smiles" ? (
 					<ul>
 						{this.state.smiles.map((smile, index) => {
 							return (
@@ -55,7 +54,7 @@ class SmileBlock extends React.Component {
 						})}
 					</ul>
 				) : (
-					<SpottiStickersWindow div_editable_name={this.props.div_editable_name}/>
+					<SpottiStickersWindow textareaRef={this.props.textareaRef}/>
 				)}
 			</div>
 		)

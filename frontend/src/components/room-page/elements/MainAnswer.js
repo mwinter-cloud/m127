@@ -1,61 +1,48 @@
-import React, { Component } from 'react'
+import React, {useState} from 'react'
 import parse from "html-react-parser"
 import {specialtagstohtml, transformationforshow} from "../../common-elements/form/elements/editor/TextEditor"
 import MediaQuery from 'react-responsive'
 import FullScreenWindow from "../../common-elements/windows/FullScreenWindow"
 import Profile from "../../member/profile/Profile"
 
-class MainAnswer extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            profile_window: 0,
-        }
-        this.openProfile = this.openProfile.bind(this)
+const MainAnswer = ({answer}) => {
+    const [profileWindow, setProfileWindow] = useState('closed')
+
+    const upProfile = () => {
+        setProfileWindow(profileWindow == 'opened' ? 'closed' : 'opened')
     }
 
-    openProfile = () => {
-        this.setState({profile_window: (this.state.profile_window ? 0 : 1)})
-    }
-
-    render() {
-        return (
-            <>
-                {this.state.profile_window ? (
-                    <FullScreenWindow
-                        children={<Profile id={this.props.answer.author.id}
-                                           closeWindow={this.openProfile}/>}/>) : null}
-                <div className="answers first-answer">
-                    <div className="answer">
-                        <MediaQuery maxWidth={800}>
-                            <header className="answer-header">
-                                <div className="btn">{this.props.answer.created_at}</div>
-                            </header>
-                        </MediaQuery>
-                        <div className="author">
-                            {this.props.answer.author.avatar != null ?
-                                (<img src={this.props.answer.author.avatar} className="avatar"/>)
-                                : (<div className="avatar base-avatar"></div>)}
-                            <div className="author-info" onClick={this.openProfile}>
-                                <span className={this.props.answer.author.color}>{this.props.answer.author.name}</span>
-                            </div>
-                        </div>
-                        <div className="text">
-                            <MediaQuery minWidth={801}>
-                                <header className="answer-header">
-                                    <div className="btn">{this.props.answer.created_at}</div>
-                                </header>
-                            </MediaQuery>
-                            <div
-                                className="answer-text">
-                                {parse(transformationforshow(specialtagstohtml(this.props.answer.text)))}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </>
-        )
-    }
+	return (
+		<>
+			{profileWindow == 'opened' && <FullScreenWindow children={<Profile id={answer.author.id} closeWindow={upProfile}/>} />}
+			<div className="answers first-answer">
+				<div className="answer">
+					<MediaQuery maxWidth={800}>
+						<header className="answer-header">
+							<div className="btn">{answer.created_at}</div>
+						</header>
+					</MediaQuery>
+					<div className="author">
+						{answer.author.avatar != null ? (<img src={answer.author.avatar} className="avatar"/>) : (<div className="avatar base-avatar"></div>)}
+						<div className="author-info" onClick={upProfile}>
+							<span className={answer.author.color}>{answer.author.name}</span>
+						</div>
+					</div>
+					<div className="text">
+						<MediaQuery minWidth={801}>
+							<header className="answer-header">
+								<div className="btn">{answer.created_at}</div>
+							</header>
+						</MediaQuery>
+						<div
+							className="answer-text">
+							{parse(transformationforshow(specialtagstohtml(answer.text)))}
+						</div>
+					</div>
+				</div>
+			</div>
+		</>
+	)
 }
 
 export default MainAnswer

@@ -2,7 +2,7 @@
 	position: relative;
 }
 .textarea-block {
-	border: 1px solid var(--transparent-border)!important;
+	border: 1px solid var(--border)!important;
 	width: 100%;
 	height: 150px;
 	border-radius: 0 0 3px 3px;
@@ -11,11 +11,14 @@
 	margin: 0 0 15px 0!important;
 	padding: 0!important;
 }
+.day-mode .textarea-block {
+	border: 1px solid var(--dark-border)!important;
+}
 .editor-textarea {
 	background: transparent;
     color: var(--color);
 	font-family: inherit;
-	border: 1px solid transparent;
+	border: 1px solid transparent !important;
 	width: 75%!important;
 	height: 100%;
 	padding: 10px;
@@ -25,6 +28,9 @@
 	margin: 0!important;
 	scrollbar-width: none;
 	display: inline-block!important;
+}
+.editor-hide {
+	display: none;
 }
 .answer .editor-textarea {
     padding: 5px;
@@ -73,9 +79,13 @@
 	margin: 0!important;
 	padding: 8px 10px;
 	border-radius: 3px 3px 0 0;
-	border: 1px solid var(--transparent-border)!important;
+	border: 1px solid var(--border)!important;
 	border-bottom: 0!important;
 	background: transparent;
+}
+.day-mode .input-header {
+	border: 1px solid var(--dark-border)!important;
+	border-bottom: 0!important;
 }
 .input-header ul{
 	display: flex;
@@ -133,11 +143,15 @@
 	margin: 0;
 	height: 148px;
 	position: absolute;
-	border-left: 1px solid var(--transparent-border)!important;
+	border-left: 1px solid var(--border)!important;
 	top: 0;
 	right: 0;
 	padding: 5px;
 	overflow-y: auto;
+	overflow-x: hidden;
+}
+.day-mode .smiles-block {
+	border-left: 1px solid var(--dark-border)!important;
 }
 .smiles-block::-webkit-scrollbar {
     width: 8px;
@@ -198,15 +212,24 @@
     display: inline-block;
     margin: 0;
     cursor: pointer;
-    color: var(--color);
-    font-size: 1.1em;
-    padding: 3px;
-    border: 1px solid var(--border);
+    color: var(--pale-color);
+    font-size: 14px;
+    padding: 5px!important;
+    border: 1px solid var(--border)!important;
     border-radius: 2px;
 }
 .i-btn:hover {
     color: var(--active-color);
 }
+
+.el-icon-editor-container:before {
+	content: "\e6ce";
+}
+
+.el-icon-editor-hide:before {
+	content: "\e78c";
+}
+
 .showed-msg {
     font-size: 0.85em;
     height: 190px;
@@ -216,6 +239,7 @@
     border-radius: 3px!important;
     border: 1px solid var(--border)!important;
 	scrollbar-width: none;
+	color: var(--color);
 }
 .showed-msg::-webkit-scrollbar {
     width: 8px;

@@ -25,8 +25,7 @@ class SpottiStickersWindow extends React.Component {
 	addSticker = (e) => {
 		//добавим элемент в div contenteditable
 		let img = e.target.cloneNode(true)
-		let div_editable = document.getElementById(this.props.div_editable_name)
-		div_editable.focus()
+		this.props.textareaRef.focus()
 		let selection = window.getSelection(),
 			range = selection.getRangeAt(0),
 			temp = document.createElement('div'),
@@ -42,7 +41,7 @@ class SpottiStickersWindow extends React.Component {
 			bubbles: true,
 			cancelable: true,
 		})
-		div_editable.dispatchEvent(event)
+		this.props.textareaRef.dispatchEvent(event)
 	}
 
 	render() {

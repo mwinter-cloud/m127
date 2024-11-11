@@ -482,6 +482,9 @@
 	border: 0;
 	width: auto;
 }
+.night-mode .answer-input .send-btn {
+	background: var(--light-background);
+}
 
 .answer-input .send-btn i {
 	display: none;

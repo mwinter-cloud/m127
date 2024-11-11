@@ -12,7 +12,7 @@ class ConfirmWindow extends Component {
         const form = document.getElementById('submit_form')
         if (form.hasAttribute('data-submitting')) return
         form.setAttribute('data-submitting',"")
-        this.props.confirm_function()
+        this.props.confirmFunc()
     }
 
     render() {
