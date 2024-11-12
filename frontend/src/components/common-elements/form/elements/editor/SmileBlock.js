@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from "axios"
-import SpottiStickersWindow from "./SpottiStickersWindow"
+import {SpottiStickersWindow} from "./SpottiStickersWindow"
 import MediaQuery from 'react-responsive'
 
 class SmileBlock extends React.Component {

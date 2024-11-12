@@ -13,6 +13,7 @@ class RoomPage extends Component {
             room: {},
             new_answers: [],
 			header_visibility: 'hidden',
+			roomLoadingStatus: 'undefined',
         }
         this.sendSocketEvent = this.sendSocketEvent.bind(this)
         this.clearNewAnswers = this.clearNewAnswers.bind(this)
@@ -23,12 +24,17 @@ class RoomPage extends Component {
     componentDidMount() {
         this.props.set_section('')
         window.scrollTo(0, 0)
-        const get_room = axios.get(window.location.origin + '/api/get-room/' + this.props.id).catch((err) => {
-            this.setState({room: "404"})
-        })
+        const get_room = axios.get(window.location.origin + '/api/get-room/' + this.props.id, {
+			onDownloadProgress: () => {
+				this.setState({roomLoadingStatus: 'loading'})
+			}
+		}).catch(() => {
+			this.setState({roomLoadingStatus: 'error'})
+		})
         get_room.then(res => {
             const room = res.data
             this.setState({room: room})
+			this.setState({roomLoadingStatus: 'loaded'})
         })
         axios.get(window.location.origin + '/api/set-room-view/' + this.props.id)
         let wsProtocol = ""
@@ -102,62 +108,66 @@ class RoomPage extends Component {
     }
 
     render() {
-        if (this.state.room != {}) {
-            if (this.state.room != "404") {
-                return (
-                    <main className="room-page">
-                        {(() => {
-                            if (this.state.room.tags) {
-                                return (
-                                    <>
-                                        <Cover cover={this.state.room.cover}/>
-                                        <Header room={this.state.room} reloadRoom={this.reloadRoom} is_admin={this.props.my_profile.is_admin} my_id={this.props.my_profile.id}/>
-                                    </>
-                                )
-                            }
-                        })()}
-                        {(() => {
-                            if (this.state.room.author) {
-                                return (
-                                    <>
-										<div className={"room-scroll-header room-scroll-header-"+this.state.header_visibility} onClick={this.scrollToTop}>
-											{this.state.room.name}
-										</div>   
-										<MainAnswer
-                                            room_id={this.props.id}
-                                            answer={{
-                                                id: this.state.room.id,
-                                                text: this.state.room ? this.state.room.message : null,
-                                                name: this.state.room.name, created_at: this.state.room.created_at,
-                                                author: {
-                                                    id: this.state.room.author.id,
-                                                    name: this.state.room.author.name,
-                                                    avatar: this.state.room.author.avatar,
-                                                    color: this.state.room.author.color ? this.state.room.author.color.type : null,
-                                                }
-                                            }}/>
-                                        <Answers id={this.props.id} new_answers={this.state.new_answers}
-                                                clearNewAnswers={this.clearNewAnswers} is_admin={this.props.my_profile.is_admin}
-												room_saved_by={this.state.saved_by} room_type={this.state.room.type}
-												room_name={this.state.room.name} sendSocketEvent={this.sendSocketEvent}
-										/>
-										<NewItems />
-                                    </>
-                                )
-                            }
-                        })()}
-                    </main>
-                )
-            } else {
-                return (
-                    <main className="room-page">
-                        <h2 className="not-found-title">Запись не найдена.</h2>
-                    </main>
-                )
-            }
-        } else {
-            return (<main className="room-page"><i className="el-icon-loading loading-icon"></i></main>)
-        }
+		if (this.state.roomLoadingStatus == "loaded") {
+			return (
+				<main className="room-page">
+					{(() => {
+						if (this.state.room.tags) {
+							return (
+								<>
+									<Cover cover={this.state.room.cover}/>
+									<Header room={this.state.room} reloadRoom={this.reloadRoom} is_admin={this.props.my_profile.is_admin} my_id={this.props.my_profile.id}/>
+								</>
+							)
+						}
+					})()}
+					{(() => {
+						if (this.state.room.author) {
+							return (
+								<>
+									<div className={"room-scroll-header room-scroll-header-"+this.state.header_visibility} onClick={this.scrollToTop}>
+										{this.state.room.name}
+									</div>   
+									<MainAnswer
+										room_id={this.props.id}
+										answer={{
+											id: this.state.room.id,
+											text: this.state.room ? this.state.room.message : null,
+											name: this.state.room.name, created_at: this.state.room.created_at,
+											author: {
+												id: this.state.room.author.id,
+												name: this.state.room.author.name,
+												avatar: this.state.room.author.avatar,
+												color: this.state.room.author.color ? this.state.room.author.color.type : null,
+											}
+										}}/>
+									<Answers id={this.props.id} new_answers={this.state.new_answers}
+											clearNewAnswers={this.clearNewAnswers} is_admin={this.props.my_profile.is_admin}
+											room_saved_by={this.state.saved_by} room_type={this.state.room.type}
+											room_name={this.state.room.name} sendSocketEvent={this.sendSocketEvent}
+									/>
+									<NewItems />
+								</>
+							)
+						}
+					})()}
+				</main>
+			)
+		} else if (this.state.roomLoadingStatus == "loading") {
+			return (
+				<main className="room-page">
+					<div className="loading-icon"><i className="el-icon-loading"></i></div>
+				</main>
+			)
+		} else if (this.state.roomLoadingStatus == "error") {
+			return (
+				<main className="room-page">
+					<h2 className="not-found-title">Тема не обнаружена.</h2>
+				</main>
+			)
+		} else {
+			return null
+		}
     }
 }
 

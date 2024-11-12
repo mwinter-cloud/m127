@@ -351,8 +351,8 @@
 	text-align: right;
 }
 .delete-btn i {
-	margin-right: 3px;
-	font-size: 1.1em;
+	margin-right: 1px;
+	font-size: 12px;
 }
 .delete-btn:hover {
 	color: var(--active-color);
