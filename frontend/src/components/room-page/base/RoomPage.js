@@ -104,7 +104,7 @@ class RoomPage extends Component {
     }
 
     reloadRoom = (data) => {
-        this.setState({room: data.room})
+        this.setState({room: data})
     }
 
     render() {

@@ -67,9 +67,6 @@ const CreateRoomForm = ({room, reloadRoom}) => {
         selectedTags.map(tag => {
             formData.append('tags[]', tag)
         })
-        const reloadRoom = (data) => {
-			reloadRoom(data)
-        }
         $.ajax({
             type: 'post',
             url: room ? '/api/edit-room' : '/api/create-room',
@@ -78,8 +75,8 @@ const CreateRoomForm = ({room, reloadRoom}) => {
             processData: false,
             contentType: false,
             success: function (data) {
-                if (room) {
-                    reloadRoom(data)
+                if (data.room) {
+                    reloadRoom(data.room)
                 } else {
                     setNavigate("/room/" + data.room_id)
                 }

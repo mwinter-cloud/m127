@@ -19,7 +19,6 @@ const Dropzone = props => {
             imgElement.src = event.target.result
             //file_input.src = event.target.result
             imgElement.onload = function (e) {
-				console.log(file.size)
 				if (imgElement.width > 1500 || imgElement.height > 1200 || file.size>1000000) {
 					setError('(・`ω´・) Размер изображения превышает допустимый. Выбери другое.')
 					file_input.value = null
