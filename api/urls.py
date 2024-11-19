@@ -21,7 +21,7 @@ urlpatterns = [
     path('create-base-profile', ProfileView.as_view({'post': 'create_base'})),
     path('logout', UserView.as_view({'get': 'logout'})),
     path('send-confirm-email', UserView.as_view({'post': 'send_confirm_email'})),
-    path('confirm-email/<int:code>', UserView.as_view({'get': 'register_confirm'})),
+    path('confirm-email', UserView.as_view({'post': 'register_confirm'})),
     path('change-email-query', UserView.as_view({'post': 'send_change_email_mail'})),
     path('change-email/<int:code>', UserView.as_view({'get': 'change_email'})),
     path('change-password/<int:code>', UserView.as_view({'post': 'change_password'})),

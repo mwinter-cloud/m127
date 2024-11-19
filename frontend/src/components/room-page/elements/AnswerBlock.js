@@ -123,7 +123,7 @@ class AnswerBlock extends Component {
 									return (
 										<>
 											{this.state.confirm_window ? (
-												<ConfirmWindow confirm_function={this.deleteAnswer}
+												<ConfirmWindow confirmFunc={this.deleteAnswer}
 															   close={this.openConfirmWindow}/>) : null}
 											<section className="answer" id={"answer" + this.props.answer.id}>
 												<div className="author">

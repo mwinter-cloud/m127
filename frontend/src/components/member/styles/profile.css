@@ -109,7 +109,10 @@
 	margin: 2px 0 0 5px;
 	font-weight: 500;
     font-size: 1.1em;
-	color: inherit;
+	color: var(--color);
+}
+.night-mode .profile-page .main-profile-header h3 {
+	color: var(--color)!important;
 }
 /* основное содержание */
 .profile-page .content {

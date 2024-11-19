@@ -84,8 +84,9 @@ class UserView(viewsets.ViewSet):
         logout(request)
         return redirect('../login/')
 
-    def register_confirm(self, request, code):
+    def register_confirm(self, request):
         queryset = Operation.objects.all()
+        code = request.POST.get('code')
         exist_operation = queryset.filter(code=code)
         if exist_operation:
             operation = get_object_or_404(queryset, code=code)
@@ -93,7 +94,8 @@ class UserView(viewsets.ViewSet):
             profile.email_confirm = True
             profile.save()
             operation.delete()
-        return redirect("../../")
+            return JsonResponse('success', safe=False)
+        return JsonResponse('fail', safe=False)
 
     def send_change_email_mail(self, request):
         new_email = request.POST.get('email')

@@ -153,12 +153,6 @@ class RoomPage extends Component {
 					})()}
 				</main>
 			)
-		} else if (this.state.roomLoadingStatus == "loading") {
-			return (
-				<main className="room-page">
-					<div className="loading-icon"><i className="el-icon-loading"></i></div>
-				</main>
-			)
 		} else if (this.state.roomLoadingStatus == "error") {
 			return (
 				<main className="room-page">
@@ -166,7 +160,7 @@ class RoomPage extends Component {
 				</main>
 			)
 		} else {
-			return null
+			<main className="room-page"><div className="loading-icon"><i className="el-icon-loading"></i></div></main>
 		}
     }
 }

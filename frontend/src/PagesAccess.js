@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from "axios"
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import AdminPanel from "./components/admin-panel/AdminPanel"
 import CiteSettings from "./components/admin-panel/cite-settings/base/CiteSettings"
 import Moderators from "./components/admin-panel/moderators/base/Moderators"
@@ -9,7 +9,7 @@ import UpdateList from "./components/admin-panel/updates-list/base/UpdateList"
 import Workplan from "./components/admin-panel/workplan/base/Workplan"
 import WalkPage from "./components/common-elements/message-pages/WalkPage"
 import AgreementPage from "./components/common-elements/message-pages/AgreemantPage"
-import MessagePage from "./components/common-elements/message-pages/MessagePage"
+import EmailConfirmPage from "./components/member/registration/email-confirm/EmailConfirmPage"
 import ProfileCreate from "./components/member/profile-create-form/base/ProfileCreate"
 import Registration from "./components/member/registration/base/Registration"
 import RegistrationCodePage from "./components/member/registration/registration-code/RegistrationCodePage"
@@ -176,7 +176,7 @@ class PagesAccess extends React.Component {
                             return (
                                 <>
                                     <Route path="agreement" element={<AgreementPage/>}/>
-                                    <Route path="*" element={<MessagePage type="email_confirm"/>}/>
+                                    <Route path="*" element={<EmailConfirmPage />}/>
                                 </>
                             )
                         } else if (this.state.access_type == 2) {

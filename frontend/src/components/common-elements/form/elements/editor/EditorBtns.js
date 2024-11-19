@@ -210,7 +210,7 @@ class EditorBtns extends React.Component {
                             return (
 								<>
 									<header>=^-^= <div className="el-icon-close close-btn" onClick={this.closeDesignWin}></div></header>
-									<SmileBlock textareaRef={textareaRef}/>
+									<SmileBlock textareaRef={this.props.textareaRef} smilesSection={this.state.design_win_status} />
 								</>
                             )
                         }

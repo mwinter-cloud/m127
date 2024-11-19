@@ -12,23 +12,24 @@
 body {
 	margin: 0;
 	font-family: 'Montserrat', sans-serif;
-	--background: #26272c;
-	--dark-background: #1a1b20;
-	--middle-background: #2b2c31;
-	--light-background: #333438;
-	--middle-dark-background: #1a1b20;
-	--transparent-background: rgba(26, 27, 32, 0.9);
-	--pale-background: rgba(38, 39, 44, 0.5);
+	--background: #f6f7f9;
+	--dark-background: #ececed;
+	--middle-background: #fdfeff;
+	--light-background: #fdfeff;
+	--middle-dark-background: #ececed;
+	--super-light-background: white;
+	--transparent-background: #fefefefa;
+	--transparent-span: rgba(255, 255, 255, .35);
+	--pale-background: rgba(255, 255, 255, 0.7);
 	--gradient-background: linear-gradient(0deg, rgba(171, 205, 239, 0.0769083) 0%, rgba(171, 205, 239, 0.0396534) 99%);
-	--transparent-span: rgba(0, 0, 0, .25);
-	--color: #a7a4a4;
-	--middle-color: #acaeb7;
-	--active-color: rgba(255,255,255,.8);
-	--pale-color: #888;
-	--border: #505053;
-	--dark-border: rgba(255,255,255,.2);
-	--active-border: 1px solid rgba(255, 255, 255, 0.2);
-	--transparent-border: rgba(255, 255, 255, 0.07);
+	--color: #101011e5;
+	--active-color: black;
+	--pale-color: #767575;
+	--middle-color: #545454;
+	--border: #eceff2;
+	--dark-border: #cfd1d3;
+	--transparent-border: rgba(0, 0, 0, 0.05);
+	--active-border: 1px solid rgba(0, 0, 0, 0.2);
 	
 	background: var(--dark-background);
 	min-height: 100vh;
@@ -157,6 +158,9 @@ button:focus {
 .container {
     width: 100%;
     padding: 0 15%;
+}
+.center-container {
+	min-height: 100vh;
 }
 .transparent-btn {
 	width: auto;

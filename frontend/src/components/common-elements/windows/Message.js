@@ -10,7 +10,7 @@ class Message extends Component {
         if (this.props.type=="hello") {
             return (
                 <div className="message-win">
-                    <p>Принимай поздравления! Регистрация успешно выполнена.</p>
+                    <p>Прекрасно! Регистрация успешно выполнена.</p>
                     <div className="ok-btn" onClick={this.props.confirmWindow}>Отлично</div>
                 </div>
             )

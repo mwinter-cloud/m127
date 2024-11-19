@@ -26,6 +26,7 @@
 /* logo */
 .logo-block {
     display: flex;
+	width: 10%;
 }
 .main-header .main-logo {
     height: 15px;
@@ -97,7 +98,7 @@
 
 /* profile-block */
 .main-header .flex-end {
-    width: 28%;
+    width: 36%;
     display: flex;
     justify-content: flex-end;
 }

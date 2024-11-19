@@ -1,11 +1,39 @@
-import React, { Component } from 'react'
+import React, {Component, createRef} from 'react'
 import './style/confirm-window.css'
 
 class ConfirmWindow extends Component {
     constructor(props) {
         super(props)
 		this.confirmEvent = this.confirmEvent.bind(this)
+		this.handleClose = this.handleClose.bind(this)
+		this.handleSubmit = this.handleSubmit.bind(this)
+		this.confirmBtnRef = createRef()
     }
+	
+	componentDidMount() {
+		this.confirmBtnRef.current.focus()
+		document.addEventListener('keydown', this.handleClose)
+	}
+	
+	componentWillUnmount() {
+		document.removeEventListener('keydown', this.handleClose)
+	}
+	
+	handleClose = (e) => {
+		e = e || window.event
+		if(e.keyCode==27) {
+			this.props.close()
+		}
+		return true
+	}
+	
+	handleSubmit = (e) => {
+		e.preventDefault();
+		const btn = this.confirmBtnRef.current;
+        if (btn.hasAttribute('data-submitting')) return
+        btn.setAttribute('data-submitting', "")
+		confirmFunction()
+	}
 
     confirmEvent = (e) => {
         e.preventDefault()
@@ -23,7 +51,7 @@ class ConfirmWindow extends Component {
                     <p>Вы уверены, что хотите сделать это?</p>
                     <div className="btns">
                         <form id="submit_form" onSubmit={this.confirmEvent}>
-                            <button className="btn confirm-btn" type="submit">Да</button>
+						<button className="btn confirm-btn" type="submit" ref={this.confirmBtnRef}>Да</button>
                         </form>
                         <div className="btn close-btn" onClick={this.props.close}>Отмена</div>
                     </div>
