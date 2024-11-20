@@ -165,6 +165,9 @@
 	padding: 5px 12px;
     font-size: .8em;
 }
+.day-mode .polls-page .col1 .add-btn {
+	background: var(--light-background);
+}
 
 .polls-page .col1 .list .show-more {
 	padding: 4px 10px;
@@ -300,7 +303,7 @@
 	margin-top: 2px;
 }
 .polls-page .question-field .voice-send-block {
-	height: 20px;
+	height: 28px;
 }
 .polls-page .question-field .send-btn {
 	display: inline-block;
@@ -308,7 +311,7 @@
 	border: 0;
 	background: var(--VB);
 	color: white;
-	margin: 15px 0 0 0;
+	margin: 5px 0;
 	font-size: 13px;
 	border-radius: 4px;
 	cursor: pointer;

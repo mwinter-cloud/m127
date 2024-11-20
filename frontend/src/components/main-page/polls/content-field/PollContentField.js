@@ -32,17 +32,13 @@ class PollContentField extends Component {
 		axios.get('/api/is-poll-saved/' + this.props.poll.id).then(({data}) => {
 			this.setState({saved: data})
 		})
-		axios.get('/api/is-my-voice/' + this.props.poll.id, {
-			onDownloadProgress: () => {
-				this.setState({voicesLoadingStatus: 'loading'})
-			}
-		}).then(({data}) => {
+		axios.get('/api/is-my-voice/' + this.props.poll.id).then(({data}) => {
 			this.setState({selected_option: data.option})
 			this.setVoiceSendedStatus(data)
 			if (data) {
-				this.setState({voicesLoadingStatus: 'loaded'})
 				this.openSocket(this.props.poll.id)
 			}
+			this.setState({voicesLoadingStatus: 'loaded'})
 		})
 	}
 	
