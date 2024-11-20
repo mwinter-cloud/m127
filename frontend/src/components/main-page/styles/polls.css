@@ -329,7 +329,7 @@
 }
 .polls-page .poll-options ul .selected-option {
 	font-weight: 400;
-	color: var(--SO);
+	color: var(--SO)!important;
 }
 /* комментарии */
 .polls-page .comments-field {
