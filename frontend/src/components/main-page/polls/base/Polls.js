@@ -1,11 +1,11 @@
 import React from 'react'
 import {useParams} from "react-router-dom"
-import PollPage from "./PollPage"
+import PollsPage from "./PollsPage"
 
-function Polls(props) {
+function Polls({set_section}) {
 	const {id} = useParams()
 	return (
-		<PollPage id={id} set_section={props.set_section}/>
+		<PollsPage id={id} setSection={set_section}/>
 	)
 }
 

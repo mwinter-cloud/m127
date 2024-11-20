@@ -1,22 +1,21 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-class PollFooter extends Component {
-    constructor(props) {
-        super(props)
-    }
-
-    render() {
-        return (
-            <>
-                <footer>
-                    {this.props.voice_sended ? (<p onClick={this.props.deleteVoice} className="revoice">Переголосовать</p>):
-                        (<button className="send-btn" onClick={this.props.sendVoice}>Ответить</button>)}
-                    <p>Голосов отправлено: {this.props.voices_count}</p>
-                </footer>
-                <div className="to-comments hide" onClick={this.props.setComments}><i className="el-icon-chat-round"></i> комментарии</div>
-            </>
-        )
-    }
+export const PollFooter = ({voice_is_sended, deleteVoice, sendVoice, voices_count, voicesLoadingStatus}) => {
+	return (
+		<footer>
+			{(() => {
+				if(voicesLoadingStatus == 'loaded') {
+					return (
+						<>
+							<div className="voice-send-block">
+								{voice_is_sended ? (<p onClick={deleteVoice} className="revoice">Переголосовать</p>) : 
+								(<button className="send-btn" onClick={sendVoice}>Ответить</button>)}
+							</div>
+							<p>Голосов отправлено: {voices_count}</p>
+						</>
+					)
+				}
+			})()}
+		</footer>
+	)
 }
-
-export default PollFooter
