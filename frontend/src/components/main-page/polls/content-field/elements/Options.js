@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import Option from "./Option"
+import {Option} from "./Option"
 
 export const Options = ({options, voices, voices_count, selected_option, voice_sended, selectOption, voiceSendingStatus}) => {
 	return (

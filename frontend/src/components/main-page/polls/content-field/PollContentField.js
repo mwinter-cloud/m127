@@ -8,7 +8,8 @@ class PollContentField extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            saved: "undefined",
+            saved: 'undefined',
+			savedLoadingStatus: 'undefined',
             voice_sended: 0,
             voices_count: 'undefined',
             selected_option: 0,
@@ -29,9 +30,16 @@ class PollContentField extends Component {
 	componentDidMount() {
 		this.initPollVoices(this.props.poll.id) // запишем количество голосов для вариантов и подсчитаем общее
 		// их количество, посмотрим, сохранили ли мы этот опрос, и голосовали ли мы уже в нем
-		axios.get('/api/is-poll-saved/' + this.props.poll.id).then(({data}) => {
-			this.setState({saved: data})
-		})
+		axios.get('/api/is-poll-saved/' + this.props.poll.id, {
+				onDownloadProgress: () => {
+					this.setState({savedLoadingStatus: 'loading'})
+				}
+			}).then(({data}) => {
+				this.setState({saved: data})
+				this.setState({savedLoadingStatus: 'loaded'})
+			}).catch(() => {
+				this.setState({savedLoadingStatus: 'error'})
+			})
 		axios.get('/api/is-my-voice/' + this.props.poll.id).then(({data}) => {
 			this.setState({selected_option: data.option})
 			this.setVoiceSendedStatus(data)
@@ -155,22 +163,20 @@ class PollContentField extends Component {
     }
 
     savePoll = () => {
-        const set_saved_status = (data) => {
-            this.setState({saved: data})
-        }
-        let saved_status = this.state.saved
-        $.ajax({
-            type: 'post',
-            url: '/api/save-poll/' + this.props.poll.id,
-            cache: false,
-            data: {saved_status: saved_status},
-            success: function (data) {
-                set_saved_status(data)
-            },
-            error: function (xhr, status, error) {
-                console.log(JSON.parse(xhr.responseText))
-            }
-        })
+		const formData = new FormData()
+		formData.append('csrfmiddlewaretoken', csrftoken)
+		formData.append('saved_status', this.state.saved)
+		axios.post(window.location.origin + '/api/save-poll/' + this.props.poll.id, formData, {
+				onDownloadProgress: () => {
+					this.setState({savedLoadingStatus: 'loading'})
+				}
+			})
+			.then(({data}) => {
+				this.setState({saved: data})
+				this.setState({savedLoadingStatus: 'loaded'})
+			}).catch((data) => {
+				this.setState({savedLoadingStatus: 'error'})
+			})
     }
 
     render() {
@@ -179,7 +185,8 @@ class PollContentField extends Component {
 				<Header poll={this.props.poll}
 					member={this.props.member}
 					saved={this.state.saved}
-					savePoll={this.savePoll}/>
+					savePoll={this.savePoll}
+					savedLoadingStatus={this.state.savedLoadingStatus} />
 				<Options options={this.props.poll.options}
 					voices_count={this.state.voices_count} voice_sended={this.state.voice_sended}
 					voices={this.state.voices} selectOption={this.selectOption}

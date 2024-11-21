@@ -560,24 +560,24 @@ class PollView(viewsets.ViewSet):
         user = request.user
         poll = Poll.objects.all().filter(id=pk).filter(saved_by__id__icontains=user.id)
         if poll.exists():
-            status = 1
+            status = 'saved'
         else:
-            status = 0
+            status = 'unsaved'
         return JsonResponse(status, safe=False)
 
     def save_poll(self, request, pk):
-        saved_status = int(request.POST.get('saved_status'))
+        saved_status = request.POST.get('saved_status')
         user = request.user
         queryset = Poll.objects.all()
         poll = get_object_or_404(queryset, pk=pk)
-        if saved_status == 0:
+        if saved_status == 'unsaved':
             poll.saved_by.add(user)
             poll.save()
-            status = 1
+            status = 'saved'
         else:
             poll.saved_by.remove(user)
             poll.save()
-            status = 0
+            status = 'unsaved'
         return JsonResponse(status, safe=False)
 
     def get_voice(self, request, pk):

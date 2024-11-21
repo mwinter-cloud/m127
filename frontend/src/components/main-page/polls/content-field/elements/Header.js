@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import {Navigate} from "react-router-dom"
 import ConfirmWindow from "../../../../common-elements/windows/ConfirmWindow"
 import FullScreenWindow from "../../../../common-elements/windows/FullScreenWindow"
@@ -54,15 +54,17 @@ class Header extends Component {
 						<FullScreenWindow
 							children={<Profile id={this.props.poll.author.id}
 											   closeWindow={this.openProfile}/>}/>) : null}
-                {this.state.confirm_window?(<ConfirmWindow confirm_function={this.deletePoll} close={this.openConfirmWindow}/>):null}
+                {this.state.confirm_window?(<ConfirmWindow confirmFunc={this.deletePoll} close={this.openConfirmWindow}/>) : null}
                 <header className="header">
                     <h3>{this.props.poll.question}</h3>
                     <p className="author" className="question-header-info">
                         Автор: <span className="color-name underline-hover" onClick={this.openProfile}>{this.props.poll.author && this.props.poll.author.name}</span>
                     </p>
                     <p className="question-header-info">
-                    <span className="color-name underline-hover"
-                          onClick={this.props.savePoll}>{this.props.saved == 1 ? 'Сохранено' : 'В закладки'}</span>
+						<span className="color-name underline-hover" onClick={this.props.savePoll}>
+								{this.props.savedLoadingStatus == 'loaded' ? (this.props.saved == 'saved' ? 'Сохранено' : 'В закладки')
+									: (this.props.savedLoadingStatus != 'error' ? 'ㅤ' : 'Ошибка поиска закладки.')}
+						</span>
                     </p>
                     {this.props.member.profile.id == this.props.poll.author.id ?
                         (<p className="question-header-info"><span className="color-name underline-hover" onClick={this.openConfirmWindow}>Удалить</span></p>)

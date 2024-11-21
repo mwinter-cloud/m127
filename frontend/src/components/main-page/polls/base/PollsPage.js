@@ -61,7 +61,7 @@ export default class PollsPage extends Component {
 							return <PollContentField_wrap poll={this.state.poll} />
 						}
 					} else if(this.state.pollLoadingStatus == 'error') {
-						return <p>Не удалось получить опрос.</p>
+						return <p className="error-msg">Не удалось получить опрос.</p>
 					} else {
 						return (
 							<div className="loading-icon"><i className="el-icon-loading"></i></div>

@@ -1,47 +1,36 @@
-import React, { Component } from 'react'
+import React, {useState, useEffect} from 'react'
 
-class Option extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            width: "undefined"
-        }
-    }
-
-    componentWillReceiveProps(nextProps, nextContext) {
-        const set_width = (voices, voices_count) => {
-            if (nextProps.voices) {
-                let width = (voices / voices_count) * 100 + '%'
-                this.setState({width: width})
+export const Option = ({voice_sended, voices, voices_count, option, index, selected_option, selectOption}) => {
+    const [width, setWidth] = useState('undefined')
+	
+	useEffect(() => {
+		const set_width = (voices, voices_count) => {
+            if (voices) {
+                const width = (voices / voices_count) * 100 + '%'
+                setWidth(width)
             } else {
-                this.setState({width: "undefined"})
+                setWidth('undefined')
             }
         }
-        if (this.props.voices != nextProps.voices || this.props.voices_count != nextProps.voices_count) {
-            set_width(nextProps.voices, nextProps.voices_count)
-        }
-    }
+        set_width(voices, voices_count)
+	}, [voices, voices_count])
 
-    render() {
-        if (this.props.voice_sended) {
-            return (
-                <li data-id={this.props.option.id} data-index={this.props.index} id={"option" + this.props.option.id}>
-                    {this.props.option.text} {this.props.selected_option == this.props.option.id ? (<div className="el-icon-check"></div>) : null}
-                    <div className="progress"
-                         style={this.state.width != "undefined" ? ({width: this.state.width}) : ({width: 0})}>
-                    </div> 
-                </li>
-            )
-        } else {
-            return (
-                <li data-id={this.props.option.id} data-index={this.props.index} id={"option" + this.props.option.id}
-                    onClick={this.props.selectOption}
-                    className={this.props.selected_option == this.props.option.id ? "selected-option" : null}>
-                    {this.props.option.text}
-                </li>
-            )
-        }
-    }
+	if (voice_sended) {
+		return (
+			<li data-id={option.id} data-index={index} id={'option' + option.id}>
+				{option.text} {selected_option == option.id ? (<div className='el-icon-check'></div>) : null}
+				<div className="progress"
+					 style={width != 'undefined' ? ({width: width}) : ({width: 0})}>
+				</div> 
+			</li>
+		)
+	} else {
+		return (
+			<li data-id={option.id} data-index={index} id={'option' + option.id}
+				onClick={selectOption}
+				className={selected_option == option.id ? 'selected-option' : null}>
+				{option.text}
+			</li>
+		)
+	}
 }
-
-export default Option
