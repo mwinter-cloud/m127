@@ -7,10 +7,8 @@ export const PollFooter = ({voice_is_sended, deleteVoice, sendVoice, voices_coun
 				if(voicesLoadingStatus == 'loaded') {
 					return (
 						<>
-							<div className="voice-send-block">
-								{voice_is_sended ? (<p onClick={deleteVoice} className="revoice">Переголосовать</p>) : 
-								(<button className="send-btn" onClick={sendVoice}>Ответить</button>)}
-							</div>
+							{voice_is_sended ? (<p onClick={deleteVoice} className="revoice">Переголосовать</p>) : 
+							(<button className="send-btn" onClick={sendVoice}>Ответить</button>)}
 							<p>Голосов отправлено: {voices_count}</p>
 						</>
 					)

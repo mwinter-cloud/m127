@@ -260,8 +260,8 @@
 }
 .polls-page .question-field .poll-options .sended-voice-poll li:hover{
     text-decoration: none;
-    color: var(--color)!important;
 	cursor: inherit;
+	color: var(--color)!important;
 }
 .polls-page .question-field .poll-options .empty-poll li:hover{
 	cursor: pointer;
@@ -303,7 +303,7 @@
 	margin-top: 2px;
 }
 .polls-page .question-field .voice-send-block {
-	height: 28px;
+	height: 35px;
 }
 .polls-page .question-field .send-btn {
 	display: inline-block;
@@ -311,7 +311,7 @@
 	border: 0;
 	background: var(--VB);
 	color: white;
-	margin: 5px 0;
+	margin: 12px 0 0 0;
 	font-size: 13px;
 	border-radius: 4px;
 	cursor: pointer;
@@ -320,7 +320,7 @@
 .polls-page .poll-options ul li .progress {
 	width: 100%;
 	height: 2px;
-	background: #6495ED;
+	background: var(--SO);
 	position: absolute;
 	left: 0;
 	bottom: -5px;

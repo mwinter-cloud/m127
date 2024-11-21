@@ -180,12 +180,12 @@ class PollContentField extends Component {
 					member={this.props.member}
 					saved={this.state.saved}
 					savePoll={this.savePoll}/>
-				<Options options={this.props.poll.options} member={this.props.member}
+				<Options options={this.props.poll.options}
 					voices_count={this.state.voices_count} voice_sended={this.state.voice_sended}
 					voices={this.state.voices} selectOption={this.selectOption}
 					selected_option={this.state.selected_option} />
 				<PollFooter poll={this.props.poll}
-					member={this.props.member} voice_is_sended={this.state.voice_sended}
+					voice_is_sended={this.state.voice_sended}
 					voices_count={this.state.voices_count} sendVoice={this.sendVoice} voicesLoadingStatus={this.state.voicesLoadingStatus}
 					deleteVoice={this.deleteVoice} voiceSendingStatus={this.state.voiceSendingStatus} />
 			</div>

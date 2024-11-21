@@ -25,12 +25,11 @@ class Option extends Component {
     render() {
         if (this.props.voice_sended) {
             return (
-                <li data-id={this.props.option.id} data-index={this.props.index} id={"option" + this.props.option.id}
-                    className={this.props.selected_option == this.props.option.id ? "selected-option" : null}>
-                    {this.props.option.text}
+                <li data-id={this.props.option.id} data-index={this.props.index} id={"option" + this.props.option.id}>
+                    {this.props.option.text} {this.props.selected_option == this.props.option.id ? (<div className="el-icon-check"></div>) : null}
                     <div className="progress"
                          style={this.state.width != "undefined" ? ({width: this.state.width}) : ({width: 0})}>
-                    </div>
+                    </div> 
                 </li>
             )
         } else {
