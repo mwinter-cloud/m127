@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import TagFilter from "../../../common-elements/form/elements/tag-filter/TagFilter"
-import PollList from "./PollList"
-import CreateFormBtn from "./CreateFormBtn"
+import {PollList} from "./PollList"
+import {CreateFormBtn} from "./CreateFormBtn"
 import MediaQuery from 'react-responsive'
 
 class PollsFilter extends Component {
@@ -135,7 +135,7 @@ class PollsFilter extends Component {
 				</div>
 				<PollList polls={this.state.polls} loadPolls={this.loadPolls} section={this.state.section}
 						  onPollSearch={this.onPollSearch} control_poll={this.state.control_poll}
-						  closeMenu={this.props.closeMenu}/>
+						  changeMenuStatus={this.props.closeMenu}/>
 			</>
 		)
 	}

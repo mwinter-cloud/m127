@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import RoomListHeader from "./RoomListHeader"
-import RoomListAside from "./RoomListAside"
+import {RoomListAside} from "./RoomListAside"
 import {RoomListMarkup} from "./RoomListMarkup"
 import '../../styles/room-list.css'
 import MediaQuery from 'react-responsive'

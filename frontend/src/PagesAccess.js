@@ -16,7 +16,7 @@ import RegistrationCodePage from "./components/member/registration/registration-
 import Login from "./components/member/login/base/Login"
 import RoomsPage_wrap from "./store/wraps/base/RoomsPage_wrap"
 import Polls_wrap from "./store/wraps/base/Polls_wrap"
-import MainPollsTemplate from "./components/main-page/polls/MainPollsTemplate"
+import {MainPollsTemplate} from "./components/main-page/polls/MainPollsTemplate"
 import Room from "./components/room-page/base/Room"
 import BaseTemplate from "./components/common-elements/base/BaseTemplate"
 import InfoPage_wrap from "./store/wraps/info-page/InfoPage_wrap"

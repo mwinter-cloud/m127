@@ -1,29 +1,28 @@
 import React, { Component } from 'react'
-import RoomListAside from "../../room-list/RoomListAside"
+import {RoomListAside} from "../../room-list/RoomListAside"
 import SmallWindow from "../../../../common-elements/windows/SmallWindow"
 
 class TagFilterBtn extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            show_tags: 0
+            tags_status: 'disabled'
         }
-        this.showTags = this.showTags.bind(this)
+        this.changeTagStatus = this.changeTagStatus.bind(this)
     }
 
-    showTags = () => {
-        this.setState({show_tags: this.state.show_tags ? 0 : 1})
+    changeTagStatus = () => {
+        this.setState({tags_status: this.state.tags_status == 'active' ? 'disabled' : 'active'})
     }
 
     render() {
         return (
             <>
-                {this.state.show_tags ? (<SmallWindow closeWindow={this.showTags}
-                                                      children={<RoomListAside tags={this.props.tags}
-                                                          onTagSelect={this.props.onTagSelect}/>}
-                                                      title="Теги"/>)
-                    : null}
-                <div className="add-btn" onClick={this.showTags}>#</div>
+                {this.state.show_tags == 'active' && (<SmallWindow closeWindow={this.changeTagStatus}
+					children={<RoomListAside tags={this.props.tags}
+					onTagSelect={this.props.onTagSelect} />}
+					title="Теги" />) }
+                <div className="add-btn" onClick={this.changeTagStatus}>#</div>
             </>
         )
     }

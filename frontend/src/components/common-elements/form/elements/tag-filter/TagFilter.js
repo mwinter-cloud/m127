@@ -9,6 +9,7 @@ class TagFilter extends React.Component {
 			searched_tags: [],
 			selected_tags: [],
 			popular_tags: [],
+			tags_loading_status: 'undefined'
 		}
 		this.onTagSearch = this.onTagSearch.bind(this)
 		this.onTagSelect = this.onTagSelect.bind(this)
@@ -22,8 +23,8 @@ class TagFilter extends React.Component {
 	componentDidMount() {
 		document.addEventListener("mousedown", this.handleClickOutside)
 		if (this.props.items == "rooms") {
-			axios.get(window.location.origin + '/api/get-popular-tags').then(res => {
-				const tags = res.data
+			axios.get(window.location.origin + '/api/get-popular-tags').then(({data}) => {
+				const tags = data
 				this.setState({popular_tags: tags})
 			})
 		}
@@ -42,8 +43,20 @@ class TagFilter extends React.Component {
 	
 	openTagList = () => {
 		if(this.state.searched_tags.length == 0) {
-			const popular_tags = this.state.popular_tags
-			this.setState({searched_tags: popular_tags})
+			let popular_tags = this.state.popular_tags
+			if(popular_tags.length == 0) {
+				axios.get(window.location.origin + '/api/get-popular-tags', {
+					onDownloadProgress: () => {
+						this.setState({tags_loading_status: 'loading'})
+					}
+				}).then(({data}) => {
+					this.setState({searched_tags: data})
+					this.setState({tags_loading_status: 'loaded'})
+				})
+			} else {
+				this.setState({tags_loading_status: 'loaded'})
+				this.setState({searched_tags: popular_tags})
+			}
 		}
 	}
 
@@ -53,16 +66,14 @@ class TagFilter extends React.Component {
 		}
 		const search_str = e.target.value
 		if (search_str != "") {
-			$.ajax({
-				type: 'post',
-				url: '/api/get-tags',
-				data: {search_str: search_str},
-				success: function (data) {
-					set_tags(data)
-				},
-				error: function () {
-					console.log("Ошибка при поиске тега")
-				}
+			const formData = new FormData()
+			formData.append('csrfmiddlewaretoken', csrftoken)
+			formData.append('search_str', search_str)
+			axios.post(window.location.origin + '/api/get-tags', formData).then(({data}) => {
+				this.setState({tags_loading_status: 'loaded'})
+				set_tags(data)
+			}).catch((data) => {
+				this.setState({tags_loading_status: 'error'})
 			})
 		} else {
 			set_tags([])
@@ -117,10 +128,11 @@ class TagFilter extends React.Component {
 				<div className="tag-search-block">
 					<input className={this.props.type == "form" ? ("tags-select-input") : ("tag-search")}
 						   placeholder="Категории" onInput={this.onTagSearch} onClick={this.openTagList}/>
-					<div className={this.state.searched_tags.length == 0 ? "hide" : "search-result tags-list"}
-						 ref={this.wrapperRef}>
+					<div className={this.state.searched_tags.length == 0 ? "hide" : "search-result tags-list"} ref={this.wrapperRef}>
+						{this.state.tags_loading_status == 'loading' || this.state.tags_loading_status == 'undefined' && <div className="loading-icon"><i className="el-icon-loading"></i></div>}
+						{this.state.tags_loading_status == 'error' && <p className="error-msg">Получить список не удалось.</p>}
 						<ul className="tag-list">
-							{this.state.searched_tags.map((tag, index) => {
+							{this.state.searched_tags?.map((tag, index) => {
 								return (
 									<li key={index} data-id={tag.id} onClick={this.onTagSelect}>
 										{tag.name}

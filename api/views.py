@@ -638,7 +638,7 @@ class VoiceView(viewsets.ViewSet):
                     serializer.save(author=user)
                     return JsonResponse(data, safe=False)
                 else:
-                    return Response('При отправке голоса произошла ошибка. Попробуй позже :)')
+                    return Response('При отправке голоса произошла ошибка. Попробуйте позже :)')
         return Response(data)
 
     def get_voices(self, request, poll_id):

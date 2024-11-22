@@ -103,6 +103,10 @@ class Tag(models.Model):
 
     def __str__(self):
         return self.name
+        
+    def save(self, *args, **kwargs):
+        self.name = self.name.lower() if self.name else None
+        return super().save(*args, **kwargs)
 
 class Room(models.Model):
     name = models.CharField(max_length=100)

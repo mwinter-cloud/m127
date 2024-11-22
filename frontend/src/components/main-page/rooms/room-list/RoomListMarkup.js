@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import SearchBlock from "./SearchBlock"
 import {RoomBlock} from "./RoomBlock"
 import TagFilterBtn from "../main-rooms/mobile/TagFilterBtn"
@@ -13,15 +13,15 @@ export const RoomListMarkup  = ({onSearch, onTagSelect, tags, rooms, loadRooms, 
             </MediaQuery>
             <MediaQuery maxWidth={800}>
                 <div className="mobile-room-list-header">
-                    <SearchBlock onSearch={onSearch}/>
-                    <TagFilterBtn onTagSelect={onTagSelect} tags={tags}/>
-                    <CreateRoomBtn/>
+                    <SearchBlock onSearch={onSearch} />
+                    <TagFilterBtn onTagSelect={onTagSelect} tags={tags} />
+                    <CreateRoomBtn />
                 </div>
             </MediaQuery>
             <div className="room-list">
                 {rooms.map((room, index) => {
                     return (
-                        <RoomBlock room={room} key={index}/>
+                        <RoomBlock room={room} key={index} />
                     )
                 })}
             </div>

@@ -212,9 +212,6 @@
 	margin: 0;
 	color: var(--color);
 }
-.night-mode .profile-page .col2 .profile-info header {
-	background: #1e1f25;
-}
 .profile-page .col2 .profile-info {
 	border: 0;
 }

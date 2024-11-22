@@ -9,20 +9,17 @@ class PollContentField extends Component {
         super(props)
         this.state = {
             saved: 'undefined',
-			savedLoadingStatus: 'undefined',
-            voice_sended: 0,
+			saved_loading_status: 'undefined',
             voices_count: 'undefined',
             selected_option: 0,
-            voiceSendingStatus: 'undefined',
+            voice_sending_status: 'undefined',
             voices: [],
-			voicesLoadingStatus: 'undefined'
+			voices_loading_status: 'undefined'
         }
         this.selectOption = this.selectOption.bind(this)
         this.sendVoice = this.sendVoice.bind(this)
         this.deleteVoice = this.deleteVoice.bind(this)
         this.voiceOperation = this.voiceOperation.bind(this)
-        this.setVoicesCount = this.setVoicesCount.bind(this)
-        this.setVoiceSendedStatus = this.setVoiceSendedStatus.bind(this)
         this.initPollVoices = this.initPollVoices.bind(this)
         this.openSocket = this.openSocket.bind(this)
     }
@@ -32,21 +29,23 @@ class PollContentField extends Component {
 		// их количество, посмотрим, сохранили ли мы этот опрос, и голосовали ли мы уже в нем
 		axios.get('/api/is-poll-saved/' + this.props.poll.id, {
 				onDownloadProgress: () => {
-					this.setState({savedLoadingStatus: 'loading'})
+					this.setState({saved_loading_status: 'loading'})
 				}
 			}).then(({data}) => {
 				this.setState({saved: data})
-				this.setState({savedLoadingStatus: 'loaded'})
+				this.setState({saved_loading_status: 'loaded'})
 			}).catch(() => {
-				this.setState({savedLoadingStatus: 'error'})
+				this.setState({saved_loading_status: 'error'})
 			})
 		axios.get('/api/is-my-voice/' + this.props.poll.id).then(({data}) => {
 			this.setState({selected_option: data.option})
-			this.setVoiceSendedStatus(data)
 			if (data) {
+				this.setState({voice_sending_status: 'sended'})
 				this.openSocket(this.props.poll.id)
+			} else {
+				this.setState({voice_sending_status: 'unsended'})
 			}
-			this.setState({voicesLoadingStatus: 'loaded'})
+			this.setState({voices_loading_status: 'loaded'})
 		})
 	}
 	
@@ -61,7 +60,7 @@ class PollContentField extends Component {
         let count = 0
         axios.get('/api/get-voices/' + id).then(({data}) => {
             count = sum(data)
-            this.setVoicesCount(count)
+            this.setState({voices_count: count})
 			this.setVoices(data)
         })
     }
@@ -83,18 +82,18 @@ class PollContentField extends Component {
                 let data = JSON.parse(e.data)
                 const operation_type = data.operation
                 const selected_option = data.option
-                let voice_index = document.getElementById('option' + selected_option).getAttribute('data-index')
-                let new_voices = this.state.voices
+                let voiceIndex = document.getElementById('option' + selected_option).getAttribute('data-index')
+                let newVoices = this.state.voices
                 if (operation_type == "add") {
-                    new_voices[voice_index]++
-                    this.setVoices(new_voices)
-                    this.setVoicesCount(this.state.voices_count + 1)
+                    newVoices[voiceIndex]++
+                    this.setVoices(newVoices)
+                    this.setvoices_count(this.state.voices_count + 1)
                 }
                 if (operation_type == "delete") {
-                    new_voices[voice_index]--
-                    this.setVoices(new_voices)
-                    this.setVoicesCount(this.state.voices_count - 1)
-                    this.setVoiceSendedStatus(0)
+                    newVoices[voiceIndex]--
+                    this.setVoices(newVoices)
+                    this.setState({voices_count: this.state.voices_count - 1})
+                    this.setState({voice_sending_status: 'unsended'})
                 }
                 // обновить count и voices в соответствии с типом
             }
@@ -120,46 +119,35 @@ class PollContentField extends Component {
         this.voiceOperation('delete')
     }
 
-    voiceOperation = (operation_type) => {
+    voiceOperation = (operationType) => {
         const selected_option = this.state.selected_option
-        const data = {option: selected_option, operation: operation_type}
+        const data = {option: selected_option, operation: operationType}
         const socket_send = () => {
-            if (operation_type == 'add') {
+            if (operationType == 'add') {
                 if (this['pollSocket' + this.props.poll.id] == undefined) {
                     this.openSocket(this.props.poll.id, data)
                 } else {
                     this['pollSocket' + this.props.poll.id].send(JSON.stringify(data))
                 }
-            } else if (operation_type == "delete") {
+            } else if (operationType == "delete") {
                 this['pollSocket' + this.props.poll.id].send(JSON.stringify(data))
             }
         }
 		const formData = new FormData()
 		formData.append('csrfmiddlewaretoken', csrftoken)
 		formData.append('option', selected_option)
-		formData.append('operation', operation_type)
+		formData.append('operation', operationType)
 		axios.post(window.location.origin + '/api/send-voice', formData).then(({data}) => {
-			this.setVoiceSendedStatus(1)
+			this.setState({voice_sending_status: 'sended'})
             socket_send()
-		}).catch(() => {
-			this.setState({voiceSendingStatus: 'error'})
+		}).catch((data) => {
+			console.log(data)
+			this.setState({voice_sending_status: 'error'})
 		})
     }
 
     setVoices = (data) => {
         this.setState({voices: data})
-    }
-
-    setVoicesCount = (num) => {
-        this.setState({voices_count: num})
-    }
-
-    setVoiceSendedStatus = (status) => {
-        if (status != 0) {
-            this.setState({voice_sended: 1})
-        } else {
-            this.setState({voice_sended: 0})
-        }
     }
 
     savePoll = () => {
@@ -168,14 +156,14 @@ class PollContentField extends Component {
 		formData.append('saved_status', this.state.saved)
 		axios.post(window.location.origin + '/api/save-poll/' + this.props.poll.id, formData, {
 				onDownloadProgress: () => {
-					this.setState({savedLoadingStatus: 'loading'})
+					this.setState({saved_loading_status: 'loading'})
 				}
 			})
 			.then(({data}) => {
 				this.setState({saved: data})
-				this.setState({savedLoadingStatus: 'loaded'})
+				this.setState({saved_loading_status: 'loaded'})
 			}).catch((data) => {
-				this.setState({savedLoadingStatus: 'error'})
+				this.setState({saved_loading_status: 'error'})
 			})
     }
 
@@ -186,15 +174,15 @@ class PollContentField extends Component {
 					member={this.props.member}
 					saved={this.state.saved}
 					savePoll={this.savePoll}
-					savedLoadingStatus={this.state.savedLoadingStatus} />
+					saved_loading_status={this.state.saved_loading_status} />
 				<Options options={this.props.poll.options}
-					voices_count={this.state.voices_count} voice_sended={this.state.voice_sended}
+					voices_count={this.state.voices_count} voice_sending_status={this.state.voice_sending_status}
 					voices={this.state.voices} selectOption={this.selectOption}
 					selected_option={this.state.selected_option} />
 				<PollFooter poll={this.props.poll}
-					voice_is_sended={this.state.voice_sended}
-					voices_count={this.state.voices_count} sendVoice={this.sendVoice} voicesLoadingStatus={this.state.voicesLoadingStatus}
-					deleteVoice={this.deleteVoice} voiceSendingStatus={this.state.voiceSendingStatus} />
+					voice_sending_status={this.state.voice_sending_status}
+					voices_count={this.state.voices_count} sendVoice={this.sendVoice} voices_loading_status={this.state.voices_loading_status}
+					deleteVoice={this.deleteVoice} voice_sending_status={this.state.voice_sending_status} />
 			</div>
 		)
 	}

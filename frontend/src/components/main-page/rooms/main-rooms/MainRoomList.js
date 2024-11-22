@@ -13,11 +13,10 @@ export const MainRoomList = ({device}) => {
 				setRoomsLoadingStatus('loading')
 			}
 		}).catch(() => {
-				setRoomsLoadingStatus('error')
-		}).then(res => {
-            const room_list = res.data
+			setRoomsLoadingStatus('error')
+		}).then(({data}) => {
 			setRoomsLoadingStatus('loaded')
-            setRooms(room_list)
+            setRooms(data)
         })
     }, [])
 
