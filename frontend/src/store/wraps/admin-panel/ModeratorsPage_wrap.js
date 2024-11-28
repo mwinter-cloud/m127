@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import ModeratorsPage from "../../../components/admin-panel/moderators/base/ModeratorsPage"
+import {ModeratorsPage} from "../../../components/admin-panel/moderators/base/ModeratorsPage"
 import mapStateToProps from "../../mapStateToProps"
 import mapDispatchToProps from "../../mapDispatchToProps"
 

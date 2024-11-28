@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, {Component} from "react"
 import axios from "axios"
 import AddSmileForm from "../forms/AddSmileForm"
 import SmileBlock from "./SmileBlock"
@@ -36,10 +36,10 @@ class SmilesSettings extends Component {
                 <AddSmileForm addItem={this.addItem}/>
                 <div className="added-smiles">
                     {this.state.smiles.map((smile, index) => {
-                            return (
-                                <SmileBlock key={index} smile={smile} removeItem={this.removeItem}/>
-                            )
-                        })}
+                        return (
+							<SmileBlock key={index} smile={smile} removeItem={this.removeItem}/>
+						)
+					})}
                 </div>
             </main>
         )

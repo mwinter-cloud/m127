@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import Snowflake from "./Snowflake"
+import React, {Component} from 'react'
+import {Snowflake} from "./Snowflake"
 import FullScreenWindow from "../FullScreenWindow"
 import Profile from "../../../member/profile/Profile"
 import "../../../../../static/frontend/images/winter-cticker.png"
@@ -14,7 +14,7 @@ class MegafonMessage extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            profile_window: 0,
+            profile_window_status: 'disabled',
             opacity: false,
         }
         this.openProfile = this.openProfile.bind(this)
@@ -22,11 +22,13 @@ class MegafonMessage extends Component {
 
     componentDidMount() {
         const set_opacity = () => {this.setState({opacity: true})}
-        setTimeout(function(){set_opacity()},24100)
+        setTimeout(function() {
+			set_opacity()
+		}, 24100)
     }
 
     openProfile = () => {
-        this.setState({profile_window: (this.state.profile_window ? 0 : 1)})
+        this.setState({profile_window_status: (this.state.profile_window_status ? 'disabled' : 'active')})
     }
 
     render() {
@@ -61,10 +63,10 @@ class MegafonMessage extends Component {
         }
         return (
             <div className="">
-                {this.state.profile_window ? (
+                {this.state.profile_window_status == 'active' && (
                     <FullScreenWindow
                         children={<Profile id={this.props.message.author.id}
-                                           closeWindow={this.openProfile}/>}/>) : null}
+                                           closeWindow={this.openProfile}/>}/>)}
                 <div className={"megafon-message " + this.props.message.style + "-megafon-message" + (this.state.opacity?" hidden": "")}>
                     {illustration}
                     <div className="moving-line">

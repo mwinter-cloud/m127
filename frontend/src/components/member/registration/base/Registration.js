@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react"
 import {useLocation, Navigate} from "react-router-dom"
 import RegistrationPage_wrap from "../../../../store/wraps/member/RegistrationPage_wrap"
 

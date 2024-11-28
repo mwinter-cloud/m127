@@ -3,6 +3,7 @@ import TagFilter from "../../../common-elements/form/elements/tag-filter/TagFilt
 import {PollList} from "./PollList"
 import {CreateFormBtn} from "./CreateFormBtn"
 import MediaQuery from 'react-responsive'
+import axios from "axios"
 
 class PollsFilter extends Component {
 	constructor(props) {
@@ -27,45 +28,27 @@ class PollsFilter extends Component {
 	}
 
 	loadPolls = () => {
-		let tags = this.state.selected_tags
-		let search_str = this.state.search_str
-		let section = this.state.section
-		let loaded_polls_count = this.state.loaded_polls_count
-		let data = {search_str: search_str, loaded_polls_count: loaded_polls_count, tags: tags, section: section}
-		let set_polls = (data) => {
-			if (loaded_polls_count == 0) {
-				this.setState({
-					polls: data
-				})
+		const setPolls = (data) => {
+			if (this.state.loaded_polls_count == 0) {
+				this.setState({polls: data})
 			} else {
-				this.setState({
-					polls: this.state.polls.concat(data)
-				})
+				this.setState({polls: this.state.polls.concat(data)})
 			}
 		}
-		let set_control_poll = (data) => {
-			this.setState({
-				control_poll: data
-			})
-		}
-		let set_polls_count = () => {
-			this.setState({
-				loaded_polls_count: loaded_polls_count + 10
-			})
-		}
-		$.ajax({
-			type: 'post',
-			url: '/api/get-polls',
-			cache: false,
-			data: data,
-			success: function (res) {
-				set_polls(res.polls)
-				set_control_poll(res.control_poll)
-				set_polls_count()
-			},
-			error: function (xhr) {
-				console.log(JSON.parse(xhr.responseText))
-			}
+		const formData = new FormData()
+		formData.append('csrfmiddlewaretoken', csrftoken)
+		formData.append('search_str', this.state.search_str)
+		formData.append('loaded_polls_count', this.state.loaded_polls_count)
+		formData.append('section', this.state.section)
+		this.state.selected_tags.map((tag_id) => {
+            formData.append('tags[]', tag_id)
+        })
+		axios.post(window.location.origin + '/api/get-polls', formData).then(({data}) => {
+			setPolls(data.polls)
+			this.setState({control_poll: data.control_poll})
+			this.setState({loaded_polls_count: this.state.loaded_polls_count + 10})
+		}).catch((data) => {
+			this.setState({tags_loading_status: 'error'})
 		})
 	}
 
@@ -111,11 +94,10 @@ class PollsFilter extends Component {
 				<div className="block-title">
 					<MediaQuery minWidth={801}>
 						<h4>Выбрать опрос</h4>
-						<CreateFormBtn/>
+						<CreateFormBtn />
 					</MediaQuery>
 					<ul className="toggle">
-						<li className={this.state.section == "saves" ? 'active-text saves' : 'saves'}
-							onClick={this.onSelectSection} data-section="saves">закладки
+						<li className={this.state.section == "saves" ? 'active-text saves' : 'saves'} onClick={this.onSelectSection} data-section="saves">закладки
 						</li>
 						<li>
 							<i className="el-icon-arrow-down" onClick={this.changeSection}></i>
@@ -130,12 +112,12 @@ class PollsFilter extends Component {
 				<div className="poll-tag-search">
 					<TagFilter items="polls" onTagSelect={this.onTagSelect}/>
 					<MediaQuery maxWidth={800}>
-						<CreateFormBtn/>
+						<CreateFormBtn />
 					</MediaQuery>
 				</div>
 				<PollList polls={this.state.polls} loadPolls={this.loadPolls} section={this.state.section}
-						  onPollSearch={this.onPollSearch} control_poll={this.state.control_poll}
-						  changeMenuStatus={this.props.closeMenu}/>
+					onPollSearch={this.onPollSearch} control_poll={this.state.control_poll}
+					changeMenuStatus={this.props.closeMenu} />
 			</>
 		)
 	}

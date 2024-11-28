@@ -1,17 +1,12 @@
-import React, { Component } from 'react'
+import React, {useState, useEffect} from 'react'
 import {Link} from "react-router-dom";
 
-class Header extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            hello: ""
-        }
-    }
+export const Header = () => {
+	const [hello, setHello] = useState('')
 
-    componentDidMount(){
-	    let MyDate = new Date
-        let MyHours = MyDate.getHours()
+	useEffect(() => {
+		const MyDate = new Date
+        const MyHours = MyDate.getHours()
         let name = ''
         switch (true){
         	case (MyHours >= 5) && (MyHours < 11):name = 'Доброе утро'
@@ -25,19 +20,13 @@ class Header extends Component {
         	default:name = 'Здравствуй'
         	break
         }
-		this.setState({
-			hello: name
-		})
-	}
-
-    render() {
-        return (
-            <header className="header">
-                <Link to="../"><i className="el-icon-back arrow-back"></i></Link>
-                <h1>{this.state.hello}!</h1>
-            </header>
-        )
-    }
+		setHello(name)
+	}, [])
+	
+	return (
+		<header className="header">
+			<Link to="../"><i className="el-icon-back arrow-back"></i></Link>
+			<h1>{hello}!</h1>
+		</header>
+	)
 }
-
-export default Header

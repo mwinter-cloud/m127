@@ -1,12 +1,12 @@
-import React, {useEffect, useState} from 'react'
-import { useFormik } from 'formik'
-import * as Yup from 'yup'
+import React, {useEffect, useState} from "react"
+import {useFormik} from "formik"
+import * as Yup from "yup"
 import CSRFToken from "../../../common-elements/form/CSRFToken"
 import IllustrationInputWrapper from "./elements/IllustrationInputWrapper"
-import { Navigate } from "react-router-dom"
+import {Navigate} from "react-router-dom"
 
 const IllustrationsForm = (props) => {
-    const [navigate, setNavigate] = useState(0)
+    const [navigate, setNavigate] = useState('disabled')
     const formik = useFormik({
         initialValues: {
             L: "",
@@ -38,7 +38,9 @@ const IllustrationsForm = (props) => {
                 url: '../api/illustrations-edit',
                 data: values,
                 success: function (res) {
-                    setNavigate(res)
+					if (res) {
+						setNavigate('active')
+					}
                 },
                 error: function (xhr, status, error) {
                     console.log(JSON.parse(xhr.responseText))
@@ -57,14 +59,14 @@ const IllustrationsForm = (props) => {
 
     return (
         <>
-            {navigate ? (<Navigate to="/" replace={true}/>) : null}
+            {navigate == 'active' && (<Navigate to="/" replace={true} />)}
             <form className="admin-panel-form simple-form" onSubmit={formik.handleSubmit}>
                 <CSRFToken/>
                 {props.illustrations.map((illustration, index) => {
                     return (
                         <IllustrationInputWrapper key={index} name={illustration.type}
-                                                  value={formik.values[illustration.type]}
-                                                  changeEvent={formik.handleChange}/>
+							value={formik.values[illustration.type]}
+							changeEvent={formik.handleChange}/>
                     )
                 })}
                 <div className="error-block">

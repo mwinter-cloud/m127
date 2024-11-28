@@ -32,7 +32,7 @@ class RoomList extends Component {
 		let section = this.state.section
 		let loaded_rooms_count = this.state.loaded_rooms_count
 		let data = {search_str: search_str, loaded_rooms_count: loaded_rooms_count, tags: tags, section: section}
-		let set_rooms = (data) => {
+		let setRooms = (data) => {
 			if (loaded_rooms_count == 0) {
 				this.setState({
 					rooms: data
@@ -59,7 +59,7 @@ class RoomList extends Component {
 			cache: false,
 			data: data,
 			success: function (res) {
-				set_rooms(res.rooms)
+				setRooms(res.rooms)
 				set_control_room(res.control_room)
 				set_rooms_count()
 			},

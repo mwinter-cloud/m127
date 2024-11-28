@@ -12,13 +12,13 @@
 	cursor: pointer;
 }
 .moderators-section aside ul li:hover {
-	color: white;
+	color: var(--active-color);
 	text-decoration: underline;
 }
 .moderators-section aside .add-moderator-btn {
 	padding: 10px 10px;
 	border: 1px solid rgba(255, 255, 255, 0.05);
-	background: var(--gradient-background);
+	background: var(--light-background);
 	font-size: .95em;
 	margin: 50px 0 20px 0;
 	border-radius: 3px;

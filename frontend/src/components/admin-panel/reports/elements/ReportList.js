@@ -1,33 +1,23 @@
-import React, { Component } from 'react'
+import React, {useState, useEffect} from 'react'
 import ReportBlock_wrap from "../../../../store/wraps/admin-panel/ReportBlock_wrap"
 import axios from "axios"
 
-class ReportList extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            reports: [],
-        }
-    }
-
-    componentDidMount() {
-        axios.get(window.location.origin + '/api/get-reports').then(res => {
-            const reports = res.data
-            this.setState({reports: reports})
+export const ReportList = () => {
+    const [reports, setReports] = useState([])
+	
+	useEffect(() => {
+		axios.get(`${window.location.origin}/api/get-reports`).then(({data}) => {
+            setReports(data)
         })
-    }
+	}, [])
 
-    render() {
-        return (
-            <div className="reports-list">
-                {this.state.reports.map((report, index) => {
-                    return (
-                        <ReportBlock_wrap key={index} report={report}/>
-                    )
-                })}
-            </div>
-        )
-    }
+	return (
+		<div className="reports-list">
+			{reports.map((report, index) => {
+				return (
+					<ReportBlock_wrap key={index} report={report}/>
+				)
+			})}
+		</div>
+	)
 }
-
-export default ReportList

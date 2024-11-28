@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
-import Colorline from "./Colorline"
+import React, {Component} from "react"
+import {Colorline} from "./Colorline"
 import MainHeader_wrap from "../../../../store/wraps/base/MainHeader_wrap"
 import MobileMainHeader_wrap from "../../../../store/wraps/base/MobileMainHeader_wrap"
-import MediaQuery from 'react-responsive'
+import MediaQuery from "react-responsive"
 import MegafonMessage from "../../windows/megafons/MegafonMessage"
 
 class MainHeader extends Component {

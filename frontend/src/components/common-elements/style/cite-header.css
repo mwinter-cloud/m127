@@ -74,7 +74,8 @@
 
 /* search-block */
 .main-header .search-block {
-    width: 30%;
+    width: 32%;
+	margin-left: 10%;
 	margin-top: -2px;
 }
 .main-header .input {
@@ -98,7 +99,7 @@
 
 /* profile-block */
 .main-header .flex-end {
-    width: 36%;
+    width: 32%;
     display: flex;
     justify-content: flex-end;
 }
@@ -360,7 +361,7 @@
         position: absolute;
         bottom: -30px;
         padding: 5px 3%;
-        left: 0;
+        left: -10%;
         background: var(--background);
     }
 	

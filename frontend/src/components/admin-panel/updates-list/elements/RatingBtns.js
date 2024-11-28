@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
+import axios from "axios"
 
 class RatingBtns extends Component {
     constructor(props) {
@@ -15,12 +16,12 @@ class RatingBtns extends Component {
 
     componentDidMount() {
         this.setState({rating: this.props.rating})
-        const plus_sended = localStorage.getItem("plus_update_"+this.props.note_id)
-        const minus_sended = localStorage.getItem("minus_update_"+this.props.note_id)
-        if(plus_sended!=null) {
+        const plus_sended = localStorage.getItem("plus_update_" + this.props.note_id)
+        const minus_sended = localStorage.getItem("minus_update_" + this.props.note_id)
+        if(plus_sended != null) {
             this.setState({plus_sended: 1})
         }
-        if(minus_sended!=null) {
+        if(minus_sended != null) {
             this.setState({minus_sended: 1})
         }
     }
@@ -38,47 +39,45 @@ class RatingBtns extends Component {
     }
 
     sendVoice = (type) => {
-        const data = {
-            update_id: this.props.note_id,
-            type: type,
-            plus_sended: this.state.plus_sended,
-            minus_sended: this.state.minus_sended,
-        }
         const set_minus = () => {
             if(this.state.plus_sended) {
                 this.setState({plus_sended: 0})
-                localStorage.removeItem("plus_update_"+this.props.note_id)
-                this.setState({rating: this.state.rating-2})
+                localStorage.removeItem("plus_update_" + this.props.note_id)
+                this.setState({rating: this.state.rating - 2})
             } else {
-                this.setState({rating: this.state.rating-1})
+                this.setState({rating: this.state.rating - 1})
             }
-            this.setState({minus_sended: 1}, ()=>{localStorage.setItem(("minus_update_"+this.props.note_id), 1)})
+            this.setState({minus_sended: 1}, () => {
+				localStorage.setItem(("minus_update_" + this.props.note_id), 1)
+			})
         }
         const set_plus = () => {
             if(this.state.minus_sended) {
                 this.setState({minus_sended: 0})
-                localStorage.removeItem("minus_update_"+this.props.note_id)
-                this.setState({rating: this.state.rating+2})
+                localStorage.removeItem("minus_update_" + this.props.note_id)
+                this.setState({rating: this.state.rating + 2})
             } else {
-                this.setState({rating: this.state.rating+1})
+                this.setState({rating: this.state.rating + 1})
             }
-            this.setState({plus_sended: 1},()=>{localStorage.setItem(("plus_update_"+this.props.note_id), 1)})
+            this.setState({plus_sended: 1},() => {
+				localStorage.setItem(("plus_update_" + this.props.note_id), 1)
+			})
         }
-        $.ajax({
-            type: 'post',
-            url: '../api/send-update-grade',
-            data: data,
-            success: function (res) {
-                if(res==0) {
-                    set_minus()
-                } else {
-                    set_plus()
-                }
-            },
-            error: function (xhr, status, error) {
-                console.log(JSON.parse(xhr.responseText))
-            }
-        })
+		const formData = new FormData()
+		formData.append('csrfmiddlewaretoken', csrftoken)
+		formData.append('update_id', this.props.note_id)
+		formData.append('type', type)
+		formData.append('plus_sended', this.state.plus_sended)
+		formData.append('minus_sended', this.state.minus_sended)
+		axios.post(`${window.location.origin}/api/send-update-grade`, formData).then(({data}) => {
+			if(data == 0) {
+				set_minus()
+			} else {
+				set_plus()
+			}
+		}).catch(() => {
+			console.log('Не удалось обновить рейтинг.')
+		})
     }
 
     render() {

@@ -10,7 +10,7 @@ import {Navigate} from "react-router-dom"
 const ProfileForm = () => {
 	const [profile_data, setProfileData] = useState({})
     const [selectedColor, setColor] = useState({})
-    const [navigation, setNavigation] = useState(0)
+    const [navigation, setNavigation] = useState('disabled')
     const [initColor, setInitColor] = useState()
     const [error, setError] = useState()
 
@@ -74,7 +74,7 @@ const ProfileForm = () => {
             processData: false,
             contentType: false,
             success: function () {
-                setNavigation(1)
+                setNavigation('active')
                 form.removeAttribute('data-submitting')
             },
             error: function (xhr, status, error) {
@@ -87,24 +87,22 @@ const ProfileForm = () => {
     }
 
     return (
-        <form className="simple-form" onSubmit={formik.handleSubmit}
-              id="profile_settings_form" encType="multipart/form-data" method="post">
+        <form className="simple-form" onSubmit={formik.handleSubmit} id="profile_settings_form" encType="multipart/form-data" method="post">
             <CSRFToken/>
-            {navigation?(<Navigate to="/" replace={true}/>):null}
+            {navigation == 'active' && (<Navigate to="/" replace={true} />)}
             <div className="form-group">
                 {formik.errors.name ? <p>{formik.errors.name}</p> : null}
                 <div className="inputWrapper">
                     <label><span>Имя</span></label>
-                    <input name="name" placeholder=" = ^ᴗ^ = " onChange={formik.handleChange}
-                           value={formik.values.name}/>
+                    <input name="name" placeholder=" = ^ᴗ^ = " onChange={formik.handleChange} value={formik.values.name}/>
                 </div>
                 <ColorInput_wrap setColor={setColor} initColor={initColor}/>
                 <FileInputWrapper label="Аватар"
-                                  src={profile_data.avatar}
-                                  field="avatar"/>
+					src={profile_data.avatar}
+					field="avatar"/>
                 <FileInputWrapper label="Обложка"
-                                  src={profile_data.cover}
-                                  field="cover"/>
+					src={profile_data.cover}
+					field="cover"/>
                 <div className="settings-line"></div>
             </div>
             <div className="form-group">
@@ -144,8 +142,8 @@ const ProfileForm = () => {
                               className="post-textarea" placeholder=" = ^ᴗ^ = "></textarea>
                 </div>
                 <FileInputWrapper label="Картинка"
-                                  src={profile_data.post_image}
-                                  field="post_image"/>
+					src={profile_data.post_image}
+					field="post_image"/>
             </div>
 			{error && <p>{error}</p>}
             <button className="send-btn" type="submit">Сохранить</button>

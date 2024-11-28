@@ -6,7 +6,7 @@ import FileInputWrapper from "../../common-elements/form/elements/wrappers/FileI
 import InputWrapper from "../../common-elements/form/elements/wrappers/InputWrapper"
 import {TextEditor} from "../../common-elements/form/elements/editor/TextEditor"
 import TagFilter from "../../common-elements/form/elements/tag-filter/TagFilter"
-import { Navigate } from "react-router-dom"
+import {Navigate} from "react-router-dom"
 import ConfirmWindow from "../../common-elements/windows/ConfirmWindow"
 
 const CreateRoomForm = ({room, reloadRoom}) => {

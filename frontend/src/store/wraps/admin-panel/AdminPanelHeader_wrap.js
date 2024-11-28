@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import AdminPanelHeader from "../../../components/admin-panel/common-elements/AdminPanelHeader"
+import {AdminPanelHeader} from "../../../components/admin-panel/common-elements/AdminPanelHeader"
 import mapStateToProps from "../../mapStateToProps"
 import mapDispatchToProps from "../../mapDispatchToProps"
 

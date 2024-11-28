@@ -1,12 +1,16 @@
-import React, {useEffect, useState} from 'react'
-import { useFormik } from 'formik'
-import * as Yup from 'yup'
+import React, {useEffect, useState, useRef} from "react"
+import {useFormik} from "formik"
+import * as Yup from "yup"
 import CSRFToken from "../../../common-elements/form/CSRFToken"
-import { Navigate } from "react-router-dom"
+import {Navigate} from "react-router-dom"
 import TextareaWrapper from "../../../common-elements/form/elements/wrappers/TextareaWrapper"
+import axios from "axios"
 
 const ColorAndTextForm = (props) => {
-    const [navigate, setNavigate] = useState(0)
+    const [navigate, setNavigate] = useState('disabled')
+    const [form_sending_status, setFormSendingStatus] = useState('undefined')
+	const formRef = useRef(null)
+	
     const formik = useFormik({
         initialValues: {
             AN: "",
@@ -56,21 +60,23 @@ const ColorAndTextForm = (props) => {
         }),
         validateOnChange: false,
         onSubmit: (values, {setStatus, setErrors}) => {
-            $.ajax({
-                type: 'post',
-                url: '../api/color-and-text-edit',
-                data: values,
-                success: function (data) {
-                    props.set_colors(data.colors)
-                    data.colors.map(color => {
-                        document.body.style.setProperty("--" + color.type, color.text)
-                    })
-                    setNavigate(data.result)
-                },
-                error: function (xhr, status, error) {
-                    console.log(JSON.parse(xhr.responseText))
-                }
-            })
+			const formData = formRef.current
+			axios.post(`${window.location.origin}/api/color-and-text-edit`, formData, {
+				onDownloadProgress: () => {
+					setFormSendingStatus('loading')
+				}
+			}).then(({data}) => {
+				props.set_colors(data.colors)
+				data.colors.map(color => {
+					document.body.style.setProperty("--" + color.type, color.text)
+				})
+				if(data.result) {
+					setNavigate('active')
+				}
+				setFormSendingStatus('success')
+			}).catch((data) => {
+				setFormSendingStatus('error')
+			})
         },
     })
     const useMountEffect = () => {
@@ -87,8 +93,8 @@ const ColorAndTextForm = (props) => {
     useMountEffect()
 
     return (
-        <form className="admin-panel-form simple-form" onSubmit={formik.handleSubmit}>
-            {navigate ? (<Navigate to="/" replace={true}/>) : null}
+        <form className="admin-panel-form simple-form" onSubmit={formik.handleSubmit} ref={formRef}>
+            {navigate == 'active' ? (<Navigate to="/" replace={true}/>) : null}
             <CSRFToken/>
             <div className="form-group">
                 <h3>Объявление</h3>
@@ -224,6 +230,7 @@ const ColorAndTextForm = (props) => {
             </div>
             <footer>
                 <button className="send-btn" type="submit">Сохранить</button>
+				{form_sending_status == 'loading' && (<div className="loading-icon"><i className="el-icon-loading"></i></div>)}
             </footer>
         </form>
     )

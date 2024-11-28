@@ -4,12 +4,12 @@ import axios from "axios"
 import MegafonInfoWindow from "../../../common-elements/windows/MegafonInfoWindow"
 
 export const InfoBlock = () => {
-	const [megafonWindow, setMegafonWindow] = useState()
-	const [announcement, setAnnouncement] = useState("")
-	const [announcementLoadingStatus, setAnnouncementLoadingStatus] = useState("undefined")
+	const [megafonWindow, setMegafonWindow] = useState('disabled')
+	const [announcement, setAnnouncement] = useState('')
+	const [announcementLoadingStatus, setAnnouncementLoadingStatus] = useState('undefined')
 
     const openMegafonWindow = () => {
-        setMegafonWindow(megafonWindow ? 0 : 1)
+        setMegafonWindow(megafonWindow == 'active' ? 'disabled' : 'active')
     }
 	
     useEffect(() => {
@@ -29,7 +29,7 @@ export const InfoBlock = () => {
 	if (announcementLoadingStatus == "loaded") {
 		return (
 			<aside>
-				{megafonWindow && <MegafonInfoWindow closeWindow={openMegafonWindow} />}
+				{megafonWindow == 'active' && <MegafonInfoWindow closeWindow={openMegafonWindow} />}
 				<div className="info-block">
 					<p>{announcement}</p>
 				</div>

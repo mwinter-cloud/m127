@@ -3,6 +3,7 @@
 }
 .file-input-block-wrapper {
     width: 80%;
+	font-size: 13px;
 }
 .file-input-block {
 	overflow-y: hidden;

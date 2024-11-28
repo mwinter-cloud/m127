@@ -1,18 +1,9 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-class Cover extends Component {
-    constructor(props) {
-        super(props)
-    }
-
-    render() {
-        return (
-            <>
-                {this.props.cover ?
-                    (<div className="cover"></div>) : null}
-            </>
-        )
-    }
+export const Cover = ({cover}) => {
+	if(cover) {
+		return (
+			<div className="cover"></div>
+		)
+	}
 }
-
-export default Cover

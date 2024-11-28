@@ -228,6 +228,11 @@ button:focus {
     color: var(--color);
 }
 
+.error-msg {
+	font-size: 13px;
+}
+
+
 /* базовые изображения */
 .avatar {
 	height: 36px;

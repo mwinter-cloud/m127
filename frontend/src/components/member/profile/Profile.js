@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
+import React, {Component} from "react"
 import axios from "axios"
-import Header from "./Header"
-import '../styles/profile.css'
-import ProfileInfo from "./ProfileInfo"
-import ProfilePost from "./ProfilePost"
+import {Header} from "./Header"
+import "../styles/profile.css"
+import {ProfileInfo} from "./ProfileInfo"
+import {ProfilePost} from "./ProfilePost"
 
 class Profile extends Component {
     constructor(props) {

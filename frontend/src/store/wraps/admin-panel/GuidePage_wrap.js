@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import GuidePage from "../../../components/admin-panel/guide/base/GuidePage"
+import {GuidePage} from "../../../components/admin-panel/guide/base/GuidePage"
 import mapStateToProps from "../../mapStateToProps"
 import mapDispatchToProps from "../../mapDispatchToProps"
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react"
 import CiteSettingsPage_wrap from "../../../../store/wraps/admin-panel/CiteSettingsPage_wrap"
 
 function CiteSettings() {

@@ -7,7 +7,7 @@ export const CreateFormBtn = ({poll}) => {
 	const [createWindow, setCreateWindow] = useState('disabled')
 
     const openWindow = () => {
-        this.setState({createWindow: this.state.createWindow == 'active' ? 'active' : 'disabled'})
+      setCreateWindow(createWindow == 'active' ? 'disabled' : 'active')
     }
 
 	return (

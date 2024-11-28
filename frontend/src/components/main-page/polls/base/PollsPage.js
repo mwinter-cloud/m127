@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from "axios"
-import '../../styles/polls.css'
+import "../../styles/polls.css"
 import PollContentField_wrap from "../../../../store/wraps/base/PollContentField_wrap"
 import MediaQuery from 'react-responsive'
 

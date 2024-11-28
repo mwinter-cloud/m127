@@ -7,6 +7,7 @@
 	z-index: 1;
     position: relative;
 	color: var(--color);
+	background: var(--dark-background);
 }
 
 .day-mode .admin-page-header {
@@ -379,6 +380,7 @@ main {
 	width: 28px;
 	margin: 0;
 	object-fit: cover;
+	min-width: 28px;
 }
 .smiles-edit-block .inputWrapper input {
 	border: 0;

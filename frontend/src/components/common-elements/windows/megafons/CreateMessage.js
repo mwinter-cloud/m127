@@ -11,7 +11,7 @@ import "../../../../../static/frontend/images/pink-flower.png"
 import "../../../../../static/frontend/images/cat.png"
 import "../../../../../static/frontend/images/wow.png"
 
-const CreateMessage = (props) => {
+export const CreateMessage = (props) => {
     const formik = useFormik({
         initialValues: {
             text: "",
@@ -110,5 +110,3 @@ const CreateMessage = (props) => {
         </main>
     )
 }
-
-export default CreateMessage

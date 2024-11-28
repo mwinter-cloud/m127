@@ -56,7 +56,7 @@ class PollContentField extends Component {
 	}
 
     initPollVoices = (id) => {
-        const sum = (arr => arr.reduce((partialSum, a) => partialSum + a, 0))
+        const sum = (arr => arr?.reduce((partialSum, a) => partialSum + a, 0))
         let count = 0
         axios.get('/api/get-voices/' + id).then(({data}) => {
             count = sum(data)
@@ -155,16 +155,16 @@ class PollContentField extends Component {
 		formData.append('csrfmiddlewaretoken', csrftoken)
 		formData.append('saved_status', this.state.saved)
 		axios.post(window.location.origin + '/api/save-poll/' + this.props.poll.id, formData, {
-				onDownloadProgress: () => {
-					this.setState({saved_loading_status: 'loading'})
-				}
-			})
-			.then(({data}) => {
-				this.setState({saved: data})
-				this.setState({saved_loading_status: 'loaded'})
-			}).catch((data) => {
-				this.setState({saved_loading_status: 'error'})
-			})
+			onDownloadProgress: () => {
+				this.setState({saved_loading_status: 'loading'})
+			}
+		})
+		.then(({data}) => {
+			this.setState({saved: data})
+			this.setState({saved_loading_status: 'loaded'})
+		}).catch((data) => {
+			this.setState({saved_loading_status: 'error'})
+		})
     }
 
     render() {

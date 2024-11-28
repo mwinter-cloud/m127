@@ -1,15 +1,11 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 
-class Colorline extends React.Component {
-	constructor(props) {
-		super(props)
-		this.state = {
-			color_class: '',
-		}
-	}
-	componentDidMount(){
-	    let MyDate = new Date
-        let MyHours = MyDate.getHours()
+export const Colorline = () => {
+	const [color_class, setColorClass] = useState('')
+	
+	useEffect(() => {
+		const MyDate = new Date
+        const MyHours = MyDate.getHours()
         let color_class = ''
         switch (true){
         	case (MyHours >= 3) && (MyHours < 6):color_class = 'EAC'
@@ -23,15 +19,10 @@ class Colorline extends React.Component {
         	default:color_class = 'EC'
         	break
         }
-		this.setState({
-			color_class: color_class
-		})
-	}
-	render() {
-	  return (
-    	<header className={"colorline "+this.state.color_class}></header>
-	  )
-	}
+		setColorClass(color_class)
+	}, [])
+	
+	return (
+		<header className={`colorline ${color_class}`}></header>
+	)
 }
-
-export default Colorline

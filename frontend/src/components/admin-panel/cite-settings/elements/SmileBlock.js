@@ -1,18 +1,18 @@
-import React, { Component } from 'react'
+import React, {Component} from "react"
 import ConfirmWindow from "../../../common-elements/windows/ConfirmWindow"
 
 class SmileBlock extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            confirm_window: 0,
+            confirm_window_status: 'disabled',
         }
-        this.openConfirmWindow = this.openConfirmWindow.bind(this)
+        this.changeConfirmWindowStatus = this.changeConfirmWindowStatus.bind(this)
         this.removeItem = this.removeItem.bind(this)
     }
 
-    openConfirmWindow = () => {
-        this.setState({confirm_window: (this.state.confirm_window ? 0 : 1)})
+    changeConfirmWindowStatus = () => {
+        this.setState({confirm_window_status: (this.state.confirm_window_status == 'active' ? 'disabled' : 'active')})
     }
 
     removeItem = () => {
@@ -29,17 +29,16 @@ class SmileBlock extends Component {
                 console.log(JSON.parse(xhr.responseText))
             }
         })
-        this.openConfirmWindow()
+        this.changeConfirmWindowStatus()
     }
 
     render() {
         return (
             <>
-                {this.state.confirm_window ? (
-                    <ConfirmWindow confirm_function={this.removeItem} close={this.openConfirmWindow}/>) : ""}
+                {this.state.confirm_window_status == 'active' && (<ConfirmWindow confirmFunc={this.removeItem} close={this.changeConfirmWindowStatus} />)}
                 <div className="smile-edit-block">
                     <img src={this.props.smile.file} alt={this.props.smile.name}/>
-                    <i className="el-icon-delete text-btn" onClick={this.openConfirmWindow}></i>
+                    <i className="el-icon-delete text-btn" onClick={this.changeConfirmWindowStatus}></i>
                 </div>
             </>
         )

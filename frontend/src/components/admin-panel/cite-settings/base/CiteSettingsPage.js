@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
+import React, {Component} from "react"
 import ColorAndTextForm from "../forms/ColorAndTextForm"
-import Header from "../elements/Header"
+import {Header} from "../elements/Header"
 import IllustrationsForm from "../forms/IllustrationsForm"
 import axios from "axios"
 import SmilesSettings from "../elements/SmilesSettings"
@@ -40,13 +40,13 @@ class CiteSettingsPage extends Component {
                 <div className="cite-settings-banner"></div>
                 <div className="settings-container">
                     <div className="moderation-card">
-                        <Header setItem={this.setItem} active_section={this.props.cite_settings_section}/>
+                        <Header setItem={this.setItem} active_section={this.props.cite_settings_section} />
                         {this.props.cite_settings_section == "color_and_text" ?
                             (<ColorAndTextForm set_colors={this.props.set_colors} colors={this.props.colors}
-                                               AN={this.state.AN}
-                                               RL={this.state.RL} SD={this.state.SD} CT={this.state.CT}/>) :
+								AN={this.state.AN}
+								RL={this.state.RL} SD={this.state.SD} CT={this.state.CT} />) :
                             (<IllustrationsForm set_illustrations={this.props.set_illustrations}
-                                                illustrations={this.props.illustrations}/>)}
+								illustrations={this.props.illustrations} />)}
                     </div>
                     <SmilesSettings/>
                 </div>

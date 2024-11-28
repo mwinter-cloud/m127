@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import React, {Component} from "react"
 import AdminPanelHeader_wrap from "../../store/wraps/admin-panel/AdminPanelHeader_wrap"
-import { Outlet } from 'react-router-dom'
-import './styles/admin-panel.css'
+import {Outlet} from "react-router-dom"
+import "./styles/admin-panel.css"
 import MobileAdminPanelHeader_wrap from "../../store/wraps/admin-panel/MobileAdminPanelHeader_wrap"
 import MediaQuery from "react-responsive"
 

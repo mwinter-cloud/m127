@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import FormWindow from "../../../common-elements/windows/FormWindow"
 import UpdateCreateForm from "../forms/UpdateCreateForm"
 import UpdateBlock from "./UpdateBlock"
@@ -10,24 +10,32 @@ class UpdateList extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            create_window: 0,
-            updates: []
+            create_window_status: 'disabled',
+            updates: [],
+			updates_status: 'undefined'
         }
-        this.openCreateWindow = this.openCreateWindow.bind(this)
+        this.changeCreateWindowStatus = this.changeCreateWindowStatus.bind(this)
         this.formConfirm = this.formConfirm.bind(this)
         this.updateList = this.updateList.bind(this)
         this.deleteNote = this.deleteNote.bind(this)
     }
 
     componentDidMount() {
-        axios.get(window.location.origin + '/api/get-update-list').then(res => {
+        axios.get(window.location.origin + '/api/get-update-list', {
+			onDownloadProgress: () => {
+				this.setState({updates_status: 'loading'})
+			}
+		}).then(res => {
             const updates = res.data
             this.setState({updates: updates})
-        })
+			this.setState({updates_status: 'loaded'})
+        }).catch(() => {
+			this.setState({updates_status: 'error'})
+		})
     }
 
-    openCreateWindow = () => {
-        this.setState({create_window: (this.state.create_window ? 0 : 1)})
+    changeCreateWindowStatus = () => {
+        this.setState({create_window_status: (this.state.create_window_status == 'active' ? 'disabled' : 'active')})
     }
 
     updateList = (data) => {
@@ -56,7 +64,7 @@ class UpdateList extends Component {
     formConfirm = (data) => {
         const setList = (data) => {
             this.setState({updates: this.state.updates.concat(data)},()=>console.log(this.state.updates))
-            this.openCreateWindow()
+            this.changeCreateWindowStatus()
         }
         $.ajax({
             type: 'post',
@@ -75,31 +83,39 @@ class UpdateList extends Component {
     }
 
     render() {
-        if(this.state.updates.length!=0) {
-            return (
-                <>
-                    <div className="updates-card">
-                        {this.state.create_window ? (
-                        <FormWindow children={<UpdateCreateForm formConfirm={this.formConfirm}/>} title="Рассказать про обновление"
-                                    closeWindow={this.openCreateWindow} formConfirm={this.formConfirm}/>) : ""}
-                        {this.props.member.profile.is_admin ? (
-                            <div className="add-note-btn" onClick={this.openCreateWindow}>
-                                <i className="el-icon-plus"></i> Запись
-                            </div>) : null}
-                        <ul>
-                            {this.state.updates.map((update, index) => {
-                                return (
-                                    <UpdateBlock update={update} key={index}
-                                                   updateList={this.updateList} deleteNote={this.deleteNote}/>
-                                )
-                            })}
-                        </ul>
-                    </div>
-                </>
-            )
-        } else {
-            return null
-        }
+		return (
+			<div className="updates-card">
+                {(() => {
+					if(this.state.updates_status == 'loaded') {
+						return (
+							<>
+								{this.state.create_window_status == 'active' && (
+									<FormWindow children={<UpdateCreateForm formConfirm={this.formConfirm} />} title="Рассказать про обновление"
+										closeWindow={this.changeCreateWindowStatus} formConfirm={this.formConfirm} />)}
+								{this.props.member.profile.is_admin ? (
+									<div className="add-note-btn" onClick={this.changeCreateWindowStatus}>
+										<i className="el-icon-plus"></i> Запись
+									</div>) : null}
+								<ul>
+									{this.state.updates?.map((update, index) => {
+										return (
+											<UpdateBlock update={update} key={index}
+												updateList={this.updateList} deleteNote={this.deleteNote} />
+										)
+									})}
+								</ul>
+							</>
+						)
+					} else if(this.state.updates_status == 'error') {
+						return <p className="error-msg">Не удалось получить записи.</p>
+					} else {
+						return (
+							<div className="loading-icon"><i className="el-icon-loading"></i></div>
+						)			
+					}
+                })()}
+			</div>
+		)
     }
 }
 

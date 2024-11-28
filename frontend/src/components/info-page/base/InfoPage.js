@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
-import '../styles/info-page.css'
-import Header from "../elements/Header"
-import SpecialRoomList from "../elements/SpecialRoomList"
-import ToAdmin from "../elements/ToAdmin"
-import LinkList from "../elements/LinkList"
-import Cover from "../elements/Cover"
+import React, {Component} from "react"
+import "../styles/info-page.css"
+import {Header} from "../elements/Header"
+import {SpecialRoomList} from "../elements/SpecialRoomList"
+import {ToAdmin} from "../elements/ToAdmin"
+import {LinkList} from "../elements/LinkList"
+import {Cover} from "../elements/Cover"
 
 class InfoPage extends Component {
     constructor(props) {

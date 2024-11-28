@@ -113,6 +113,9 @@
 .polls-page .col1 .list header .active {
 	font-weight: 500;
 }
+.polls-page .tag-search-block .selected-tags {
+	margin: 2px 0;
+}
 .polls-page .col1 .list h3 {
 	font-size: .9em;
 }

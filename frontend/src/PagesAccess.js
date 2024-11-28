@@ -23,7 +23,7 @@ import InfoPage_wrap from "./store/wraps/info-page/InfoPage_wrap"
 import ProfilePage_wrap from "./store/wraps/member/ProfilePage_wrap"
 import Settings from "./components/member/settings/base/Settings"
 import Reports from "./components/admin-panel/reports/base/Reports"
-import BlackList from "./components/admin-panel/reports/black-list/BlackList"
+import {BlackList} from "./components/admin-panel/reports/black-list/BlackList"
 
 class PagesAccess extends React.Component {
     constructor(props) {

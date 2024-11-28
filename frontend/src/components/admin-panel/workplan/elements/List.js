@@ -10,24 +10,32 @@ class List extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            create_window: 0,
-            workplan_list: []
+            create_window_status: 'disabled',
+            workplan_list: [],
+			list_status: 'undefined'
         }
-        this.openCreateWindow = this.openCreateWindow.bind(this)
+        this.changeCreateWindowStatus = this.changeCreateWindowStatus.bind(this)
         this.formConfirm = this.formConfirm.bind(this)
         this.updateList = this.updateList.bind(this)
         this.deleteNote = this.deleteNote.bind(this)
     }
 
     componentDidMount() {
-        axios.get(window.location.origin + '/api/get-workplan-list').then(res => {
+        axios.get(window.location.origin + '/api/get-workplan-list', {
+			onDownloadProgress: () => {
+				this.setState({list_status: 'loading'})
+			}
+		}).then(res => {
             const workplan_list = res.data
             this.setState({workplan_list: workplan_list})
-        })
+			this.setState({list_status: 'loaded'})
+        }).catch(() => {
+			this.setState({list_status: 'error'})
+		})
     }
 
-    openCreateWindow = () => {
-        this.setState({create_window: (this.state.create_window ? 0 : 1)})
+    changeCreateWindowStatus = () => {
+        this.setState({create_window_status: (this.state.create_window_status =='active' ? 'disabled' : 'active')})
     }
 
     updateList = (data) => {
@@ -54,7 +62,7 @@ class List extends Component {
     }
 
     formConfirm = (data) => {
-        this.openCreateWindow()
+        this.changeCreateWindowStatus()
         const setList = (data) => {
             this.setState({workplan_list: this.state.workplan_list.concat(data)})
         }
@@ -75,29 +83,39 @@ class List extends Component {
     }
 
     render() {
-        if(this.state.workplan_list.length!=0) {
-            return (
-                <div className="updates-card">
-                    {this.state.create_window ? (
-                        <FormWindow children={<WorkplanCreateForm formConfirm={this.formConfirm}/>} title="Создать план"
-                                    closeWindow={this.openCreateWindow} formConfirm={this.formConfirm}/>) : ""}
-                    {this.props.member.profile.is_admin ? (
-                        <div className="add-note-btn" onClick={this.openCreateWindow}>
-                            <i className="el-icon-plus"></i> Запись
-                        </div>) : null}
-                    <ul>
-                        {this.state.workplan_list.map((note, index) => {
-                            return (
-                                <WorkplanNote_wrap note={note} key={index}
-                                                   updateList={this.updateList} deleteNote={this.deleteNote}/>
-                            )
-                        })}
-                    </ul>
-                </div>
-            )
-        } else {
-            return (<div className="updates-card"><ul></ul></div>)
-        }
+		return (
+			<div className="updates-card">
+                {(() => {
+					if(this.state.list_status == 'loaded') {
+						return (
+							<>
+								{this.state.create_window_status == 'active' && (
+									<FormWindow children={<WorkplanCreateForm formConfirm={this.formConfirm} />} title="Создать план"
+										closeWindow={this.changeCreateWindowStatus} formConfirm={this.formConfirm} />)}
+								{this.props.member.profile.is_admin ? (
+									<div className="add-note-btn" onClick={this.changeCreateWindowStatus}>
+										<i className="el-icon-plus"></i> Запись
+									</div>) : null}
+								<ul>
+									{this.state.workplan_list?.map((note, index) => {
+										return (
+											<WorkplanNote_wrap note={note} key={index}
+												updateList={this.updateList} deleteNote={this.deleteNote} />
+										)
+									})}
+								</ul>
+							</>
+						)
+					} else if(this.state.list_status == 'error') {
+						return <p className="error-msg">Не удалось получить записи.</p>
+					} else {
+						return (
+							<div className="loading-icon"><i className="el-icon-loading"></i></div>
+						)			
+					}
+                })()}
+			</div>
+		)
     }
 }
 

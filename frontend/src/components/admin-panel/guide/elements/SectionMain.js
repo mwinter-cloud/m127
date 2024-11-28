@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import SectionContent from "./article/SectionContent"
-import SectionHeader from "../elements/SectionHeader"
-import Header from "../elements/Header"
+import {SectionHeader} from "../elements/SectionHeader"
+import {Header} from "../elements/Header"
 import axios from "axios"
 import replace_array_item from "../../../../special-functions/replace-array-item"
 import replace_array_item_field from "../../../../special-functions/replace-array-item-field"
@@ -10,9 +10,10 @@ class SectionMain extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            section_name: "",
-            articles: "undefined",
-            search_msg: ""
+            section_name: '',
+            articles: 'undefined',
+            search_msg: '',
+			loading_status: ''
         }
         this.initSection = this.initSection.bind(this)
         this.setArticle = this.setArticle.bind(this)
@@ -53,9 +54,16 @@ class SectionMain extends Component {
             default:
                 break
         }
-        axios.get(window.location.origin + '/api/get-guide-articles/' + section_id).then(res => {
+        axios.get(window.location.origin + '/api/get-guide-articles/' + section_id, {
+				onDownloadProgress: () => {
+					this.setState({loading_status: 'loading'})
+				}
+			}).then(res => {
             this.setState({articles: res.data})
-        })
+			this.setState({loading_status: 'loaded'})
+        }).catch(() => {
+			this.setState({loading_status: 'error'})
+		})
     }
 
 
@@ -69,46 +77,52 @@ class SectionMain extends Component {
         this.setState({articles: new_articles})
     }
 
-    search = (search_str) => {
-        if(search_str!="") {
-            const set_articles = (data) => {
-                if (data) {
-                    this.setState({section_name: "Поиск"})
+    search = (form) => {
+        if(form.get('search_str') != '') {
+			axios.post(`${window.location.origin}/api/guide-search`, formData, {
+				onDownloadProgress: () => {
+					this.setState({loading_status: 'loading'})
+				}
+			}).then(({data}) => {
+				if (data) {
+                    this.setState({section_name: 'Поиск'})
                     this.setState({articles: data})
+					this.setState({loading_status: 'loaded'})
                 } else {
-                    this.setState({search_msg: "Ничего не найдено"})
+					this.setState({loading_status: 'loaded'})
+                    this.setState({search_msg: 'Ничего не найдено'})
                 }
-            }
-            $.ajax({
-                type: 'post',
-                url: '/api/guide-search',
-                data: {search_str: search_str},
-                success: function (res) {
-                    set_articles(res)
-                },
-                error: function (xhr, status, error) {
-                    console.log(JSON.parse(xhr.responseText))
-                }
-            })
+			}).catch(() => {
+				this.setState({loading_status: 'error'})
+			})
         }
     }
 
     render() {
-        if (this.state.articles != 'undefined') {
-            return (
-                <main className="guide-main">
-                    <Header search={this.search}/>
-                    {this.state.articles != "undefined" ? (
-                        <><SectionHeader articles={this.state.articles} section_name={this.state.section_name}/>
-                            {this.state.search_msg ? (<p>{this.state.search_msg}</p>) : null}
-                            <SectionContent articles={this.state.articles} setArticle={this.setArticle}
-                                            setIllustrations={this.setIllustrations}/></>
-                    ) : null}
-                </main>
-            )
-        } else {
-            return null
-        }
+		return (
+			<main className="guide-main">
+				{(() => {
+					if (this.state.loading_status == 'loaded') {
+						return (
+							<>
+								<Header search={this.search}/>
+								{this.state.articles != 'undefined' && (
+									<>
+										<SectionHeader articles={this.state.articles} section_name={this.state.section_name} />
+										{this.state.search_msg ? (<p>{this.state.search_msg}</p>) : null}
+										<SectionContent articles={this.state.articles} setArticle={this.setArticle} setIllustrations={this.setIllustrations} />
+									</>
+								)}
+							</>
+						)
+					} else if (this.state.loading_status == 'error') {
+						return <p className="error-msg">Ошибка.</p>
+					} else {
+						return <div className="loading-icon"><i className="el-icon-loading"></i></div>
+					}
+				})()}
+			</main>
+		)
     }
 }
 

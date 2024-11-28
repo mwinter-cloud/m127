@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import ReportList from "../elements/ReportList"
+import React, {Component} from "react"
+import {ReportList} from "../elements/ReportList"
 import Header from "../elements/Header"
 
 class ReportsPage extends Component {

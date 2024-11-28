@@ -1,35 +1,25 @@
-import React, { Component } from 'react'
+import React, {useState, useEffect} from 'react'
 import '../../styles/login.css'
 import LoginForm from "../forms/LoginForm"
 
-class LoginPage extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            banner: "",
-        }
-    }
+export default function LoginPage({illustrations, set_member}) {
+    const [banner, setBanner] = useState('')
 
-    componentDidMount() {
-        this.props.illustrations.map(el => {
+    useEffect(() => {
+        illustrations.map(el => {
             if (el.type == "LP") {
-                this.setState({banner: el.text})
+               setBanner(el.text)
             }
         })
-    }
-
-    render() {
-        return (
-            <main className="registration-page login-page night-mode">
-                {this.state.banner ?
-                    (<div className="banner"></div>) : null}
-                <div className={this.state.banner ? "registration-window" : "registration-window no-banner-window"}>
-                    <h1>Вход</h1>
-                    <LoginForm set_member={this.props.set_member}/>
-                </div>
-            </main>
-        )
-    }
+    }, [])
+	
+	return (
+		<main className="registration-page login-page night-mode">
+			{banner ? (<div className="banner"></div>) : null}
+				<div className={banner ? "registration-window" : "registration-window no-banner-window"}>
+					<h1>Вход</h1>
+					<LoginForm set_member={set_member}/>
+				</div>
+		</main>
+	)
 }
-
-export default LoginPage

@@ -5,6 +5,9 @@
 	border-radius: 3px;
 	position: relative;
 }
+.updates-card .loading-icon {
+	padding: 0 15px;
+}
 .updates-card .add-note-btn {
 	border: 0;
 	background: rgb(247,178,67);

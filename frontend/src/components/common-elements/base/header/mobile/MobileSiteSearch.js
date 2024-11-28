@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, {Component} from "react"
 import SearchPage from "../windows/SearchPage"
 import FullScreenWindow from "../../../windows/FullScreenWindow"
 import SearchForm from "../SearchForm"
@@ -7,9 +7,9 @@ class MobileCiteSearch extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			show_form: 0,
-			search_str: "",
-			search_window: 0,
+			form_status: 'disabled',
+			search_str: '',
+			search_window_status: 'disabled',
 			rooms: [],
 			loaded_rooms_count: 0,
 			control_room: 0,
@@ -27,17 +27,17 @@ class MobileCiteSearch extends Component {
 	}
 
 	showSearchForm = () => {
-		this.setState({show_form: this.state.show_form ? 0 : 1})
+		this.setState({form_status: this.state.form_status == 'active' ? 'disabled' : 'active'})
 	}
 
 	setSearchString = (val) => {
 		this.setState({search_str: val})
-		this.setState({search_window: !this.state.search_window ? 1 : 1})
+		this.setState({search_window_status: this.state.search_window_status == 'disabled' ? 'active' : 'active'})
 		this.loadItems()
 	}
 
 	setSearchWindow = () => {
-		this.setState({search_window: this.state.search_window ? 0 : 1})
+		this.setState({search_window_status: this.state.search_window_status == 'active' ? 'disabled' : 'active'})
 	}
 
 	loadItems = () => {
@@ -89,19 +89,18 @@ class MobileCiteSearch extends Component {
 	render() {
 		return (
 			<>
-				{this.state.search_window ? (
-					<FullScreenWindow
-						children={<SearchPage loadItems={this.loadItems} rooms={this.state.rooms}
-											  polls={this.state.polls}
-											  members={this.state.members} control_room={this.state.control_room}
-											  control_poll={this.state.control_poll}
-											  control_member={this.state.control_member}
-											  search_str={this.state.search_str}
-											  closeWindow={this.setSearchWindow}/>}/>) : ""}
+				{this.state.search_window_status == 'active' && (<FullScreenWindow 
+					children={<SearchPage loadItems={this.loadItems} rooms={this.state.rooms}
+					polls={this.state.polls}
+					members={this.state.members} control_room={this.state.control_room}
+					control_poll={this.state.control_poll}
+					control_member={this.state.control_member}
+					search_str={this.state.search_str}
+					closeWindow={this.setSearchWindow} />} />)}
 				<div className="open-search-btn" onClick={this.showSearchForm}>
 					<i className="el-icon-search"></i>
 				</div>
-				{this.state.show_form?(<SearchForm setSearchString={this.setSearchString}/>):null}
+				{this.state.form_status == 'active' && (<SearchForm setSearchString={this.setSearchString} />)}
 			</>
 		)
 	}

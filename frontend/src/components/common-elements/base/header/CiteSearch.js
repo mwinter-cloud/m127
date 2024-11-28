@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, {Component} from "react"
 import SearchForm from "./SearchForm"
 import FullScreenWindow from "../../windows/FullScreenWindow"
 import SearchPage from "./windows/SearchPage"
@@ -7,8 +7,8 @@ class CiteSearch extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            search_str: "",
-            search_window: 0,
+            search_str: '',
+            search_window_status: 'disabled',
 			rooms: [],
 			loaded_rooms_count: 0,
 			control_room: 0,
@@ -26,12 +26,12 @@ class CiteSearch extends Component {
 
     setSearchString = (val) => {
         this.setState({search_str: val})
-        this.setState({search_window:!this.state.search_window?1:1})
+        this.setState({search_window_status: this.state.search_window_status == 'disabled' ? 'active' : 'active'})
         this.loadItems()
     }
 
     setSearchWindow = () => {
-        this.setState({search_window:this.state.search_window?0:1})
+        this.setState({search_window:this.state.search_window_status == 'active' ? 'disabled' : 'active'})
     }
 
 	loadItems = () => {
@@ -83,16 +83,16 @@ class CiteSearch extends Component {
     render() {
         return (
             <>
-                {this.state.search_window ? (
+                {this.state.search_window_status == 'active' && (
                     <FullScreenWindow
                         children={<SearchPage loadItems={this.loadItems} rooms={this.state.rooms}
-                                              polls={this.state.polls}
-                                              members={this.state.members} control_room={this.state.control_room}
-                                              control_poll={this.state.control_poll}
-                                              control_member={this.state.control_member}
-                                              search_str={this.state.search_str}
-                                              closeWindow={this.setSearchWindow}/>}/>) : ""}
-                <SearchForm setSearchString={this.setSearchString}/>
+						polls={this.state.polls}
+						members={this.state.members} control_room={this.state.control_room}
+						control_poll={this.state.control_poll}
+						control_member={this.state.control_member}
+						search_str={this.state.search_str}
+						closeWindow={this.setSearchWindow} />} />)}
+                <SearchForm setSearchString={this.setSearchString} />
             </>
         )
     }

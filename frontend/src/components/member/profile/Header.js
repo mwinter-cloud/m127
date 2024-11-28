@@ -1,22 +1,14 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-class Header extends Component {
-    constructor(props) {
-        super(props)
-    }
-
-    render() {
-        return (
-            <header className="main-profile-header">
-                {this.props.cover? (<img src={this.props.cover} className="cover"/>):(<div className="cover-block"></div>)}
-                <div className="user-info">
-                    {this.props.avatar?(<img src={this.props.avatar} className="avatar"/>) : null}
-                    <h3 className={this.props.color?this.props.color.type:null}>{this.props.name}</h3>
-                    {this.props.is_admin?(<div className="admin-icon">💫</div>):null}
-                </div>
-            </header>
-        )
-    }
+export const Header = ({name, cover, avatar, color, is_admin}) => {
+	return (
+		<header className="main-profile-header">
+			{cover ? (<img src={cover} className="cover"/>) : (<div className="cover-block"></div>)}
+			<div className="user-info">
+				{avatar !== null && (<img src={avatar} className="avatar"/>)}
+				<h3 className={color ? color.type : null}>{name}</h3>
+				{is_admin ? (<div className="admin-icon">💫</div>) : null}
+			</div>
+		</header>
+	)
 }
-
-export default Header

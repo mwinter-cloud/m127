@@ -1,69 +1,61 @@
-import React, { Component } from 'react'
+import React, {Component} from "react"
 import ConfirmWindow from "../../../../common-elements/windows/ConfirmWindow"
-import FullScreenWindow from "../../../../common-elements/windows/FullScreenWindow";
-import Profile from "../../../../member/profile/Profile";
+import FullScreenWindow from "../../../../common-elements/windows/FullScreenWindow"
+import Profile from "../../../../member/profile/Profile"
+import axios from "axios"
 
 class ModeratorCard extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            confirm_window: 0,
-            profile_window: 0,
+            confirm_window_status: 'disabled',
+            profile_window_status: 'disabled',
+			remove_status: 'undefined'
         }
-        this.openConfirmWindow = this.openConfirmWindow.bind(this)
+        this.changeConfirmWindowStatus = this.changeConfirmWindowStatus.bind(this)
         this.removeItem = this.removeItem.bind(this)
         this.openProfile = this.openProfile.bind(this)
     }
 
-    openConfirmWindow = () => {
-        this.setState({confirm_window: (this.state.confirm_window ? 0 : 1)})
+    changeConfirmWindowStatus = () => {
+        this.setState({confirm_window_status: (this.state.confirm_window_status == 'active' ? 'disabled' : 'active')})
     }
 
     openProfile = () => {
-        this.setState({profile_window: (this.state.profile_window ? 0 : 1)})
+        this.setState({profile_window_status: (this.state.profile_window_status == 'active' ? 'disabled' : 'active')})
     }
 
     removeItem = () => {
-        const remove = () => {
-            this.props.removeItem(this.props.moderator.id)
-        }
         const id = this.props.moderator.id
-        $.ajax({
-            type: 'post',
-            url: '../api/moderator-delete',
-            data: {id: id},
-            success: function () {
-                remove()
-            },
-            error: function (xhr, status, error) {
-                console.log(JSON.parse(xhr.responseText))
-            }
-        })
-        this.openConfirmWindow()
+		const formData = new FormData()
+		formData.append('csrfmiddlewaretoken', csrftoken)
+		formData.append('id', id)
+		axios.post(`${window.location.origin}/api/moderator-delete`, formData).then(() => {
+			this.props.removeItem(this.props.moderator.id)
+			this.setState({remove_status: 'success'})
+		}).catch((data) => {
+			this.setState({remove_status: 'error'})
+		})
+        this.changeConfirmWindowStatus()
     }
 
     render() {
         return (
             <>
-                {this.state.profile_window ? (
-                    <FullScreenWindow
-                        children={<Profile id={this.props.moderator.id}
-                                           closeWindow={this.openProfile}/>}/>) : null}
+                {this.state.profile_window_status == 'active' && (
+                    <FullScreenWindow children={<Profile id={this.props.moderator.id} closeWindow={this.openProfile} />} />)}
                 <li>
-                    {this.state.confirm_window ? (
-                        <ConfirmWindow confirm_function={this.removeItem} close={this.openConfirmWindow}/>) : ""}
-                    {this.props.moderator.avatar ?
-                        <img src={this.props.moderator.avatar} className="avatar base-avatar"/> : null}
+                    {this.state.confirm_window_status == 'active' && (<ConfirmWindow confirmFunc={this.removeItem} close={this.changeConfirmWindowStatus} />)}
+                    {this.props.moderator.avatar ? <img src={this.props.moderator.avatar} className="avatar base-avatar"/> : null}
                     <h3 onClick={this.openProfile}>
                         {this.props.moderator.user.is_staff ?
-                            (<div className="admin-key" data-title="администратор">
-                                <i className="el-icon-key"></i>
-                            </div>) : null}
-                        {this.props.moderator.name}</h3>
+                            (<div className="admin-key" data-title="администратор"><i className="el-icon-key"></i> </div>) : null}
+                        {this.props.moderator.name}
+					</h3>
                     {this.props.is_admin && !this.props.moderator.user.is_staff ?
-                        (<div className="simple-btn" onClick={this.openConfirmWindow}><i className="el-icon-minus"></i>
-                        </div>)
+                        (<div className="simple-btn" onClick={this.changeConfirmWindowStatus}><i className="el-icon-minus"></i></div>)
                         : null}
+					{this.state.remove_status == 'error' && <p>Совершить операцию удаления не удалось.</p>}
                 </li>
             </>
         )

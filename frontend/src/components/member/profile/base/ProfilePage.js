@@ -2,9 +2,10 @@ import React from 'react'
 import {useParams} from "react-router-dom"
 import Profile from "../Profile"
 
-function ProfilePage(props) {
+function ProfilePage({set_section}) {
 	const {id} = useParams()
-	props.set_section('')
+	set_section('')
+	
 	return (
 		<Profile id={id} />
 	)
