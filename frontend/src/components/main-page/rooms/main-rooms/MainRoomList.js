@@ -21,22 +21,24 @@ export const MainRoomList = ({device}) => {
     }, [])
 
 	if (roomsLoadingStatus == "loaded") {
-		return (
-			<section className="main-room-list container">
-				{rooms.map((room, index) => {
-					return (
-						<article className="room" key={index}>
-							<Link to={"./room/" + room.room.id}>
-								<img src={room.cover}/>
-								<div className="room-info">
-									<h4>{room.room.name}</h4>
-								</div>
-							</Link>
-						</article>
-					)
-				})}
-			</section>
-		)
+		if(rooms.length > 0) {
+			return (
+				<section className="main-room-list container">
+					{rooms.map((room, index) => {
+						return (
+							<article className="room" key={index}>
+								<Link to={"./room/" + room.room.id}>
+									<img src={room.cover}/>
+									<div className="room-info">
+										<h4>{room.room.name}</h4>
+									</div>
+								</Link>
+							</article>
+						)
+					})}
+				</section>
+			)
+		}
 	} else if (roomsLoadingStatus == "loading") {
 		return (
 			<div className="main-room-list container">
