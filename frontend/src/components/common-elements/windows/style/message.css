@@ -5,28 +5,36 @@
     width: 400px;
     height: auto;
     background: var(--SC);
-    padding: 20px;
+    padding: 0;
     border-radius: 3px;
     z-index: 2;
     font-size: 14px;
     overflow: auto;
     color: #EBEEF5;
     opacity: .93;
+	text-align: center;
+}
+.message-win .border-line {
+	width: 100%;
+    height: 1px;
+    background: rgb(88, 123, 180);
+    background: linear-gradient(19deg, rgba(88, 123, 180, 0) 0%, rgba(200, 202, 207, 0.19931722689075626) 25%, rgba(200, 202, 207, 0.46262254901960786) 48%, rgba(217, 213, 232, 0.1881127450980392) 77%, rgba(231, 222, 252, 0) 100%);
 }
 .message-win p {
     margin: 0;
+	padding: 15px;
+	font-size: 13px;
 }
 .message-win .ok-btn {
-    background: rgba(255,255,255,.2);
+    background: rgb(110, 144, 171);
     padding: 3px 8px;
     border-radius: 3px;
-    font-size: .95em;
+    font-size: 13px;
     display: inline-block;
-    margin-top: 10px;
+    margin-top: 0;
     cursor: pointer;
     position: relative;
-    left: 50%;
-    transform: translate(-50%, 0);
+	margin-bottom: 15px;
 }
 
 
