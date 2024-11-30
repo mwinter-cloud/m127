@@ -20,7 +20,7 @@ export const Logo = () => {
 				<span className="citenamelogo">{citename}</span>
 			</MediaQuery>
 			<MediaQuery maxWidth={800}>
-					<img src={logo} />
+				<img src={logo} />
 			</MediaQuery>
 		</div>
 	)

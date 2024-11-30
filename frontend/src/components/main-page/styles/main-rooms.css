@@ -3,11 +3,11 @@
     background: var(--dark-background);
 }
 .rooms-main .cite-top {
-    padding-top: 25px;
+    padding-top: 10px;
     display: flex;
     justify-content: space-between;
     background: var(--dark-background);
-    height: 410px;
+    height: 330px;
 }
 /* main room carousel */
 .rooms-main .cite-top .carousel {
@@ -74,7 +74,7 @@
 }
 .rooms-main .cite-top .header-text {
     position: relative;
-    border-radius: 0 0 3px 3px;
+    border-radius: 0;
     padding: 10px;
 	margin: 0;
 	height: 60px;
@@ -106,7 +106,7 @@
     display: flex;
     width: 100%;
     justify-content: center;
-    bottom: 30px;
+    bottom: 10px;
     left: 0;
 }
 .rooms-main .cite-top .carousel .toggles .toggle {
@@ -142,7 +142,7 @@
     height: 320px;
     object-fit: cover;
     z-index: 0;
-	border-radius: 3px;
+	border-radius: 3px 3px 0 0;
 	display: block;
     filter: brightness(85%);
 }
@@ -249,11 +249,11 @@
 	display: flex;
 	margin-bottom: 0;
 	width: 100%;
-	padding: 20px 15% 50px 15%;
+	padding: 15px 15% 20px 15%;
 	position: relative;
 	background: var(--background);
 	height: auto;
-	min-height: 200px;
+	min-height: 150px;
 }
 .main-room-list .room:last-child{
 	margin-right: 0;

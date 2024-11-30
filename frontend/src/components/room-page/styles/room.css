@@ -59,10 +59,12 @@
 	margin-top: 30px;
 	margin-bottom: 25px;
 }
-.room-page .room-header h2 {
+.room-page .room-header .room-title h2 {
 	font-weight: 500;
 	font-size: 1.3em;
 	display: inline-block;
+}
+.room-page .room-header .border-room-title h2 {
     padding: 3px 10px;
     border-radius: 3px;
 	border: 1px solid var(--transparent-border);

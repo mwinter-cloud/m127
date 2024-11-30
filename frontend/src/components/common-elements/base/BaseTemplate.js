@@ -1,5 +1,5 @@
-import React, {Component} from 'react'
-import {Outlet} from 'react-router-dom'
+import React, {Component} from "react"
+import {Outlet} from "react-router-dom"
 import Header from "../../common-elements/base/header/Header"
 
 class BaseTemplate extends Component {

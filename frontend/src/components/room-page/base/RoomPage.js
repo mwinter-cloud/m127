@@ -115,8 +115,8 @@ class RoomPage extends Component {
 						if (this.state.room.tags) {
 							return (
 								<>
-									<Cover cover={this.state.room.cover}/>
-									<Header room={this.state.room} reloadRoom={this.reloadRoom} is_admin={this.props.my_profile.is_admin} my_id={this.props.my_profile.id}/>
+									<Cover cover={this.state.room.cover} />
+									<Header cover={this.state.room.cover} room={this.state.room} reloadRoom={this.reloadRoom} is_admin={this.props.my_profile.is_admin} my_id={this.props.my_profile.id}/>
 								</>
 							)
 						}

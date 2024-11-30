@@ -1,9 +1,9 @@
 import React, {Component} from "react"
-import {Colorline} from "./Colorline"
 import MainHeader_wrap from "../../../../store/wraps/base/MainHeader_wrap"
 import MobileMainHeader_wrap from "../../../../store/wraps/base/MobileMainHeader_wrap"
 import MediaQuery from "react-responsive"
 import MegafonMessage from "../../windows/megafons/MegafonMessage"
+import {InfoHeader} from "./InfoHeader"
 
 class MainHeader extends Component {
     constructor(props) {
@@ -44,8 +44,8 @@ class MainHeader extends Component {
     render() {
         return (
             <>
-                {this.state.megafon_message?(<MegafonMessage message={this.state.megafon_message}/>):null}
-                <Colorline/>
+                {this.state.megafon_message ? (<MegafonMessage message={this.state.megafon_message}/>) : null}
+				<InfoHeader />
     		    <MediaQuery maxWidth={800}>
     			    <MobileMainHeader_wrap changeMode={this.props.changeMode}/>
     			</MediaQuery>
