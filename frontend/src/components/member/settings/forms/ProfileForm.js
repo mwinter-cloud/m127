@@ -88,7 +88,7 @@ const ProfileForm = () => {
 
     return (
         <form className="simple-form" onSubmit={formik.handleSubmit} id="profile_settings_form" encType="multipart/form-data" method="post">
-            <CSRFToken/>
+            <CSRFToken />
             {navigation == 'active' && (<Navigate to="/" replace={true} />)}
             <div className="form-group">
                 {formik.errors.name ? <p>{formik.errors.name}</p> : null}

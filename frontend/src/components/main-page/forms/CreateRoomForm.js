@@ -1,6 +1,6 @@
-import React, {useEffect, useState, useRef} from 'react'
-import {useFormik} from 'formik'
-import * as Yup from 'yup'
+import React, {useEffect, useState, useRef} from "react"
+import {useFormik} from "formik"
+import * as Yup from "yup"
 import ColorInput_wrap from "../../../store/wraps/forms/ColorInput_wrap"
 import FileInputWrapper from "../../common-elements/form/elements/wrappers/FileInputWrapper"
 import InputWrapper from "../../common-elements/form/elements/wrappers/InputWrapper"
@@ -15,14 +15,14 @@ const CreateRoomForm = ({room, reloadRoom}) => {
     const [selectedColor, setColor] = useState(null)
     const [selectedTags, setSelectedTags] = useState([])
     const [initColor, setInitColor] = useState()
-    const [initText, setInitText] = useState()
+    const [initTextStatus, setInitTextStatus] = useState()
     const [roomData, setRoomData] = useState({})
 	const formRef = useRef(null)
 	
     const useMountEffect = () => {
         useEffect(() => {
             if (room) {
-                setInitText(room.message)
+                setInitTextStatus('loaded')
                 setRoomData(room)
                 if (room.color) {
                     setInitColor(room.color)
@@ -120,29 +120,24 @@ const CreateRoomForm = ({room, reloadRoom}) => {
 
     return (
         <>
-            {confirmWindow == 'opened' && <ConfirmWindow confirmFunc={deleteRoom} close={upConfirmWindow}/>}
-            <form className="simple-form" onSubmit={formik.handleSubmit} ref={formRef}
-                  encType="multipart/form-data" method="post">
+            {confirmWindow == 'opened' && <ConfirmWindow confirmFunc={deleteRoom} close={upConfirmWindow} />}
+            <form className="simple-form" onSubmit={formik.handleSubmit} ref={formRef} encType="multipart/form-data" method="post">
                 {navigate !== 'disabled' && (<Navigate to={navigate} />)}
                 <InputWrapper label="Название"
-                              handleChange={formik.handleChange}
-                              value={formik.values.name}
-                              field="name"/>
+                    handleChange={formik.handleChange}
+                    value={formik.values.name}
+                    field="name"/>
                 <input name="message" type="hidden" onChange={formik.handleChange} value={formik.values.message}/>
-                <TextEditor setText={setText} textValue={formik.values.message} initialText={initText} />
+                <TextEditor setText={setText} textValue={formik.values.message} initialText={initTextStatus} />
                 <FileInputWrapper label="Обложка"
-                                  src={roomData.cover}
-                                  field="cover"/>
-                <ColorInput_wrap setColor={setColor} initColor={initColor}/>
+                    src={roomData.cover}
+                    field="cover"/>
+                <ColorInput_wrap setColor={setColor} initColor={initColor} />
                 <div className="inputWrapper">
                     <label>Теги</label>
-                    <TagFilter items="rooms" onTagSelect={onTagSelect} type="form"
-                               tags={room ? room.tags : null}/>
+                    <TagFilter items="rooms" onTagSelect={onTagSelect} type="form" tags={room ? room.tags : null}/>
                 </div>
-                {room ? (
-                    <span className="simple-btn" onClick={upConfirmWindow}><i
-                        className="el-icon-delete"></i> Удалить</span>
-                ) : null}
+                {room ? (<span className="simple-btn form-delete-btn" onClick={upConfirmWindow}><i className="el-icon-delete"></i> Удалить</span>) : null}
                 <div className="error-block">
                     {formik.errors.name ? <p>{formik.errors.name}</p> : null}
                     {formik.errors.message ? <p>{formik.errors.message}</p> : null}

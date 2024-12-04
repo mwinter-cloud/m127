@@ -52,9 +52,16 @@
     display: block;
     font-size: 13px;
 }
+.text-block .info-msg {
+    font-size: 13px;
+	margin: 0;
+}
+.text-block .info-msg a {
+	text-decoration: underline;
+}
 .text-block a {
     display: inline-block;
-    font-size: .9em;
+    font-size: 13px;
 }
 .text-block a:hover {
     text-decoration: underline;

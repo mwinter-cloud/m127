@@ -23,30 +23,15 @@ from random import randint
 from django.template.loader import render_to_string
 from django.core.mail import send_mail
 
-
 class UserView(viewsets.ViewSet):
     def create(self, request):
         data = request.data
-        operation_id = request.POST.get('operation_id')
-        operation = get_object_or_404(Operation.objects.all(), id=operation_id)
         serializer = UserRegistrationSerializer(data=data)
         if not serializer.is_valid():
             return JsonResponse(status=400, data=serializer.errors)
         user = serializer.save()
-        Profile(name=user.username, user=user, color=None, inviter=operation.user).save()
+        Profile(name=user.username, user=user, color=None).save()
         login(request, user)
-        # отправим письмо на почту
-        user = request.user
-        oper_code = randint(0, 1000000)
-        email = user.email
-        confirm_operation = Operation(code=oper_code, user=user, type=1, info=email)
-        confirm_operation.save()
-        origin = request.POST.get('origin')
-        data = {'code': oper_code, 'email': email, 'origin': origin}
-        msg_plain = render_to_string('emails/email_confirm.txt', data)
-        msg_html = render_to_string('emails/email_confirm.html', data)
-        subject, from_email, to = 'Регистрация на сайте ' + origin, 'hello@windmail.space', [email]
-        send_mail(subject, msg_plain, from_email, to, html_message=msg_html)
         return JsonResponse(True, safe=False)
 
     def send_confirm_email(self, request):
@@ -59,7 +44,7 @@ class UserView(viewsets.ViewSet):
         data = {'code': oper_code, 'email': email, 'origin': origin}
         msg_plain = render_to_string('emails/email_confirm.txt', data)
         msg_html = render_to_string('emails/email_confirm.html', data)
-        subject, from_email, to = 'Регистрация на сайте ' + origin, 'hello@windmail.space', [email]
+        subject, from_email, to = 'Регистрация на сайте ' + origin, 'hello@lisphere.space', [email]
         send_mail(subject, msg_plain, from_email, to, html_message=msg_html)
         return JsonResponse(True, safe=False)
 
@@ -113,7 +98,7 @@ class UserView(viewsets.ViewSet):
         data = {'code': oper_code, 'old_email': email, 'new_email': new_email, 'origin': origin}
         msg_plain = render_to_string('emails/email_change.txt', data)
         msg_html = render_to_string('emails/email_change.html', data)
-        subject, from_email, to = f'Смена почты на сайте {origin}', 'hello@windmail.space', [email]
+        subject, from_email, to = f'Смена почты на сайте {origin}', 'hello@lisphere.space', [email]
         send_mail(subject, msg_plain, from_email, to, html_message=msg_html)
         return JsonResponse(True, safe=False)
 
@@ -143,7 +128,7 @@ class UserView(viewsets.ViewSet):
         data = {'code': oper_code, 'origin': origin}
         msg_plain = render_to_string('emails/password_change.txt', data)
         msg_html = render_to_string('emails/password_change.html', data)
-        subject, from_email, to = f'Смена пароля на сайте {origin}', 'hello@windmail.space', [email]
+        subject, from_email, to = f'Смена пароля на сайте {origin}', 'hello@lisphere.space', [email]
         send_mail(subject, msg_plain, from_email, to, html_message=msg_html)
         return JsonResponse(True, safe=False)
 
@@ -162,7 +147,7 @@ class UserView(viewsets.ViewSet):
         data = {'code': oper_code, 'origin': origin}
         msg_plain = render_to_string('emails/password_change.txt', data)
         msg_html = render_to_string('emails/password_change.html', data)
-        subject, from_email, to = f'Смена пароля на сайте {origin}', 'hello@windmail.space', [email]
+        subject, from_email, to = f'Смена пароля на сайте {origin}', 'hello@lisphere.space', [email]
         send_mail(subject, msg_plain, from_email, to, html_message=msg_html)
         return JsonResponse(True, safe=False)
 

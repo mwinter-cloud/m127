@@ -1,5 +1,5 @@
-import React, {Component} from 'react'
-import FormWindow from "../../../common-elements/windows/FormWindow"
+import React, {Component} from "react"
+import {FormWindow} from "../../../common-elements/windows/FormWindow"
 import UpdateCreateForm from "../forms/UpdateCreateForm"
 import UpdateBlock from "./UpdateBlock"
 import axios from "axios"

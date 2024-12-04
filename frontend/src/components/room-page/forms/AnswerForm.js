@@ -1,10 +1,10 @@
-import React, {useEffect, useState} from 'react'
-import { useFormik } from 'formik'
-import * as Yup from 'yup'
+import React, {useEffect, useState} from "react"
+import {useFormik} from "formik"
+import * as Yup from "yup"
 import {TextEditor} from "../../common-elements/form/elements/editor/TextEditor"
 import CSRFToken from "../../common-elements/form/CSRFToken"
 import {specialtagsinnotification} from "../../common-elements/form/elements/editor/TextEditor"
-import MediaQuery from 'react-responsive'
+import MediaQuery from "react-responsive"
 
 export const AnswerForm = ({text, sendSocketEvent, savers, room_name, addNotification, setAnswer, id}) => {
     const set_text = (text) => {
@@ -30,7 +30,7 @@ export const AnswerForm = ({text, sendSocketEvent, savers, room_name, addNotific
             }
             const clear_textarea = () => {
                 form.removeAttribute('data-submitting')
-                formik.setFieldValue('text', "")
+                formik.setFieldValue('text', '')
             }
             const add_notification_for_savers = (data) => {
                 let sender = (({id, name, avatar}) => ({id, name, avatar}))(data.author)
@@ -44,7 +44,7 @@ export const AnswerForm = ({text, sendSocketEvent, savers, room_name, addNotific
                     text: room_name,
                     object: data.id,
                 }
-                if(recipients.length!=0) {
+                if(recipients.length != 0) {
                     addNotification(notification_data)
                 }
             }
@@ -72,7 +72,7 @@ export const AnswerForm = ({text, sendSocketEvent, savers, room_name, addNotific
                     add_notification_for_savers(data)
                 }
             }
-            const url = text ? ("../api/edit-answer") : ("../api/create-answer")
+            const url = text ? ('../api/edit-answer') : ('../api/create-answer')
             $.ajax({
                 type: 'post',
                 url: url,
@@ -96,7 +96,7 @@ export const AnswerForm = ({text, sendSocketEvent, savers, room_name, addNotific
 	
     return (
         <form className="answer-textarea" id="answer_form" onSubmit={formik.handleSubmit}>
-            <CSRFToken/>
+            <CSRFToken />
             <input name="text" type="hidden" onChange={formik.handleChange} value={formik.values.text} />
             <TextEditor setText={set_text} textValue={formik.values.text} initialText={formik.values.text} />
             <button className='send-btn' type="submit">

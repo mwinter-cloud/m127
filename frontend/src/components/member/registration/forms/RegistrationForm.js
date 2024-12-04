@@ -1,18 +1,19 @@
 import React, {useState} from 'react'
-import { useFormik } from 'formik'
+import {useFormik} from 'formik'
 import * as Yup from 'yup'
-import CSRFToken from "../../../common-elements/form/CSRFToken"
+import CSRFToken from '../../../common-elements/form/CSRFToken'
 
 const RegistrationForm = (props) => {
     const [loading, setLoading] = useState(false)
+    const [navigation, setNavigation] = useState('disabled')
+	
     const formik = useFormik({
         initialValues: {
             username: '',
             password: '',
             password2: '',
             email: '',
-            origin: window.location.origin,
-            operation_id: props.operation_id
+            origin: window.location.origin
         },
         validationSchema: Yup.object({
             username: Yup.string()
@@ -40,32 +41,34 @@ const RegistrationForm = (props) => {
                     set_loading(true)
                 },
                 success: function () {
-                    window.location.reload()
-                },
-                complete: function () {
-                    set_loading(false)
+                    setNavigation('active')
                 },
                 error: function (xhr) {
                     for (const [key, value] of Object.entries(JSON.parse(xhr.responseText))) {
                         if (value[0] == 'Пользователь с таким именем уже существует.') {
                             setErrors({'username': value[0]})
-                        }
-                        if (value[0] == 'Указанная почта уже используется') {
+                        } else if (value[0] == 'Указанная почта уже используется.') {
                             setErrors({'email': value[0]})
-                        }
+                        } else {
+							setErrors({'error': 'Произошла ошибка. Обратитесь по адресу hello@lisphere.space, и мы решим эту проблему!'})
+						}
                     }
                     form.removeAttribute('data-submitting')
+                    set_loading(false)
                 }
             })
         },
     })
+	
     return (
         <form className="simple-form" id="register_form" onSubmit={formik.handleSubmit}>
+            {navigation == 'active' && (<Navigate to="/" replace={true} />)}
             <div className="error-block">
                 {formik.errors.email ? <p>{formik.errors.email}</p> : null}
                 {formik.errors.password ? <p>{formik.errors.password}</p> : null}
                 {formik.errors.password2 ? <p>{formik.errors.password2}</p> : null}
                 {formik.errors.username ? <p>{formik.errors.username}</p> : null}
+                {formik.errors.error ? <p>{formik.errors.error}</p> : null}
             </div>
             <CSRFToken/>
             <div className="inputWrapper">

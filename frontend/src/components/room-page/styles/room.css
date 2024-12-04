@@ -4,6 +4,10 @@
 	min-height: 100vh;
 }
 
+.room-page .loading-icon {
+	padding-top: 20px;
+}
+
 .room-page .not-found-title {
 	padding: 20px 0;
 	margin: 0;

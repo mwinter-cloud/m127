@@ -160,7 +160,9 @@ class RoomPage extends Component {
 				</main>
 			)
 		} else {
-			<main className="room-page"><div className="loading-icon"><i className="el-icon-loading"></i></div></main>
+			return (
+				<main className="room-page"><div className="loading-icon"><i className="el-icon-loading"></i></div></main>
+			)
 		}
     }
 }

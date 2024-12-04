@@ -3,7 +3,7 @@ import '../../styles/create-profile.css'
 import RegistrationForm from '../forms/RegistrationForm'
 import '../../styles/registration.css'
 
-export const RegistrationPage = ({illustrations, operation_id, set_member}) => {
+export const RegistrationPage = ({illustrations, set_member}) => {
     const [banner, setBanner] = useState('')
 	
 	useEffect(() => {
@@ -20,7 +20,7 @@ export const RegistrationPage = ({illustrations, operation_id, set_member}) => {
 				(<div className="banner"></div>) : null}
 			<div className={banner ? "registration-window" : "registration-window no-banner-window"}>
 				<h1>Регистрация</h1>
-				<RegistrationForm set_member={set_member} operation_id={operation_id}/>
+				<RegistrationForm set_member={set_member} />
 			</div>
 		</main>
 	)

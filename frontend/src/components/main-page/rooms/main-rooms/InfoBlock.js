@@ -42,10 +42,6 @@ export const InfoBlock = () => {
 			</aside>
 		)
 	} else {
-		return (
-			<aside>
-				<div className="loading-icon"><i className="el-icon-loading"></i></div>
-			</aside>
-		)
+		return null
 	}
 }

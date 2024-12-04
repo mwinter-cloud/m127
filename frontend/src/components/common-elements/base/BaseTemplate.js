@@ -13,7 +13,7 @@ class BaseTemplate extends Component {
 	
 	componentDidMount() {
 		if(!localStorage.getItem('mode')) {
-			localStorage.setItem("mode", "night")
+			localStorage.setItem('mode', 'night')
 		}
 		const catchNewMode = () => {
 			this.setState({'mode': localStorage.getItem('mode')})
@@ -23,17 +23,19 @@ class BaseTemplate extends Component {
 	
 	changeMode() {
 		let new_mode = localStorage.getItem('mode') == 'day' ? 'night' : 'day'
-		localStorage.setItem("mode", new_mode)
+		localStorage.setItem('mode', new_mode)
 		this.setState({'mode': new_mode})
 	}
 
     render() {
-        return (
-            <div className={this.state.mode + "-mode"}>
-                <Header changeMode={this.changeMode} />
-                <Outlet/>
-            </div>
-        )
+		if(this.state.mode) {
+			return (
+				<div className={this.state.mode + "-mode"}>
+					<Header changeMode={this.changeMode} />
+					<Outlet/>
+				</div>
+			)
+		} else return null
     }
 }
 

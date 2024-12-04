@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, {Component} from "react"
 import CreateBannerRoomBtn_wrap from "../../../store/wraps/room-page/CreateBannerRoomBtn_wrap"
 import SaveBtn from "./SaveBtn"
 
@@ -28,10 +28,10 @@ class RoomMenu extends Component {
             <div className="options-block" ref={this.wrapperRef}>
                 <ul>
 					{this.props.my_id==this.props.room_author_id && (<li className="underline-hover blue-text"
-							onClick={this.props.openEditWindow}>Редактированить
+						onClick={this.props.openEditWindow}>Редактированить
 					</li>)}
                     <CreateBannerRoomBtn_wrap room_id={this.props.room_id}
-                                              openBannerForm={this.props.openBannerForm}/>
+                        openBannerForm={this.props.openBannerForm}/>
                     <SaveBtn room_id={this.props.room_id}/>
                 </ul>
             </div>

@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import FormWindow from "../../../common-elements/windows/FormWindow"
+import React, {Component} from "react"
+import {FormWindow} from "../../../common-elements/windows/FormWindow"
 import WorkplanCreateForm from "../forms/WorkplanCreateForm"
 import FullScreenWindow from "../../../common-elements/windows/FullScreenWindow"
 import Profile from "../../../member/profile/Profile"

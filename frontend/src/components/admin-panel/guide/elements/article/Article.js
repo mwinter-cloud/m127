@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
+import React, {Component} from "react"
 import Illustration from "./Illustration"
-import FormWindow from "../../../../common-elements/windows/FormWindow"
+import {FormWindow} from "../../../../common-elements/windows/FormWindow"
 import GuideArticleForm from "../../forms/GuideArticleForm"
 import GuideImageForm from "../../forms/GuideImageForm"
 import parse from "html-react-parser"

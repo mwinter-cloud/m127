@@ -3,20 +3,11 @@ import '../../styles/message-page.css'
 import {useFormik} from 'formik'
 import * as Yup from 'yup'
 import axios from 'axios'
+import {Link} from 'react-router-dom'
 
-export default function EmailConfirmPage(props) {
+export default function EmailConfirmPage() {
 	window.scrollTo(0, 0)
 	const [operationResult, setOperationResult] = useState(false)
-	const type = props.type
-	const [msg, setMsg] = useState('')
-	const useMountEffect = () => {
-		useEffect(() => {
-			if (type == 'email_confirm') {
-				setMsg('Загляните на почту для получения кода.')
-			}
-		}, [type])
-	}
-	useMountEffect()
 	
 	const formik = useFormik({
         initialValues: {
@@ -73,16 +64,15 @@ export default function EmailConfirmPage(props) {
 					<i className="el-icon-message message-page-icon"></i>
 				</div>
 				<main>
-					{msg}
+					<p className="info-msg">Для продолжения подтвердите почту. Либо <Link to="../">вернитесь на главную</Link>.</p>
 					<form onSubmit={formik.handleSubmit} className="confirm-code-form">
 						<input placeholder="Введите здесь код из письма" className="simple-input"  name="code" onChange={formik.handleChange} value={formik.values.code} />
 						<button type="submit" className="small-btn"><i className="el-icon-arrow-right"></i></button>
 						{formik.errors.code ? <p className="error-msg">{formik.errors.code}</p> : null}
 						{formik.errors.error ? <p className="error-msg">{formik.errors.error}</p> : null}
 					</form>
-					{operationResult?(<span className="result-text">{operationResult}</span>) :
-						(<span className="text-btn" onClick={send_confirm_email}><i className="el-icon-refresh-right"></i> Повторно выслать код</span>)}
-					<a href="/api/logout" className="exit-btn">Выйти</a>
+					{operationResult ? (<span className="result-text">{operationResult}</span>) :
+						(<span className="text-btn" onClick={send_confirm_email}><i className="el-icon-refresh-right"></i> Выслать код</span>)}
 				</main>
 			</div>
 		</main>

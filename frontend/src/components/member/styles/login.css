@@ -2,6 +2,15 @@
 	padding-top: 20px;
 }
 
+.login-page .registration-invite {
+	color: var(--pale-color);
+	font-size: .85em;
+}
+
+.login-page .registration-invite a {
+	color: var(--color);
+}
+
 .login-page .banner {
     object-fit: cover;
     border-radius: 3px 3px 0 0;
@@ -16,6 +25,7 @@
     background-repeat:no-repeat;
     background-position: center center;
 }
+
 .login-page h1 {
     font-size: 1.2em;
     position: relative;
@@ -24,6 +34,7 @@
     left: 0;
     top: 0;
 }
+
 .login-page .registration-window {
     margin: 0 23% 0 23%;
     width: 54%;

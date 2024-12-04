@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import FormWindow from "../../../common-elements/windows/FormWindow"
+import React, {Component} from "react"
+import {FormWindow} from "../../../common-elements/windows/FormWindow"
 import WorkplanCreateForm from "../forms/WorkplanCreateForm"
 import axios from "axios"
 import WorkplanNote_wrap from "../../../../store/wraps/admin-panel/WorkplanNote_wrap"

@@ -39,10 +39,10 @@ export const TextEditor = ({textValue, setText, initialText=null}) => {
 	const [smilesSection, setSmilesSection] = useState('smiles')
 
 	useEffect(() => {
-		if(initialText) {
-			textareaRef.current.innerHTML = initialText
+		if(initialText == 'loaded') {
+			textareaRef.current.innerHTML = textValue
 		}
-	}, [])
+	}, [initialText])
 
     const upShowedStatus = () => {
 		setEditorVisibilityStatus(editorVisibilityStatus == 'editor-container' ? 'editor-hide' : 'editor-container')

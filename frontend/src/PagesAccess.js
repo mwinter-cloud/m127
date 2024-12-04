@@ -1,6 +1,6 @@
-import React from 'react'
+import React from "react"
 import axios from "axios"
-import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import {BrowserRouter, Routes, Route} from "react-router-dom"
 import AdminPanel from "./components/admin-panel/AdminPanel"
 import CiteSettings from "./components/admin-panel/cite-settings/base/CiteSettings"
 import Moderators from "./components/admin-panel/moderators/base/Moderators"
@@ -10,9 +10,7 @@ import Workplan from "./components/admin-panel/workplan/base/Workplan"
 import WalkPage from "./components/common-elements/message-pages/WalkPage"
 import AgreementPage from "./components/common-elements/message-pages/AgreemantPage"
 import EmailConfirmPage from "./components/member/registration/email-confirm/EmailConfirmPage"
-import ProfileCreate from "./components/member/profile-create-form/base/ProfileCreate"
 import Registration from "./components/member/registration/base/Registration"
-import RegistrationCodePage from "./components/member/registration/registration-code/RegistrationCodePage"
 import Login from "./components/member/login/base/Login"
 import RoomsPage_wrap from "./store/wraps/base/RoomsPage_wrap"
 import Polls_wrap from "./store/wraps/base/Polls_wrap"
@@ -38,10 +36,8 @@ class PagesAccess extends React.Component {
 
     // access_type:
     // 0 - не авторизирован
-    // 1 - не подтвержден
-    // 2 - без профиля
-    // 3 - участник
-    // 4 - заблокирован
+    // 1 - участник
+    // 2 - заблокирован
 
     componentDidMount() {
         //закостамизируем перед отображением
@@ -82,17 +78,9 @@ class PagesAccess extends React.Component {
     setTypes = (member) => {
         if (member.profile) {
             if (member.profile.is_blocked) {
-                this.setState({access_type: 4})
+                this.setState({access_type: 3})
             } else {
-                if (member.profile.email_confirm == 0) {
-                    this.setState({access_type: 1})
-                }
-                if (member.profile.email_confirm == 1 && member.profile.is_active == 0) {
-                    this.setState({access_type: 2})
-                }
-                if (member.profile.email_confirm == 1 && member.profile.is_active == 1) {
-                    this.setState({access_type: 3})
-                }
+                this.setState({access_type: 1})
                 if (member.profile.is_admin == 1) {
                     this.setState({is_admin: 1})
                 } else {
@@ -120,7 +108,7 @@ class PagesAccess extends React.Component {
     render() {
         // если ведутся профилактические работы, то доступ к сайту имеют только модераторы, другие участники получают страницу с сообщением
         // в значении поля state.prevention_to необходимо указать время, до которого будут работы вестись
-        if ((!this.state.prevention_to == '') && (this.state.access_type !== 4)) {
+        if ((!this.state.prevention_to == '') && (this.state.access_type !== 2)) {
             return (
                 <BrowserRouter>
                     <Routes>
@@ -131,7 +119,7 @@ class PagesAccess extends React.Component {
                 </BrowserRouter>
             )
         }
-        if (this.state.access_type == 4) {
+        if (this.state.access_type == 2) {
             return (
                 <BrowserRouter>
                     <Routes>
@@ -146,8 +134,8 @@ class PagesAccess extends React.Component {
             <BrowserRouter>
                 <Routes>
                     {(() => {
-                        if (this.state.access_type == 3) {
-                            // всем участникам с профилем
+                        if (this.state.access_type == 1) {
+                            // авторизированным
                             return (
                                 <>
                                     <Route path="" element={<BaseTemplate/>}>
@@ -161,6 +149,7 @@ class PagesAccess extends React.Component {
                                         <Route path="" element={<RoomsPage_wrap/>}/>
                                         <Route path="*" element={<RoomsPage_wrap/>}/>
                                     </Route>
+                                    <Route path="email-confirm" element={<EmailConfirmPage />}/>
                                     <Route path="info-page" element={<InfoPage_wrap/>}/>
                                     <Route path="agreement" element={<AgreementPage/>}/>
                                     <Route path="/admin-panel" element={<AdminPanel/>}>
@@ -171,32 +160,14 @@ class PagesAccess extends React.Component {
                                     </Route>
                                 </>
                             )
-                        } else if (this.state.access_type == 1) {
-                            // для зарегистрированных, но не подтвердивших почту
-                            return (
-                                <>
-                                    <Route path="agreement" element={<AgreementPage/>}/>
-                                    <Route path="*" element={<EmailConfirmPage />}/>
-                                </>
-                            )
-                        } else if (this.state.access_type == 2) {
-                            // для не создавших профиль
-                            return (
-                                <>
-                                    <Route path="agreement" element={<AgreementPage/>}/>
-                                    <Route path="login" element={<Login/>}/>
-                                    <Route path="*" element={<ProfileCreate/>}/>
-                                </>
-                            )
                         } else if (this.state.access_type == 0) {
-                            // для не авторизированных
+                            // для неавторизированных
                             return (
                                 <>
-                                    <Route path="login" element={<Login/>}/>
-                                    <Route path="hello-i-invite-you" element={<RegistrationCodePage/>}/>
-                                    <Route path="registration" element={<Registration/>}/>
-                                    <Route path="agreement" element={<AgreementPage/>}/>
-                                    <Route path="*" element={<WalkPage code='1'/>}/>
+                                    <Route path="login" element={<Login />}/>
+                                    <Route path="registration" element={<Registration />}/>
+                                    <Route path="agreement" element={<AgreementPage />}/>
+                                    <Route path="*" element={<Login />}/>
                                 </>
                             )
                         } else {

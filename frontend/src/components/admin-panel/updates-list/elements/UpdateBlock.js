@@ -1,5 +1,5 @@
 import React, {Component} from "react"
-import FormWindow from "../../../common-elements/windows/FormWindow"
+import {FormWindow} from "../../../common-elements/windows/FormWindow"
 import RatingBtns from "./RatingBtns"
 import ConfirmWindow from "../../../common-elements/windows/ConfirmWindow"
 import UpdateCreateForm from "../forms/UpdateCreateForm"

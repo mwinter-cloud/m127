@@ -1,6 +1,6 @@
 import React, {useState} from "react"
 import MediaQuery from "react-responsive"
-import FormWindow from "../../../common-elements/windows/FormWindow"
+import {FormWindow} from "../../../common-elements/windows/FormWindow"
 import CreatePollForm from "../forms/CreatePollForm"
 
 export const CreateFormBtn = ({poll}) => {
@@ -14,8 +14,8 @@ export const CreateFormBtn = ({poll}) => {
 		<>
 			{createWindow == 'active' && (
 				<FormWindow children={<CreatePollForm closeWindow={openWindow} room={poll} />}
-							title="Создать опрос"
-							closeWindow={openWindow} />)}
+					title="Создать опрос"
+					closeWindow={openWindow} />)}
 				<MediaQuery minWidth={801}>
 					<div className="add-btn" onClick={openWindow}>Добавить</div>
 				</MediaQuery>

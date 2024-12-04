@@ -1,5 +1,5 @@
 import React, {Component} from "react"
-import FormWindow from "../../common-elements/windows/FormWindow"
+import {FormWindow} from "../../common-elements/windows/FormWindow"
 import CreateRoomForm from "../../main-page/forms/CreateRoomForm"
 import BannerRoomForm from "../forms/BannerRoomForm"
 import MediaQuery from "react-responsive"
@@ -46,7 +46,7 @@ class Header extends Component {
         return (
             <>
                 {this.state.edit_window == 'active' && (
-                    <FormWindow children={<CreateRoomForm reloadRoom={this.reloadRoom} room={this.props.room}/>}
+                    <FormWindow children={<CreateRoomForm reloadRoom={this.reloadRoom} room={this.props.room} />}
 						title="Отредактировать комнату"
 						closeWindow={this.openEditWindow} />)}
                 {this.state.banner_form == 'active' && (

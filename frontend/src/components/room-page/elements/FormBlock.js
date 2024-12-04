@@ -1,12 +1,12 @@
-import React, { Component } from 'react'
+import React, {Component} from "react"
 import {AnswerForm} from "../forms/AnswerForm"
-import MediaQuery from 'react-responsive'
+import MediaQuery from "react-responsive"
 
 class FormBlock extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			editor_status: ""
+			editor_status: ''
 		}
 		this.openEditor = this.openEditor.bind(this)
 		this.editorHide = this.editorHide.bind(this)
@@ -41,7 +41,7 @@ class FormBlock extends Component {
 		}
 		$.ajax({
 			type: 'post',
-			url: window.location.origin + '/api/add-notification',
+			url: `${window.location.origin}/api/add-notification}`,
 			cache: false,
 			data: data_for_db_note,
 			success: function (res_data) {
@@ -116,18 +116,18 @@ class FormBlock extends Component {
 				<>
 					<MediaQuery minWidth={801}>
 						<button onMouseEnter={this.btnHover} onMouseLeave={this.editorHide} onClick={this.openEditor}
-								className='editor-btn'><i className="el-icon-chat-round"></i></button>
+							className='editor-btn'><i className="el-icon-chat-round"></i></button>
 					</MediaQuery>
 					<MediaQuery maxWidth={800}>
 						<button onMouseLeave={this.editorHide} onClick={this.openMobileEditor}
-								className={this.state.editor_status ? "editor-btn opened-editor-mobile-btn" : "editor-btn"}>
+							className={this.state.editor_status ? "editor-btn opened-editor-mobile-btn" : "editor-btn"}>
 							<i className="el-icon-chat-round"></i></button>
 					</MediaQuery>
 					<div className={this.state.editor_status + " answer-input"}>
 						<AnswerForm id={this.props.id}
-									sendSocketEvent={this.props.sendSocketEvent}
-									addNotification={this.addNotification} savers={this.props.savers}
-									room_name={this.props.room_name}/>
+							sendSocketEvent={this.props.sendSocketEvent}
+							addNotification={this.addNotification} savers={this.props.savers}
+							room_name={this.props.room_name}/>
 					</div>
 				</>
 			)

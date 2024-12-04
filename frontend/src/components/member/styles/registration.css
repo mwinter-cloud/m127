@@ -3,6 +3,7 @@
 	position: relative;
 	background: var(--dark-background);
 	min-height: 100vh;
+	padding-top: 100px;
 }
 .registration-page .banner {
 	margin-top: 0;
@@ -21,7 +22,7 @@
 	font-size: 2.5em;
 	font-weight: 500;
 	margin: 0;
-	color: var(--middle-color);
+	color: var(--color);
 	position: absolute;
 	writing-mode: tb-rl;
 	left: -10%;
@@ -29,13 +30,14 @@
 	z-index: 2;
 	width: 10%;
 	padding-right: 20px;
-	opacity: .6;
+	opacity: .9;
 }
 .registration-page .registration-window {
 	padding: 50px 3%;
 	background: var(--background);
 	width: 60%;
-	margin: 150px 20% 50px 20%;
+	margin: 0 20% 50px 20%;
+	margin-top: 0!important;
 	z-index: 2;
 	position: relative;
 	border-radius: 3px;
@@ -71,6 +73,7 @@
 	bottom: -23px;
 	text-align: center;
 	width: 100%;
+	color: var(--color);
 }
 
 .moderation-card .form-group:last-child {

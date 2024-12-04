@@ -59,6 +59,23 @@
 	background: var(--middle-background);
 }
 
+.form-window .form-delete-btn {
+	font-size: 12px;
+}
+
+.form-window .textarea-block {
+	height: auto;
+}
+
+.form-window .editor-textarea {
+	height: auto;
+}
+
+.form-window .smiles-block {
+	height: 100%;
+}
+
+
 @media (max-width: 800px) {
 	.form-window {
 		width: 100%!important;
