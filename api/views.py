@@ -169,7 +169,7 @@ class ProfileView(viewsets.ViewSet):
         serializer = ProfileSerializer(profile, data=data)
         if not serializer.is_valid():
             return JsonResponse(status=400, data=serializer.errors)
-        serializer.save(is_active=1)
+        serializer.save()
         # выполним подписку на комнату с объявлениями
         room = get_object_or_404(Room.objects, pk=35)  # эта комната имеет id 35, при смене изменить
         room.saved_by.add(profile)
@@ -196,7 +196,6 @@ class ProfileView(viewsets.ViewSet):
         data = request.data
         _mutable = data._mutable
         data._mutable = True
-        data['is_active'] = True
         data['email_confirm'] = True
         data['is_admin'] = request.user.profile.is_admin
         data._mutable = _mutable

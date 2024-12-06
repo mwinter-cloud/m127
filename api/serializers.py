@@ -55,7 +55,7 @@ class ProfileUpdateSerializer(serializers.ModelSerializer):
     user = UserAdminSerializer(many=False, read_only=True)
     class Meta:
         model = Profile
-        fields = ['id', 'name', 'city', 'email', 'avatar', 'cover', 'post_text', 'post_image', 'post_title', 'post_created_at', 'webcite', 'color', 'is_admin', 'is_blocked', 'is_active', 'email_confirm', 'user']
+        fields = ['id', 'name', 'city', 'email', 'avatar', 'cover', 'post_text', 'post_image', 'post_title', 'post_created_at', 'webcite', 'color', 'is_admin', 'is_blocked', 'email_confirm', 'user']
 
 
 class ProfileSerializer(serializers.ModelSerializer):
@@ -63,7 +63,7 @@ class ProfileSerializer(serializers.ModelSerializer):
     user = UserAdminSerializer(many=False, read_only=True)
     class Meta:
         model = Profile
-        fields = ['id', 'name', 'city', 'email', 'avatar', 'cover', 'post_text', 'post_image', 'post_title', 'post_created_at', 'webcite', 'color', 'is_admin', 'is_blocked', 'is_active', 'email_confirm', 'user']
+        fields = ['id', 'name', 'city', 'email', 'avatar', 'cover', 'post_text', 'post_image', 'post_title', 'post_created_at', 'webcite', 'color', 'is_admin', 'is_blocked', 'email_confirm', 'user']
 
 class UserSerializer(serializers.ModelSerializer):
     profile = ProfileSerializer(many=False, read_only=True)
