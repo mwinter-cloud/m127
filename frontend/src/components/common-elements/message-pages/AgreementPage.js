@@ -1,8 +1,7 @@
-import React, { Component } from 'react'
-import  '../../../../static/frontend/images/small-logo.png'
+import React, {Component} from 'react'
 import './style/agreement.css'
-import axios from "axios"
-import parse from "html-react-parser"
+import axios from 'axios'
+import parse from 'html-react-parser'
 
 class AgreementPage extends Component {
     constructor(props) {
@@ -11,19 +10,23 @@ class AgreementPage extends Component {
             RL: "",
             SD: "",
             CT: "",
-            open_description: 0,
-            open_contacts: 0,
+            logo: "",
+            description_block_status: 'disabled',
+            contacts_block_status: 'disabled',
             citename: ""
         }
-		this.openDescription = this.openDescription.bind(this)
-		this.openContacts = this.openContacts.bind(this)
+		this.changeDescriptionStatus = this.changeDescriptionStatus.bind(this)
+		this.changeContactsStatus = this.changeContactsStatus.bind(this)
     }
 
     componentDidMount() {
         const set_data = (el) => {this.setState(el)}
-        axios.get(window.location.origin + '/api/get-site-data').then(res => {
-            const data = res.data
-            data.map(item => set_data({[item.type]: item.text}))
+        axios.get(window.location.origin + '/api/get-site-data').then(({data}) => {
+			console.log(data.logo)
+			this.setState({logo: data.logo})
+            data.info.map(item => {
+				set_data({[item.type]: item.text})
+			})
         })
         axios.get('/api/get-citename').then(res => {
             const text = res.data.text
@@ -31,20 +34,20 @@ class AgreementPage extends Component {
         })
     }
 
-    openDescription = () => {
-		this.setState({open_description: (this.state.open_description ? 0 : 1)})
+    changeDescriptionStatus = () => {
+		this.setState({description_block_status: (this.state.description_block_status == 'active' ? 'disabled' : 'active')})
 	}
 
-    openContacts = () => {
-		this.setState({open_contacts: (this.state.open_contacts ? 0 : 1)})
+    changeContactsStatus = () => {
+		this.setState({contacts_block_status: (this.state.contacts_block_status == 'active' ? 'disabled' : 'active')})
 	}
 
     render() {
-        if(this.state.RL!="undefined") {
+        if(this.state.RL != "undefined") {
             return (
                 <div className="agreement-page night-mode">
                     <header className="main-agreement-header">
-                        <img src="../../../../static/frontend/images/small-logo.png" className="small-logo"/>
+                        <img src={this.state.logo} className="small-logo"/>
                         <h3 className="citename">{this.state.citename?this.state.citename:window.location.hostname}</h3>
                         <i className="el-icon-arrow-right"></i>
                         <h3>Соглашение</h3>
@@ -56,20 +59,20 @@ class AgreementPage extends Component {
                         </p>
                         <div className="rules-content">{parse(this.state.RL)}</div>
                         <div className="info-block">
-                            <header onClick={this.openDescription}>
+                            <header onClick={this.changeDescriptionStatus}>
                                 <h3><i className="el-icon-notebook-2"></i> Описание сообщества</h3>
                             </header>
-                            <div className={this.state.open_description?"social-info":"hide"}>
+                            <div className={this.state.description_block_status == 'active' ?"social-info" : "hide"}>
                                 <div className="info-block-content">
                                     {parse(this.state.SD)}
                                 </div>
                             </div>
                         </div>
                         <div className="info-block">
-                            <header onClick={this.openContacts}>
+                            <header onClick={this.changeContactsStatus}>
                                 <h3><i className="el-icon-chat-line-square"></i> Контактные данные</h3>
                             </header>
-                            <div className={this.state.open_contacts?"social-info":"hide"}>
+                            <div className={this.state.contacts_block_status == 'active' ? "social-info" : "hide"}>
                                 <div className="info-block-content">
                                     {parse(this.state.CT)}
                                 </div>

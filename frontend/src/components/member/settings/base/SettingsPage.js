@@ -17,7 +17,7 @@ class SettingsPage extends Component {
 		if(!this.props.member.profile.email_confirm) {
 			window.location.replace('../email-confirm')
 		} else {
-			this.setState({access: true})
+			this.setState({access: 'active'})
 		}
         this.props.set_section('')
         window.scrollTo(0, 0)
@@ -29,32 +29,34 @@ class SettingsPage extends Component {
     }
 
     render() {
-		<main className="settings-page">
-			{(() => {
-				if(this.state.access == true) {
-					return (
-						<>
-							<h1>Настройки</h1>
-							<div className="settings-flex">
-								<div className="menu">
-									<ul>
-										<li className={this.state.section == "user" ? "active" : null} section-name="user" onClick={this.changeSection}>аккаунт</li>
-										<li className={this.state.section == "profile" ? "active" : null} section-name="profile" onClick={this.changeSection}>профиль</li>
-									</ul>
+		return(
+			<main className="settings-page">
+				{(() => {
+					if(this.state.access == 'active') {
+						return (
+							<>
+								<h1>Настройки</h1>
+								<div className="settings-flex">
+									<div className="menu">
+										<ul>
+											<li className={this.state.section == "user" && "active"} section-name="user" onClick={this.changeSection}>аккаунт</li>
+											<li className={this.state.section == "profile" && "active"} section-name="profile" onClick={this.changeSection}>профиль</li>
+										</ul>
+									</div>
+									<div className="form-field">
+										{this.state.section == "user" ? (<UserForm email={this.props.member.email} />) : (<ProfileForm />)}
+									</div>
 								</div>
-								<div className="form-field">
-									{this.state.section == "user" ? (<UserForm email={this.props.member.email} />) : (<ProfileForm />)}
-								</div>
-							</div>
-						</>
-					)
-				} else {
-					return (
-						<div className="loading-icon"><i className="el-icon-loading"></i></div>
-					)
-				}
-			})()}
-		</main>
+							</>
+						)
+					} else {
+						return (
+							<div className="loading-icon"><i className="el-icon-loading"></i></div>
+						)
+					}
+				})()}
+			</main>
+		)
     }
 }
 

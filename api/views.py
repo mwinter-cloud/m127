@@ -40,7 +40,7 @@ class UserView(viewsets.ViewSet):
         email = user.email
         operation = Operation(code=oper_code, user=user, type=1, info=email)
         operation.save()
-        origin = request.POST.get('origin')
+        origin = 'lisphere.space'
         data = {'code': oper_code, 'email': email, 'origin': origin}
         msg_plain = render_to_string('emails/email_confirm.txt', data)
         msg_html = render_to_string('emails/email_confirm.html', data)
@@ -747,8 +747,10 @@ class CustomizationView(viewsets.ViewSet):
 
     def site_data(self, request):
         notes = Customization.objects.all().filter(type__in=["RL", "SD", "CT"])
-        serializer = CustomizationSerializer(notes, many=True)
-        return Response(serializer.data)
+        notes_serializer = CustomizationSerializer(notes, many=True)
+        logo = Illustration.objects.all().filter(type__in=["L"]).latest('pk').text
+        data = {"info": notes_serializer.data, "logo": logo}
+        return Response(data)
 
     def edit(self, request):
         customization_fields = ['AN', 'RL', 'SD', 'CT']

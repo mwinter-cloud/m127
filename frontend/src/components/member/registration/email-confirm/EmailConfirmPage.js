@@ -28,7 +28,7 @@ export default function EmailConfirmPage() {
 				onUploadProgress: setStatus("loading"),
 			}).then(({data}) => {
 				if(data=='success') {
-					window.location.reload(true);
+					window.location.replace('../settings');
 				} else {
 					setErrors({error: 'Код не подходит'});
 				}
@@ -46,8 +46,7 @@ export default function EmailConfirmPage() {
 	const send_confirm_email = () => {
             $.ajax({
                 type: 'post',
-                url: '/api/confirm-email',
-                data: {code: formik.values},
+                url: '/api/send-confirm-email',
                 success: function (res) {
 					setOperationResult("Отправлено новое письмо.")
                 },
@@ -63,7 +62,7 @@ export default function EmailConfirmPage() {
 				<div>
 					<i className="el-icon-message message-page-icon"></i>
 				</div>
-				<main>
+				<main>{formik.status}
 					<p className="info-msg">Для продолжения подтвердите почту. Либо <Link to="../">вернитесь на главную</Link>.</p>
 					<form onSubmit={formik.handleSubmit} className="confirm-code-form">
 						<input placeholder="Введите здесь код из письма" className="simple-input"  name="code" onChange={formik.handleChange} value={formik.values.code} />
