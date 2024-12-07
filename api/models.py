@@ -70,6 +70,7 @@ class Profile(models.Model):
     color = models.ForeignKey(Color, on_delete=models.SET_NULL, default=1, blank=True, null=True)
     webcite = models.CharField(max_length=60, blank=True)
     is_admin = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=False)
     is_blocked = models.BooleanField(default=False)
     email_confirm = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
