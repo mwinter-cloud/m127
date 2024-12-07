@@ -30,7 +30,8 @@ class UserView(viewsets.ViewSet):
         if not serializer.is_valid():
             return JsonResponse(status=400, data=serializer.errors)
         user = serializer.save()
-        Profile(name=user.username, user=user, color=None).save()
+        profile = Profile(name=user.username, user=user, color=None).save()
+        profile.save()
         login(request, user)
         return JsonResponse(True, safe=False)
 
