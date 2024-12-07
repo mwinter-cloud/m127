@@ -87,21 +87,6 @@ class PagesAccess extends React.Component {
                     this.setState({is_admin: 0})
                 }
             }
-        } else {
-            // если нет профиля, надо создать базу
-            const add_profile = () => {
-                window.location.reload()
-            }
-            $.ajax({
-                type: 'post',
-                url: '/api/create-base-profile',
-                success: function (data) {
-                    add_profile(data)
-                },
-                error: function (xhr, status, error) {
-                    console.log(JSON.parse(xhr.responseText))
-                }
-            })
         }
     }
 
