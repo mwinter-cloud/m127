@@ -477,7 +477,7 @@
 }
 .answer-input .send-btn {
     border-radius: 3px;
-    background: var(--dark-background);
+    background: transparent;
     color: var(--color);
     padding: 8px 20px;
     font-size: .8em;
@@ -489,7 +489,7 @@
 	width: auto;
 }
 .night-mode .answer-input .send-btn {
-	background: var(--light-background);
+	background: transparent;
 }
 
 .answer-input .send-btn i {
@@ -562,7 +562,7 @@
 		left: 0;
 		font-size: 15px;
 		padding: 12px 8px;
-		top: 60px;
+		top: 50px;
 		border-top: 0;
 	}
 	
