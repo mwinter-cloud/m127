@@ -7,6 +7,13 @@ import {specialtagsinnotification} from "../../common-elements/form/elements/edi
 import MediaQuery from "react-responsive"
 
 export const AnswerForm = ({text, sendSocketEvent, savers, room_name, addNotification, setAnswer, id}) => {
+	const [initialTextStatus, setInitialTextStatus] = useState('undefined')
+	useEffect(() => {
+		if(text) {
+			setInitialTextStatus('loaded')
+		}
+	}, [])
+	
     const set_text = (text) => {
         //записываем текст в поле из редактора
         formik.setFieldValue('text', text)
@@ -98,7 +105,7 @@ export const AnswerForm = ({text, sendSocketEvent, savers, room_name, addNotific
         <form className="answer-textarea" id="answer_form" onSubmit={formik.handleSubmit}>
             <CSRFToken />
             <input name="text" type="hidden" onChange={formik.handleChange} value={formik.values.text} />
-            <TextEditor setText={set_text} textValue={formik.values.text} initialText={formik.values.text} />
+            <TextEditor setText={set_text} textValue={formik.values.text} initialText={initialTextStatus} />
             <button className='send-btn' type="submit">
 				<i className="el-icon-s-promotion"></i>
                 <div type="submit" className="progress-btn-line"></div>

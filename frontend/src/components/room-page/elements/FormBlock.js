@@ -121,7 +121,8 @@ class FormBlock extends Component {
 					<MediaQuery maxWidth={800}>
 						<button onMouseLeave={this.editorHide} onClick={this.openMobileEditor}
 							className={this.state.editor_status ? "editor-btn opened-editor-mobile-btn" : "editor-btn"}>
-							<i className="el-icon-chat-round"></i></button>
+							<i className="el-icon-chat-round"></i>
+						</button>
 					</MediaQuery>
 					<div className={this.state.editor_status + " answer-input"}>
 						<AnswerForm id={this.props.id}

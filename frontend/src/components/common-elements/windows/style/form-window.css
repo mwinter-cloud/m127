@@ -69,6 +69,7 @@
 
 .form-window .editor-textarea {
 	height: auto;
+	min-height: 150px;
 }
 
 .form-window .smiles-block {
