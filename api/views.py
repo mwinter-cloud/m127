@@ -30,7 +30,6 @@ class UserView(viewsets.ViewSet):
         if not serializer.is_valid():
             return JsonResponse(status=400, data=serializer.errors)
         user = serializer.save()
-        Profile(name=user.username, user=user, color=None).save()
         login(request, user)
         return JsonResponse(True, safe=False)
 
@@ -51,8 +50,6 @@ class UserView(viewsets.ViewSet):
     def retrieve(self, request):
         queryset = User.objects.all()
         user = get_object_or_404(queryset, pk=request.user.pk)
-        if not hasattr(user, 'profile'):
-            Profile(name=user.username, user=user, color=None).save()
         serializer = UserSerializer(user)
         return Response(serializer.data)
 
@@ -62,6 +59,8 @@ class UserView(viewsets.ViewSet):
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
+            if not hasattr(user, 'profile'):
+                Profile(name=user.username, user=user, color=None).save()
         else:
             return JsonResponse(status=400, data={"error": "Запись не найдена"})
         user_serializer = UserSerializer(user)

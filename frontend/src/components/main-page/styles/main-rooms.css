@@ -83,10 +83,10 @@
 	overflow-y: auto;
 }
 .day-mode .rooms-main .cite-top .header-text {
-    background: rgb(255,255,255,.5);
+    background: rgb(255,255,255,.8);
 }
 .night-mode .rooms-main .cite-top .header-text {
-    background: rgba(26,27,32,.5);
+    background: rgba(26,27,32,.6);
 }
 .rooms-main .cite-top h1 {
     font-weight: 500;
