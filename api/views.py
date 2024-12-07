@@ -30,6 +30,7 @@ class UserView(viewsets.ViewSet):
         if not serializer.is_valid():
             return JsonResponse(status=400, data=serializer.errors)
         user = serializer.save()
+        Profile(name=user.username, user=user, color=None).save()
         login(request, user)
         return JsonResponse(True, safe=False)
 
@@ -154,10 +155,6 @@ class UserView(viewsets.ViewSet):
 
 
 class ProfileView(viewsets.ViewSet):
-    def create_base(self, request):
-        user = request.user
-        Profile(name=user.username, user=user, color=None).save()
-        return Response(True)
 
     def create(self, request):
         queryset = Profile.objects.all()

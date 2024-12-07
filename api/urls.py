@@ -18,7 +18,6 @@ urlpatterns = [
     path('get-moderators', ProfileView.as_view({'get': 'moderator_list'})),
     path('moderator-delete', ProfileView.as_view({'post': 'moderator_delete'})),
     path('add-moderator', ProfileView.as_view({'post': 'add_moderator'})),
-    path('create-base-profile', ProfileView.as_view({'post': 'create_base'})),
     path('logout', UserView.as_view({'get': 'logout'})),
     path('send-confirm-email', UserView.as_view({'post': 'send_confirm_email'})),
     path('confirm-email', UserView.as_view({'post': 'register_confirm'})),
