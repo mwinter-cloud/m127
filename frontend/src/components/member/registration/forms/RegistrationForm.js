@@ -5,7 +5,6 @@ import CSRFToken from '../../../common-elements/form/CSRFToken'
 
 const RegistrationForm = (props) => {
     const [loading, setLoading] = useState(false)
-    const [navigation, setNavigation] = useState('disabled')
 	
     const formik = useFormik({
         initialValues: {
@@ -41,9 +40,10 @@ const RegistrationForm = (props) => {
                     set_loading(true)
                 },
                 success: function () {
-                    setNavigation('active')
+                    window.location.replace('../')
                 },
                 error: function (xhr) {
+					console.log(xhr)
                     for (const [key, value] of Object.entries(JSON.parse(xhr.responseText))) {
                         if (value[0] == 'Пользователь с таким именем уже существует.') {
                             setErrors({'username': value[0]})
@@ -62,7 +62,6 @@ const RegistrationForm = (props) => {
 	
     return (
         <form className="simple-form" id="register_form" onSubmit={formik.handleSubmit}>
-            {navigation == 'active' && (<Navigate to="/" replace={true} />)}
             <div className="error-block">
                 {formik.errors.email ? <p>{formik.errors.email}</p> : null}
                 {formik.errors.password ? <p>{formik.errors.password}</p> : null}
