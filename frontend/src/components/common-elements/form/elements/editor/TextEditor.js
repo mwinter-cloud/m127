@@ -43,6 +43,13 @@ export const TextEditor = ({textValue, setText, initialText=null}) => {
 			textareaRef.current.innerHTML = textValue
 		}
 	}, [initialText])
+	
+	useEffect(() => {
+		if(textValue == '') {
+			// если обнулили значение после отправки
+			textareaRef.current.innerHTML = ''
+		}
+	}, [textValue])
 
     const upShowedStatus = () => {
 		setEditorVisibilityStatus(editorVisibilityStatus == 'editor-container' ? 'editor-hide' : 'editor-container')

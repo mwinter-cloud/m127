@@ -14,9 +14,9 @@ class AnswerBlock extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			profile_window: 0,
+			profile_window_status: 0,
 			edit_status: 0,
-			confirm_window: 0,
+			confirm_window_status: 'disabled',
 			text: "",
 		}
 		this.openConfirmWindow = this.openConfirmWindow.bind(this)
@@ -40,7 +40,7 @@ class AnswerBlock extends Component {
 	}
 
 	openProfile = () => {
-		this.setState({profile_window: (this.state.profile_window ? 0 : 1)})
+		this.setState({profile_window_status: (this.state.profile_window_status == 'active' ? 'disabled' : 'active')})
 	}
 
 	openEditForm = () => {
@@ -53,7 +53,7 @@ class AnswerBlock extends Component {
 	}
 
 	openConfirmWindow = () => {
-		this.setState({confirm_window: (this.state.confirm_window ? 0 : 1)})
+		this.setState({confirm_window_status: (this.state.confirm_window_status == 'active' ? 'disabled' : 'active')})
 	}
 
 	deleteAnswer = () => {
@@ -84,10 +84,8 @@ class AnswerBlock extends Component {
 				if (this.props.answer.type != 2) {
 					return (
 						<>
-							{this.state.profile_window ? (
-								<FullScreenWindow
-									children={<Profile id={this.props.answer.author.id}
-													   closeWindow={this.openProfile}/>}/>) : null}
+							{this.state.profile_window_status == 'active' && (
+								<FullScreenWindow children={<Profile id={this.props.answer.author.id} closeWindow={this.openProfile}/>}/>)}
 							{(() => {
 								if (this.state.edit_status == 0) {
 									return (
@@ -122,17 +120,14 @@ class AnswerBlock extends Component {
 								} else {
 									return (
 										<>
-											{this.state.confirm_window ? (
-												<ConfirmWindow confirmFunc={this.deleteAnswer}
-															   close={this.openConfirmWindow}/>) : null}
+											{this.state.confirm_window_status == 'active' && (
+												<ConfirmWindow confirmFunc={this.deleteAnswer} close={this.openConfirmWindow} />)}
 											<section className="answer" id={"answer" + this.props.answer.id}>
 												<div className="author">
 													{this.props.answer.author.avatar ?
-														(<img src={this.props.answer.author.avatar}
-															  className="avatar"/>)
+														(<img src={this.props.answer.author.avatar} className="avatar"/>)
 														: null}
-													<div className="author-info"
-														 onClick={this.openProfile}>
+													<div className="author-info" onClick={this.openProfile}>
 												<span
 													className={this.props.answer.author.color ? this.props.answer.author.color.type : null}>
 													{this.props.answer.author.name}
@@ -145,9 +140,9 @@ class AnswerBlock extends Component {
 													</div>
 													<div className="answer-input">
 														<AnswerForm text={this.state.text}
-																	id={this.props.answer.id}
-																	form_name={"edit_answer" + this.props.answer.id}
-																	setAnswer={this.setAnswer}/>
+															id={this.props.answer.id}
+															form_name={"edit_answer" + this.props.answer.id}
+															setAnswer={this.setAnswer}/>
 													</div>
 												</div>
 											</section>

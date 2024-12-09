@@ -87,7 +87,7 @@ class PollContentField extends Component {
                 if (operation_type == "add") {
                     newVoices[voiceIndex]++
                     this.setVoices(newVoices)
-                    this.setvoices_count(this.state.voices_count + 1)
+                    this.setState({voices_count: this.state.voices_count + 1})
                 }
                 if (operation_type == "delete") {
                     newVoices[voiceIndex]--

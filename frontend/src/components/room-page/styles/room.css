@@ -489,7 +489,12 @@
 	width: auto;
 }
 .night-mode .answer-input .send-btn {
-	background: transparent;
+	background: var(--light-background);
+}
+
+.answer .sticker {
+	margin-top: 5px;
+	margin-right: 5px;
 }
 
 .answer-input .send-btn i {
