@@ -34,6 +34,9 @@
     padding: 10px 12px;
 	color: var(--color);
 }
+.room-page .room-scroll-header i {
+	margin-right: 5px;
+}
 
 .room-page .room-cover {
     height: 36vh;
@@ -566,7 +569,7 @@
 		width: 100%;
 		left: 0;
 		font-size: 15px;
-		padding: 12px 8px;
+		padding: 12px 10px;
 		top: 50px;
 		border-top: 0;
 	}
@@ -585,6 +588,11 @@
 		display: flex;
 		font-size: 12px;
 		padding-bottom: 0;
+	}
+
+	
+	.room-page .room-header .room-title h2 {
+		padding: 3px 10px;
 	}
 
 	.answer .author {

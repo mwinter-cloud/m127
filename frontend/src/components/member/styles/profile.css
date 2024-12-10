@@ -305,4 +305,8 @@
 	.profile-page .user-info {
 		border-radius: 0;
 	}
+	.profile-page .post main .null-post {
+		font-size: 13px;
+		line-height: 1.8em;
+	}
 }

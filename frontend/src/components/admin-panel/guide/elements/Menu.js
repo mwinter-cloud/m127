@@ -5,7 +5,7 @@ export const Menu = ({active_section}) => {
 	const [sections, setSections] = useState([
 		{
 			name: "1",
-			title: "Концепция сайта",
+			title: "Концепция и информация",
 		},
 		{
 			name: "2",

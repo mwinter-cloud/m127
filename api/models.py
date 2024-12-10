@@ -394,7 +394,7 @@ class Article(models.Model):
     SOCIAL_ORGANIZATION = "5"
     PROGRAMMING = "6"
     TYPES_CHOICES = [
-        (CONCEPT, 'Концепция'),
+        (CONCEPT, 'Концепция и информация'),
         (GUIDE_TO_USE, 'Руководство по использованию'),
         (BACKEND_CODE, 'Описание кода backend'),
         (FRONTEND_CODE, 'Описание кода frontend'),

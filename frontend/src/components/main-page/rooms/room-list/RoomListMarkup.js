@@ -14,7 +14,6 @@ export const RoomListMarkup  = ({onSearch, onTagSelect, tags, rooms, loadRooms, 
             <MediaQuery maxWidth={800}>
                 <div className="mobile-room-list-header">
                     <SearchBlock onSearch={onSearch} />
-                    <TagFilterBtn onTagSelect={onTagSelect} tags={tags} />
                     <CreateRoomBtn />
                 </div>
             </MediaQuery>
@@ -30,3 +29,5 @@ export const RoomListMarkup  = ({onSearch, onTagSelect, tags, rooms, loadRooms, 
         </div>
     )
 }
+
+//  <TagFilterBtn onTagSelect={onTagSelect} tags={tags} />

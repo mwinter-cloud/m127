@@ -126,6 +126,7 @@ class RoomPage extends Component {
 							return (
 								<>
 									<div className={"room-scroll-header room-scroll-header-"+this.state.header_visibility} onClick={this.scrollToTop}>
+										<i className="el-icon-arrow-up"></i>
 										{this.state.room.name}
 									</div>   
 									<MainAnswer

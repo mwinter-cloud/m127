@@ -56,7 +56,9 @@ class Header extends Component {
                 <header className="room-header">
                     <div className="room-info">
                         <div className={this.props.cover ? "room-title border-room-title" : "room-title"}>
-                            <h2 className={this.props.room.color ? this.props.room.color.type : null}>{this.props.room.name}</h2>
+                            <h2 className={this.props.room.color ? this.props.room.color.type : null}>
+								{this.props.room.name}
+							</h2>
                         </div>
                         <div className="options">
                             <div className="options-field">
