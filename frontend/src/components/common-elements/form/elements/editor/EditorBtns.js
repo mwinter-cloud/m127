@@ -86,7 +86,7 @@ class EditorBtns extends React.Component {
         let selection = window.getSelection(),
             range = selection.getRangeAt(0)
         let temp = document.createElement('div')
-        temp.textContent = '<div style="background: var(--dark-background); padding: 5px; margin: 5px 0;"></div>'
+        temp.textContent = '<div class="content-block"></div>'
         range.insertNode(temp.firstChild)
         selection.collapseToEnd()
         this.props.inputTrigger()

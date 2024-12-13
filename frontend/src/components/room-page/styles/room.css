@@ -42,7 +42,7 @@
     height: 36vh;
     width: 100%;
     position: fixed;
-    top: 60px;
+    top: 50px;
     left: 0;
 	border: 0;
 	outline: 0;
@@ -244,6 +244,11 @@
 .answer h4 {
 	font-weight: 500;
 	margin: 12px 0;
+}
+.answer .content-block {
+	background: var(--dark-background); 
+	padding: 5px;
+	margin: 5px 0;
 }
 .answers .show-more {
     user-select: none;
@@ -459,6 +464,9 @@
 	cursor: pointer;
 	border-radius: 2px;
 	color: var(--pale-color);
+}
+.night-mode .answers .answer .btn {
+	background: var(--light-background);
 }
 .answers .answer .answer-header .btn:first-child {
 	padding-left: 0;

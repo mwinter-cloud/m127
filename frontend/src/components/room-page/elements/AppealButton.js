@@ -7,7 +7,7 @@ class AppealButton extends React.Component {
 	}
 
 	addAppeal = () => {
-        let div_editable = document.getElementById("new_answer_form_div_editable")
+        let div_editable = document.getElementById("new_answer_div_editable")
         div_editable.focus()
         let selection = window.getSelection(),
         range = selection.getRangeAt(0)

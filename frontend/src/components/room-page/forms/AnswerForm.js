@@ -105,7 +105,7 @@ export const AnswerForm = ({text, sendSocketEvent, savers, room_name, addNotific
         <form className="answer-textarea" id="answer_form" onSubmit={formik.handleSubmit}>
             <CSRFToken />
             <input name="text" type="hidden" onChange={formik.handleChange} value={formik.values.text} />
-            <TextEditor setText={set_text} textValue={formik.values.text} initialText={initialTextStatus} />
+            <TextEditor setText={set_text} textValue={formik.values.text} initialText={initialTextStatus} specialId="new_answer_div_editable" />
             <button className='send-btn' type="submit">
 				<i className="el-icon-s-promotion"></i>
                 <div type="submit" className="progress-btn-line"></div>

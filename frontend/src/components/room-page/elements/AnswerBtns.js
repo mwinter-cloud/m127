@@ -17,14 +17,14 @@ class AnswerBtns extends Component {
 							<>
 								<QuoteButton id={this.props.answer.author.user ?
 									this.props.answer.author.user.id : null}
-											 color={this.props.answer.author.color}
-											 text={this.props.answer.text}
-											 name={this.props.answer.author.name}/>
+									color={this.props.answer.author.color}
+									text={this.props.answer.text}
+									name={this.props.answer.author.name}/>
 								<AppealButton id={this.props.answer.id ?
 									this.props.answer.author.user.id : null}
-											  color={this.props.answer.author.color}
-											  name={this.props.answer.author.name}
-											  answer_id={this.props.answer.id}
+									color={this.props.answer.author.color}
+									name={this.props.answer.author.name}
+									answer_id={this.props.answer.id}
 								/>
 							</>
 						)}

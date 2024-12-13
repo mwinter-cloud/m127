@@ -32,7 +32,7 @@ export function specialtagsinnotification(text){
     return html
 }
 
-export const TextEditor = ({textValue, setText, initialText=null}) => {
+export const TextEditor = ({textValue, setText, specialId=null, initialText=null}) => {
 	const textareaRef = useRef(null)
 	const [designWinStatus, setDesignWinStatus] = useState('hide')
 	const [editorVisibilityStatus, setEditorVisibilityStatus] = useState('editor-container')
@@ -112,11 +112,11 @@ export const TextEditor = ({textValue, setText, initialText=null}) => {
 			{editorVisibilityStatus == 'editor-hide' && <ShowedAnswer text={textValue}/>}
 			<div className={editorVisibilityStatus}>
 				<EditorBtns textareaRef={textareaRef.current}
-							smilesSection={smilesSection}
-							inputTrigger={inputTrigger} setSmilesSection={upSmilesSection}/>
+					smilesSection={smilesSection}
+					inputTrigger={inputTrigger} 
+					setSmilesSection={upSmilesSection} />
 				<div className="textarea-block">
-					<div contentEditable onPaste={paste} ref={textareaRef}
-						 className="editor-textarea" onInput={updateEditor}></div>
+					<div contentEditable onPaste={paste} ref={textareaRef} id={specialId} className="editor-textarea" onInput={updateEditor}></div>
 					<MediaQuery minWidth={801}>
 						<SmileBlock textareaRef={textareaRef.current} smilesSection={smilesSection} />
 					</MediaQuery>

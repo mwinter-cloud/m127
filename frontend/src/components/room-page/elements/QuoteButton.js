@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react"
 import {specialtagstohtml} from "../../common-elements/form/elements/editor/TextEditor"
 
 class QuoteButton extends React.Component {
@@ -8,12 +8,12 @@ class QuoteButton extends React.Component {
 	}
 
     addQuote = () => {
-        let div_editable = document.getElementById('new_answer_form_div_editable')
+        let div_editable = document.getElementById('new_answer_div_editable')
         div_editable.focus()
         let selection = window.getSelection(),
         range = selection.getRangeAt(0)
         let temp = document.createElement('div')
-        temp.textContent = '<div style="background: #2b2c31; padding: 5px;">'+specialtagstohtml(this.props.text)+'<span style="font-size:.9em;">(-> <appeal to='+this.props.id+' color='+(this.props.color?this.props.color.type:"")+'>'+this.props.name+'</appeal>)</span></div>';
+        temp.textContent = '<div class="content-block">'+specialtagstohtml(this.props.text)+'<span style="font-size:.9em;">(-> <appeal to='+this.props.id+' color='+(this.props.color?this.props.color.type:"")+'>'+this.props.name+'</appeal>)</span></div>';
         range.insertNode(temp.firstChild)
         selection.collapseToEnd()
         let event = new Event('input', {
