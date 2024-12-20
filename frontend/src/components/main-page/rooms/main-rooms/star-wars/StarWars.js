@@ -9,7 +9,6 @@ export const StarWars = () => {
 	const [voicesLoadingStatus, setVoicesLoadingStatus] = useState('undefined')
 	const [voicesSendingStatus, setVoiceSeindingStatus] = useState('undefined')
 	
-	let starWarsSocket
 	
 	useEffect(() => {
 		axios.get('/api/get-star-wars-voices', {
@@ -33,8 +32,8 @@ export const StarWars = () => {
         } else {
             wsProtocol = 'ws://'
         }
-		starWarsSocket = new WebSocket(wsProtocol + window.location.host + '/ws/star-wars-poll')
-        starWarsSocket.onmessage = e => {
+		window.starWarsSocket = new WebSocket(wsProtocol + window.location.host + '/ws/star-wars-poll')
+        window.starWarsSocket.onmessage = e => {
             const data = JSON.parse(e.data)
             const side = data['side']
             const voice = {
@@ -50,7 +49,7 @@ export const StarWars = () => {
 		}
 			
 		return function () {
-			starWarsSocket.close()
+			window.starWarsSocket.close()
 		};
 	}, [])
 	
@@ -63,7 +62,7 @@ export const StarWars = () => {
 	}
 	
 	const sendSocketMsg = (side) => {
-		starWarsSocket.send(JSON.stringify({
+		window.starWarsSocket.send(JSON.stringify({
             'type': 'new_voice',
             'side': side,
         }))
