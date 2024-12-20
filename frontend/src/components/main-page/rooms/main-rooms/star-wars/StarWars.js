@@ -19,6 +19,25 @@ class StarWars extends Component {
     }
 	
 	componentDidMount() {
+		let wsProtocol = ""
+        if (window.location.protocol == 'https:') {
+          wsProtocol = 'wss://'
+        } else {wsProtocol = 'ws://'}
+        this.starWarsSocket = new WebSocket(wsProtocol + window.location.host + '/ws/star-wars')
+        this.starWarsSocket.onmessage = e => {
+            const data = JSON.parse(e.data)
+            const side = data['side']
+            const voice = {
+                'id': id,
+                'side': side,
+            }
+			if(side == 'EM') {
+				this.setState({empireVoices: prevState => prevState + 1})
+			} else {
+				this.setState({republicVoices: prevState => prevState + 1})
+			}
+		}
+		
 		axios.get('/api/get-star-wars-voices', {
 			onDownloadProgress: () => {
 				this.setState({voicesLoadingStatus: 'loading'})
@@ -34,26 +53,6 @@ class StarWars extends Component {
 				this.setState({republicVoices: data.empire_voices})
 			}
         })
-		
-		let wsProtocol = ""
-        if (window.location.protocol == 'https:') {
-          wsProtocol = 'wss://'
-        } else {wsProtocol = 'ws://'}
-        this.starWarsSocket = new WebSocket(
-            wsProtocol + window.location.host + '/ws/star-wars')
-        this.starWarsSocket.onmessage = e => {
-            const data = JSON.parse(e.data)
-            const side = data['side']
-            const voice = {
-                'id': id,
-                'side': side,
-            }
-			if(side == 'EM') {
-				this.setState({empireVoices: prevState => prevState + 1})
-			} else {
-				this.setState({republicVoices: prevState => prevState + 1})
-			}
-		}
 	}
 	
 	componentWillUnmount() {
