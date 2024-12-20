@@ -49,7 +49,7 @@ class StarWars extends Component {
 				this.setState({empireVoices: data.empire_voices})
 			}
 			if(data.republic_voices){
-				this.setState({republicVoices: data.empire_voices})
+				this.setState({republicVoices: data.republic_voices})
 			}
         })
 	}
@@ -77,9 +77,13 @@ class StarWars extends Component {
 		const formData = new FormData()
 		formData.append('csrfmiddlewaretoken', csrftoken)
 		formData.append('side', side)
-		axios.post(window.location.origin + '/api/send-star-wars-voice', formData).then(() => {
-			this.sendSocketMsg(side)
-			this.setState({voiceSendingStatus: 'sended'})
+		axios.post(window.location.origin + '/api/send-star-wars-voice', formData).then(({data}) => {
+			if(data == 'success') {
+				this.sendSocketMsg(side)
+				this.setState({voiceSendingStatus: 'sended'})
+			} else {
+				this.setState({voiceSendingStatus: 'error'})
+			}
 		}).catch((data) => {
 			this.setState({voiceSendingStatus: 'error'})
 		})

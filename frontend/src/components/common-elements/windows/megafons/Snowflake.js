@@ -9,7 +9,7 @@ export const Snowflake = ({type}) => {
 		content1 = (<i className={"bubble-position-1"}></i>)
 		content2 = (<i className={"bubble-position-2"}></i>)
 		content3 = content1
-	} else if (this.props.type == "colors") {
+	} else if (type == "colors") {
 		content1 = (
 			<>
 				<i className={"confetti-item confetti-item-1"}></i>
