@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import UserView, ProfileView, RoomView, TagView, PollView, VoiceView, CommentView, SmileView, \
     AnswerView, ColorView, NotificationView, SearchView, CustomizationView, IllustrationView, OptionView, \
-    ReportView, WorkplanView, UpdateView, RoomVoiceView, ArticleView, ArticleIllustrationView
+    ReportView, WorkplanView, UpdateView, RoomVoiceView, ArticleView, ArticleIllustrationView, StarWarsView
 
 urlpatterns = [
     #members
@@ -112,4 +112,7 @@ urlpatterns = [
     path('get-article-image/<int:id>', ArticleIllustrationView.as_view({'get': 'retrieve'})),
     path('remove-article-image', ArticleIllustrationView.as_view({'post': 'delete'})),
     path('guide-search', ArticleView.as_view({'post': 'search'})),
+    #звездные войны
+    path('get-star-wars-voices', StarWarsView.as_view({'get': 'retrieve'})),
+    path('send-star-wars-voice', StarWarsView.as_view({'post': 'add'})),
 ]

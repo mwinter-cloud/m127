@@ -247,3 +247,38 @@ class UserConsumer(WebsocketConsumer):
             'created_at': created_at,
             'sender': sender,
         }))
+
+class StarWarsConsumer(WebsocketConsumer):
+    def connect(self):
+        self.room_group_name = 'star-wars'
+
+        async_to_sync(self.channel_layer.group_add)(
+            self.room_group_name,
+            self.channel_name
+        )
+        self.accept()
+
+    def disconnect(self, close_code):
+        async_to_sync(self.channel_layer.group_discard)(
+            self.room_group_name,
+            self.channel_name
+        )
+
+    def receive(self, text_data):
+        text_data_json = json.loads(text_data)
+        side = text_data_json['side']
+
+        async_to_sync(self.channel_layer.group_send)(
+            self.room_group_name,
+            {
+                'type': 'voice',
+                'side': side,
+            }
+        )
+
+    def voice(self, event):
+        side = event['side']
+
+        self.send(text_data=json.dumps({
+            'side': side,
+        }))   

@@ -9,13 +9,13 @@ from .serializers import UserRegistrationSerializer, UserSerializer, ProfileSeri
     FullAnswerSerializer, CarouselRoomSerializer, HeaderRoomSerializer, HeaderRoomCreateSerializer, \
     CarouselRoomCreateSerializer, WorkplanSerializer, WorkplanCreateSerializer, ModeratorProfileSerializer, \
     UpdateSerializer, UpdateCreateSerializer, RoomVoiceSerializer, ArticleSerializer, \
-    ArticleIllustrationSerializer, OperationCodeSerializer
+    ArticleIllustrationSerializer, OperationCodeSerializer, StarWarsVoiceSerializer
 from django.http.response import JsonResponse
 from rest_framework import viewsets
 from rest_framework.response import Response
 from .models import Profile, Room, Carousel_room, Header_room, Tag, Poll, Voice, Option, Comment, Smile, Answer, \
     Color, Notification, Customization, Illustration, Report, Workplan, Update, RoomVoice, Article, \
-    ArticleIllustration, Operation
+    ArticleIllustration, Operation, StarWarsVoice
 from django.shortcuts import get_object_or_404, redirect
 from django.db.models import Q
 from django.db.models import Count
@@ -943,8 +943,7 @@ class NotificationView(viewsets.ViewSet):
         violator_id = int(data.get('violator_id'))
         object_id = int(data.get('object_id'))
         # проверим, получил ли участник 10 предупреждений
-        queryset = Notification.objects.all().filter(recipients__in=([violator_id]),
-                                                     type__in=[4, 5])[:10]
+        queryset = Notification.objects.all().filter(recipients__in=([violator_id]), type__in=[4, 5])[:10]
         if len(queryset) == 10:
             res = 1
         else:
@@ -1178,3 +1177,18 @@ class ArticleIllustrationView(viewsets.ViewSet):
         note = get_object_or_404(queryset, pk=id)
         note.delete()
         return Response(True)
+
+class StarWarsView(viewsets.ViewSet):
+    def retrieve(self, request):
+        republic_voices = get_object_or_404(StarWarsVoice, side='RP')
+        empire_voices = get_object_or_404(StarWarsVoice, side='EM')
+        republic_voices = StarWarsVoiceSerializer(republic_voices, many=False).data.get('voices')
+        empire_voices = StarWarsVoiceSerializer(empire_voices, many=False).data.get('voices')
+        return JsonResponse({'republic_voices': republic_voices, 'empire_voices': empire_voices}, safe=False)
+        
+    def add(self, request):
+        side = request.POST.get('side')
+        item = get_object_or_404(StarWarsVoice, side=side)
+        item.voices = item.voices + 1
+        item.save()
+        return JsonResponse('success', safe=False)

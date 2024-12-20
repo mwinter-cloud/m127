@@ -428,3 +428,21 @@ class ArticleIllustration(models.Model):
                 output_size = (1000, 1000)
                 img.thumbnail(output_size)
                 img.save(self.file.path)
+                
+                
+class StarWarsVoice(models.Model):
+    voices = models.IntegerField(default=0)
+    EMPIRE = 'EM'
+    REPUBLIC = 'RP'
+    TYPES_CHOICES = [
+        (EMPIRE, 'Империя'),
+        (REPUBLIC, 'Республика'),
+    ]
+    side = models.CharField(
+        max_length=2,
+        choices=TYPES_CHOICES,
+        default=REPUBLIC,
+    )
+
+    def __str__(self):
+        return self.side

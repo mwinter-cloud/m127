@@ -1,7 +1,8 @@
-import React, {Component, useState, useEffect} from 'react'
+import React, {Component, useState, useEffect} from "react"
 import {Link} from "react-router-dom"
 import axios from "axios"
 import MegafonInfoWindow from "../../../common-elements/windows/MegafonInfoWindow"
+import {StarWars} from "./star-wars/StarWars"
 
 export const InfoBlock = () => {
 	const [megafonWindow, setMegafonWindow] = useState('disabled')
@@ -39,6 +40,7 @@ export const InfoBlock = () => {
 				<div className="transparent-btn" onClick={openMegafonWindow}>
 					Специальный канал
 				</div>
+				<StarWars />
 			</aside>
 		)
 	} else {

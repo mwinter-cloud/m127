@@ -2,7 +2,7 @@ from rest_framework import serializers
 from django.contrib.auth.models import User
 from .models import Profile, Room, Tag, Poll, Option, Voice, Comment, Smile, Answer, Color, Notification, \
     Customization, Illustration, Report, Header_room, Carousel_room, Workplan, Update, RoomVoice, \
-    ArticleIllustration, Article, Operation
+    ArticleIllustration, Article, Operation, StarWarsVoice
 from django.shortcuts import get_object_or_404
 
 # user + profile
@@ -299,3 +299,9 @@ class OperationCodeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Operation
         fields = ['id', 'code']
+        
+#star-wars
+class StarWarsVoiceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = StarWarsVoice
+        fields = ['id', 'side', 'voices']

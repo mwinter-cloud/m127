@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import '../../../../../static/frontend/images/fox-and-butterfly.png'
 
 class Main extends Component {

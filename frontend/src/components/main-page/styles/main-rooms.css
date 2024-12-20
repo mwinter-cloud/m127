@@ -292,6 +292,75 @@
     max-width: 100%;
 }
 
+.star-wars-container {
+	background: #4C5866;
+	color: white;
+	padding: 10px;
+	border-radius: 3px;
+	font-size: 13px;
+	margin-top: 10px;
+	position: relative;
+}
+
+.star-wars-container p {
+	margin: 0;
+	color: #cdc8c8;
+}
+
+.star-wars-container .options {
+	display: flex;
+	justify-content: space-between;
+}
+
+.star-wars-container .option {
+	margin: 10px 0 5px 0;
+	width: 48%;
+	background: #5a6572;
+	padding: 5px;
+	cursor: pointer;
+	position: relative;
+}
+
+.star-wars-container .option:hover {
+	background: #687483; 
+}
+
+.star-wars-container .option .sidename {
+	display: block;
+	margin-bottom: 0;
+	user-select: none;
+	font-size: 12px;
+}
+
+.star-wars-container .option .voices {
+	font-weidth: 500;
+	font-size: 14px;
+	user-select: none;
+}
+
+.star-wars-container img {
+	height: 28px;
+	width: 28px;
+	float: left;
+	margin-right: 5px;
+	user-select: none;
+}
+.star-wars-container .vs {
+	position: absolute;
+	bottom: 10px;
+	font-size: 2.4em;
+	color: #fff;
+	opacity: .4;
+	font-weight: 500;
+	margin-left: auto;
+	margin-right: auto;
+	left: 0;
+	right: 0;
+	text-align: center;
+	width: 50px;
+	user-select: none;
+}
+
 @media (max-width: 800px) {
 	.rooms-main .cite-top {
 		padding-top: 0;
