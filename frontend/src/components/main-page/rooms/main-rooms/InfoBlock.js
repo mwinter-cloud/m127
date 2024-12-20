@@ -2,7 +2,7 @@ import React, {Component, useState, useEffect} from "react"
 import {Link} from "react-router-dom"
 import axios from "axios"
 import MegafonInfoWindow from "../../../common-elements/windows/MegafonInfoWindow"
-import {StarWars} from "./star-wars/StarWars"
+import StarWars from "./star-wars/StarWars"
 
 export const InfoBlock = () => {
 	const [megafonWindow, setMegafonWindow] = useState('disabled')

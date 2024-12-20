@@ -1,29 +1,37 @@
-import React, {Component, useState, useEffect} from "react"
+import React, {Component} from "react"
 import axios from "axios"
 import bluelightsaber from "./bluelightsaber.png"
 import captain_phasma from "./captain_phasma.png"
 
-export const StarWars = () => {
-	const [empireVoices, setEmpireVoices] = useState(0)
-	const [republicVoices, setRepublicVoices] = useState(0)
-	const [voicesLoadingStatus, setVoicesLoadingStatus] = useState('undefined')
-	const [voicesSendingStatus, setVoiceSeindingStatus] = useState('undefined')
+class StarWars extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            empireVoices: 0,
+            republicVoices: 0,
+			voicesLoadingStatus: 'undefined',
+			voiceSendingStatus: 'undefined',
+        }
+        this.sendRepublicVoice = this.sendRepublicVoice.bind(this)
+        this.sendEmpireVoice = this.sendEmpireVoice.bind(this)
+        this.sendVoice = this.sendVoice.bind(this)
+        this.sendSocketMsg = this.sendSocketMsg.bind(this)
+    }
 	
-	
-	useEffect(() => {
+	componentDidMount() {
 		axios.get('/api/get-star-wars-voices', {
 			onDownloadProgress: () => {
-				setVoicesLoadingStatus('loading')
+				this.setState({voicesLoadingStatus: 'loading'})
 			}
 		}).catch(() => {
-			setVoicesLoadingStatus('error')
+			this.setState({voicesLoadingStatus: 'error'})
 		}).then(({data}) => {
-			setVoicesLoadingStatus('loaded')
+			this.setState({voicesLoadingStatus: 'loaded'})
 			if(data.empire_voices){
-				setEmpireVoices(data.empire_voices)
+				this.setState({empireVoices: data.empire_voices})
 			}
 			if(data.republic_voices){
-				setRepublicVoices(data.republic_voices)
+				this.setState({republicVoices: data.empire_voices})
 			}
         })
 		let wsProtocol = ""
@@ -32,8 +40,8 @@ export const StarWars = () => {
         } else {
             wsProtocol = 'ws://'
         }
-		window.starWarsSocket = new WebSocket(wsProtocol + window.location.host + '/ws/star-wars-poll')
-        window.starWarsSocket.onmessage = e => {
+		this.starWarsSocket = new WebSocket(wsProtocol + window.location.host + '/ws/star-wars-poll')
+        this.starWarsSocket.onmessage = e => {
             const data = JSON.parse(e.data)
             const side = data['side']
             const voice = {
@@ -42,64 +50,68 @@ export const StarWars = () => {
             }
 			console.log(voice)
 			if(side == 'EM') {
-				setEmpireVoices(empireVoices+1)
+				this.setState({empireVoices: prevState => prevState + 1})
 			} else {
-				setRepublicVoices(republicVoices+1)
+				this.setState({republicVoices: prevState => prevState + 1})
 			}
 		}
-			
-		return function () {
-			window.starWarsSocket.close()
-		};
-	}, [])
-	
-	const sendRepublicVoice = () => {
-		sendVoice('RP')
 	}
 	
-	const sendEmpireVoice = () => {
-		sendVoice('EM')
+	componentWillUnmount() {
+		this.starWarsSocket.close()
 	}
 	
-	const sendSocketMsg = (side) => {
+	sendRepublicVoice = () => {
+		this.sendVoice('RP')
+	}
+	
+	sendEmpireVoice = () => {
+		this.sendVoice('EM')
+	}
+	
+	sendSocketMsg = (side) => {
 		window.starWarsSocket.send(JSON.stringify({
             'type': 'new_voice',
             'side': side,
         }))
 	}
 	
-	const sendVoice = (side) => {
+	sendVoice = (side) => {
 		const formData = new FormData()
 		formData.append('csrfmiddlewaretoken', csrftoken)
 		formData.append('side', side)
 		axios.post(window.location.origin + '/api/send-star-wars-voice', formData).then(() => {
-			sendSocketMsg(side)
-			setVoiceSeindingStatus('sended')
+			this.sendSocketMsg(side)
+			this.setState({voiceSendingStatus: 'sended'})
 		}).catch((data) => {
-			setVoiceSeindingStatus('error')
+			this.setState({voiceSendingStatus: 'error'})
 		})
 	}
 	
-	if(voicesLoadingStatus == 'loaded') {
-		return(
-			<div className="star-wars-container">
-				<p>Кто должен победить? (можно кликать сколько угодно раз)</p>
-				<div className="options">
-					<div className="option" onClick={sendRepublicVoice}>
-						<img src={bluelightsaber} /> 
-						<span className="sidename">Республика</span>
-						<span className="voices">{republicVoices}</span>
+	render() {
+		if(this.state.voicesLoadingStatus == 'loaded') {
+			return(
+				<div className="star-wars-container">
+					<p>Кто должен победить? (можно кликать сколько угодно раз)</p>
+					<div className="options">
+						<div className="option" onClick={this.sendRepublicVoice}>
+							<img src={bluelightsaber} /> 
+							<span className="sidename">Республика</span>
+							<span className="voices">{this.state.republicVoices}</span>
+						</div>
+						<div className="option" onClick={this.sendEmpireVoice}>
+							<img src={captain_phasma} /> 
+							<span className="sidename">Империя</span>
+							<span className="voices">{this.state.empireVoices}</span>
+						</div>
+						<span className="vs">vs</span>
 					</div>
-					<div className="option" onClick={sendEmpireVoice}>
-						<img src={captain_phasma} /> 
-						<span className="sidename">Империя</span>
-						<span className="voices">{empireVoices}</span>
-					</div>
-					<span className="vs">vs</span>
 				</div>
-			</div>
-		)
-	} else {
-		return null
+			)
+		} else {
+			return null
+		}
 	}
 }
+
+export default StarWars
