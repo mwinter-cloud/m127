@@ -34,13 +34,13 @@ class StarWars extends Component {
 				this.setState({republicVoices: data.empire_voices})
 			}
         })
+		
 		let wsProtocol = ""
         if (window.location.protocol == 'https:') {
-            wsProtocol = 'wss://'
-        } else {
-            wsProtocol = 'ws://'
-        }
-		this.starWarsSocket = new WebSocket(wsProtocol + window.location.host + '/ws/star-wars-poll')
+          wsProtocol = 'wss://'
+        } else {wsProtocol = 'ws://'}
+        this.starWarsSocket = new WebSocket(
+            wsProtocol + window.location.host + '/ws/star-wars')
         this.starWarsSocket.onmessage = e => {
             const data = JSON.parse(e.data)
             const side = data['side']
@@ -48,7 +48,6 @@ class StarWars extends Component {
                 'id': id,
                 'side': side,
             }
-			console.log(voice)
 			if(side == 'EM') {
 				this.setState({empireVoices: prevState => prevState + 1})
 			} else {
@@ -70,7 +69,7 @@ class StarWars extends Component {
 	}
 	
 	sendSocketMsg = (side) => {
-		window.starWarsSocket.send(JSON.stringify({
+		this.starWarsSocket.send(JSON.stringify({
             'type': 'new_voice',
             'side': side,
         }))
