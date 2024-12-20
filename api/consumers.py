@@ -266,19 +266,27 @@ class StarWarsConsumer(WebsocketConsumer):
 
     def receive(self, text_data):
         text_data_json = json.loads(text_data)
-        side = text_data_json['side']
+        author = text_data_json['author']
+        style = text_data_json['style']
+        text = text_data_json['text']
 
         async_to_sync(self.channel_layer.group_send)(
             self.room_group_name,
             {
-                'type': 'voice',
-                'side': side,
+                'type': 'megafon',
+                'author': author,
+                'style': style,
+                'text': text,
             }
         )
 
-    def voice(self, event):
-        side = event['side']
+    def megafon(self, event):
+        author = event['author']
+        style = event['style']
+        text = event['text']
 
         self.send(text_data=json.dumps({
-            'side': side,
-        }))   
+            'author': author,
+            'style': style,
+            'text': text,
+        }))

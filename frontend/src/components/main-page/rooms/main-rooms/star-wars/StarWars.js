@@ -23,7 +23,7 @@ class StarWars extends Component {
         if (window.location.protocol == 'https:') {
           wsProtocol = 'wss://'
         } else {wsProtocol = 'ws://'}
-        this.starWarsSocket = new WebSocket(wsProtocol + window.location.host + '/ws/star-wars')
+        this.starWarsSocket = new WebSocket(wsProtocol + window.location.host + '/ws/star-wars/')
         this.starWarsSocket.onmessage = e => {
             const data = JSON.parse(e.data)
             const side = data['side']
