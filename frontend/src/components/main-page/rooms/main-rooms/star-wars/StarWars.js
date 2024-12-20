@@ -28,13 +28,12 @@ class StarWars extends Component {
             const data = JSON.parse(e.data)
             const side = data['side']
             const voice = {
-                'id': id,
                 'side': side,
             }
 			if(side == 'EM') {
-				this.setState({empireVoices: prevState => prevState + 1})
+				this.setState({empireVoices: this.state.empireVoices + 1})
 			} else {
-				this.setState({republicVoices: prevState => prevState + 1})
+				this.setState({republicVoices: this.state.republicVoices + 1})
 			}
 		}
 		
