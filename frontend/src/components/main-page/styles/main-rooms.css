@@ -293,8 +293,9 @@
 }
 
 .star-wars-container {
-	background: #4C5866;
-	color: white;
+	background: rgb(188,190,192);
+	background: linear-gradient(90deg, rgba(188,190,192,0.7) 0%, rgba(174,176,178,0.7) 14%, rgba(244,244,244,0.65) 82%, rgba(173,175,176,0.65) 95%);
+	color: var(--active-color);
 	padding: 10px;
 	border-radius: 3px;
 	font-size: 13px;
@@ -304,7 +305,7 @@
 
 .star-wars-container p {
 	margin: 0;
-	color: #cdc8c8;
+	color: var(--active-color);
 }
 
 .star-wars-container .options {
@@ -315,14 +316,14 @@
 .star-wars-container .option {
 	margin: 10px 0 5px 0;
 	width: 48%;
-	background: #5a6572;
+	background: rgba(90, 101, 114, 0.2);
 	padding: 5px;
 	cursor: pointer;
 	position: relative;
 }
 
 .star-wars-container .option:hover {
-	background: #687483; 
+	background: rgba(90, 101, 114, 0.3); 
 }
 
 .star-wars-container .option .sidename {
@@ -397,8 +398,8 @@
 		padding: 20px 0;
 		margin-top: 0px;
 		border-radius: 0;
-		height: 70px;
-		bottom: 70px;
+		height: 90px;
+		bottom: 90px;
 		font-size: .9em;
 	}
 

@@ -36,11 +36,11 @@ body {
 }
 
 .day-mode {
-	--background: #f6f7f9;
-	--dark-background: #ececed;
+	--background: rgb(245,246,248);
+	--dark-background: rgb(237,238,240);
 	--middle-background: #fdfeff;
 	--light-background: #fdfeff;
-	--middle-dark-background: #ececed;
+	--middle-dark-background: rgb(237,238,240);
 	--super-light-background: white;
 	--transparent-background: #fefefefa;
 	--transparent-span: rgba(255, 255, 255, .35);
