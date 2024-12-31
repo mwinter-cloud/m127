@@ -499,9 +499,6 @@
 	border: 0;
 	width: auto;
 }
-.night-mode .answer-input .send-btn {
-	background: var(--light-background);
-}
 
 .answer .sticker {
 	margin-top: 5px;
@@ -649,8 +646,8 @@
         height: 38px;
         border-radius: 0;
 		position: absolute;
-		top: 9px;
-		right: 9px;
+		top: 11px;
+		right: 3px;
 		font-size: 1.2em;
 		padding: 0;
 		margin: 0;

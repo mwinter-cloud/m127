@@ -4,6 +4,7 @@ import MobileMainHeader_wrap from "../../../../store/wraps/base/MobileMainHeader
 import MediaQuery from "react-responsive"
 import MegafonMessage from "../../windows/megafons/MegafonMessage"
 import {InfoHeader} from "./InfoHeader"
+import HolidayHeader from "./HolidayHeader"
 
 class MainHeader extends Component {
     constructor(props) {
@@ -52,6 +53,7 @@ class MainHeader extends Component {
     		    <MediaQuery minWidth={801}>
                     <MainHeader_wrap changeMode={this.props.changeMode}/>
     			</MediaQuery>
+				<HolidayHeader />
             </>
         )
     }

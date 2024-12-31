@@ -1,3 +1,15 @@
+.holiday-header {
+	font-size: 1.35em;
+	padding: 20px 3%;
+	background: var(--SC);
+	display: flex;
+}
+
+.holiday-header img { 
+	margin-right: 20px;
+	height: 120px;
+}
+
 .colorline {
 	height: 4px;
 	width: 100%;
