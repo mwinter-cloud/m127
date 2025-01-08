@@ -11,8 +11,7 @@ class HolidayHeader extends Component {
     render() {
         return (
 			<div className="holiday-header">
-				<img src="https://media1.tenor.com/m/TSQdvnNwdLQAAAAd/happy-new-year-cats.gif" />
-				<p>Поздравляем с Новым Годом и очень-очень желаем радости!</p>
+				
 			</div>
         )
     }

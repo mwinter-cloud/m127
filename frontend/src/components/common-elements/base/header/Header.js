@@ -53,7 +53,6 @@ class MainHeader extends Component {
     		    <MediaQuery minWidth={801}>
                     <MainHeader_wrap changeMode={this.props.changeMode}/>
     			</MediaQuery>
-				<HolidayHeader />
             </>
         )
     }
