@@ -40,7 +40,6 @@ export const InfoBlock = () => {
 				<div className="transparent-btn" onClick={openMegafonWindow}>
 					Специальный канал
 				</div>
-				<StarWars />
 			</aside>
 		)
 	} else {

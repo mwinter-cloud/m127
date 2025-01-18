@@ -64,18 +64,6 @@ export const CreateMessage = (props) => {
                                 src="../../../../../static/frontend/images/wow.png"
                                 data-type="colors"/>
                         </li>
-                        <li className={formik.values.style == 'summer' ? 'active' : null} data-type="summer"
-                            onClick={selectType}>
-                            <img
-                                src="../../../../../static/frontend/images/fox-and-butterfly.png"
-                                data-type="summer"/>
-                        </li>
-                        <li className={formik.values.style == 'winter' ? 'active' : null} data-type="winter"
-                            onClick={selectType}>
-                            <img
-                                src="../../../../../static/frontend/images/winter-cticker.png"
-                                data-type="winter"/>
-                        </li>
                         <li className={formik.values.style == 'fish' ? 'active' : null} data-type="fish"
                             onClick={selectType}>
                             <img
@@ -93,12 +81,6 @@ export const CreateMessage = (props) => {
                             <img
                                 src="../../../../../static/frontend/images/pink-flower.png"
                                 data-type="pink-flower"/>
-                        </li>
-                        <li className={formik.values.style == 'cat' ? 'active' : null} data-type="cat"
-                            onClick={selectType}>
-                            <img
-                                src="../../../../../static/frontend/images/cat.png"
-                                data-type="cat"/>
                         </li>
                     </ul>
                 </div>

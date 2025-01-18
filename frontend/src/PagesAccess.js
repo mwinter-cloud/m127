@@ -36,8 +36,9 @@ class PagesAccess extends React.Component {
 
     // access_type:
     // 0 - не авторизирован
-    // 1 - участник
-    // 2 - заблокирован
+    // 1 - участник не подтвержден
+    // 2 - участник подтвержден
+    // 3 - заблокирован
 
     componentDidMount() {
         //закостамизируем перед отображением
@@ -80,7 +81,11 @@ class PagesAccess extends React.Component {
             if (member.profile.is_blocked) {
                 this.setState({access_type: 3})
             } else {
-                this.setState({access_type: 1})
+				if(!member.profile.email_confirm) {
+					this.setState({access_type: 1})
+				} else {
+					this.setState({access_type: 2})
+				}
                 if (member.profile.is_admin == 1) {
                     this.setState({is_admin: 1})
                 } else {
@@ -93,7 +98,7 @@ class PagesAccess extends React.Component {
     render() {
         // если ведутся профилактические работы, то доступ к сайту имеют только модераторы, другие участники получают страницу с сообщением
         // в значении поля state.prevention_to необходимо указать время, до которого будут работы вестись
-        if ((!this.state.prevention_to == '') && (this.state.access_type !== 2)) {
+        if ((!this.state.prevention_to == '') && (this.state.access_type !== 3)) {
             return (
                 <BrowserRouter>
                     <Routes>
@@ -104,7 +109,7 @@ class PagesAccess extends React.Component {
                 </BrowserRouter>
             )
         }
-        if (this.state.access_type == 2) {
+        if (this.state.access_type == 3) {
             return (
                 <BrowserRouter>
                     <Routes>
@@ -118,9 +123,10 @@ class PagesAccess extends React.Component {
         return (
             <BrowserRouter>
                 <Routes>
+				{this.state.access_type}
                     {(() => {
-                        if (this.state.access_type == 1) {
-                            // авторизированным
+                        if (this.state.access_type == 2) {
+                            // авторизированным и подтвержденным
                             return (
                                 <>
                                     <Route path="" element={<BaseTemplate/>}>
@@ -145,13 +151,22 @@ class PagesAccess extends React.Component {
                                     </Route>
                                 </>
                             )
-                        } else if (this.state.access_type == 0) {
+                        } else if (this.state.access_type == 1) {
+							return( 
+								<>
+									<Route path="agreement" element={<AgreementPage/>}/>
+                                    <Route path="login" element={<Login/>}/>
+                                    <Route path="registration" element={<Registration/>}/>
+									<Route path="*" element={<EmailConfirmPage/>}/>
+								</>
+							)
+						} else if (this.state.access_type == 0) {
                             // для неавторизированных
                             return (
                                 <>
-                                    <Route path="login" element={<Login />}/>
-                                    <Route path="registration" element={<Registration />}/>
-                                    <Route path="agreement" element={<AgreementPage />}/>
+                                    <Route path="login" element={<Login/>}/>
+                                    <Route path="registration" element={<Registration/>}/>
+                                    <Route path="agreement" element={<AgreementPage/>}/>
                                     <Route path="*" element={<Login />}/>
                                 </>
                             )

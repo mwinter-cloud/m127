@@ -11,7 +11,7 @@
 }
 
 .colorline {
-	height: 4px;
+	height: 6px;
 	width: 100%;
 }
 .info-header {
@@ -66,18 +66,13 @@
 }
 .citenamelogo {
     margin-left: 3px;
-    margin-top: -1px;
-    font-size: 12px;
+    font-size: 10px;
     display: block;
     font-weight: 600;
     font-family: 'd8', serif;
-	background: linear-gradient(108deg, #f0cf40 0%, #c1c54f 27%, #18a185 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: #0B2349;
+    color: var(--SC);
     display: block;
-    margin: -2px 2px;
-    height: 20px;
+    margin: -2px 3px;
 	animation: ani .6s forwards;
 }
 .main-header .small-logo {
