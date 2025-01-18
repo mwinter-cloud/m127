@@ -111,7 +111,7 @@ class Room(models.Model):
     name = models.CharField(max_length=100)
     author = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='room_author', blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    message = models.TextField(max_length=5000)
+    message = models.TextField(max_length=10000)
     tags = models.ManyToManyField(Tag, blank='True')
     saved_by = models.ManyToManyField(User, blank='True')
     views = models.IntegerField(default=0)
