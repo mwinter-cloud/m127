@@ -145,7 +145,7 @@ class Room(models.Model):
         return self.name
 
 class Answer(models.Model):
-    text = models.CharField(max_length=5000)
+    text = models.CharField(max_length=10000)
     created_at = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='room_answer_author', blank=True)
     room = models.ForeignKey(Room, on_delete=models.CASCADE, related_name='answers', blank=True)
