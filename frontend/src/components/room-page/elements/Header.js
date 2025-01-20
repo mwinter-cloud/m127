@@ -53,7 +53,7 @@ class Header extends Component {
                     <FormWindow children={<BannerRoomForm
                         room_id={this.props.room.id}/>} title="Добавить банер"
                         closeWindow={this.openBannerForm} />)}
-                <header className="room-header">
+                <header className={this.props.cover ? "room-header padding-room-header" : "room-header"}>
                     <div className="room-info">
                         <div className={this.props.cover ? "room-title border-room-title" : "room-title"}>
                             <h2 className={this.props.room.color ? this.props.room.color.type : null}>

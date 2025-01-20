@@ -53,6 +53,10 @@
     background: transparent;
     position: relative;
     margin-bottom: 0;
+	padding-top: 10px;
+}
+
+.room-page .padding-room-header {
 	padding-top: 145px;
 }
 
