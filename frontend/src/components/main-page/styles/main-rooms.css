@@ -366,8 +366,8 @@
 	.rooms-main .cite-top {
 		padding-top: 0;
 		display: block;
-		height: 420px;
-		margin-bottom: 30px;
+		height: 450px;
+		margin-bottom: 0;
 	}
 
 	.rooms-main .cite-top .carousel {
@@ -437,7 +437,7 @@
 	}
 
 	.rooms-main .cite-top .carousel .toggles {
-		bottom: 20px;
+		bottom: 25px;
 		left: 6%;
 		justify-content: left;
 	}
