@@ -3,11 +3,11 @@
     background: var(--dark-background);
 }
 .rooms-main .cite-top {
-    padding-top: 10px;
+    padding-top: 25px;
     display: flex;
     justify-content: space-between;
     background: var(--dark-background);
-    height: 330px;
+    height: 410px;
 }
 /* main room carousel */
 .rooms-main .cite-top .carousel {
@@ -106,7 +106,7 @@
     display: flex;
     width: 100%;
     justify-content: center;
-    bottom: 10px;
+    bottom: 35px;
     left: 0;
 }
 .rooms-main .cite-top .carousel .toggles .toggle {
@@ -249,11 +249,11 @@
 	display: flex;
 	margin-bottom: 0;
 	width: 100%;
-	padding: 15px 15% 20px 15%;
+	padding: 25px 15% 35px 15%;
 	position: relative;
 	background: var(--background);
 	height: auto;
-	min-height: 150px;
+	min-height: 170px;
 }
 .main-room-list .room:last-child{
 	margin-right: 0;
@@ -437,14 +437,14 @@
 	}
 
 	.rooms-main .cite-top .carousel .toggles {
-		bottom: 15px;
+		bottom: 20px;
 		left: 6%;
 		justify-content: left;
 	}
 
 	.rooms-main .cite-top .rating-aside-field {
 		position: relative;
-		margin-top: -37px;
+		margin-top: -50px;
 		width: auto;
 		font-size: .95em;
 		padding: 3px 5px;
