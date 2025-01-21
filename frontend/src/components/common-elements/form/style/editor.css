@@ -412,6 +412,9 @@
     background: var(--middle-background);
     border-radius: 3px;
 }
+.night-mode .spoiler main {
+	background: var(--dark-background);
+}
 .color-block {
     width: 30px;
     height: 30px;

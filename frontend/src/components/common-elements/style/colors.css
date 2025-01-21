@@ -103,6 +103,9 @@ body {
 .d_blue {
     color: var(--d_blue)!important;
 }
+.night-mode .d_blue {
+	color: #8591a5;
+}
 .green {
     color: var(--green)!important;
 }
