@@ -104,7 +104,7 @@ body {
     color: var(--d_blue)!important;
 }
 .night-mode .d_blue {
-	color: #8591a5;
+	color: #416bb1 !important;
 }
 .green {
     color: var(--green)!important;
