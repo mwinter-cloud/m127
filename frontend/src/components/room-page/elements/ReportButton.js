@@ -151,7 +151,7 @@ class ReportButton extends React.Component {
     }
 
     openConfirmWindow = () => {
-        this.setState({confirm_window_status: (this.state.confirm_window_status ? 'disabled' : 'active')})
+        this.setState({confirm_window_status: (this.state.confirm_window_status == 'active' ? 'disabled' : 'active')})
     }
 
     render() {
