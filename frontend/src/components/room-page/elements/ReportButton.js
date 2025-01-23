@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react"
 import ConfirmWindow from "../../common-elements/windows/ConfirmWindow"
 
 class ReportButton extends React.Component {
@@ -61,7 +61,7 @@ class ReportButton extends React.Component {
             this.addNotification()
         }
         let data = {
-            violator: this.props.violator_profile_id
+            violator_id: this.props.violator_profile_id
         }
         if (this.props.answer_id) {
             data.object = this.props.answer_id

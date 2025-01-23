@@ -6,7 +6,6 @@ class ConfirmWindow extends Component {
         super(props)
 		this.confirmEvent = this.confirmEvent.bind(this)
 		this.handleClose = this.handleClose.bind(this)
-		this.handleSubmit = this.handleSubmit.bind(this)
 		this.confirmBtnRef = createRef()
     }
 	
@@ -27,13 +26,14 @@ class ConfirmWindow extends Component {
 		return true
 	}
 	
+	/**
 	handleSubmit = (e) => {
 		e.preventDefault();
 		const btn = this.confirmBtnRef.current;
         if (btn.hasAttribute('data-submitting')) return
         btn.setAttribute('data-submitting', "")
-		confirmFunction()
-	}
+		confirmFunc()
+	 **/
 
     confirmEvent = (e) => {
         e.preventDefault()
