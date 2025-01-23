@@ -876,9 +876,9 @@ class NotificationView(viewsets.ViewSet):
         data = request.data
         user = request.user
         type = int(data.get('type'))
+        recipients = []
         if (type == 3):
             recipients_list = Profile.objects.all().filter(is_admin=1)
-            recipients = []
             viewed = ""
             text = ""
             object = 0

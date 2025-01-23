@@ -61,7 +61,7 @@ class ReportButton extends React.Component {
             this.addNotification()
         }
         let data = {
-            violator_id: this.props.violator_profile_id
+            violator: this.props.violator_profile_id
         }
         if (this.props.answer_id) {
             data.object = this.props.answer_id
@@ -83,6 +83,10 @@ class ReportButton extends React.Component {
 
     addNotification = () => {
         const recipient = this.props.violator_user_id
+        let notification_data = {
+            recipients: [recipient],
+            type: 3,
+        }
         const set_sended = () => {
             this.setState({is_sended: 1})
             if (this.props.answer_id) {
@@ -105,17 +109,13 @@ class ReportButton extends React.Component {
                 send_msg(res_data)
             }
         }
-        const notification_data = {
-            recipient: this.props.violator_profile_id,
-            type: 3,
-        }
         $.ajax({
             type: 'post',
             url: window.location.origin + '/api/add-notification',
             cache: false,
             data: notification_data,
             success: function (res_data) {
-                open_socket_and_send_msg(res_data)
+                //open_socket_and_send_msg(res_data)
                 set_sended()
             },
             error: function (xhr, status, error) {
@@ -127,6 +127,7 @@ class ReportButton extends React.Component {
     sendSocketMsg = (data) => {
         const recipient = this.props.violator_user_id
         const event_data = {
+            'id': {},
             'object': "",
             'text': "",
             'sender': {
@@ -135,7 +136,6 @@ class ReportButton extends React.Component {
             },
             'created_at': data.created_at,
             'notif_type': 3,
-            'id': {}
         }
         const send_socket_msg = () => {
             this['userSocket' + recipient].send(JSON.stringify(event_data))

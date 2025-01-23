@@ -53,7 +53,7 @@ class WurningButton extends React.Component {
 		const event_recipient = this.props.recipient_user_id
 		let notification_data = {
 			text: "",
-			recipients: [this.props.recipient_user_id],
+			recipients: [event_recipient],
 			sender: this.props.my_profile.id,
 		}
 		if (this.props.answer_id) {
