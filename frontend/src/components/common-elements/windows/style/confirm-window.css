@@ -17,12 +17,12 @@
     display: flex;
     margin: 15px 0 0 0!important;
 }
-.confirm-window .btn {
+.confirm-window .confirm-window-btn {
     cursor: pointer;
     font-size: 14px;
     user-select: none;
 }
-.confirm-window .confirm-btn {
+.confirm-window .confirm-window-btn {
     padding: 0 15px 0 0!important;
     margin: 0 5px 0 0!important;
     background: transparent;
@@ -39,9 +39,9 @@
     font-size: 15px !important;
 }
 
-.confirm-window .close-btn {
+.confirm-window .close-window-btn {
     color: var(--pale-color);
-	margin-top: 1px;
+	margin-top: 1px !important;
 }
 
 

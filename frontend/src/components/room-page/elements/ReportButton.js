@@ -11,7 +11,7 @@ class ReportButton extends React.Component {
         this.openConfirmWindow = this.openConfirmWindow.bind(this)
         this.state = {
             is_sended: 2,
-            confirm_window: 0,
+            confirm_window_status: 'disabled',
         }
     }
 
@@ -50,10 +50,10 @@ class ReportButton extends React.Component {
     }
 
     sendReport = () => {
-        this.openConfirmWindow()
         if (!this.state.is_sended) {
             this.addReport()
         }
+        this.openConfirmWindow()
     }
 
     addReport = () => {
@@ -151,15 +151,15 @@ class ReportButton extends React.Component {
     }
 
     openConfirmWindow = () => {
-        this.setState({confirm_window: (this.state.confirm_window ? 0 : 1)})
+        this.setState({confirm_window_status: (this.state.confirm_window_status ? 'disabled' : 'active')})
     }
 
     render() {
         if (this.state.is_sended != 2) {
             return (
                 <>
-                    {this.state.confirm_window ? (
-                        <ConfirmWindow confirm_function={this.sendReport} close={this.openConfirmWindow}/>) : null}
+                    {this.state.confirm_window_status == 'active' && (
+                        <ConfirmWindow confirmFunc={this.sendReport} close={this.openConfirmWindow} />)}
                     <div className="btn" onClick={this.openConfirmWindow}>
                         {this.state.is_sended ? (<i className="el-icon-check"></i>) :
                             (<i className="el-icon-help"></i>)} жалоба

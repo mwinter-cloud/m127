@@ -16,14 +16,11 @@ class AnswerBlock extends Component {
 		this.state = {
 			profile_window_status: 0,
 			edit_status: 0,
-			confirm_window_status: 'disabled',
 			text: "",
 		}
-		this.openConfirmWindow = this.openConfirmWindow.bind(this)
 		this.openProfile = this.openProfile.bind(this)
 		this.openEditForm = this.openEditForm.bind(this)
 		this.setAnswer = this.setAnswer.bind(this)
-		this.deleteAnswer = this.deleteAnswer.bind(this)
 	}
 
 	componentDidMount() {
@@ -50,32 +47,6 @@ class AnswerBlock extends Component {
 	setAnswer = (data) => {
 		this.openEditForm()
 		this.setState({text: data})
-	}
-
-	openConfirmWindow = () => {
-		this.setState({confirm_window_status: (this.state.confirm_window_status == 'active' ? 'disabled' : 'active')})
-	}
-
-	deleteAnswer = () => {
-		const answer_id = this.props.answer.id
-		const remove_answer = () => {
-			document.getElementById('answer' + answer_id).classList.add('hide')
-			this.openConfirmWindow()
-		}
-		$.ajax({
-			type: 'post',
-			url: window.location.origin + '/api/delete-answer',
-			cache: false,
-			data: {answer_id: answer_id},
-			success: function (result) {
-				if (result) {
-					remove_answer()
-				}
-			},
-			error: function (xhr, status, error) {
-				console.log(JSON.parse(xhr.responseText))
-			}
-		})
 	}
 
 	render() {
@@ -112,16 +83,13 @@ class AnswerBlock extends Component {
 													className="answer-text">{this.state.text ?
 													(parse(transformationforshow(specialtagstohtml(this.state.text)))) : null}
 												</div>
-												<AnswerBtns_wrap answer={this.props.answer}
-																 openEditForm={this.openEditForm}/>
+												<AnswerBtns_wrap answer={this.props.answer} openEditForm={this.openEditForm}/>
 											</div>
 										</section>
 									)
 								} else {
 									return (
 										<>
-											{this.state.confirm_window_status == 'active' && (
-												<ConfirmWindow confirmFunc={this.deleteAnswer} close={this.openConfirmWindow} />)}
 											<section className="answer" id={"answer" + this.props.answer.id}>
 												<div className="author">
 													{this.props.answer.author.avatar ?
@@ -135,9 +103,6 @@ class AnswerBlock extends Component {
 													</div>
 												</div>
 												<div className="text">
-													<div className="delete-btn" onClick={this.openConfirmWindow}>
-														<i className="el-icon-delete"></i> Удалить
-													</div>
 													<div className="answer-input">
 														<AnswerForm text={this.state.text}
 															id={this.props.answer.id}

@@ -481,6 +481,7 @@
 }
 .answers .answer .btn img {
     height: 14px;
+	vertical-align: middle;
 }
 .answers .answer .like:first-child {
 	margin-left: 0;
@@ -651,8 +652,8 @@
         height: 38px;
         border-radius: 0;
 		position: absolute;
-		top: 11px;
-		right: 3px;
+		top: 8px;
+		right: 8px;
 		font-size: 1.2em;
 		padding: 0;
 		margin: 0;

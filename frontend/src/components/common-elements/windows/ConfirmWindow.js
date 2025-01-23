@@ -51,9 +51,9 @@ class ConfirmWindow extends Component {
                     <p>Вы уверены, что хотите сделать это?</p>
                     <div className="btns">
                         <form id="submit_form" onSubmit={this.confirmEvent}>
-						<button className="btn confirm-btn" type="submit" ref={this.confirmBtnRef}>Да</button>
+						<button className="confirm-window-btn confirm-window-btn" type="submit" ref={this.confirmBtnRef}>Да</button>
                         </form>
-                        <div className="btn close-btn" onClick={this.props.close}>Отмена</div>
+                        <div className="close-window-btn confirm-window-btn" onClick={this.props.close}>Отмена</div>
                     </div>
                 </div>
             </>
