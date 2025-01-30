@@ -130,7 +130,7 @@ class UserView(viewsets.ViewSet):
         data = {'code': oper_code, 'origin': origin}
         msg_plain = render_to_string('emails/password_change.txt', data)
         msg_html = render_to_string('emails/password_change.html', data)
-        subject, from_email, to = f'Смена пароля на сайте {origin}', 'hello@lisphere.space', [email]
+        subject, from_email, to = f'Смена пароля на сайте {origin}', 'helloworld@windmail.ru', [email]
         send_mail(subject, msg_plain, from_email, to, html_message=msg_html)
         return JsonResponse(True, safe=False)
 
@@ -149,7 +149,7 @@ class UserView(viewsets.ViewSet):
         data = {'code': oper_code, 'origin': origin}
         msg_plain = render_to_string('emails/password_change.txt', data)
         msg_html = render_to_string('emails/password_change.html', data)
-        subject, from_email, to = f'Смена пароля на сайте {origin}', 'hello@lisphere.space', [email]
+        subject, from_email, to = f'Смена пароля на сайте {origin}', 'helloworld@windmail.ru', [email]
         send_mail(subject, msg_plain, from_email, to, html_message=msg_html)
         return JsonResponse(True, safe=False)
 
@@ -837,6 +837,8 @@ class AnswerView(viewsets.ViewSet):
         if not serializer.is_valid():
             return JsonResponse(status=400, data=serializer.errors)
         answer = serializer.save()
+        answer.edited = True
+        answer.save()
         show_serializer = AnswerSerializer(answer)
         return JsonResponse(show_serializer.data, safe=False)
 

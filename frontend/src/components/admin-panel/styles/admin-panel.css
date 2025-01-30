@@ -100,7 +100,7 @@ main {
 
 .settings-container {
 	padding: 100px 10%;
-	background: var(--dark-background);
+	background: var(--background);
 }
 
 .big-container {

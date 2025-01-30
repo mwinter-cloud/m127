@@ -79,10 +79,10 @@ export const AnswerForm = ({text, sendSocketEvent, savers, room_name, addNotific
                     add_notification_for_savers(data)
                 }
             }
-            const url = text ? ('../api/edit-answer') : ('../api/create-answer')
+            const url_type = text !== undefined ? ('edit-answer') : ('create-answer')
             $.ajax({
                 type: 'post',
-                url: url,
+                url: `${window.location.origin}/api/${url_type}`,
                 cache: false,
                 data: {text: values.text, id: id},
                 success: function (data) {
@@ -95,6 +95,9 @@ export const AnswerForm = ({text, sendSocketEvent, savers, room_name, addNotific
                     }
                 },
                 error: function (xhr, status, error) {
+                    console.log('XHR: '+xhr)
+                    console.log('STATUS:'+status)
+                    console.log('error: '+error)
                     console.log(JSON.parse(xhr.responseText))
                 }
             })

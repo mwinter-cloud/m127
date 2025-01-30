@@ -204,7 +204,7 @@
   inherits: false;
 }
 .rooms-main .cite-top .info-block p {
-	font-size: .88em;
+	font-size: 14px;
 	margin: 0;
 	line-height: 1.5em;
 	color: var(--pale-color);
@@ -216,7 +216,7 @@
 	padding: 8px 10px;
 	margin-top: 10px;
 	background: transparent;
-	font-size: .8em;
+	font-size: 14px;
 	border-radius: 2px;
 	transition: .4s;
 	color: var(--pale-color);

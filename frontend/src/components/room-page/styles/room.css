@@ -285,10 +285,14 @@
 	display: flex;
 }
 .answer .answer-text {
-    padding: 15px 0 20px 0;
+    padding: 15px 0 28px 0;
     font-size: 13px;
 	line-height: 1.3em;
 	color: var(--color);
+}
+.answer .edited-at {
+	color: var(--pale-color);
+    font-size: 12px;
 }
 .answer .answer-text a {
     text-decoration: underline;

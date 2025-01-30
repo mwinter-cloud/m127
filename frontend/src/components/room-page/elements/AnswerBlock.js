@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, {Component} from "react"
 import FullScreenWindow from "../../common-elements/windows/FullScreenWindow"
 import Profile from "../../member/profile/Profile"
 import {AnswerForm} from "../forms/AnswerForm"
@@ -6,7 +6,7 @@ import parse from "html-react-parser"
 import {specialtagstohtml, transformationforshow} from "../../common-elements/form/elements/editor/TextEditor"
 import AnswerBtns_wrap from "../../../store/wraps/room-page/AnswerBtns_wrap"
 import AnswerHeaderBtns_wrap from "../../../store/wraps/room-page/AnswerHeaderBtns"
-import MediaQuery from 'react-responsive'
+import MediaQuery from "react-responsive"
 import ConfirmWindow from "../../common-elements/windows/ConfirmWindow"
 import HiddenAnswer from "./HiddenAnswer"
 
@@ -14,11 +14,11 @@ class AnswerBlock extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			profile_window_status: 0,
+			profile_window_status: 'disabled',
 			edit_status: 0,
 			text: "",
 		}
-		this.openProfile = this.openProfile.bind(this)
+		this.changeProfileStatus = this.changeProfileStatus.bind(this)
 		this.openEditForm = this.openEditForm.bind(this)
 		this.setAnswer = this.setAnswer.bind(this)
 	}
@@ -36,7 +36,7 @@ class AnswerBlock extends Component {
 		}
 	}
 
-	openProfile = () => {
+	changeProfileStatus = () => {
 		this.setState({profile_window_status: (this.state.profile_window_status == 'active' ? 'disabled' : 'active')})
 	}
 
@@ -55,8 +55,7 @@ class AnswerBlock extends Component {
 				if (this.props.answer.type != 2) {
 					return (
 						<>
-							{this.state.profile_window_status == 'active' && (
-								<FullScreenWindow children={<Profile id={this.props.answer.author.id} closeWindow={this.openProfile}/>}/>)}
+							{this.state.profile_window_status == 'active' && (<FullScreenWindow children={<Profile id={this.props.answer.author.id} closeWindow={this.changeProfileStatus}/>}/>)}
 							{(() => {
 								if (this.state.edit_status == 0) {
 									return (
@@ -69,7 +68,7 @@ class AnswerBlock extends Component {
 													(<img src={this.props.answer.author.avatar} className="avatar"/>)
 													: (<div className="avatar base-avatar"></div>)}
 												<div className="author-info"
-													 onClick={this.openProfile}>
+													 onClick={this.changeProfileStatus}>
 										<span
 											className={this.props.answer.author.color ? this.props.answer.author.color.type : null}>
 											{this.props.answer.author.name}</span>
@@ -83,6 +82,9 @@ class AnswerBlock extends Component {
 													className="answer-text">{this.state.text ?
 													(parse(transformationforshow(specialtagstohtml(this.state.text)))) : null}
 												</div>
+												<span>
+													{this.props.answer.edited ? (<span className="edited-at">Ред. {this.props.answer.edited_at}</span>) : null}
+												</span>
 												<AnswerBtns_wrap answer={this.props.answer} openEditForm={this.openEditForm}/>
 											</div>
 										</section>
@@ -95,7 +97,7 @@ class AnswerBlock extends Component {
 													{this.props.answer.author.avatar ?
 														(<img src={this.props.answer.author.avatar} className="avatar"/>)
 														: null}
-													<div className="author-info" onClick={this.openProfile}>
+													<div className="author-info" onClick={this.changeProfileStatus}>
 												<span
 													className={this.props.answer.author.color ? this.props.answer.author.color.type : null}>
 													{this.props.answer.author.name}

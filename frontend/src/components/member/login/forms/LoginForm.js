@@ -64,7 +64,11 @@ const LoginForm = () => {
                         setPasswordQuerySended(true)
                     },
                     error: function (xhr, status, error) {
-                        setResult("Запись не найдена")
+						if(xhr.status == 404) {
+							setResult("Пользователь с такой почтой не найден.")
+						} else {
+							setResult("Отправить письмо по адресу не удалось.")
+						}
                     }
                 })
             }

@@ -171,7 +171,7 @@ class AnswerSerializer(serializers.ModelSerializer):
     author = MainProfileInfoSerializer(many=False)
     class Meta:
         model = Answer
-        fields = ['id', 'text', 'author', 'room', 'created_at', 'type']
+        fields = ['id', 'text', 'author', 'room', 'created_at', 'type', 'edited', 'edited_at']
 
 class FullAnswerSerializer(serializers.ModelSerializer):
     author = MainProfileInfoSerializer(many=False)
