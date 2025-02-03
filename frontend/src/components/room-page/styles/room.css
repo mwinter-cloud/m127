@@ -596,6 +596,7 @@
 
 	.answer {
 		display: block;
+		padding-bottom: 20px;
 	}
 
 	.answer .answer-header {
@@ -630,7 +631,11 @@
 	}
 
 	.answer .answer-text {
-		padding: 0 0 30px 0;
+		padding: 0 0 10px 0;
+	}
+	
+	.answer .edited-at {
+		
 	}
 
 	.room-header .options-block ul li {
