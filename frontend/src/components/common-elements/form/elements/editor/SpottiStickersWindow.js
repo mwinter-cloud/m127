@@ -2,13 +2,13 @@ import React from 'react'
 
 export const SpottiStickersWindow = ({textareaRef}) => {
 	const stickers = ['spotti1.webp', 'spotti2.webp', 'spotti3.gif',
-		'spotti4.gif', 'spotti5.gif', 'spotti6.png',
+		'spotti4.webp', 'spotti5.gif', 'spotti6.gif',
 		'spotti7.gif', 'spotti8.gif', 'spotti9.gif',
-		'spotti10.gif', 'spotti11.gif', 'spotti12.gif',
+		'spotti10.gif', 'spotti11.webp', 'spotti12.gif',
 		'spotti13.gif', 'spotti14.gif', 'spotti15.gif',
 		'spotti16.gif', 'spotti17.webp', 'spotti18.webp',
 		'spotti19.webp', 'spotti20.webp', 'spotti21.webp',
-		'spotti22.webp', 'spotti23.webp', 'spotti24.webp',
+		'spotti22.gif', 'spotti23.webp', 'spotti24.webp',
 		'spotti25.webp', 'spotti26.webp', 'spotti27.webp',
 		'spotti28.webp', 'spotti29.webp',
 		'spotti30.webp', 'spotti31.webp', 'spotti32.webp',
