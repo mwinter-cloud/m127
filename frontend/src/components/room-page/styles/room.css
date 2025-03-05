@@ -510,6 +510,9 @@
 	border: var(--active-border);
 	width: auto;
 }
+.answer-input .send-btn:hover {
+	background: (--dark-background)!important;
+}
 
 .answer .sticker {
 	margin-top: 5px;

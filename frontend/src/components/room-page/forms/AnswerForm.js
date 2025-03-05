@@ -8,9 +8,11 @@ import MediaQuery from "react-responsive"
 
 export const AnswerForm = ({text, sendSocketEvent, savers, room_name, addNotification, setAnswer, id}) => {
 	const [initialTextStatus, setInitialTextStatus] = useState('undefined')
+	const [initialId, setInitialId] = useState(0)
 	useEffect(() => {
 		if(text) {
 			setInitialTextStatus('loaded')
+			setInitialId(id)
 		}
 	}, [])
 	
@@ -86,7 +88,7 @@ export const AnswerForm = ({text, sendSocketEvent, savers, room_name, addNotific
                 type: 'post',
                 url: `${window.location.origin}/api/${url_type}`,
                 cache: false,
-                data: {text: values.text, id: id},
+                data: {text: values.text, id: initialId},
                 success: function (data) {
 					console.log('data')
 					console.log(data)
