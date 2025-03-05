@@ -80,12 +80,16 @@ export const AnswerForm = ({text, sendSocketEvent, savers, room_name, addNotific
                 }
             }
             const url_type = text !== undefined ? ('edit-answer') : ('create-answer')
+			console.log('url_type')
+			console.log(url_type)
             $.ajax({
                 type: 'post',
                 url: `${window.location.origin}/api/${url_type}`,
                 cache: false,
                 data: {text: values.text, id: id},
                 success: function (data) {
+					console.log('data')
+					console.log(data)
                     clear_textarea()
                     if (text) {
                         setAnswer(data.text)
@@ -107,7 +111,6 @@ export const AnswerForm = ({text, sendSocketEvent, savers, room_name, addNotific
     return (
         <form className="answer-textarea" id="answer_form" onSubmit={formik.handleSubmit}>
             <CSRFToken />
-			<h1>{id}</h1>
             <input name="text" type="hidden" onChange={formik.handleChange} value={formik.values.text} />
             <TextEditor setText={set_text} textValue={formik.values.text} initialText={initialTextStatus} specialId="new_answer_div_editable" />
             <button className='send-btn' type="submit">

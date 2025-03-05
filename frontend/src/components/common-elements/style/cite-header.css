@@ -72,7 +72,7 @@
     font-family: 'd8', serif;
     color: var(--SC);
     display: block;
-    margin: -2px 3px;
+    margin: -1px 3px;
 	animation: ani .6s forwards;
 }
 .main-header .small-logo {
