@@ -48,7 +48,7 @@ class Profile extends Component {
                         </div>) : null}
                     <Header cover={this.state.member.cover} avatar={this.state.member.avatar}
                             color={this.state.member.color} name={this.state.member.name}
-                            is_admin={this.state.member.is_admin}/>
+                            is_admin={this.state.member.is_admin} system_status={this.state.member.system_status}/>
                     <div className="content">
                         <div className="col1">
                             <ProfilePost text={this.state.member.post_text} image={this.state.member.post_image}

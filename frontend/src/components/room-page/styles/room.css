@@ -510,7 +510,7 @@
 	border: var(--active-border);
 	width: auto;
 }
-.answer-input .send-btn:hover {
+.answers .send-btn:hover {
 	background: (--dark-background)!important;
 }
 

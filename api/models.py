@@ -72,6 +72,7 @@ class Profile(models.Model):
     is_admin = models.BooleanField(default=False)
     is_blocked = models.BooleanField(default=False)
     email_confirm = models.BooleanField(default=False)
+    system_status = models.CharField(max_length=30, blank=True)
     created_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     inviter = models.ForeignKey(User, on_delete=models.CASCADE, related_name='inviter', blank=True, null=True)
 
