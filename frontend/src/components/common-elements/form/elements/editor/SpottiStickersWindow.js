@@ -9,11 +9,11 @@ export const SpottiStickersWindow = ({textareaRef}) => {
 		'spotti16.gif', 'spotti17.webp', 'spotti18.webp',
 		'spotti19.webp', 'spotti20.webp', 'spotti21.webp',
 		'spotti22.gif', 'spotti23.webp', 'spotti24.webp',
-		'spotti25.webp', 'spotti26.webp', 'spotti27.webp',
-		'spotti28.webp', 'spotti29.webp',
+		'spotti25.webp', 'spotti26.jpg', 'spotti27.webp',
+		'spotti28.jpg', 'spotti29.jpg',
 		'spotti30.webp', 'spotti31.webp', 'spotti32.webp',
-		'spotti33.webp', 'spotti34.webp', 'spotti35.webp',
-		'spotti36.webp', 'spotti37.webp', 'spotti38.webp',
+		'spotti33.jpg', 'spotti34.jpg', 'spotti35.webp',
+		'spotti36.jpg', 'spotti37.webp', 'spotti38.jpg',
 		'spotti39.webp']
 
 	const addSticker = (e) => {

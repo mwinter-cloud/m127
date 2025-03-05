@@ -24,7 +24,7 @@
 	background: var(--transparent-background);
     width: 70%;
     top: 50px;
-    z-index: 2;
+    z-index: 3;
     left: 15%;
 	font-size: 15px;
     border-bottom: 1px solid var(--transparent-border);
@@ -403,6 +403,7 @@
 
 .answer .author-info span {
 	font-weight: 500;
+	cursor: pointer;
 }
 
 .night-mode .answer .author-info .black {
@@ -506,7 +507,7 @@
     margin-bottom: 5px;
     font-family: inherit!important;
     cursor: pointer;
-	border: 0;
+	border: var(--active-border);
 	width: auto;
 }
 

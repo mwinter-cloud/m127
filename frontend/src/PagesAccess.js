@@ -22,6 +22,7 @@ import ProfilePage_wrap from "./store/wraps/member/ProfilePage_wrap"
 import Settings from "./components/member/settings/base/Settings"
 import Reports from "./components/admin-panel/reports/base/Reports"
 import {BlackList} from "./components/admin-panel/reports/black-list/BlackList"
+import Test from "./components/test/base/Test"
 
 class PagesAccess extends React.Component {
     constructor(props) {
@@ -140,6 +141,7 @@ class PagesAccess extends React.Component {
                                         <Route path="" element={<RoomsPage_wrap/>}/>
                                         <Route path="*" element={<RoomsPage_wrap/>}/>
                                     </Route>
+                                    <Route path="tests" element={<Test/>}/>
                                     <Route path="email-confirm" element={<EmailConfirmPage />}/>
                                     <Route path="info-page" element={<InfoPage_wrap/>}/>
                                     <Route path="agreement" element={<AgreementPage/>}/>
