@@ -150,7 +150,7 @@ class Answer(models.Model):
     author = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='room_answer_author', blank=True)
     room = models.ForeignKey(Room, on_delete=models.CASCADE, related_name='answers', blank=True)
     edited = models.BooleanField(default=False)
-    edited_at = models.DateTimeField(auto_now=True)
+    edited_at = models.DateTimeField(auto_now=True, blank=True, null=True)
     NORMAL = "1"
     HIDDEN = "2"
     TYPES_CHOICES = [
