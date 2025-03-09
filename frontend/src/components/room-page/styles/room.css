@@ -5,7 +5,7 @@
 }
 
 .room-page .loading-icon {
-	padding-top: 20px;
+	margin-top: 0;
 }
 
 .room-page .not-found-title {
@@ -577,6 +577,38 @@
 
 .new-items-section ul li a:hover {
 	text-decoration: underline;
+}
+
+/*--- таблички  ----*/
+.table {
+	max-width: 100%;
+	overflow-x: auto;
+}
+.table::-webkit-scrollbar {
+    width: 5px;
+	background: transparent;
+}
+.table::-webkit-scrollbar-thumb {
+	border-radius: 3px;
+    background-color: #2b2c31;
+}
+.table tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    unicode-bidi: isolate;
+}
+.table .table-content {
+    white-space: normal;
+	border: 1px solid var(--border);
+}
+.table .table-row-head th {
+	border-bottom: 1px solid var(--border);
+}
+.table tr {
+    display: table-row;
+    vertical-align: inherit;
+    unicode-bidi: isolate;
+    border-color: inherit;
 }
 
 @media (max-width: 800px) {

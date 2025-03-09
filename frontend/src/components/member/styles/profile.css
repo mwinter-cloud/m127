@@ -118,7 +118,7 @@
 	color: var(--color);
 }
 .night-mode .profile-page .main-profile-header h3 {
-	color: var(--color)!important;
+	color: var(--color);
 }
 /* основное содержание */
 .profile-page .content {
@@ -314,5 +314,16 @@
 	.profile-page .post main .null-post {
 		font-size: 13px;
 		line-height: 1.8em;
+	}
+	.profile-page .user-info {
+		padding: 1px 1%;
+	}
+	.profile-page .system-status {
+		color: var(--color);
+		margin-left: 0;
+		font-weight: 400;
+		font-size: 0.8em;
+		margin-top: -2px;
+		display: block;
 	}
 }
