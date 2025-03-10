@@ -95,7 +95,9 @@
     display: flex;
 	font-size: 1.4em;
 	font-weight: 300;
-	background: linear-gradient(135deg, rgb(37, 49, 63,.3) 5%, rgb(54, 97, 125,.2) 95%);
+}
+.info-page .col-2 ul li:hover {
+	background: linear-gradient(135deg, rgb(37, 49, 63,.5) 5%, rgb(54, 97, 125,.7) 95%);
 }
 .admin-panel-link {
     padding: 10px;

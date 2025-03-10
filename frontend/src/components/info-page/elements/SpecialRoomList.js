@@ -31,6 +31,7 @@ export const SpecialRoomList = () => {
 	return (
 		<>
 			<h1>{hello}!</h1>
+			<h2><i className="el-icon-chat-round"></i> Специальные темы</h2>
 			<ul>
 				{rooms.map((room, index) => {
 					return (
