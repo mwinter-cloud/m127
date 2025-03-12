@@ -682,7 +682,7 @@ class SmileView(viewsets.ViewSet):
         return Response(True)
 
     def list(self, request):
-        smiles = Smile.objects.all()
+        smiles = Smile.objects.all().order_by('-created_at')
         serializer = SmileSerializer(smiles, many=True)
         return Response(serializer.data)
 
