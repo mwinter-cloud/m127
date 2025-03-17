@@ -117,6 +117,7 @@ export const AnswerForm = ({text, sendSocketEvent, savers, room_name, addNotific
                 },
 				complete: function() {
 					setLoading('loaded')
+					form.removeAttribute('data-submitting')
 				}
             })
         },

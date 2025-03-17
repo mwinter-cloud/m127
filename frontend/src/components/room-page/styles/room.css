@@ -637,7 +637,7 @@
 }
 
 .answer-textarea .error-msg {
-	color: var(--red);
+	color: var(--color);
     font-size: 13px;
     position: absolute;
     top: -40px;
