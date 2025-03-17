@@ -43,6 +43,7 @@ export const AnswerForm = ({text, sendSocketEvent, savers, room_name, addNotific
             const clear_textarea = () => {
                 form.removeAttribute('data-submitting')
                 formik.setFieldValue('text', '')
+				setError(null)
             }
             const add_notification_for_savers = (data) => {
                 let sender = (({id, name, avatar}) => ({id, name, avatar}))(data.author)
