@@ -8,6 +8,8 @@ import MediaQuery from "react-responsive"
 
 export const AnswerForm = ({text, sendSocketEvent, savers, room_name, addNotification, setAnswer, id}) => {
 	const [initialTextStatus, setInitialTextStatus] = useState('undefined')
+	const [loading, setLoading] = useState('loaded')
+	const [error, setError] = useState()
 	const [initialId, setInitialId] = useState()
 	useEffect(() => {
 		if(text) {
@@ -79,10 +81,13 @@ export const AnswerForm = ({text, sendSocketEvent, savers, room_name, addNotific
                         addNotification(notification_data)
                     })
                 } else {
-                    add_notification_for_savers(data)
+					if(savers){
+						add_notification_for_savers(data)
+					}
                 }
             }
             const url_type = text !== undefined ? ('edit-answer') : ('create-answer')
+			setLoading('loading')
             $.ajax({
                 type: 'post',
                 url: `${window.location.origin}/api/${url_type}`,
@@ -104,8 +109,15 @@ export const AnswerForm = ({text, sendSocketEvent, savers, room_name, addNotific
                     console.log('XHR: '+xhr)
                     console.log('STATUS:'+status)
                     console.log('error: '+error)
-                    console.log(JSON.parse(xhr.responseText))
-                }
+					if(JSON.parse(xhr.responseText)['text'] == 'Убедитесь, что это значение содержит не более 10000 символов.') {
+						setError('Количество символов ('+values.text.length+') превышает допустимый максимум (10000).')
+					} else {
+						setError('Отправить сообщение не удалось. Сохраните текст и повторите позже.')
+					}
+                },
+				complete: function() {
+					setLoading('loaded')
+				}
             })
         },
     })
@@ -119,6 +131,8 @@ export const AnswerForm = ({text, sendSocketEvent, savers, room_name, addNotific
 				<i className="el-icon-s-promotion"></i>
                 <div type="submit" className="progress-btn-line"></div>
             </button>
+			{error ? (<p className="error-msg">{error}</p>) : null}
+			{loading === 'loading' && <><div className="loading-background"></div><div className="sending-icon"><i className="el-icon-loading"></i></div></>}
         </form>
     )
 }

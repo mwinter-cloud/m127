@@ -611,6 +611,38 @@
     border-color: inherit;
 }
 
+.answer-textarea {
+	position: relative;
+}
+
+.sending-icon {
+	color: var(--color);
+    z-index: 100;
+    margin-top: 5px;
+    position: absolute;
+    top: 0;
+    padding-top: 50px;
+    font-size: 1.1em;
+    padding-left: 10px;
+}
+
+.loading-background {
+	background: var(--middle-background);
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.5;
+    width: 100%;
+    height: 188px;
+}
+
+.answer-textarea .error-msg {
+	color: var(--red);
+    font-size: 13px;
+    position: absolute;
+    top: -40px;
+}
+
 @media (max-width: 800px) {
 	.room-page {
 		padding: 0 1% 10px 1%;
@@ -697,8 +729,11 @@
         height: 38px;
         border-radius: 0;
 		position: absolute;
-		top: 8px;
-		right: 8px;
+		top: 12px;
+		border-right: 0;
+		border-top: 0;
+		border-bottom: 0;
+		right: 0;
 		font-size: 1.2em;
 		padding: 0;
 		margin: 0;

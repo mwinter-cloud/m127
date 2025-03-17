@@ -15,7 +15,7 @@ class AnswerBlock extends Component {
 		super(props)
 		this.state = {
 			profile_window_status: 'disabled',
-			edit_status: 0,
+			edit_status: 'disabled',
 			text: "",
 		}
 		this.changeProfileStatus = this.changeProfileStatus.bind(this)
@@ -41,7 +41,7 @@ class AnswerBlock extends Component {
 	}
 
 	openEditForm = () => {
-		this.setState({edit_status: (this.state.edit_status ? 0 : 1)})
+		this.setState({edit_status: (this.state.edit_status == 'active' ? 'disabled' : 'active')})
 	}
 
 	setAnswer = (data) => {
@@ -57,7 +57,7 @@ class AnswerBlock extends Component {
 						<>
 							{this.state.profile_window_status == 'active' && (<FullScreenWindow children={<Profile id={this.props.answer.author.id} closeWindow={this.changeProfileStatus}/>}/>)}
 							{(() => {
-								if (this.state.edit_status == 0) {
+								if (this.state.edit_status == 'disabled') {
 									return (
 										<section className="answer" id={"answer" + this.props.answer.id}>
 											<MediaQuery maxWidth={800}>
@@ -109,7 +109,7 @@ class AnswerBlock extends Component {
 														<AnswerForm text={this.state.text}
 															id={this.props.answer.id}
 															form_name={"edit_answer" + this.props.answer.id}
-															setAnswer={this.setAnswer}/>
+															setAnswer={this.setAnswer} />
 													</div>
 												</div>
 											</section>

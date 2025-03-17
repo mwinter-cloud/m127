@@ -94,13 +94,29 @@ class RoomPage extends Component {
     }
 
     sendSocketEvent = (data) => {
-        this.roomSocket.send(JSON.stringify({
-            'type': 'new_answer',
-            'text': data.text,
-            'created_at': data.created_at,
-            'id': data.id,
-            'author': data.author,
-        }))
+		if(this.roomSocket.readyState == 1) {
+			this.roomSocket.send(JSON.stringify({
+				'type': 'new_answer',
+				'text': data.text,
+				'created_at': data.created_at,
+				'id': data.id,
+				'author': data.author,
+			}))
+		} else {
+			const answer = {
+                'id': data.id,
+                'text': data.text,
+                'author': data.author,
+                'created_at': data.created_at,
+                'room': this.props.id,
+            }
+			const section = document.getElementById('active_section').getAttribute('data-section')
+            if (section == 1) {
+                this.setState({new_answers: this.state.new_answers.concat(answer)})
+            } else if (section == 2) {
+                this.setState({new_answers: [answer,].concat(this.state.new_answers)})
+            }
+		}
     }
 
     reloadRoom = (data) => {

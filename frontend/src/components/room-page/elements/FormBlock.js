@@ -127,7 +127,8 @@ class FormBlock extends Component {
 					<div className={this.state.editor_status + " answer-input"}>
 						<AnswerForm id={this.props.id}
 							sendSocketEvent={this.props.sendSocketEvent}
-							addNotification={this.addNotification} savers={this.props.savers}
+							addNotification={this.addNotification} 
+							savers={this.props.savers}
 							room_name={this.props.room_name}/>
 					</div>
 				</>
