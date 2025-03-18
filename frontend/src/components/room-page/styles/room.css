@@ -139,6 +139,14 @@
 	border-radius: 50%;
 }
 
+.answer .editor-textarea {
+    padding: 5px;
+}
+.answer .answer-input .input-header {
+    padding: 7px 10px;
+    margin: 0;
+}
+
 .room-tags-aside {
 	display: flex;
 	flex-wrap: wrap;
@@ -345,7 +353,7 @@
 	color: var(--pale-color);
 }
 .answer div {
-	border: 1px solid transparent;
+	border: 0;
     padding: 0;
     border-radius: 0;
     box-sizing: border-box;
@@ -729,7 +737,7 @@
         height: 38px;
         border-radius: 0;
 		position: absolute;
-		top: 12px;
+		top: 0;
 		border-right: 0;
 		border-top: 0;
 		border-bottom: 0;

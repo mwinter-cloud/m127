@@ -32,13 +32,6 @@
 .editor-hide {
 	display: none;
 }
-.answer .editor-textarea {
-    padding: 5px;
-}
-.answer .answer-input .input-header {
-    padding: 7px 10px;
-    margin-top: 10px!important;
-}
 .editor-textarea::-webkit-scrollbar {
     width: 8px;
 	background: transparent;
