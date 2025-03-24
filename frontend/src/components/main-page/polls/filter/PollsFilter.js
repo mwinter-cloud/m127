@@ -10,7 +10,7 @@ class PollsFilter extends Component {
 		super(props)
 		this.state = {
 			polls: [],
-			section: "popular",
+			section: "new",
 			search_str: "",
 			selected_tags: [],
 			loaded_polls_count: 0,
