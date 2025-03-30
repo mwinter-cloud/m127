@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react'
-import '../../../../../static/frontend/images/small-logo.png'
 import MediaQuery from 'react-responsive'
 import axios from "axios"
 import logo from "./small-logo.png"

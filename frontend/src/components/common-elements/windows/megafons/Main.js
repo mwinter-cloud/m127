@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import '../../../../../static/frontend/images/fox-and-butterfly.png'
+import '../../../../../static/frontend/images/megafon-illustration.jpg'
 
 class Main extends Component {
     constructor(props) {
@@ -10,11 +10,11 @@ class Main extends Component {
         return (
             <main className="megafons-page">
                 <div className="col-first">
-                    <img src="../../../../../static/frontend/images/fox-and-butterfly.png"
+                    <img src="../../../../../static/frontend/images/megafon-illustration.jpg"
                          className="illustration"/>
                 </div>
                 <div className="col-two">
-                    <h2>Сообщи о чем-то особенном!</h2>
+                    <h2>Сообщение в общий канал</h2>
                     <span className="mf-text">В этом разделе ты можешь создать сообщение, которое высветится на всем форуме.</span>
                     <div className="btns">
                         <div className="btn" data-type="create-message" onClick={this.props.setSection}>Вперед!</div>

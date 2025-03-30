@@ -1,6 +1,7 @@
 .megafons-page {
     display: flex;
     padding: 30px 10px!important;
+	font-size: 1.15em;
 }
 .megafons-page-info {
     display: block!important;

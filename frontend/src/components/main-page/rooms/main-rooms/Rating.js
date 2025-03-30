@@ -94,7 +94,6 @@ class Rating extends Component {
     render() {
         return (
             <div className="rating-aside-field">
-                <span className="rating-arrow"><i className="el-icon-d-arrow-left"></i></span>
                 <div className="rating-block">
                     <div className="null-rating-block">
                         <i className="el-icon-star-on" data-num="1" onClick={this.starSelect}
