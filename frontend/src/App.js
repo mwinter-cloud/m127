@@ -6,6 +6,7 @@ import './components/common-elements/style/App.css'
 import './components/common-elements/form/style/forms.css'
 import './components/common-elements/style/colors.css'
 import './components/common-elements/style/illustrations.css'
+import './components/common-elements/style/element.css'
 import './components/common-elements/windows/style/base-for-windows.css'
 import PagesAccess_wrap from "./store/wraps/base/PagesAccess_wrap"
 
