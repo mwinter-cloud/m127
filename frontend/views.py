@@ -13,7 +13,7 @@ class IndexView(TemplateView):
         logo, created = queryset.get_or_create(type='L')
         citename, created = queryset.get_or_create(type='CN')
         context['logo'] = logo.text
-        context['citename'] = logo.text
+        context['citename'] = citename.text
         return context
 
 def change_password(request, code):
