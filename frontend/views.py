@@ -11,7 +11,7 @@ class IndexView(TemplateView):
         context = super().get_context_data( * args, ** kwargs)
         queryset = Illustration.objects.all()
         logo, created = queryset.get_or_create(type='L')
-        citename, created = Customixation.objects.all().get_or_create(type='CN')
+        citename, created = Customization.objects.all().get_or_create(type='CN')
         context['logo'] = logo.text
         context['citename'] = citename.text
         return context
