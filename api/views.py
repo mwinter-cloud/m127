@@ -744,7 +744,7 @@ class CustomizationView(viewsets.ViewSet):
 
     def logo(self, request):
         try:
-            note = Customization.objects.all().get(type="L")
+            note = Illustration.objects.all().get(type="L")
         except:
             return Response("")
         serializer = CustomizationSerializer(note, many=False)
