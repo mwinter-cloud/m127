@@ -742,6 +742,14 @@ class CustomizationView(viewsets.ViewSet):
         serializer = CustomizationSerializer(note, many=False)
         return Response(serializer.data)
 
+    def logo(self, request):
+        try:
+            note = Customization.objects.all().get(type="L")
+        except:
+            return Response("")
+        serializer = CustomizationSerializer(note, many=False)
+        return Response(serializer.data)
+
     def site_data(self, request):
         notes = Customization.objects.all().filter(type__in=["RL", "SD", "CT"])
         notes_serializer = CustomizationSerializer(notes, many=True)

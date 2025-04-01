@@ -54,6 +54,7 @@ urlpatterns = [
     path('illustrations-edit', IllustrationView.as_view({'post': 'edit'})),
     path('get-announcement', CustomizationView.as_view({'get': 'announcement'})),
     path('get-citename', CustomizationView.as_view({'get': 'citename'})),
+    path('get-logo', CustomizationView.as_view({'get': 'logo'})),
     #комнаты
     path('create-poll', PollView.as_view({'post': 'create'})),
     path('add-options', OptionView.as_view({'post': 'create'})),
