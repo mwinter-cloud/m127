@@ -66,13 +66,13 @@
 }
 .citenamelogo {
     margin-left: 3px;
-    font-size: 10px;
+    font-size: 9px;
     display: block;
     font-weight: 600;
     font-family: 'd8', serif;
     color: var(--SC);
     display: block;
-    margin: -1px 4px;
+    margin: 0 4px;
 	animation: ani .6s forwards;
 }
 .main-header .small-logo {
