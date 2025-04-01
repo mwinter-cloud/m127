@@ -11,7 +11,9 @@ class IndexView(TemplateView):
         context = super().get_context_data( * args, ** kwargs)
         queryset = Illustration.objects.all()
         logo, created = queryset.get_or_create(type='L')
+        citename, created = queryset.get_or_create(type='CN')
         context['logo'] = logo.text
+        context['citename'] = logo.text
         return context
 
 def change_password(request, code):
