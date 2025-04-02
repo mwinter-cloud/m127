@@ -10,12 +10,6 @@ def autodelete():
     for report in old_reports:
         report.delete()
 
-    #удалить ответы, которые добавлены более 30 дней
-    how_many_days = 30
-    old_notes = Answer.objects.filter(created_at__lte=timezone.now() - timedelta(days=how_many_days))
-    for note in old_notes:
-        note.delete()
-
     # удалить уведомления, которым более 30 дней
     how_many_days = 30
     old_notes = Notification.objects.filter(created_at__lte=timezone.now() - timedelta(days=how_many_days))
@@ -27,19 +21,7 @@ def autodelete():
     old_notes = Notification.objects.filter(created_at__lte=timezone.now() - timedelta(days=how_many_days))
     for note in old_notes:
         note.delete()
-
-    # удалить голоса, которым более 30 дней
-    how_many_days = 30
-    old_notes = Voice.objects.filter(created_at__lte=timezone.now() - timedelta(days=how_many_days))
-    for note in old_notes:
-        note.delete()
-
-    # удалить комментарии, которым более 7 дней
-    how_many_days = 7
-    old_notes = Comment.objects.filter(created_at__lte=timezone.now() - timedelta(days=how_many_days))
-    for note in old_notes:
-        note.delete()
-
+        
     # удалить операции, которым более 1 дня
     how_many_days = 1
     operations = Operation.objects.filter(created_at__lte=timezone.now() - timedelta(days=how_many_days))

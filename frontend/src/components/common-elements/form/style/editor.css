@@ -109,7 +109,7 @@
 	width: 16px;
     position: relative;
 	object-fit: contain;
-    z-index: 2;
+    z-index: 1;
 	margin-top: 3px;
 }
 .input-header ul .bold-text-btn {
