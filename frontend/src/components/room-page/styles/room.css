@@ -24,7 +24,7 @@
 	background: var(--transparent-background);
     width: 70%;
     top: 50px;
-    z-index: 3;
+    z-index: 2;
     left: 15%;
 	font-size: 15px;
     border-bottom: 1px solid var(--transparent-border);

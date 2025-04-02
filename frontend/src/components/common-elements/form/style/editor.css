@@ -159,6 +159,8 @@
 	width: 105%;
 	display: flex;
 	flex-wrap: wrap;
+	padding-right: 3%;
+    padding-top: 3px;
 }
 .smiles-block li {
 	margin-right: 0;
