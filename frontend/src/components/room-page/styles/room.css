@@ -21,18 +21,23 @@
 .room-page .room-scroll-header {
 	display: none;
 	position: fixed;
-	background: var(--transparent-background);
-    width: 70%;
+    width: 100%;
     top: 50px;
     z-index: 2;
-    left: 15%;
-	font-size: 15px;
+    left: 0;
+	font-size: 14px;
     border-bottom: 1px solid var(--transparent-border);
 	cursor: pointer;
 	font-size: 15px;
     font-weight: 400;
-    padding: 10px 12px;
+    padding: 8px 3%;
 	color: var(--color);
+}
+.night-mode .room-page .room-scroll-header {
+	background: rgba(26, 27, 32, 0.7);
+}
+.day-mode .room-page .room-scroll-header {
+	background: #fefefed9;
 }
 .room-page .room-scroll-header i {
 	margin-right: 5px;
