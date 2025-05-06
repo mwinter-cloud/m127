@@ -21,4 +21,24 @@
 <script src="{% static "frontend/csrftoken.js" %}"></script>
 <script src="{% static "frontend/main.js" %}"></script>
 <script src="{% static "frontend/scripts.js" %}"></script>
+<script>
+
+var worker = new Worker("{% static "frontend/worker.js" %}");
+
+function senda(){
+	worker.postMessage('123')
+}
+
+worker.addEventListener('message', function(e) {
+	setTimeout(() => {
+	  Notification.requestPermission(function(status) {  // status is "granted", if accepted by user
+			var n = new Notification('Title', { 
+				body: e.data,
+				icon: '/path/to/icon.png' // optional
+			}); 
+		});
+	}, "3000");
+})
+
+</script>
 </html>

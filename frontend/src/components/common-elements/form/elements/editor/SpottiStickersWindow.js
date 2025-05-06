@@ -15,7 +15,8 @@ export const SpottiStickersWindow = ({textareaRef}) => {
 		'spotti33.gif', 'spotti34.jpg', 'spotti35.webp',
 		'spotti36.jpg', 'spotti37.webp', 'spotti38.jpg',
 		'spotti39.webp', 'spotti40.webp', 'spotti41.webp',
-		'spotti42.jpg', 'spotti43.jfif']
+		'spotti42.jpg', 'spotti43.jfif', 'spotti44.gif', 
+		'spotti45.jpg']
 
 	const addSticker = (e) => {
 		//добавим элемент в div contenteditable

@@ -13,8 +13,9 @@ class MainHeader extends Component {
             megafon_message: undefined,
         }
     }
-
+	
     componentDidMount() {
+		
         const set_message = (data) => {
             const set_data = (data) => {
                 this.setState({megafon_message: data})

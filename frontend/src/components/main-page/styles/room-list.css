@@ -3,6 +3,7 @@
 	min-height: 60vh;
 	margin: 0;
 	background: var(--background);
+	position: relative;
 }
 /* шапка списка комнат */
 .room-list .rooms-header {
