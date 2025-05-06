@@ -88,13 +88,13 @@
 .rooms-main .cite-top .header-text {
     position: relative;
     border-radius: 3px;
-    padding: 15px;
+    padding: 10px;
 	margin: 0;
-	height: 70px;
-	bottom: 100px;
+	height: 60px;
+	bottom: 80px;
     background: rgba(26,27,32,.5);
 	overflow-y: auto;
-	width: 60%;
+	width: 75%;
 	margin: 15px 1%;
 }
 .day-mode .rooms-main .cite-top .header-text {
