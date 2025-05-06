@@ -35,10 +35,9 @@
 	display: flex;
 	width: auto;
 	height: auto;
-	padding: 5px 5px;
-	position: absolute;
-	right: 8px;
-	top: 10px;
+	padding: 0;
+	margin-top: 20px;
+	position: relative;
 }
 .rooms-main .cite-top .rating-aside-field .rating-grade {
 	color: var(--active-color);
@@ -90,18 +89,17 @@
     border-radius: 3px;
     padding: 10px;
 	margin: 0;
-	height: 60px;
-	bottom: 80px;
-    background: rgba(26,27,32,.5);
+	height: auto;
+	bottom: 140px;
 	overflow-y: auto;
-	width: 75%;
-	margin: 15px 1%;
+	width: 37%;
+	left: 103%;
 }
 .day-mode .rooms-main .cite-top .header-text {
-    background: rgb(255,255,255,.8);
+    background: rgb(255,255,255,0);
 }
 .night-mode .rooms-main .cite-top .header-text {
-    background: rgba(26,27,32,.6);
+    background: rgba(26,27,32,0);
 }
 .rooms-main .cite-top h1 {
     font-weight: 500;
@@ -120,7 +118,7 @@
 	position: absolute;
     display: flex;
     width: 100%;
-    bottom: 220px;
+    bottom: 20px;
     right: 5%;
     justify-content: right;
 }
@@ -243,15 +241,6 @@
 }
 .night-mode .rooms-main .cite-top .transparent-btn {
 	border: 1px solid rgba(255, 255, 255, 0.05);
-}
-.day-mode .rooms-main .cite-top .transparent-btn:hover {
-	border: 1px solid #888;
-}
-.night-mode .rooms-main .cite-top .transparent-btn:hover {
-	border: 1px solid rgba(255, 255, 255, 0.1);
-	border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-	border-right: 1px solid rgba(255, 255, 255, 0.15);
-	color: #a7a4a4;
 }
 .rooms-main .cite-top .transparent-btn i {
 	margin-right: 5px;
