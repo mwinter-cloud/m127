@@ -8,11 +8,23 @@
     background: var(--dark-background);
     height: 440px;
 	display: flex;
+	padding: 20px 40px;
 }
 /* main room carousel */
+.rooms-main .blur-bg {
+	filter: blur(20px);
+	height: 440px;
+	width: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+.rooms-main .cite-top .blur-bg img {
+	user-select: none;
+	width: 100%;
+}
 .rooms-main .cite-top .carousel {
-	width: 70%;
-	position: relative;
+	width: 68%;
 }
 .rooms-main .cite-top .info-btn {
 	width: 100%;
@@ -141,12 +153,12 @@
 }
 .rooms-main .cite-top .carousel .picture {
 	width: 100%;
-    height: 440px;
+    height: 390px;
     object-fit: cover;
     z-index: 0;
 	border-radius: 0;
 	display: block;
-    filter: brightness(85%);
+    filter: brightness(90%);
 	position: sticky;
     top: 0;
 }
@@ -166,19 +178,18 @@
 .rooms-main .cite-top .aside {
 	width: 30%;
 	position: relative;
-	height: 440px;
-	padding: 20px;
+	padding-right: 30px;
 }
 /* info block */
 .rooms-main .cite-top .info-block {
     width: 100%;
     height: auto;
     padding: 10px;
-	background: transparent;
     font-size: .95em;
 	border-radius: 2px;
 	position: relative;
     border: 1px solid var(--transparent-border);
+	background: rgba(26, 27, 32, 0.6);
 }
 .day-mode .rooms-main .cite-top .info-block {
     border: 1px solid #cfcece;
@@ -212,7 +223,7 @@
 	font-size: 14px;
 	margin: 0;
 	line-height: 1.5em;
-	color: var(--pale-color);
+	color: var(--color);
 	cursor: inherit;
 	user-select: none;
 }
@@ -220,11 +231,11 @@
 	width: 100%;
 	padding: 8px 10px;
 	margin-top: 10px;
-	background: transparent;
+	background: rgba(26, 27, 32, 0.6);
 	font-size: 14px;
 	border-radius: 2px;
 	transition: .4s;
-	color: var(--pale-color);
+	color: var(--color);
 }
 .day-mode .rooms-main .cite-top .transparent-btn {
 	border: 1px solid #cfcece;

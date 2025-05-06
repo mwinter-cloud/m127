@@ -41,6 +41,7 @@ class Carousel extends Component {
         if (this.state.rooms.length != 0) {
             return (
                 <div className="carousel">
+					<div className="blur-bg"><img src={this.state.rooms[this.state.selected_room].cover} /></div>
                     {this.state.rooms[this.state.selected_room] ? (
                         <article className="mainroomslide">
 							<img
