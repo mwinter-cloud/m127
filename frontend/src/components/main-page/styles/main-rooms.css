@@ -8,7 +8,7 @@
     background: var(--dark-background);
     height: 440px;
 	display: flex;
-	padding: 10px 20px;
+	padding: 20px 30px;
 }
 /* main room carousel */
 .rooms-main .blur-bg {
@@ -120,8 +120,8 @@
 	position: absolute;
     display: flex;
     width: 100%;
-    bottom: 20px;
-    right: 20px;
+    bottom: 220px;
+    right: 5%;
     justify-content: right;
 }
 .rooms-main .cite-top .carousel .toggles .toggle {
@@ -177,9 +177,9 @@
 }
 /* aside */
 .rooms-main .cite-top .aside {
-	width: 30%;
+	width: 33%;
 	position: relative;
-	padding-right: 30px;
+	padding-right: 8%;
 	max-height: 320px;
 }
 /* info block */
