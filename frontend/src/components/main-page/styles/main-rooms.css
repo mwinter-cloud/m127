@@ -8,23 +8,24 @@
     background: var(--dark-background);
     height: 440px;
 	display: flex;
-	padding: 20px 40px;
+	padding: 10px 20px;
 }
 /* main room carousel */
 .rooms-main .blur-bg {
-	filter: blur(20px);
+	filter: blur(3px);
 	height: 440px;
 	width: 100%;
 	position: absolute;
 	left: 0;
 	top: 0;
+	opacity: .2;
 }
 .rooms-main .cite-top .blur-bg img {
 	user-select: none;
 	width: 100%;
 }
 .rooms-main .cite-top .carousel {
-	width: 68%;
+	width: 65%;
 }
 .rooms-main .cite-top .info-btn {
 	width: 100%;
@@ -179,6 +180,7 @@
 	width: 30%;
 	position: relative;
 	padding-right: 30px;
+	max-height: 320px;
 }
 /* info block */
 .rooms-main .cite-top .info-block {
@@ -189,7 +191,7 @@
 	border-radius: 2px;
 	position: relative;
     border: 1px solid var(--transparent-border);
-	background: rgba(26, 27, 32, 0.6);
+	background: linear-gradient(0deg, rgba(171, 205, 239, 0.0769083) 0%, rgba(171, 205, 239, 0.0396534) 99%);
 }
 .day-mode .rooms-main .cite-top .info-block {
     border: 1px solid #cfcece;
@@ -231,7 +233,6 @@
 	width: 100%;
 	padding: 8px 10px;
 	margin-top: 10px;
-	background: rgba(26, 27, 32, 0.6);
 	font-size: 14px;
 	border-radius: 2px;
 	transition: .4s;
@@ -265,7 +266,7 @@
 	display: flex;
 	margin-bottom: 0;
 	width: 100%;
-	padding: 25px 15% 35px 15%;
+	padding: 25px 5% 35px 5%;
 	position: relative;
 	background: var(--background);
 	height: auto;
