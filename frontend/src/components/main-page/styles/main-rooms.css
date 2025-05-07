@@ -8,7 +8,7 @@
     background: var(--dark-background);
     height: 440px;
 	display: flex;
-	padding: 20px 30px;
+	padding: 20px 5%;
 }
 /* main room carousel */
 .rooms-main .blur-bg {
@@ -92,8 +92,8 @@
 	height: auto;
 	bottom: 140px;
 	overflow-y: auto;
-	width: 37%;
-	left: 103%;
+	width: 45%;
+	left: 102%;
 }
 .day-mode .rooms-main .cite-top .header-text {
     background: rgb(255,255,255,0);
@@ -107,7 +107,6 @@
 	margin: 0;
 	display: inline-block;
 	color: var(--active-color);
-	width: 70%;
 }
 .rooms-main .cite-top h1 i {
 	color: #888;
@@ -370,7 +369,7 @@
 
 @media (max-width: 800px) {
 	.rooms-main .cite-top {
-		padding-top: 0;
+		padding: 0;
 		display: block;
 		height: 450px;
 		margin-bottom: 0;
@@ -405,10 +404,12 @@
 		margin-top: 0px;
 		border-radius: 0;
 		height: 90px;
-		bottom: 90px;
+		bottom: 0;
 		font-size: .9em;
 		width: 100%;
 		margin: 0;
+		background: rgba(26, 27, 32, .5);
+		left: 0;
 	}
 
 	.rooms-main .cite-top h1 {
@@ -486,5 +487,9 @@
 	.main-room-list .room h4 {
 		font-size: .8em;
 		padding-left: 3px;
+	}
+	
+	.rooms-main .blur-bg {
+		display: none;
 	}
 }

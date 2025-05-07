@@ -11,7 +11,7 @@
 	position: relative;
 	height: auto;
 	padding-top: 20px;
-	border-top: 1px solid var(--transparent-border);
+	border-top: 0;
 }
 .room-list .rooms-header .toggle {
 	display: flex;
