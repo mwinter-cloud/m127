@@ -6,9 +6,9 @@
     padding-top: 0;
     justify-content: space-between;
     background: var(--dark-background);
-    height: 440px;
+    height: 420px;
 	display: flex;
-	padding: 20px 5%;
+	padding: 20px 15%;
 }
 /* main room carousel */
 .rooms-main .blur-bg {
@@ -23,9 +23,11 @@
 .rooms-main .cite-top .blur-bg img {
 	user-select: none;
 	width: 100%;
+	max-height: 100%;
+	object-fit: cover;
 }
 .rooms-main .cite-top .carousel {
-	width: 65%;
+	width: 67%;
 }
 .rooms-main .cite-top .info-btn {
 	width: 100%;
@@ -36,8 +38,8 @@
 	width: auto;
 	height: auto;
 	padding: 0;
-	margin-top: 20px;
 	position: relative;
+	float: right;
 }
 .rooms-main .cite-top .rating-aside-field .rating-grade {
 	color: var(--active-color);
@@ -53,7 +55,7 @@
 	display: block;
 }
 .rooms-main .cite-top .rating-block {
-	font-size: 1.3em;
+	font-size: 1.2em;
     width: 115px;
 	margin-left: 0;
 	position: relative;
@@ -86,14 +88,13 @@
 }
 .rooms-main .cite-top .header-text {
     position: relative;
-    border-radius: 3px;
-    padding: 10px;
+    padding: 10px 0;
 	margin: 0;
 	height: auto;
-	bottom: 140px;
+	bottom: 0;
 	overflow-y: auto;
-	width: 45%;
-	left: 102%;
+	width: 100%;
+	left: 0;
 }
 .day-mode .rooms-main .cite-top .header-text {
     background: rgb(255,255,255,0);
@@ -114,12 +115,13 @@
 }
 
 .rooms-main .cite-top .carousel .toggles {
-	position: absolute;
+	position: relative;
     display: flex;
     width: 100%;
-    bottom: 220px;
-    right: 5%;
-    justify-content: right;
+    margin-left: 0;
+    justify-content: left;
+	padding-top: 5px;
+	margin-left: 0;
 }
 .rooms-main .cite-top .carousel .toggles .toggle {
 	height: 8px;
@@ -151,7 +153,7 @@
 }
 .rooms-main .cite-top .carousel .picture {
 	width: 100%;
-    height: 390px;
+    height: 320px;
     object-fit: cover;
     z-index: 0;
 	border-radius: 0;
@@ -164,7 +166,7 @@
     filter: brightness(100%);
 }
 .night-mode .rooms-main .cite-top .carousel .picture {
-    filter: brightness(85%);
+    filter: brightness(95%);
 }
 .rooms-main .cite-top .carousel .picture-block {
 	width: 100%;
@@ -174,9 +176,8 @@
 }
 /* aside */
 .rooms-main .cite-top .aside {
-	width: 33%;
+	width: 32%;
 	position: relative;
-	padding-right: 8%;
 	max-height: 320px;
 }
 /* info block */
@@ -219,9 +220,9 @@
   inherits: false;
 }
 .rooms-main .cite-top .info-block p {
-	font-size: 14px;
+	font-size: 13.5px;
 	margin: 0;
-	line-height: 1.5em;
+	line-height: 1.4em;
 	color: var(--color);
 	cursor: inherit;
 	user-select: none;
@@ -230,7 +231,7 @@
 	width: 100%;
 	padding: 8px 10px;
 	margin-top: 10px;
-	font-size: 14px;
+	font-size: 13.5px;
 	border-radius: 2px;
 	transition: .4s;
 	color: var(--color);
@@ -254,7 +255,7 @@
 	display: flex;
 	margin-bottom: 0;
 	width: 100%;
-	padding: 25px 5% 35px 5%;
+	padding: 25px 15% 35px 15%;
 	position: relative;
 	background: var(--background);
 	height: auto;
