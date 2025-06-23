@@ -454,11 +454,11 @@
 
 	.rooms-main .cite-top .rating-aside-field {
 		position: relative;
-		margin-top: -50px;
+		margin-top: -45px;
 		width: auto;
 		font-size: .95em;
 		padding: 3px 5px;
-		left: 3%;
+		left: -15%;
 	}
 	.rooms-main .cite-top .rating-aside-field .rating-grade {
 		color: var(--color);
