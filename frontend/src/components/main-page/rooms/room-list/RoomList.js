@@ -1,9 +1,11 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import RoomListHeader from "./RoomListHeader"
-import {RoomListAside} from "./RoomListAside"
 import {RoomListMarkup} from "./RoomListMarkup"
 import '../../styles/room-list.css'
 import MediaQuery from 'react-responsive'
+import SearchBlock from "./SearchBlock"
+import CreateRoomBtn from "./CreateRoomBtn"
+import {MainRoomList} from "../main-rooms/MainRoomList"
 
 class RoomList extends Component {
 	constructor(props) {
@@ -101,11 +103,18 @@ class RoomList extends Component {
 		return (
 			<div className="room-list container">
 				<RoomListHeader selectSection={this.selectSection} section={this.state.section}/>
+				<MediaQuery minWidth={801}>
+					<SearchBlock onSearch={this.onSearch} onTagSelect={this.onTagSelect}/>
+						<MainRoomList device="desktop"/>
+				</MediaQuery>
+				<MediaQuery maxWidth={800}>
+					<div className="mobile-room-list-header">
+						<SearchBlock onSearch={this.onSearch} onTagSelect={this.onTagSelect} tags={this.full_tag_list} />
+						<CreateRoomBtn />
+					</div>
+				</MediaQuery>
 				<div className="all-rooms">
-					<MediaQuery minWidth={801}>
-						<RoomListAside onTagSelect={this.onTagSelect}/>
-					</MediaQuery>
-					<RoomListMarkup tags={this.state.full_tag_list} rooms={this.state.rooms} onSearch={this.onSearch} loadRooms={this.loadRooms}
+					<RoomListMarkup tags={this.state.full_tag_list} rooms={this.state.rooms} loadRooms={this.loadRooms}
 						control_room={this.state.control_room} onTagSelect={this.onTagSelect}/>
 				</div>
 			</div>

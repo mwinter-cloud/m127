@@ -18,7 +18,7 @@ const CreateRoomBtn = () => {
 				<div className="add-btn" onClick={upCreateWindow}><i className="el-icon-plus"></i></div>
 			</MediaQuery>
 			<MediaQuery minWidth={801}>
-				<div className="add-btn" onClick={upCreateWindow}>Добавить</div>
+				<button className="special-btn" onClick={upCreateWindow}><span>Добавить</span></button>
 			</MediaQuery>
 		</>
 	)

@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import {Logo} from "./Logo"
-import CiteMenu from "./CiteMenu"
 import CiteSearch from "./CiteSearch"
 import {ProfileBlock} from "./ProfileBlock"
 import "../../style/cite-header.css"
@@ -10,7 +9,6 @@ export const MainHeader = ({main_section, member, changeMode}) => {
 	return (
 		<header className="main-header">
 			<Logo />
-			<CiteMenu active_section={main_section} />
 			<CiteSearch/>
 			<div className="flex-end">
 				<ProfileBlock member={member} changeMode={changeMode} />

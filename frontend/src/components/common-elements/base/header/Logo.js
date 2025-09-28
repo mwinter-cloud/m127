@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import MediaQuery from 'react-responsive'
 import axios from "axios"
+import {Link} from "react-router-dom"
 
 export const Logo = () => {
 	const [citename, setCitename] = useState('')
@@ -18,13 +19,14 @@ export const Logo = () => {
 	
 	return (
 		<div className="logo-block">
-			<MediaQuery minWidth={801}>
-				{logo && <img src={logo} className="main-logo" />}
-				<span className="citenamelogo">{citename}</span>
-			</MediaQuery>
-			<MediaQuery maxWidth={800}>
-				{logo && <img src={logo} />}
-			</MediaQuery>
+            <Link to="/">
+				<MediaQuery minWidth={801}>
+					{logo && <img src={logo} className="main-logo" />}
+				</MediaQuery>
+				<MediaQuery maxWidth={800}>
+					{logo && <img src={logo} />}
+				</MediaQuery>
+			</Link>
 		</div>
 	)
 }

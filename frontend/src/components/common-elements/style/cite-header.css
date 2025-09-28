@@ -40,7 +40,7 @@
 	color: var(--color);
     border-bottom: 1px solid var(--transparent-border);
     border-top: 1px solid var(--transparent-border);
-    padding: 17px 3%;
+    padding: 17px 15%;
     display: flex;
     justify-content: space-between;
     position: sticky;
@@ -58,11 +58,10 @@
 /* logo */
 .logo-block {
     display: flex;
-	width: 12%;
 }
 .main-header .main-logo {
-    height: 12px;
-	margin-top: 2px;
+    height: 36px;
+	margin-top: -10px;
 }
 .citenamelogo {
     margin-left: 3px;
@@ -109,7 +108,6 @@
 /* search-block */
 .main-header .search-block {
     width: 32%;
-	margin-left: 10%;
 	margin-top: -2px;
 }
 .main-header .input {
@@ -133,13 +131,12 @@
 
 /* profile-block */
 .main-header .flex-end {
-    width: 32%;
     display: flex;
     justify-content: flex-end;
 }
 .main-header .profile-block {
     font-size: .9em;
-    margin-right: 8%;
+    margin-right: 20px;
 }
 .main-header .profile-block .avatar {
     margin: -7px 5px 0 0;

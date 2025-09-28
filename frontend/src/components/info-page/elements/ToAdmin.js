@@ -5,11 +5,17 @@ export const ToAdmin = ({member}) => {
 	if (member.profile.is_admin) {
 		return (
 			<Link to="/admin-panel/cite-settings">
-				<div className="admin-panel-link">
-					<i className="el-icon-star-off icon"></i>
-					<span>Администрирование</span>
-					<i className="el-icon-arrow-right arrow"></i>
-				</div>
+				<button type="button" class="admin-btn">
+				  <strong>Администрирование</strong>
+				  <div id="container-stars">
+					<div id="stars"></div>
+				  </div>
+
+				  <div id="glow">
+					<div class="circle"></div>
+					<div class="circle"></div>
+				  </div>
+				</button>
 			</Link>
 		)
 	}

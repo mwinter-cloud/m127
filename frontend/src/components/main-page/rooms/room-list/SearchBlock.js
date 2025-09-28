@@ -1,4 +1,6 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
+import TagFilter from "../../../common-elements/form/elements/tag-filter/TagFilter"
+import MediaQuery from 'react-responsive'
 
 class SearchBlock extends Component {
     constructor(props) {
@@ -8,7 +10,9 @@ class SearchBlock extends Component {
     render() {
         return (
             <div className="section-search-block">
-                <i className="el-icon-search icon"></i>
+				<MediaQuery minWidth={801}>
+					<TagFilter popular_tags="true" tags={this.props.tags} items="rooms" onTagSelect={this.props.onTagSelect}/>
+				</MediaQuery>
                 <input className="section-search" placeholder="Что ищем?" onInput={this.props.onSearch}/>
             </div>
         )

@@ -8,7 +8,7 @@
     background: var(--dark-background);
     height: 420px;
 	display: flex;
-	padding: 20px 15%;
+	padding: 20px 18%;
 }
 /* main room carousel */
 .rooms-main .blur-bg {
@@ -101,6 +101,8 @@
 }
 .night-mode .rooms-main .cite-top .header-text {
     background: rgba(26,27,32,0);
+	display: flex;
+	justify-content: space-between;
 }
 .rooms-main .cite-top h1 {
     font-weight: 500;
@@ -153,7 +155,7 @@
 }
 .rooms-main .cite-top .carousel .picture {
 	width: 100%;
-    height: 320px;
+    height: 280px;
     object-fit: cover;
     z-index: 0;
 	border-radius: 0;
@@ -176,7 +178,7 @@
 }
 /* aside */
 .rooms-main .cite-top .aside {
-	width: 32%;
+	width: 31%;
 	position: relative;
 	max-height: 320px;
 }
@@ -184,7 +186,7 @@
 .rooms-main .cite-top .info-block {
     width: 100%;
     height: auto;
-    padding: 10px;
+    padding: 8px;
     font-size: .95em;
 	border-radius: 2px;
 	position: relative;
@@ -229,7 +231,7 @@
 }
 .rooms-main .cite-top .transparent-btn {
 	width: 100%;
-	padding: 8px 10px;
+	padding: 8px;
 	margin-top: 10px;
 	font-size: 13.5px;
 	border-radius: 2px;
@@ -255,7 +257,7 @@
 	display: flex;
 	margin-bottom: 0;
 	width: 100%;
-	padding: 25px 15% 35px 15%;
+	padding: 15px 10%;
 	position: relative;
 	background: var(--background);
 	height: auto;
@@ -266,14 +268,14 @@
 }
 .main-room-list .room {
 	width: 100%;
-	height: 120px;
+	height: 100px;
 	font-size: .95em;
 	margin-right: 2%;
 	position: relative;
 }
 .main-room-list .room img {
 	width: 100%;
-	height: 120px;
+	height: 100px;
 	object-fit: cover;
 	margin-right: 15px;
 	z-index: 0;

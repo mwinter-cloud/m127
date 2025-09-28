@@ -29,6 +29,9 @@ export const InfoBlock = () => {
 				<div className="transparent-btn">
 					<Link to="/info-page">Инфо-панель</Link>
 				</div>
+				<div className="transparent-btn">
+					<Link to="/poll">Опросы</Link>
+				</div>
 			</aside>
 		)
 	} else {

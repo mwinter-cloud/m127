@@ -10,7 +10,6 @@ export const MainRoomsMarkup = () => {
 		<main className="rooms-main">
 			<MediaQuery minWidth={801}>
 				<MainRoomsBanner/>
-				<MainRoomList device="desktop"/>
 			</MediaQuery>
 			<MediaQuery maxWidth={800}>
 				<MobileMainRoomsBanner/>

@@ -10,9 +10,12 @@ class RoomListHeader extends Component {
     render() {
         return (
             <header className="rooms-header">
-                <MediaQuery minWidth={801}>
-                    <CreateRoomBtn/>
-                </MediaQuery>
+                <div className='section-title'>
+                    <h3>Комнаты</h3>
+                    <MediaQuery minWidth={801}>
+                        <CreateRoomBtn/>
+                    </MediaQuery>
+                </div>
                 <ul className="toggle">
                     <li data-section="popular" onClick={this.props.selectSection}>популярное
                         <div className={this.props.section == "popular" ? "line" : "hide"}></div>

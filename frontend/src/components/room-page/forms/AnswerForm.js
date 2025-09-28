@@ -16,7 +16,6 @@ export const AnswerForm = ({text, sendSocketEvent, savers, room_name, addNotific
 			setInitialTextStatus('loaded')
 		}
 		setInitialId(id)
-		console.log('монтирование. id из пропса:'+ id)
 	}, [])
 	
     const set_text = (text) => {
@@ -95,9 +94,6 @@ export const AnswerForm = ({text, sendSocketEvent, savers, room_name, addNotific
                 cache: false,
                 data: {text: values.text, id: initialId},
                 success: function (data) {
-					console.log('id при инициализации '+ initialId)
-					console.log('данные полученные после операции редактирования/создания:')
-					console.log(data)
                     clear_textarea()
                     if (text) {
                         setAnswer(data.text)
@@ -107,9 +103,6 @@ export const AnswerForm = ({text, sendSocketEvent, savers, room_name, addNotific
                     }
                 },
                 error: function (xhr, status, error) {
-                    console.log('XHR: '+xhr)
-                    console.log('STATUS:'+status)
-                    console.log('error: '+error)
 					if(JSON.parse(xhr.responseText)['text'] == 'Убедитесь, что это значение содержит не более 10000 символов.') {
 						setError('Количество символов ('+values.text.length+') превышает допустимый максимум (10000).')
 					} else {

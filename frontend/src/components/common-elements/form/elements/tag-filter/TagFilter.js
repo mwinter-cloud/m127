@@ -151,24 +151,6 @@ class TagFilter extends React.Component {
 						})}
 					</ul>
 				</div>
-				{this.props.popular_tags == 'true' ? (
-					<>
-						<div className="border-line"></div>
-						<div className="tags-block">
-							<h3>Частые темы</h3>
-							<ul>
-								{this.state.popular_tags.map((tag, index) => {
-									return (
-										<li key={index} data-id={tag.id} onClick={this.onTagSelect}>
-											{tag.name}
-										</li>
-									)
-								})}
-							</ul>
-						</div>
-					</>
-				) : ("")
-				}
 			</>
 		)
 	}
