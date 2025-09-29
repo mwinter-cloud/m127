@@ -9,11 +9,10 @@ export const MobileMainHeader = ({main_section, member, changeMode}) => {
 	return (
 		<header className="main-header">
 			<Logo/>
-			<CiteMenu active_section={main_section}/>
-			<MobileSiteSearch/>
 			<div className="flex-end">
 				<ProfileBlock member={member} changeMode={changeMode}/>
 				<NotificationsSection_wrap/>
+				<MobileSiteSearch/>
 			</div>
 		</header>
 	)

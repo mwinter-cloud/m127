@@ -75,7 +75,7 @@
 
 .room-list .section-search-block {
 	position: relative;
-	margin: 35px 0 10px 0;
+	margin: 25px 0 5px 0;
 	padding: 0;
 	color: var(--color);
 }
@@ -108,7 +108,7 @@
 	position: relative;
 	width: 100%;
 	height: auto;
-	margin-bottom: 25px;
+	margin-bottom: 15px;
 	background: var(--middle-background);
 	display: flex;
 	border: 1px solid var(--transparent-border);
@@ -243,7 +243,7 @@
 
 .special-btn span {
  position: relative;
- z-index: 10;
+ z-index: 0;
  transition: color 0.4s;
 }
 
@@ -272,10 +272,15 @@
 
 
 @media (max-width: 800px) {
+	.room-list .rooms-header {
+		flex-wrap: wrap;
+		padding: 20px 3% 0 3%;
+	}
+
 	.room-list header .toggle {
 		font-size: .95em;
 		position: relative;
-		padding: 10px 3%;
+		padding: 10px 0;
 		float: left!important;
 	}
 	
@@ -285,7 +290,7 @@
 
 	.mobile-room-list-header {
 		display: flex;
-		justify-content: space-between;
+		padding: 10px 3%;
 	}
 
 	.all-rooms .room-items {
@@ -294,7 +299,7 @@
 	}
 
 	.all-rooms {
-		padding-top: 15px;
+		padding-top: 0;
 	}
 
 	.all-rooms .add-btn {
@@ -306,6 +311,15 @@
 		text-align: center;
 		position: relative;
 		z-index: 1;
+	}
+
+	.room-list .section-search-block {
+		margin: 0 3% 0 0;
+		padding: 0;
+	}
+
+	.room-list .section-search {
+		padding-left: 5px;
 	}
 
 	.all-rooms .section-search-block {
@@ -324,5 +338,18 @@
 	.room-list .simple-btn {
 		left: 50%;
 		transform: translate(-50%, 0);
+	}
+
+	.all-rooms .room {
+		padding: 5px;
+		margin-bottom: 15px;
+	}
+
+	.all-rooms .room .room-info {
+		display: block;
+	}
+
+	.all-rooms .room h3 {
+		width: 100%;
 	}
 }
