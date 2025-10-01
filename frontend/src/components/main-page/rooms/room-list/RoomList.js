@@ -6,6 +6,7 @@ import MediaQuery from 'react-responsive'
 import SearchBlock from "./SearchBlock"
 import CreateRoomBtn from "./CreateRoomBtn"
 import {MainRoomList} from "../main-rooms/MainRoomList"
+import CSRFToken from "../../../common-elements/form/CSRFToken"
 
 class RoomList extends Component {
 	constructor(props) {
@@ -33,7 +34,12 @@ class RoomList extends Component {
 		let search_str = this.state.search_str
 		let section = this.state.section
 		let loaded_rooms_count = this.state.loaded_rooms_count
-		let data = {search_str: search_str, loaded_rooms_count: loaded_rooms_count, tags: tags, section: section}
+		let data = {
+			search_str: search_str, 
+			loaded_rooms_count: loaded_rooms_count, 
+			tags: tags, section: section,
+			csrfmiddlewaretoken: csrftoken
+		}
 		let setRooms = (data) => {
 			if (loaded_rooms_count == 0) {
 				this.setState({
