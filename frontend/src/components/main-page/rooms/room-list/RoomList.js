@@ -34,12 +34,12 @@ class RoomList extends Component {
 		let search_str = this.state.search_str
 		let section = this.state.section
 		let loaded_rooms_count = this.state.loaded_rooms_count
-		let data = {
-			search_str: search_str, 
-			loaded_rooms_count: loaded_rooms_count, 
-			tags: tags, section: section,
-			csrfmiddlewaretoken: csrftoken
-		}
+		const formData = new FormData();
+		formData.append("search_str", search_str);
+		formData.append("loaded_rooms_count", loaded_rooms_count);
+		formData.append("section", section);
+		formData.append("tags", tags);
+		formData.append("csrfmiddlewaretoken", csrftoken);
 		let setRooms = (data) => {
 			if (loaded_rooms_count == 0) {
 				this.setState({
@@ -65,7 +65,7 @@ class RoomList extends Component {
 			type: 'post',
 			url: '/api/get-rooms',
 			cache: false,
-			data: data,
+			data: formData,
 			success: function (res) {
 				setRooms(res.rooms)
 				set_control_room(res.control_room)

@@ -12,7 +12,6 @@ export const Logo = () => {
 			setCitename(data.text)
 		})
 		axios.get('/api/get-logo').then(({data}) => {
-			console.log(data.text)
 			setLogo(data.text)
 		})
 	}, [])
