@@ -67,9 +67,10 @@ class RoomList extends Component {
 			onUploadProgress: this.setState({
 				loading: 'loading'
 			})
-		}).then((res) => {
+		}).then(({data}) => {
+			console.log(data.rooms)
 			setRooms(res.data.rooms)
-			set_control_room(res.control_room)
+			set_control_room(data.control_room)
 			set_rooms_count()
 		}).catch((res) => {
 			console.log(res)
