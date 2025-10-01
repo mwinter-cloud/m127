@@ -7,6 +7,7 @@ import SearchBlock from "./SearchBlock"
 import CreateRoomBtn from "./CreateRoomBtn"
 import {MainRoomList} from "../main-rooms/MainRoomList"
 import CSRFToken from "../../../common-elements/form/CSRFToken"
+import axios from 'axios';
 
 class RoomList extends Component {
 	constructor(props) {
@@ -18,7 +19,8 @@ class RoomList extends Component {
 			selected_tags: [],
 			loaded_rooms_count: 0,
 			control_room: 0,
-			full_tag_list: []
+			full_tag_list: [],
+			loading: 'undefined'
 		}
 		this.loadRooms = this.loadRooms.bind(this)
 		this.onSearch = this.onSearch.bind(this)
@@ -62,7 +64,9 @@ class RoomList extends Component {
 			})
 		}
 		axios.post(`${window.location.origin}/api/get-rooms`, formData, {
-			onUploadProgress: setLoading('loading'),
+			onUploadProgress: this.setState({
+				loading: 'loading'
+			})
 		}).then(({res}) => {
 			setRooms(res.rooms)
 			set_control_room(res.control_room)
@@ -70,7 +74,9 @@ class RoomList extends Component {
 		}).catch((res) => {
 			console.log(JSON.parse(xhr.responseText))
 		}).finally(() => {
-			setLoading('loaded');
+			this.setState({
+				loading: 'loaded'
+			})
 		})
 	}
 	onSearch = (e) => {
