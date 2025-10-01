@@ -24,7 +24,13 @@ export const InfoBlock = () => {
 		return (
 			<aside className="aside">
 				<div className="info-block">
-					<p>{announcement}</p>
+					<p>
+						С древности самой встречали осень  скукою и печалью.<br/>   
+						Я же скажу, что осени время  лучше поры весенней.<br/>   
+						Светлая даль, журавль одинокий  в небе над облаками<br/>   
+						Могут поднять мое вдохновенье  прямо к лазурным высям.<br/>
+						Лю Юйси
+					</p>
 				</div>
 				<div className="transparent-btn">
 					<Link to="/info-page">Инфо-панель</Link>
