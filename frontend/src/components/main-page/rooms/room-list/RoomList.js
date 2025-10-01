@@ -72,7 +72,7 @@ class RoomList extends Component {
 			set_control_room(res.control_room)
 			set_rooms_count()
 		}).catch((res) => {
-			console.log(JSON.parse(xhr.responseText))
+			console.log(res)
 		}).finally(() => {
 			this.setState({
 				loading: 'loaded'
