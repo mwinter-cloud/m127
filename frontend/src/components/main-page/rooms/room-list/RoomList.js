@@ -69,6 +69,7 @@ class RoomList extends Component {
 			})
 		}).then(({data}) => {
 			console.log(data.rooms)
+			console.log(data.rooms.data)
 			setRooms(res.data.rooms)
 			set_control_room(data.control_room)
 			set_rooms_count()
