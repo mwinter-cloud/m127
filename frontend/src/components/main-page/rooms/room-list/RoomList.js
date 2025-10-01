@@ -61,19 +61,16 @@ class RoomList extends Component {
 				loaded_rooms_count: loaded_rooms_count + 10
 			})
 		}
-		$.ajax({
-			type: 'post',
-			url: '/api/get-rooms',
-			cache: false,
-			data: formData,
-			success: function (res) {
-				setRooms(res.rooms)
-				set_control_room(res.control_room)
-				set_rooms_count()
-			},
-			error: function (xhr) {
-				console.log(JSON.parse(xhr.responseText))
-			}
+		axios.post(`${window.location.origin}/api/get-rooms`, formData, {
+			onUploadProgress: setLoading('loading'),
+		}).then(({res}) => {
+			setRooms(res.rooms)
+			set_control_room(res.control_room)
+			set_rooms_count()
+		}).catch((res) => {
+			console.log(JSON.parse(xhr.responseText))
+		}).finally(() => {
+			setLoading('loaded');
 		})
 	}
 	onSearch = (e) => {
