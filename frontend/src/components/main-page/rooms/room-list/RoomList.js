@@ -34,7 +34,7 @@ class RoomList extends Component {
 		let search_str = this.state.search_str
 		let section = this.state.section
 		let loaded_rooms_count = this.state.loaded_rooms_count
-		const formData = new FormData();
+		let formData = new FormData();
 		formData.append("search_str", search_str);
 		formData.append("loaded_rooms_count", loaded_rooms_count);
 		formData.append("section", section);
