@@ -68,7 +68,6 @@ class RoomList extends Component {
 				loading: 'loading'
 			})
 		}).then(({data}) => {
-			console.log(data.rooms)
 			setRooms(data.rooms)
 			set_control_room(data.control_room)
 			set_rooms_count()
