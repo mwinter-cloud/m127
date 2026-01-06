@@ -1,7 +1,9 @@
 .agreement-page {
-    padding: 20px 25% 20px 3%;
+    padding: 20px 35% 20px 3%;
 	min-height: 100vh;
 	color: var(--color);
+    background: url('abg.jpg');
+    background-size: cover;
 }
 .agreement-page .main-agreement-header {
     display: flex;
@@ -27,20 +29,21 @@
 .agreement-page main {
     font-size: .9em;
     line-height: 1.35em;
+    background: var(--transparent-background);
+    padding: 15px;
+    margin-top: 20px;
 }
 .agreement-page main h1 {
     font-weight: 500;
-    margin-top: 50px;
+    margin-top: 0;
     font-size: 1.6em;
 }
 .agreement-page main .rules-content {
     margin-bottom: 50px;
 }
 .agreement-page main .info-block {
-    background: var(--light-background);
-    border-radius: 3px;
-    padding: 15px;
     margin-top: 10px;
+    margin-bottom: 10px;
 }
 .agreement-page main .info-block h3 {
     font-weight: 400;

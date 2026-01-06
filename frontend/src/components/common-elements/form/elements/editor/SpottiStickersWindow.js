@@ -6,17 +6,17 @@ export const SpottiStickersWindow = ({textareaRef}) => {
 		'spotti7.gif', 'spotti8.gif', 'spotti9.gif',
 		'spotti10.gif', 'spotti11.webp', 'spotti12.gif',
 		'spotti13.gif', 'spotti14.gif', 'spotti15.gif',
-		'spotti16.gif', 'spotti17.webp', 'spotti18.webp',
+		'spotti16.webp', 'spotti17.webp', 'spotti18.webp',
 		'spotti19.webp', 'spotti20.webp', 'spotti21.webp',
 		'spotti22.gif', 'spotti23.webp', 'spotti24.webp',
-		'spotti25.webp', 'spotti26.jpg', 'spotti27.webp',
-		'spotti28.jpg', 'spotti29.jpg',
-		'spotti30.webp', 'spotti31.webp', 'spotti32.webp',
-		'spotti33.gif', 'spotti34.jpg', 'spotti35.webp',
+		'spotti25.webp', 'spotti26.webp', 'spotti27.webp',
+		'spotti28.webp', 'spotti29.jpg',
+		'spotti30.jpg', 'spotti31.webp', 'spotti32.webp',
+		'spotti33.webp', 'spotti34.jpg', 'spotti35.webp',
 		'spotti36.jpg', 'spotti37.webp', 'spotti38.jpg',
 		'spotti39.webp', 'spotti40.webp', 'spotti41.webp',
-		'spotti42.jpg', 'spotti43.jfif', 'spotti44.gif', 
-		'spotti45.jpg']
+		'spotti42.webp', 'spotti43.webp', 'spotti44.webp', 
+		'spotti45.webp']
 
 	const addSticker = (e) => {
 		//добавим элемент в div contenteditable
