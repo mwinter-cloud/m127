@@ -33,14 +33,30 @@
 	opacity: .9;
 }
 .registration-page .registration-window {
-	padding: 50px 3%;
-	background: var(--background);
+	padding: 30px;
+	background: var(--transparent-background);
 	width: 60%;
 	margin: 0 20% 50px 20%;
 	margin-top: 0!important;
 	z-index: 2;
 	position: relative;
 	border-radius: 3px;
+}
+
+.registration-page .simple-form .inputWrapper {
+	display: block;
+	margin: 15px 0;
+}
+
+.registration-page .simple-form:first-child {
+	margin-top: 10px;
+}
+
+.registration-page .simple-form .inputWrapper input {
+	width: 100%;
+	margin-top: 6px;
+	background: transparent;
+  	border: 1px solid var(--dark-border);
 }
 
 .no-banner-window {
@@ -51,12 +67,8 @@
 	background: #333438;
 }
 
-.night-mode .simple-form .inputWrapper input {
-	background: #2b2c31;
-}
-
 .registration-window .send-btn:hover {
-    background-image: linear-gradient(to right, #f78ca0 0%, #f9748f 19%, #fd868c 60%, #fe9a8b 100%)!important;
+    background-image: var(--gradient-background) !important;
     color: white;
     cursor: pointer;
 }

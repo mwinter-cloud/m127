@@ -98,7 +98,7 @@ const LoginForm = () => {
                 <div className="inputWrapper">
                     <label><span>Пароль</span></label>
                     <input type="password" name="password" id="password" onChange={formik.handleChange}
-                           value={formik.values.password} autoComplete="new-password" placeholder="(＃＞＜)"/>
+                           value={formik.values.password} autoComplete="new-password" placeholder="др соседского кота"/>
                     <span className="restore-password-text text-btn" onClick={changeForm}>напомнить</span>
                 </div>
                 <button className="send-btn" type="submit">Вперёд!</button>

@@ -16,11 +16,10 @@ export default function LoginPage({illustrations, set_member}) {
 	
 	return (
 		<main className="registration-page login-page night-mode">
-			{banner ? (<div className="banner"></div>) : null}
 				<div className={banner ? "registration-window" : "registration-window no-banner-window"}>
-					<h1>Вход</h1>
-					<p className="registration-invite">Если вы здесь впервые, то можете <Link to="/registration">зарегистрироваться</Link>.</p>
+					<h1>Привет!</h1>
 					<LoginForm set_member={set_member}/>
+					<p className="registration-invite">Если ты здесь впервые, <Link to="/registration">зарегистрируйся</Link>.</p>
 				</div>
 		</main>
 	)

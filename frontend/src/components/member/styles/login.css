@@ -1,60 +1,55 @@
 .login-page {
 	padding-top: 20px;
+    background: var(--LP);
+    background-size: cover;
+}
+
+.login-page .sitename {
+    font-size: 13px;
+    color: var(--active-color);
 }
 
 .login-page .registration-invite {
 	color: var(--pale-color);
 	font-size: .85em;
+    margin-bottom: 5px;
 }
 
 .login-page .registration-invite a {
 	color: var(--color);
 }
 
-.login-page .banner {
-    object-fit: cover;
-    border-radius: 3px 3px 0 0;
-    display: block;
-    width: 54%;
-    height: 210px;
-    margin-left: 23%;
-    margin-top: 0;
-    position: relative;
-    background: var(--LP);
-    background-size: cover;
-    background-repeat:no-repeat;
-    background-position: center center;
-}
-
 .login-page h1 {
-    font-size: 1.2em;
+    font-size: 2.8em;
+    margin-bottom: 10px;
+    font-weight: 500;
     position: relative;
     writing-mode: horizontal-tb;
-	color: white;
+	color: var(--SC);
     left: 0;
     top: 0;
+    opacity: .9;
 }
 
 .login-page .registration-window {
-    margin: 0 23% 0 23%;
-    width: 54%;
-    border-radius: 0 0 3px 3px;
-	padding-bottom: 50px;
+    margin: 0 37%;
+    width: 26%;
+    border-radius: 3px 3px;
 }
 
 .day-mode .login-page .registration-window {
-	background: var(--light-background);
+	background: var(--transparent-background);
 }
 
 .night-mode .login-page .registration-window {
-	background: var(--background);
+	background: var(--transparent-background);
 }
 
 .login-page .restore-password-text {
     position: absolute;
     right: 0;
-    bottom: -32px;
-    font-size: .8em;
+    bottom: -28px;
+    font-size: 12px;
 }
 .login-page .back-arrow {
     margin: 10px 0;
