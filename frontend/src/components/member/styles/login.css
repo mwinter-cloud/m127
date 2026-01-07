@@ -22,19 +22,19 @@
 .login-page h1 {
     font-size: 2.8em;
     margin-bottom: 10px;
-    font-weight: 500;
+    font-weight: 300;
     position: relative;
     writing-mode: horizontal-tb;
-	color: var(--SC);
+	color: var(--active-color);
     left: 0;
     top: 0;
     opacity: .9;
 }
 
 .login-page .registration-window {
-    margin: 0 37%;
-    width: 26%;
-    border-radius: 3px 3px;
+    margin: 0 38%;
+    width: 24%;
+    border-radius: 3px;
 }
 
 .day-mode .login-page .registration-window {
