@@ -78,18 +78,19 @@ const RegistrationForm = (props) => {
             <div className="inputWrapper">
                 <label><span>Пароль</span></label>
                 <input type="password" name="password" id="password" onChange={formik.handleChange}
-                       value={formik.values.password} autoComplete="new-password" placeholder="(＃＞＜)"/>
+                       value={formik.values.password} autoComplete="new-password" placeholder="др соседского кота"/>
             </div>
             <div className="inputWrapper">
                 <label><span>Повтор пароля</span></label>
                 <input type="password" name="password2" id="password2" onChange={formik.handleChange}
-                       value={formik.values.password2} autoComplete="new-password" placeholder="(＃＞＜) х2"/>
+                       value={formik.values.password2} autoComplete="new-password" placeholder="др соседского кота х2"/>
             </div>
             <div className="inputWrapper">
                 <label><span>E-mail</span></label>
                 <input type="email" name="email" id="email" onChange={formik.handleChange} value={formik.values.email}
                        placeholder=" = ^ᴗ^ = "/>
             </div>
+            <p className="registration-invite">Принимаю <a href="/agreement" target='_blank'>соглашение</a>.</p>
             <div className="send-form-block">
                 <button className="send-btn" type="submit">Вперёд!</button>
                 {loading ? (

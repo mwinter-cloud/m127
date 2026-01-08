@@ -34,7 +34,7 @@
 	opacity: .9;
 }
 .registration-page .registration-window {
-	padding: 50px 8%;
+	padding: 30px 5% 30px 8%;
 	background: var(--transparent-background);
 	width: 60%;
 	margin: 0 20% 0 20%;
@@ -120,7 +120,7 @@
 	
 	.registration-page .banner {
 		position: relative;
-		height: 120px;
+		height: 220px;
 	}
 	
 	.profile-create-page p {

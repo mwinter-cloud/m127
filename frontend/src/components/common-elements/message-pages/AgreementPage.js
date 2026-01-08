@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import './style/agreement.css'
 import axios from 'axios'
 import parse from 'html-react-parser'
+import {Link} from 'react-router-dom'
 
 class AgreementPage extends Component {
     constructor(props) {
@@ -48,7 +49,7 @@ class AgreementPage extends Component {
                 <div className="agreement-page night-mode">
                     <header className="main-agreement-header">
                         <img src={this.state.logo} className="small-logo"/>
-                        <h3 className="citename">{this.state.citename?this.state.citename:window.location.hostname}</h3>
+                        <Link to="../"><h3 className="citename">{this.state.citename?this.state.citename:window.location.hostname}</h3></Link>
                         <i className="el-icon-arrow-right"></i>
                         <h3>Соглашение</h3>
                     </header>
