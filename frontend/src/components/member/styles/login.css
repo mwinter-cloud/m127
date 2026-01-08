@@ -4,6 +4,10 @@
     background-size: cover;
 }
 
+.login-page .registration-window {
+	padding: 38px!important;
+}
+
 .login-page .sitename {
     font-size: 13px;
     color: var(--active-color);
