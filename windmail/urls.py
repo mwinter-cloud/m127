@@ -3,11 +3,14 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
-if settings.DEBUG:
-    urlpatterns = static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-urlpatterns += [
+urlpatterns = [
     path('django-admin-page/', admin.site.urls),
     path('api/', include('api.urls')),
     path('', include('frontend.urls')),
 ]
+
+# Добавляем обработку медиа-файлов в режиме отладки
+# Важно: это должно быть после всех остальных маршрутов
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

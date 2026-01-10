@@ -113,8 +113,8 @@ class Room(models.Model):
     author = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='room_author', blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     message = models.TextField(max_length=10000)
-    tags = models.ManyToManyField(Tag, blank='True')
-    saved_by = models.ManyToManyField(User, blank='True')
+    tags = models.ManyToManyField(Tag, blank=True)
+    saved_by = models.ManyToManyField(User, blank=True)
     views = models.IntegerField(default=0)
     color = models.ForeignKey(Color, on_delete=models.SET_NULL, blank=True, null=True)
     cover = models.ImageField(upload_to='rooms/covers', blank=True)
@@ -211,8 +211,8 @@ class Poll(models.Model):
     author = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='poll_author', blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     views = models.IntegerField(default=0)
-    tags = models.ManyToManyField(Tag, blank='True')
-    saved_by = models.ManyToManyField(User, blank='True')
+    tags = models.ManyToManyField(Tag, blank=True)
+    saved_by = models.ManyToManyField(User, blank=True)
     COMMON = 'CMN'
     ADMINISTRATION = 'ADM'
     OFFICIAL = 'OFC'
@@ -264,9 +264,8 @@ class Notification(models.Model):
 class Report(models.Model):
     sender = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='report_sender')
     violator = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='violator')
-    object = models.IntegerField()
-    type = models.IntegerField(default=1) #1-комната,2-опрос
     object = models.IntegerField(default=0)
+    type = models.IntegerField(default=1) #1-комната,2-опрос
     created_at = models.DateTimeField(auto_now_add=True)
 
 #кастомизация
@@ -331,13 +330,11 @@ class Smile(models.Model):
         if self.file:
             img = Image.open(self.file.path)
             if img.format.lower() != 'gif':
-                return False
+                return
             try:
                 img.seek(1)
             except EOFError:
-                return False
-            else:
-                return True
+                return
 
             if img.height > 64 or img.width > 64:
                 output_size = (64, 64)
@@ -420,7 +417,7 @@ class Article(models.Model):
 class ArticleIllustration(models.Model):
     description = models.CharField(max_length=150, blank=True)
     file = models.ImageField(upload_to='illustrations', blank=True)
-    article = models.ForeignKey(Article, on_delete=models.CASCADE, blank='True', default=None, related_name='illustrations')
+    article = models.ForeignKey(Article, on_delete=models.CASCADE, blank=True, default=None, related_name='illustrations')
 
     def save(self, *args, **kwargs):
         super().save()

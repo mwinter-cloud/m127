@@ -168,10 +168,11 @@ class ProfileView(viewsets.ViewSet):
         if not serializer.is_valid():
             return JsonResponse(status=400, data=serializer.errors)
         serializer.save()
-        # выполним подписку на комнату с объявлениями
-        room = get_object_or_404(Room.objects, pk=35)  # эта комната имеет id 35, при смене изменить
-        room.saved_by.add(profile)
-        room.save()
+        # выполним подписку на комнату с объявлениями (служебная комната)
+        room = Room.objects.filter(type=Room.OFC).first()
+        if room:
+            room.saved_by.add(profile)
+            room.save()
         return Response(serializer.data)
 
     def retrieve(self, request, pk):
