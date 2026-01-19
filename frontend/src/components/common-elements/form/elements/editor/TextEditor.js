@@ -71,34 +71,27 @@ export const TextEditor = ({textValue, setText, specialId=null, initialText=null
     const paste = (event) => {
         event.preventDefault()
         textareaRef.current.focus()
-        let selection = window.getSelection()
-        if (selection.rangeCount > 0) {
-            let range = selection.getRangeAt(0)
-            let temp = document.createElement('div')
-            temp.textContent = event.clipboardData.getData('text/plain')
-            range.deleteContents()
-            range.insertNode(temp.firstChild)
-            selection.collapseToEnd()
-            inputTrigger()
-        }
+        let selection = window.getSelection(),
+            range = selection.getRangeAt(0)
+        let temp = document.createElement('div')
+        temp.textContent = event.clipboardData.getData('text/plain')
+        range.deleteContents()
+        range.insertNode(temp.firstChild)
+        selection.collapseToEnd()
+        inputTrigger()
     }
 
     const onKeyDown = (e) => {
         if (e.keyCode === 13) {
-            e.preventDefault()
             textareaRef.current.focus()
-            let selection = window.getSelection()
-            if (selection.rangeCount > 0) {
-                let range = selection.getRangeAt(0)
-                let br = document.createElement('br')
-                range.deleteContents()
-                range.insertNode(br)
-                range.setStartAfter(br)
-                range.collapse(false)
-                selection.removeAllRanges()
-                selection.addRange(range)
-                inputTrigger()
-            }
+            let selection = window.getSelection(),
+                range = selection.getRangeAt(0),
+                temp = document.createElement('br'),
+                insertion = document.createDocumentFragment()
+            range.deleteContents()
+            range.insertNode(insertion)
+            selection.collapseToEnd()
+            inputTrigger()
             return false
         }
         if (e.keyCode === 8) {
@@ -123,7 +116,7 @@ export const TextEditor = ({textValue, setText, specialId=null, initialText=null
 					inputTrigger={inputTrigger} 
 					setSmilesSection={upSmilesSection} />
 				<div className="textarea-block">
-					<div contentEditable onPaste={paste} onKeyDown={onKeyDown} ref={textareaRef} id={specialId} className="editor-textarea" onInput={updateEditor}></div>
+					<div contentEditable onPaste={paste} ref={textareaRef} id={specialId} className="editor-textarea" onInput={updateEditor}></div>
 					<MediaQuery minWidth={801}>
 						<SmileBlock textareaRef={textareaRef.current} smilesSection={smilesSection} />
 					</MediaQuery>

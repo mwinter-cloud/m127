@@ -68,6 +68,7 @@ urlpatterns = [
     path('edit-answer', AnswerView.as_view({'post': 'edit'})),
     path('delete-answer', AnswerView.as_view({'post': 'delete'})),
     path('get-answer/<int:id>', AnswerView.as_view({'get': 'retrieve'})),
+    path('get-latest-answer', AnswerView.as_view({'get': 'latest'})),
     path('hide-answer', AnswerView.as_view({'post': 'hide_answer'})),
     path('restore-answer', AnswerView.as_view({'post': 'restore_answer'})),
     path('delete-room', RoomView.as_view({'post': 'delete'})),

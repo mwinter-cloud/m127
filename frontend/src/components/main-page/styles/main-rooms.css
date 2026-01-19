@@ -6,19 +6,34 @@
     padding-top: 0;
     justify-content: space-between;
     background: var(--dark-background);
-    height: 420px;
-	display: flex;
-	padding: 20px 18%;
+    height: 460px;
+	padding: 20px 15%;
 }
 /* main room carousel */
 .rooms-main .blur-bg {
 	filter: blur(3px);
-	height: 440px;
+	height: 470px;
 	width: 100%;
 	position: absolute;
 	left: 0;
 	top: 0;
-	opacity: .2;
+}
+.rooms-main .blur-bg::after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 500px;
+	background: linear-gradient(to bottom, var(--transparent-background) 0%, var(--background) 100%);
+	pointer-events: none;
+	z-index: 1;
+}
+.day-mode .rooms-main .blur-bg::after {
+	background: linear-gradient(to bottom, #fefefed9 0%, var(--background) 100%);
+}
+.night-mode .rooms-main .blur-bg::after {
+	background: linear-gradient(to bottom, rgba(26, 27, 32, 0.83) 0%, var(--background) 100%);
 }
 .rooms-main .cite-top .blur-bg img {
 	user-select: none;
@@ -105,11 +120,12 @@
 	justify-content: space-between;
 }
 .rooms-main .cite-top h1 {
-    font-weight: 500;
-    font-size: 1em;
+    font-weight: 600;
+    font-size: 1.4em;
 	margin: 0;
 	display: inline-block;
 	color: var(--active-color);
+	padding-right: 10px;
 }
 .rooms-main .cite-top h1 i {
 	color: #888;
@@ -181,15 +197,19 @@
 	width: 31%;
 	position: relative;
 	max-height: 320px;
+	float: right;
+	z-index: 1;
 }
 /* info block */
 .rooms-main .cite-top .info-block {
-    width: 100%;
     height: auto;
-    padding: 8px;
+    padding: 3px 5px;
+	margin-bottom: 8px;
     font-size: .95em;
 	border-radius: 2px;
 	position: relative;
+	z-index: 2;
+	display: inline-block;
     border: 1px solid var(--transparent-border);
 	background: linear-gradient(0deg, rgba(171, 205, 239, 0.0769083) 0%, rgba(171, 205, 239, 0.0396534) 99%);
 }
@@ -229,23 +249,148 @@
 	cursor: inherit;
 	user-select: none;
 }
-.rooms-main .cite-top .transparent-btn {
-	width: 100%;
-	padding: 8px;
-	margin-top: 10px;
-	font-size: 13.5px;
-	border-radius: 2px;
-	transition: .4s;
+.cite-top-item-list {
+	display: flex;
+	z-index: 1;
+  	position: relative;
+	color: var(--color);
+	font-size: 13px;
+	margin-bottom: 8px;
+}
+.cite-top-item-list li {
+	margin-right: 5px;
+	padding: 3px 4px;
+}
+.rooms-main .cite-top .latest-answer-block {
+	display: flex;
+	flex-direction: column;
+	max-height: 320px;
+	padding: 5px;
+	margin-bottom: 10px;
+	background: linear-gradient(0deg, rgba(171, 205, 239, 0.0769083) 0%, rgba(171, 205, 239, 0.0396534) 99%);
+}
+.rooms-main .cite-top .latest-answer-header {
+	display: flex;
+	align-items: center;
+	margin-bottom: 8px;
+	gap: 8px;
+}
+.rooms-main .cite-top .latest-answer-avatar {
+	width: 24px;
+	height: 24px;
+	border-radius: 50%;
+	object-fit: cover;
+	flex-shrink: 0;
+}
+.rooms-main .cite-top .latest-answer-avatar.base-avatar {
+	width: 24px;
+	height: 24px;
+	border-radius: 50%;
+	background: var(--middle-background);
+}
+.rooms-main .cite-top .latest-answer-author-info {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+	flex: 1;
+	min-width: 0;
+}
+.rooms-main .cite-top .latest-answer-author-info span {
+	font-size: 12px;
+	line-height: 1.2em;
+}
+.rooms-main .cite-top .latest-answer-author-info span:first-child {
+	font-weight: 500;
 	color: var(--color);
 }
-.day-mode .rooms-main .cite-top .transparent-btn {
-	border: 1px solid #cfcece;
+.rooms-main .cite-top .latest-answer-time {
+	font-size: 11px;
+	color: var(--pale-color);
 }
-.night-mode .rooms-main .cite-top .transparent-btn {
-	border: 1px solid rgba(255, 255, 255, 0.05);
+.rooms-main .cite-top .latest-answer-content {
+	flex: 1;
+	overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+	position: relative;
 }
-.rooms-main .cite-top .transparent-btn i {
-	margin-right: 5px;
+.rooms-main .cite-top .latest-answer-content .answer-text-wrapper {
+	flex: 1;
+	overflow: visible;
+	position: relative;
+	max-height: 270px;
+}
+.last-answer-container-title {
+	font-weight: 400;
+	font-size: 13px;
+	margin: 0 0 5px 0;
+}
+.rooms-main .cite-top .latest-answer-content .answer-text {
+	font-size: 13px;
+	line-height: 1.4em;
+	color: var(--color);
+	padding-bottom: 20px;
+}
+.rooms-main .cite-top .latest-answer-content .answer-text img,
+.rooms-main .cite-top .latest-answer-content .answer-text * {
+	max-width: 100%;
+	height: auto;
+}
+.rooms-main .cite-top .latest-answer-content .answer-text img {
+	display: block;
+}
+.rooms-main .cite-top .latest-answer-content::-webkit-scrollbar {
+	width: 4px;
+}
+.rooms-main .cite-top .latest-answer-content::-webkit-scrollbar-track {
+	background: transparent;
+}
+.rooms-main .cite-top .latest-answer-content::-webkit-scrollbar-thumb {
+	background: rgba(255, 255, 255, 0.2);
+	border-radius: 2px;
+}
+.rooms-main .cite-top .latest-answer-content::after {
+	content: '';
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 30px;
+	background: linear-gradient(to bottom, rgba(171, 205, 239, 0), rgba(171, 205, 239, 0.0769083) 100%);
+	pointer-events: none;
+}
+.day-mode .rooms-main .cite-top .latest-answer-content .answer-text-wrapper::after {
+	background: linear-gradient(to bottom, rgba(171, 205, 239, 0), rgba(171, 205, 239, 0.0769083) 100%);
+}
+.night-mode .rooms-main .cite-top .latest-answer-content .answer-text-wrapper::after {
+	background: linear-gradient(to bottom, rgba(171, 205, 239, 0), rgba(171, 205, 239, 0.0769083) 100%);
+}
+.rooms-main .cite-top .latest-answer-footer {
+	margin-top: 0;
+	padding-top: 0;
+	border-top: 1px solid var(--transparent-border);
+}
+.latest-answer-footer i {
+	vertical-align: middle;
+}
+.day-mode .rooms-main .cite-top .latest-answer-footer {
+	border-top: 1px solid #cfcece;
+}
+.night-mode .rooms-main .cite-top .latest-answer-footer {
+	border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+.rooms-main .cite-top .latest-answer-footer a {
+	color: var(--active-color);
+	text-decoration: none;
+	font-size: 13px;
+	transition: opacity 0.3s;
+}
+.rooms-main .cite-top .latest-answer-footer a:hover {
+	opacity: 0.7;
+}
+.rooms-main .cite-top .latest-answer-block .loading-icon {
+	text-align: center;
+	padding: 20px;
 }
 .rooms-main .alone-info-btn {
 	margin: 0 20px;
@@ -342,7 +487,7 @@
 }
 
 .star-wars-container .option .voices {
-	font-weidth: 500;
+	font-weight: 500;
 	font-size: 14px;
 	user-select: none;
 }
@@ -437,6 +582,23 @@
 	.rooms-main .cite-top .transparent-btn {
 		height: auto;
 		padding: 15px 5%;
+	}
+
+	.rooms-main .cite-top .latest-answer-block {
+		max-height: 200px;
+		padding: 15px 5%;
+	}
+
+	.rooms-main .cite-top .latest-answer-content .answer-text-wrapper {
+		max-height: 100px;
+	}
+	.rooms-main .cite-top .latest-answer-content .answer-text {
+		padding-bottom: 20px;
+	}
+	.rooms-main .cite-top .latest-answer-content .answer-text img,
+	.rooms-main .cite-top .latest-answer-content .answer-text * {
+		max-width: 100%;
+		height: auto;
 	}
 
 	.rooms-main .cite-top .mobile-info-block {

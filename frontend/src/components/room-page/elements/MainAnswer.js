@@ -4,6 +4,7 @@ import {specialtagstohtml, transformationforshow} from "../../common-elements/fo
 import MediaQuery from 'react-responsive'
 import FullScreenWindow from "../../common-elements/windows/FullScreenWindow"
 import Profile from "../../member/profile/Profile"
+import { Link } from "react-router-dom"
 
 const MainAnswer = ({answer}) => {
     const [profileWindow, setProfileWindow] = useState('closed')
@@ -20,6 +21,11 @@ const MainAnswer = ({answer}) => {
 					<MediaQuery maxWidth={800}>
 						<header className="answer-header">
 							<div className="btn">{answer.created_at}</div>
+							{answer.number && (
+								<Link to={`/answer/${answer.id}`} className="answer-number-link">
+									#{answer.number}
+								</Link>
+							)}
 						</header>
 					</MediaQuery>
 					<div className="author">
@@ -32,6 +38,11 @@ const MainAnswer = ({answer}) => {
 						<MediaQuery minWidth={801}>
 							<header className="answer-header">
 								<div className="btn">{answer.created_at}</div>
+								{answer.number && (
+									<Link to={`/answer/${answer.id}`} className="answer-number-link">
+										#{answer.number}
+									</Link>
+								)}
 							</header>
 						</MediaQuery>
 						<div

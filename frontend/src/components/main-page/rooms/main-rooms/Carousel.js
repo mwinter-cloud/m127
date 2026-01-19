@@ -49,6 +49,14 @@ class Carousel extends Component {
 									src={this.state.rooms[this.state.selected_room].cover}
 									className="picture"/>
 							</Link>
+                            <div className="toggles">
+                                <div className={"toggle " + (this.state.selected_room == 0 ? "active" : null)}
+                                    onClick={this.changeSelectedRoom} data-index="0"></div>
+                                <div className={"toggle " + (this.state.selected_room == 1 ? "active" : null)}
+                                    onClick={this.changeSelectedRoom} data-index="1"></div>
+                                <div className={"toggle " + (this.state.selected_room == 2 ? "active" : null)}
+                                    onClick={this.changeSelectedRoom} data-index="2"></div>
+                            </div>
                             <div className="header-text">
                                 <Link to={"/room/" + this.state.rooms[this.state.selected_room].room.id}>
                                     <h1>{this.state.rooms[this.state.selected_room].room.name}</h1>
@@ -65,6 +73,14 @@ class Carousel extends Component {
 									src={this.state.rooms[0].cover}
 									className="picture"/>
 							</Link>
+                            <div className="toggles">
+                                <div className={"toggle " + (this.state.selected_room == 0 ? "active" : null)}
+                                    onClick={this.changeSelectedRoom} data-index="0"></div>
+                                <div className={"toggle " + (this.state.selected_room == 1 ? "active" : null)}
+                                    onClick={this.changeSelectedRoom} data-index="1"></div>
+                                <div className={"toggle " + (this.state.selected_room == 2 ? "active" : null)}
+                                    onClick={this.changeSelectedRoom} data-index="2"></div>
+                            </div>
                             <div className="header-text">
                                 <Link to={"/room/" + this.state.rooms[this.state.selected_room].room.id}>
                                     <h1>{this.state.rooms[0].room.name}</h1>
@@ -72,14 +88,6 @@ class Carousel extends Component {
                             </div>
                         </article>
                     )}
-                    <div className="toggles">
-                        <div className={"toggle " + (this.state.selected_room == 0 ? "active" : null)}
-                             onClick={this.changeSelectedRoom} data-index="0"></div>
-                        <div className={"toggle " + (this.state.selected_room == 1 ? "active" : null)}
-                             onClick={this.changeSelectedRoom} data-index="1"></div>
-                        <div className={"toggle " + (this.state.selected_room == 2 ? "active" : null)}
-                             onClick={this.changeSelectedRoom} data-index="2"></div>
-                    </div>
                 </div>
             )
         } else {

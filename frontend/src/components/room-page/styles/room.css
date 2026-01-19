@@ -428,18 +428,32 @@
 }
 
 .answer .answer-header {
-    padding: 0 0 4px 0;
+    padding: 0;
     border-bottom: 1px solid var(--transparent-border);
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
 	color: var(--color);
     font-size: 13px;
+}
+
+.answer .answer-header .answer-number-link {
+	color: var(--pale-color);
+	text-decoration: none;
+	font-size: 13px;
+	margin-left: 10px;
+	transition: color 0.2s;
+}
+
+.answer .answer-header .answer-number-link:hover {
+	color: var(--active-color);
+	text-decoration: underline;
 }
 .answer .answer-header .header-btns {
 	display: flex;
 }
 .answer .answer-header .header-btns .btn {
-	margin: 0 0 0 15px;
+	margin: 0 0 0 8px;
 	cursor: pointer!important;
 	background: transparent;
 	border: 0;
@@ -498,7 +512,7 @@
 	padding-right: 0;
 }
 .answers .answer .btn img {
-    height: 14px;
+    height: 21px;
 	vertical-align: middle;
 }
 .answers .answer .like:first-child {
@@ -713,6 +727,48 @@
 
 	.answer .answer-text {
 		padding: 0 0 10px 0;
+	}
+	
+}
+
+/* Стили для страницы ответа */
+.answer-page-container {
+	padding-top: 20px;
+}
+
+.answer-page-room-link {
+	margin-bottom: 20px;
+	padding: 10px 15px;
+	background: var(--middle-background);
+	border-radius: 3px;
+}
+
+.answer-page-room-link a {
+	color: var(--color);
+	text-decoration: none;
+	font-size: 14px;
+	display: flex;
+	align-items: center;
+	transition: color 0.2s;
+}
+
+.answer-page-room-link a:hover {
+	color: var(--active-color);
+}
+
+.answer-page-room-link a i {
+	margin-right: 8px;
+	font-size: 16px;
+}
+
+@media (max-width: 800px) {
+	.answer-page-room-link {
+		padding: 8px 10px;
+		margin-bottom: 15px;
+	}
+	
+	.answer-page-room-link a {
+		font-size: 13px;
 	}
 	
 	.answer .edited-at {

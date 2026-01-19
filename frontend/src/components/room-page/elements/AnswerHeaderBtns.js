@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from "react-router-dom"
 import ThankButton from "./ThankButton"
 import ReportButton from "./ReportButton"
 import WarningButton from "./WarningButton"
@@ -14,7 +15,14 @@ class AnswerHeaderBtns extends Component {
 			if (this.props.member) {
 				return (
 					<header className="answer-header">
-						<div className="btn">{this.props.answer.created_at}</div>
+						<div className="btn">
+							{this.props.answer.created_at}
+							{this.props.answer.number && (
+								<Link to={`/answer/${this.props.answer.id}`} className="answer-number-link">
+									({this.props.answer.number})
+								</Link>
+							)}
+							</div>
 						<div className="header-btns">
 							{this.props.member.id != this.props.answer.author.user.id ?
 								(<ThankButton author_user_id={this.props.answer.author.user.id}
@@ -43,6 +51,11 @@ class AnswerHeaderBtns extends Component {
 			return (
 				<header className="answer-header">
 					<div className="btn">{this.props.answer.created_at}</div>
+					{this.props.answer.number && (
+						<Link to={`/answer/${this.props.answer.id}`} className="answer-number-link">
+							#{this.props.answer.number}
+						</Link>
+					)}
 					<div className="header-btns">
 						{this.props.member.id != this.props.answer.author.user.id ?
 							(this.props.member.profile.is_admin

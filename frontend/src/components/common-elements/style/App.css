@@ -263,3 +263,22 @@ button:focus {
   0% {opacity: 0;}
   100% {opacity: 1;}
 }
+
+.transparent-btn {
+	width: 100%;
+	padding: 8px;
+	margin-bottom: 10px;
+	font-size: 13.5px;
+	border-radius: 2px;
+	transition: .4s;
+	color: var(--color);
+}
+.day-mode .transparent-btn {
+	border: 1px solid #cfcece;
+}
+.night-mode .transparent-btn {
+	border: 1px solid rgba(255, 255, 255, 0.05);
+}
+.transparent-btn i {
+	margin-right: 5px;
+}

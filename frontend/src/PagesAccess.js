@@ -16,6 +16,7 @@ import RoomsPage_wrap from "./store/wraps/base/RoomsPage_wrap"
 import Polls_wrap from "./store/wraps/base/Polls_wrap"
 import {MainPollsTemplate} from "./components/main-page/polls/MainPollsTemplate"
 import Room from "./components/room-page/base/Room"
+import Answer from "./components/answer-page/base/Answer"
 import BaseTemplate from "./components/common-elements/base/BaseTemplate"
 import InfoPage_wrap from "./store/wraps/info-page/InfoPage_wrap"
 import ProfilePage_wrap from "./store/wraps/member/ProfilePage_wrap"
@@ -135,6 +136,7 @@ class PagesAccess extends React.Component {
                                             <Route path=":id" element={<Polls_wrap/>}/>
                                         </Route>
                                         <Route path="room/:id" element={<Room/>}/>
+                                        <Route path="answer/:id" element={<Answer/>}/>
                                         <Route path="profile/:id" element={<ProfilePage_wrap/>}/>
                                         <Route path="settings" element={<Settings/>}/>
                                         <Route path="" element={<RoomsPage_wrap/>}/>

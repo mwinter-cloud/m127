@@ -621,7 +621,7 @@ class VoiceView(viewsets.ViewSet):
                     serializer.save(author=user)
                     return JsonResponse(data, safe=False)
                 else:
-                    return Response('При отправке голоса произошла ошибка. Попробуйте позже :)')
+                    return Response('При отправке голоса произошла ошибка. Попробуй позже.')
         return Response(data)
 
     def get_voices(self, request, poll_id):
@@ -873,6 +873,14 @@ class AnswerView(viewsets.ViewSet):
         answer.type = 1
         answer.save()
         return Response(True)
+
+    def latest(self, request):
+        # Получаем последний answer из всех room (только нормальные, не скрытые)
+        latest_answer = Answer.objects.filter(type=Answer.NORMAL).order_by('-created_at').first()
+        if latest_answer:
+            serializer = FullAnswerSerializer(latest_answer, many=False)
+            return JsonResponse(serializer.data, safe=False)
+        return JsonResponse({}, safe=False)
 
 
 # уведомления

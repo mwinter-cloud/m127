@@ -1,5 +1,6 @@
 import React from "react"
 import ConfirmWindow from "../../common-elements/windows/ConfirmWindow"
+import '../../../../static/frontend/images/madcat.png'
 
 class ReportButton extends React.Component {
     constructor(props) {
@@ -162,7 +163,7 @@ class ReportButton extends React.Component {
                         <ConfirmWindow confirmFunc={this.sendReport} close={this.openConfirmWindow} />)}
                     <div className="btn" onClick={this.openConfirmWindow}>
                         {this.state.is_sended ? (<i className="el-icon-check"></i>) :
-                            (<i className="el-icon-help"></i>)} жалоба
+                            (<><img src='../../../../static/frontend/images/madcat.png'/> !</>)}
                     </div>
                 </>
             )

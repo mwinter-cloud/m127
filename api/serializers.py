@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
+from django.db import models
 from .models import Profile, Room, Tag, Poll, Option, Voice, Comment, Smile, Answer, Color, Notification, \
     Customization, Illustration, Report, Header_room, Carousel_room, Workplan, Update, RoomVoice, \
     ArticleIllustration, Article, Operation, StarWarsVoice
@@ -169,16 +170,44 @@ class HeaderRoomCreateSerializer(serializers.ModelSerializer):
 
 class AnswerSerializer(serializers.ModelSerializer):
     author = MainProfileInfoSerializer(many=False)
+    number = serializers.SerializerMethodField()
+    
+    def get_number(self, obj):
+        # Вычисляем порядковый номер ответа в комнате (отсортированные по дате создания)
+        if obj.room:
+            # Подсчитываем количество ответов, созданных до или в момент создания текущего ответа
+            # Используем <= для учета ответов с той же датой создания
+            count = Answer.objects.filter(
+                room=obj.room,
+                created_at__lte=obj.created_at
+            ).count()
+            return count
+        return 0
+    
     class Meta:
         model = Answer
-        fields = ['id', 'text', 'author', 'room', 'created_at', 'type', 'edited', 'edited_at']
+        fields = ['id', 'text', 'author', 'room', 'created_at', 'type', 'edited', 'edited_at', 'number']
 
 class FullAnswerSerializer(serializers.ModelSerializer):
     author = MainProfileInfoSerializer(many=False)
     room = RoomNameIdSerializer(many=False, read_only=True)
+    number = serializers.SerializerMethodField()
+    
+    def get_number(self, obj):
+        # Вычисляем порядковый номер ответа в комнате (отсортированные по дате создания)
+        if obj.room:
+            # Подсчитываем количество ответов, созданных до или в момент создания текущего ответа
+            # Используем <= для учета ответов с той же датой создания
+            count = Answer.objects.filter(
+                room=obj.room,
+                created_at__lte=obj.created_at
+            ).count()
+            return count
+        return 0
+    
     class Meta:
         model = Answer
-        fields = ['id', 'text', 'author', 'room', 'created_at', 'type']
+        fields = ['id', 'text', 'author', 'room', 'created_at', 'type', 'number']
 
 class CreateAnswerSerializer(serializers.ModelSerializer):
     class Meta:

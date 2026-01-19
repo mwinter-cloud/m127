@@ -12,7 +12,6 @@ class EditorBtns extends React.Component {
         this.addBlock1 = this.addBlock1.bind(this)
         this.addBlock2 = this.addBlock2.bind(this)
         this.addBlock3 = this.addBlock3.bind(this)
-        this.addBlock4 = this.addBlock4.bind(this)
         this.addImage = this.addImage.bind(this)
         this.makeCursive = this.makeCursive.bind(this)
         this.makeBold = this.makeBold.bind(this)
@@ -42,97 +41,64 @@ class EditorBtns extends React.Component {
 
     makeCursive = (e) => {
         this.props.textareaRef.focus()
-        let selection = window.getSelection()
-        if (selection.rangeCount > 0) {
-            let range = selection.getRangeAt(0)
-            let temp = document.createElement('i')
-            range.deleteContents()
-            range.insertNode(temp)
-            range.setStart(temp, 0)
-            range.collapse(true)
-            selection.removeAllRanges()
-            selection.addRange(range)
-            this.props.inputTrigger()
-        }
+        let selection = window.getSelection(),
+            range = selection.getRangeAt(0)
+        let temp = document.createElement('div');
+        temp.textContent = '<i></i>';
+        range.insertNode(temp.firstChild);
+        selection.collapseToEnd()
     }
 
     makeBold = (e) => {
         this.props.textareaRef.focus()
-        let selection = window.getSelection()
-        if (selection.rangeCount > 0) {
-            let range = selection.getRangeAt(0)
-            let temp = document.createElement('b')
-            range.deleteContents()
-            range.insertNode(temp)
-            range.setStart(temp, 0)
-            range.collapse(true)
-            selection.removeAllRanges()
-            selection.addRange(range)
-            this.props.inputTrigger()
-        }
+        let selection = window.getSelection(),
+            range = selection.getRangeAt(0)
+        let temp = document.createElement('div');
+        temp.textContent = '<b></b>';
+        range.insertNode(temp.firstChild);
+        selection.collapseToEnd()
     }
 
     addSpoiler = () => {
         this.props.textareaRef.focus()
-        let selection = window.getSelection()
-        if (selection.rangeCount > 0) {
-            let range = selection.getRangeAt(0)
-            let temp = document.createElement('div')
-            temp.innerHTML = '<div class="spoiler"><header>заголовок</header><main>скрытый текст</main></div>'
-            range.insertNode(temp.firstChild)
-            selection.collapseToEnd()
-            this.props.inputTrigger()
-        }
+        let selection = window.getSelection(),
+            range = selection.getRangeAt(0)
+        let temp = document.createElement('div')
+        temp.textContent = '<div class="spoiler"><header>заголовок</header><main>скрытый текст</main></div>'
+        range.insertNode(temp.firstChild)
+        selection.collapseToEnd()
+        this.props.inputTrigger()
     }
 
     addBlock1 = () => {
         this.props.textareaRef.focus()
-        let selection = window.getSelection()
-        if (selection.rangeCount > 0) {
-            let range = selection.getRangeAt(0)
-            let temp = document.createElement('div')
-            temp.innerHTML = '<div style="border-left: 3px solid rgb(66,178,247); padding: 5px; margin: 5px 0;"></div>'
-            range.insertNode(temp.firstChild)
-            selection.collapseToEnd()
-            this.props.inputTrigger()
-        }
+        let selection = window.getSelection(),
+            range = selection.getRangeAt(0)
+        let temp = document.createElement('div')
+        temp.textContent = '<div style="border-left: 3px solid rgb(66,178,247); padding: 5px; margin: 5px 0;"></div>'
+        range.insertNode(temp.firstChild)
+        selection.collapseToEnd()
+        this.props.inputTrigger()
     }
     addBlock2 = () => {
         this.props.textareaRef.focus()
-        let selection = window.getSelection()
-        if (selection.rangeCount > 0) {
-            let range = selection.getRangeAt(0)
-            let temp = document.createElement('div')
-            temp.innerHTML = '<div class="content-block"></div>'
-            range.insertNode(temp.firstChild)
-            selection.collapseToEnd()
-            this.props.inputTrigger()
-        }
+        let selection = window.getSelection(),
+            range = selection.getRangeAt(0)
+        let temp = document.createElement('div')
+        temp.textContent = '<div class="content-block"></div>'
+        range.insertNode(temp.firstChild)
+        selection.collapseToEnd()
+        this.props.inputTrigger()
     }
     addBlock3 = () => {
         this.props.textareaRef.focus()
-        let selection = window.getSelection()
-        if (selection.rangeCount > 0) {
-            let range = selection.getRangeAt(0)
-            let temp = document.createElement('div')
-            temp.innerHTML = '<div style="border-color: #6694a2; padding: 5px; margin: 5px 0;"></div>'
-            range.insertNode(temp.firstChild)
-            selection.collapseToEnd()
-            this.props.inputTrigger()
-        }
-    }
-    addBlock4 = () => {
-        this.props.textareaRef.focus()
-        let selection = window.getSelection()
-        if (selection.rangeCount > 0) {
-            let range = selection.getRangeAt(0)
-            let temp = document.createElement('div')
-            temp.className = 'color-block'
-            temp.style.background = '#6694a2' // Установлен цвет по умолчанию
-            range.insertNode(temp)
-            selection.collapseToEnd()
-            this.props.inputTrigger()
-        }
+        let selection = window.getSelection(),
+            range = selection.getRangeAt(0)
+        let temp = document.createElement('div')
+        temp.textContent = '<div style="border-color: #6694a2; padding: 5px; margin: 5px 0;"></div>'
+        range.insertNode(temp.firstChild)
+        selection.collapseToEnd()
+        this.props.inputTrigger()
     }
 
     openDesignWin = (e) => {
@@ -181,34 +147,26 @@ class EditorBtns extends React.Component {
 
     selectColor = (color) => {
         this.props.textareaRef.focus()
-        let selection = window.getSelection()
-        if (selection.rangeCount > 0) {
-            let range = selection.getRangeAt(0)
-            let temp = document.createElement('span')
-            temp.className = color
-            range.insertNode(temp)
-            range.setStart(temp, 0)
-            range.collapse(true)
-            selection.removeAllRanges()
-            selection.addRange(range)
-            this.props.inputTrigger()
-            this.setState({
-                design_win_status: 'hide'
-            })
-        }
+        let selection = window.getSelection(),
+            range = selection.getRangeAt(0)
+        let temp = document.createElement('div')
+        temp.textContent = `<span class="${color}"></span>`
+        range.insertNode(temp.firstChild)
+        selection.collapseToEnd()
+        this.props.inputTrigger()
+        this.setState({
+            design_win_status: 'hide'
+        })
     }
 
     addImage = () => {
         this.props.textareaRef.focus()
-        let selection = window.getSelection()
-        if (selection.rangeCount > 0) {
-            let range = selection.getRangeAt(0)
-            let temp = document.createElement('div')
-            temp.innerHTML = '<img src="?"/>'
-            range.insertNode(temp.firstChild)
-            selection.collapseToEnd()
-            this.props.inputTrigger()
-        }
+        let selection = window.getSelection(),
+            range = selection.getRangeAt(0)
+        let temp = document.createElement('div');
+        temp.textContent = '<img src="?"/>';
+        range.insertNode(temp.firstChild);
+        selection.collapseToEnd()
     }
 
     render() {
@@ -232,7 +190,6 @@ class EditorBtns extends React.Component {
 										<li onClick={this.addBlock1}>с полоской</li>
 										<li onClick={this.addBlock2}>с фоном</li>
 										<li onClick={this.addBlock3}>с границей</li>
-										<li onClick={this.addBlock4}>цветной квадрат</li>
 										<li onClick={this.addSpoiler}>спойлер</li>
 									</ul>
 								</>
