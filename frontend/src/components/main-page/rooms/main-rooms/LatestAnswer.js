@@ -15,6 +15,7 @@ class LatestAnswer extends Component {
 
 	componentDidMount() {
 		axios.get(window.location.origin + '/api/get-latest-answer').then(res => {
+			console.log(res)
 			if (res.data && res.data.id) {
 				this.setState({answer: res.data, loading: false})
 			} else {
