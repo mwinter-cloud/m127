@@ -258,8 +258,8 @@
 	margin-bottom: 8px;
 }
 .cite-top-item-list li {
-	margin-right: 5px;
-	padding: 3px 4px;
+	margin-right: 10px;
+	padding: 3px 0;
 }
 .rooms-main .cite-top .latest-answer-block {
 	display: flex;
@@ -569,9 +569,14 @@
 		font-size: 1em;
 	}
 
-	.rooms-main .cite-top .aside {
+	.rooms-main .cite-top .mobile-main-aside {
 		width: 85%;
 		max-height: 100%;
+		float: left;
+		max-height: 320px;
+	}
+	.rooms-main .cite-top .aside {
+		width: 100%;
 	}
 
 	.rooms-main .cite-top .info-block {
@@ -608,7 +613,7 @@
 		left: 0;
 		height: 440px;
 		background: var(--dark-background);
-		padding: 30px 3%;
+		padding: 20px;
 	}
 
 	.rooms-main .cite-top .carousel .toggles {
@@ -657,5 +662,25 @@
 	
 	.rooms-main .blur-bg {
 		display: none;
+	}
+	
+	.cite-top-item-list {
+		display: block;
+		margin-bottom: 10px;
+	}
+	.cite-top-item-list li {
+		width: auto;
+		display: inline-block;
+		margin-bottom: 10px;
+		font-size: 13px;
+		padding: 3px 5px;
+		margin-right: 8px;
+		font-weight: 400;
+		border-radius: 3px;
+		cursor: pointer;
+		border: 1px solid rgba(255, 255, 255, 0.05);
+		color: #888;
+		min-height: 25px;
+		background: linear-gradient(0deg, rgba(171, 205, 239, 0.0769083) 0%, rgba(171, 205, 239, 0.0396534) 99%);
 	}
 }

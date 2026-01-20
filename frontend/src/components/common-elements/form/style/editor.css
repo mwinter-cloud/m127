@@ -449,8 +449,8 @@
     object-fit: contain;
 }
 .sticker {
-    height: 124px;
-    max-width: 124px;
+    height: 124px!important;
+    max-width: 124px!important;
     object-fit: contain;
     user-select: none;
 }

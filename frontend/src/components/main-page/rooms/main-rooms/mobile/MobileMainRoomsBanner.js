@@ -31,7 +31,9 @@ class MobileMainRoomsBanner extends Component {
                                 (<Rating room_id={this.state.selected_room}/>)
                                 : null}
                 {this.state.section == 'rooms' ? null :
-                    (<div className="aside mobile-info-block"><InfoBlock/></div>)}
+                    (<div className="mobile-main-aside mobile-info-block">
+                        <InfoBlock/>
+                    </div>)}
             </header>
         )
     }
