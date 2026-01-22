@@ -307,6 +307,72 @@
 	display: inline-block;
 	padding-top: 10px;
 }
+
+.image-insert-win {
+	padding: 10px;
+}
+
+.image-insert-tabs {
+	display: flex;
+	gap: 8px;
+	margin-bottom: 10px;
+}
+
+.image-insert-tabs button {
+	background: transparent;
+	border: 1px solid var(--transparent-border);
+	color: var(--color);
+	padding: 4px 8px;
+	border-radius: 3px;
+	cursor: pointer;
+	font-family: inherit;
+}
+
+.image-insert-tabs button.active {
+	border-color: var(--active-border);
+}
+
+.image-insert-body {
+	display: flex;
+	gap: 8px;
+	align-items: center;
+}
+
+.image-insert-body input[type="text"] {
+	flex: 1;
+	background: transparent;
+	border: 1px solid var(--transparent-border);
+	color: var(--color);
+	padding: 6px 8px;
+	border-radius: 3px;
+	font-family: inherit;
+	font-size: 13px;
+}
+
+.image-insert-body input[type="file"] {
+	flex: 1;
+}
+
+.image-insert-body button {
+	background: var(--dark-background);
+	border: 1px solid var(--transparent-border);
+	color: var(--color);
+	padding: 6px 10px;
+	border-radius: 3px;
+	cursor: pointer;
+	font-family: inherit;
+}
+
+.image-insert-body button:disabled {
+	opacity: 0.6;
+	cursor: default;
+}
+
+.image-insert-error {
+	margin-top: 8px;
+	font-size: 12px;
+	color: var(--red, #ff6b6b);
+}
 .editor-btn {
     height: 30px;
     width: 30px;
@@ -455,8 +521,8 @@
     user-select: none;
 }
 .stickers-block .sticker {
-    height: 64px;
-    width: 64px;
+    height: 64px!important;
+    width: 64px!important;
     cursor: pointer;
 }
 .stickers-block {

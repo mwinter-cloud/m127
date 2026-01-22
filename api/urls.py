@@ -2,6 +2,7 @@ from django.urls import path
 from .views import UserView, ProfileView, RoomView, TagView, PollView, VoiceView, CommentView, SmileView, \
     AnswerView, ColorView, NotificationView, SearchView, CustomizationView, IllustrationView, OptionView, \
     ReportView, WorkplanView, UpdateView, RoomVoiceView, ArticleView, ArticleIllustrationView, StarWarsView
+from .views import AnswerImageUploadView
 
 urlpatterns = [
     #members
@@ -71,6 +72,7 @@ urlpatterns = [
     path('get-latest-answer', AnswerView.as_view({'get': 'latest'})),
     path('hide-answer', AnswerView.as_view({'post': 'hide_answer'})),
     path('restore-answer', AnswerView.as_view({'post': 'restore_answer'})),
+    path('upload-answer-image', AnswerImageUploadView.as_view({'post': 'create'})),
     path('delete-room', RoomView.as_view({'post': 'delete'})),
     path('is-room-saved/<int:pk>', RoomView.as_view({'get': 'is_saved'})),
     path('save-room', RoomView.as_view({'post': 'save'})),

@@ -22,6 +22,13 @@ from django.db.models import Count
 from random import randint
 from django.template.loader import render_to_string
 from django.core.mail import send_mail
+from django.core.files.base import ContentFile
+from django.core.files.storage import default_storage
+from rest_framework.parsers import MultiPartParser, FormParser
+from PIL import Image, UnidentifiedImageError
+from uuid import uuid4
+import os
+import io
 
 class UserView(viewsets.ViewSet):
     def create(self, request):
@@ -881,6 +888,66 @@ class AnswerView(viewsets.ViewSet):
             serializer = FullAnswerSerializer(latest_answer, many=False)
             return JsonResponse(serializer.data, safe=False)
         return JsonResponse({}, safe=False)
+
+
+class AnswerImageUploadView(viewsets.ViewSet):
+    """
+    Upload image for room text editor and return URL to be inserted as <img src="..."/>.
+
+    Docs:
+    - Django file uploads: https://docs.djangoproject.com/en/4.2/topics/http/file-uploads/
+    - DRF multipart parsing: https://www.django-rest-framework.org/api-guide/parsers/#multipartparser
+    """
+
+    parser_classes = (MultiPartParser, FormParser)
+
+    # Safety limits (client UX + server protection)
+    MAX_BYTES = 5 * 1024 * 1024  # 5MB
+    MAX_SIDE_PX = 2000
+    ALLOWED_FORMATS = {"JPEG": "jpg", "PNG": "png", "GIF": "gif", "WEBP": "webp"}
+
+    def create(self, request):
+        if not request.user.is_authenticated:
+            return JsonResponse(status=403, data={"error": "auth_required"})
+
+        upload = request.FILES.get("image")
+        if upload is None:
+            return JsonResponse(status=400, data={"error": "image_required"})
+
+        if hasattr(upload, "size") and upload.size and upload.size > self.MAX_BYTES:
+            return JsonResponse(status=400, data={"error": "file_too_large"})
+
+        # Validate it's an image and (optionally) resize down to protect UI/perf.
+        try:
+            img = Image.open(upload)
+            img_format = (img.format or "").upper()
+            if img_format not in self.ALLOWED_FORMATS:
+                return JsonResponse(status=400, data={"error": "unsupported_format"})
+
+            # Ensure image is not truncated / corrupt
+            img.verify()
+
+            # Re-open after verify() (Pillow requirement)
+            upload.seek(0)
+            img = Image.open(upload)
+
+            if max(img.size) > self.MAX_SIDE_PX:
+                img.thumbnail((self.MAX_SIDE_PX, self.MAX_SIDE_PX))
+
+            ext = self.ALLOWED_FORMATS[img_format]
+            rel_path = os.path.join("answers", "images", f"{uuid4().hex}.{ext}")
+
+            # Save via storage so MEDIA_* handling stays consistent
+            buf = io.BytesIO()
+            img.save(buf, format=img_format)
+            buf.seek(0)
+            saved_path = default_storage.save(rel_path, ContentFile(buf.read()))
+
+            return JsonResponse({"url": default_storage.url(saved_path)}, safe=False)
+        except UnidentifiedImageError:
+            return JsonResponse(status=400, data={"error": "not_an_image"})
+        except Exception:
+            return JsonResponse(status=500, data={"error": "upload_failed"})
 
 
 # уведомления

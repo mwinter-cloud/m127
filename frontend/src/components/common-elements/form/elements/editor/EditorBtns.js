@@ -4,6 +4,7 @@ import MediaQuery from 'react-responsive'
 import SmileBlock from "./SmileBlock"
 import "../../../../../../static/frontend/stickers-btn.jpg"
 import "../../../../../../static/frontend/smiles-btn.png"
+import axios from "axios"
 
 class EditorBtns extends React.Component {
     constructor(props) {
@@ -12,7 +13,11 @@ class EditorBtns extends React.Component {
         this.addBlock1 = this.addBlock1.bind(this)
         this.addBlock2 = this.addBlock2.bind(this)
         this.addBlock3 = this.addBlock3.bind(this)
-        this.addImage = this.addImage.bind(this)
+        this.openImageWin = this.openImageWin.bind(this)
+        this.insertImageByUrl = this.insertImageByUrl.bind(this)
+        this.onImageUrlChange = this.onImageUrlChange.bind(this)
+        this.onImageFileChange = this.onImageFileChange.bind(this)
+        this.uploadAndInsertImage = this.uploadAndInsertImage.bind(this)
         this.makeCursive = this.makeCursive.bind(this)
         this.makeBold = this.makeBold.bind(this)
         this.closeDesignWin = this.closeDesignWin.bind(this)
@@ -23,6 +28,11 @@ class EditorBtns extends React.Component {
         this.wrapperRef = React.createRef()
         this.state = {
             design_win_status: 'hide',
+            image_mode: 'url', // 'url' | 'file'
+            image_url: '',
+            image_file: null,
+            image_error: null,
+            image_loading: 'loaded', // 'loaded' | 'loading'
         }
     }
 
@@ -159,14 +169,79 @@ class EditorBtns extends React.Component {
         })
     }
 
-    addImage = () => {
+    openImageWin = () => {
+        if (this.state.design_win_status === 'image') {
+            this.setState({design_win_status: 'hide'})
+        } else {
+            this.setState({
+                design_win_status: 'image',
+                image_error: null,
+                image_loading: 'loaded',
+            })
+        }
+    }
+
+    onImageUrlChange = (e) => {
+        this.setState({image_url: e.target.value, image_error: null})
+    }
+
+    onImageFileChange = (e) => {
+        const file = e.target.files && e.target.files[0] ? e.target.files[0] : null
+        this.setState({image_file: file, image_error: null})
+    }
+
+    insertImageByUrl = () => {
+        const url = (this.state.image_url || '').trim()
+        if (!url) {
+            this.setState({image_error: 'Введите URL изображения.'})
+            return
+        }
+        // very light validation; server-side validation is for file uploads
+        if (!/^https?:\/\//i.test(url) && !/^\/media\//i.test(url)) {
+            this.setState({image_error: 'URL должен начинаться с http(s):// или /media/.'})
+            return
+        }
+
         this.props.textareaRef.focus()
-        let selection = window.getSelection(),
-            range = selection.getRangeAt(0)
-        let temp = document.createElement('div');
-        temp.textContent = '<img src="?"/>';
-        range.insertNode(temp.firstChild);
+        const selection = window.getSelection()
+        const range = selection.getRangeAt(0)
+        const temp = document.createElement('div')
+        temp.textContent = `<img src="${url}"/>`
+        range.insertNode(temp.firstChild)
         selection.collapseToEnd()
+        this.props.inputTrigger()
+        this.closeDesignWin()
+        this.setState({image_url: '', image_file: null})
+    }
+
+    uploadAndInsertImage = async () => {
+        if (this.state.image_loading === 'loading') return
+        const file = this.state.image_file
+        if (!file) {
+            this.setState({image_error: 'Выберите файл изображения.'})
+            return
+        }
+        this.setState({image_loading: 'loading', image_error: null})
+        try {
+            const formData = new FormData()
+            formData.append('csrfmiddlewaretoken', csrftoken)
+            formData.append('image', file)
+            const {data} = await axios.post(
+                `${window.location.origin}/api/upload-answer-image`,
+                formData,
+                {headers: {'Content-Type': 'multipart/form-data'}}
+            )
+            const url = data && data.url ? data.url : null
+            if (!url) {
+                this.setState({image_error: 'Сервер не вернул ссылку на изображение.'})
+                return
+            }
+            this.setState({image_url: url}, this.insertImageByUrl)
+        } catch (e) {
+            this.setState({image_error: 'Загрузить изображение не удалось. Попробуйте позже.'})
+        } finally {
+            this.setState({image_loading: 'loaded'})
+        }
     }
 
     render() {
@@ -201,6 +276,57 @@ class EditorBtns extends React.Component {
 									<SmileBlock textareaRef={this.props.textareaRef} smilesSection={this.state.design_win_status} />
 								</>
                             )
+                        } else if (this.state.design_win_status === 'image') {
+                            return (
+                                <>
+                                    <header>Изображение <div className="el-icon-close close-btn" onClick={this.closeDesignWin}></div></header>
+                                    <div className="image-insert-win">
+                                        <div className="image-insert-tabs">
+                                            <button
+                                                type="button"
+                                                className={this.state.image_mode === 'url' ? 'active' : ''}
+                                                onClick={() => this.setState({image_mode: 'url', image_error: null})}
+                                            >
+                                                URL
+                                            </button>
+                                            <button
+                                                type="button"
+                                                className={this.state.image_mode === 'file' ? 'active' : ''}
+                                                onClick={() => this.setState({image_mode: 'file', image_error: null})}
+                                            >
+                                                Файл
+                                            </button>
+                                        </div>
+
+                                        {this.state.image_mode === 'url' ? (
+                                            <div className="image-insert-body">
+                                                <input
+                                                    type="text"
+                                                    placeholder="https://example.com/image.jpg или /media/..."
+                                                    value={this.state.image_url}
+                                                    onChange={this.onImageUrlChange}
+                                                />
+                                                <button type="button" onClick={this.insertImageByUrl}>Вставить</button>
+                                            </div>
+                                        ) : (
+                                            <div className="image-insert-body">
+                                                <input type="file" accept="image/*" onChange={this.onImageFileChange} />
+                                                <button
+                                                    type="button"
+                                                    onClick={this.uploadAndInsertImage}
+                                                    disabled={this.state.image_loading === 'loading'}
+                                                >
+                                                    {this.state.image_loading === 'loading' ? 'Загрузка…' : 'Загрузить и вставить'}
+                                                </button>
+                                            </div>
+                                        )}
+
+                                        {this.state.image_error ? (
+                                            <div className="image-insert-error">{this.state.image_error}</div>
+                                        ) : null}
+                                    </div>
+                                </>
+                            )
                         }
                     })()}
                 </div>
@@ -218,7 +344,7 @@ class EditorBtns extends React.Component {
                                                                        onClick={this.openDesignWin}
                                                                        data-type="blocks"></i>
                         </li>
-                        <li data-title="изображение" onClick={this.addImage} onMouseDown={this.onMouse}><i
+                        <li data-title="изображение" onClick={this.openImageWin} onMouseDown={this.onMouse}><i
                             className="el-icon-picture-outline"></i></li>
                         <MediaQuery minWidth={801}>
                             <li data-title="стикеры" className="block-btn"><img
