@@ -163,7 +163,7 @@ class ReportButton extends React.Component {
                         <ConfirmWindow confirmFunc={this.sendReport} close={this.openConfirmWindow} />)}
                     <div className="btn" onClick={this.openConfirmWindow}>
                         {this.state.is_sended ? (<i className="el-icon-check"></i>) :
-                            (<><img src='../../../../static/frontend/images/madcat.png'/> !</>)}
+                            (<><img src='../../../../static/frontend/images/madcat.png'/></>)}
                     </div>
                 </>
             )

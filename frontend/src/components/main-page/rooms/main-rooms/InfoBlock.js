@@ -23,13 +23,15 @@ export const InfoBlock = () => {
 	return (
 		<>
 			<ul className="cite-top-item-list">
-					<li><Link to="/info-page">Инфо-панель</Link></li>
-					<li><Link to="/poll">Опросы</Link></li>
-					<li>{announcement}</li>
-				</ul>
+				<li><Link to="/info-page">Инфо-панель</Link></li>
+				<li><Link to="/poll">Опросы</Link></li>
+			</ul>
 			<aside className="aside">
 				<LatestAnswer />
 			</aside>
+			<ul className="cite-top-item-list">
+				<li>{announcement}</li>
+			</ul>
 		</>
 	)
 }

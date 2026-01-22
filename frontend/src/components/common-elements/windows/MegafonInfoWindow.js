@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import './style/megafons-page.css'
 import Main from "./megafons/Main"
-import {Payment} from "./megafons/Payment"
 import {Info} from "./megafons/Info"
 import CreateMessage_wrap from "../../../store/wraps/base/CreateMessage_wrap"
 
@@ -29,8 +28,6 @@ class MegafonInfoWindow extends Component {
                     {(() => {
                         if (this.state.section == "main") {
                             return (<Main setSection={this.setSection}/>)
-                        } else if (this.state.section == "payment") {
-                            return (<Payment setSection={this.setSection}/>)
                         } else if (this.state.section == "info") {
                             return (<Info setSection={this.setSection}/>)
                         } else {

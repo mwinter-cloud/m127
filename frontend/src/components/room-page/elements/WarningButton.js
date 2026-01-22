@@ -127,7 +127,7 @@ class WurningButton extends React.Component {
 				<form onSubmit={this.sendWarning}>
 					<button type="submit" className="btn">{this.state.is_sended ?
 						(<AnswerHideBtn answer_id={this.props.answer_id}/>)
-						: (<><img src='../../../../static/frontend/images/madcat.png'/> !</>)}
+						: <img src='../../../../static/frontend/images/madcat.png'/>}
 					</button>
 				</form>
 			)
