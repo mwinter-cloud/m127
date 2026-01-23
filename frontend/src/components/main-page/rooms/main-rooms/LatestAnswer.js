@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import parse from "html-react-parser"
-import {specialtagstohtml, transformationforshow} from "../../../common-elements/form/elements/editor/TextEditor"
+import {parseAnswerHtml} from "../../../common-elements/form/elements/editor/TextEditor"
 import axios from "axios"
 
 class LatestAnswer extends Component {
@@ -56,13 +55,14 @@ class LatestAnswer extends Component {
 						</div>
                         <div className="answer-text-wrapper">
                             <div className="answer-text">
-                                {this.state.answer.text ?
-                                    (parse(transformationforshow(specialtagstohtml(this.state.answer.text)))) : null}
+                                {this.state.answer.text ? (parseAnswerHtml(this.state.answer.text)) : null}
                             </div>
                         </div>
                     </div>
                     <div className="latest-answer-footer">
-                        <Link to={"/room/" + this.state.answer.room.id}>В комнату <i class="el-icon-arrow-right arrow"></i></Link>
+                        <Link to={"/room/" + this.state.answer.room.id}>
+							{this.state.answer.room && this.state.answer.room.name ? this.state.answer.room.name : 'Комната'} <i class="el-icon-arrow-right arrow"></i>
+						</Link>
                     </div>
                 </div>
             </div>

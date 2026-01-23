@@ -950,6 +950,49 @@ class AnswerImageUploadView(viewsets.ViewSet):
             return JsonResponse(status=500, data={"error": "upload_failed"})
 
 
+class AnswerAudioUploadView(viewsets.ViewSet):
+    """
+    Upload audio file for room text editor and return URL to be inserted as <audio src="..."/>.
+
+    Docs:
+    - Django file uploads: https://docs.djangoproject.com/en/4.2/topics/http/file-uploads/
+    - DRF multipart parsing: https://www.django-rest-framework.org/api-guide/parsers/#multipartparser
+    """
+
+    parser_classes = (MultiPartParser, FormParser)
+
+    # Safety limits (client UX + server protection)
+    MAX_BYTES = 50 * 1024 * 1024  # 50MB for audio files
+    ALLOWED_EXTENSIONS = {"mp3", "wav", "ogg", "m4a", "aac", "webm"}
+
+    def create(self, request):
+        if not request.user.is_authenticated:
+            return JsonResponse(status=403, data={"error": "auth_required"})
+
+        upload = request.FILES.get("audio")
+        if upload is None:
+            return JsonResponse(status=400, data={"error": "audio_required"})
+
+        if hasattr(upload, "size") and upload.size and upload.size > self.MAX_BYTES:
+            return JsonResponse(status=400, data={"error": "file_too_large"})
+
+        # Validate file extension
+        try:
+            file_name = upload.name
+            ext = file_name.split('.')[-1].lower() if '.' in file_name else ''
+            
+            if ext not in self.ALLOWED_EXTENSIONS:
+                return JsonResponse(status=400, data={"error": "unsupported_format"})
+
+            # Save audio file
+            rel_path = os.path.join("answers", "audio", f"{uuid4().hex}.{ext}")
+            saved_path = default_storage.save(rel_path, upload)
+
+            return JsonResponse({"url": default_storage.url(saved_path)}, safe=False)
+        except Exception as e:
+            return JsonResponse(status=500, data={"error": "upload_failed"})
+
+
 # уведомления
 class NotificationView(viewsets.ViewSet):
     def list(self, request):

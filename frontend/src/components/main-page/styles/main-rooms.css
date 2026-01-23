@@ -256,6 +256,7 @@
 	color: var(--color);
 	font-size: 13px;
 	margin-bottom: 8px;
+	min-height: 22px;
 }
 .cite-top-item-list li {
 	margin-right: 10px;
@@ -387,6 +388,100 @@
 }
 .rooms-main .cite-top .latest-answer-footer a:hover {
 	opacity: 0.7;
+}
+
+/* Audio player inside LatestAnswer (reuse same styling as in room answers) */
+.rooms-main .cite-top .latest-answer-content .answer-audio-player {
+    margin: 10px 0;
+    max-width: 100%;
+}
+.rooms-main .cite-top .latest-answer-content .answer-audio-cover-row { margin-bottom: 6px; }
+.rooms-main .cite-top .latest-answer-content .answer-audio-cover {
+    width: 30px;
+    height: 30px;
+    border-radius: 3px;
+    object-fit: cover;
+    display: block;
+}
+.rooms-main .cite-top .latest-answer-content .answer-audio-bar {
+    background: #7a4bb3;
+    border-radius: 6px;
+    padding: 6px 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #fff;
+}
+.rooms-main .cite-top .latest-answer-content .answer-audio-btn {
+    width: 26px;
+    height: 26px;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.22);
+    cursor: pointer;
+    flex: 0 0 auto;
+    position: relative;
+}
+.rooms-main .cite-top .latest-answer-content .answer-audio-btn.play::before {
+    content: "";
+    position: absolute;
+    left: 10px;
+    top: 6px;
+    width: 0;
+    height: 0;
+    border-top: 7px solid transparent;
+    border-bottom: 7px solid transparent;
+    border-left: 10px solid #fff;
+}
+.rooms-main .cite-top .latest-answer-content .answer-audio-btn.pause::before,
+.rooms-main .cite-top .latest-answer-content .answer-audio-btn.pause::after {
+    content: "";
+    position: absolute;
+    top: 6px;
+    width: 4px;
+    height: 14px;
+    background: #fff;
+    border-radius: 1px;
+}
+.rooms-main .cite-top .latest-answer-content .answer-audio-btn.pause::before { left: 9px; }
+.rooms-main .cite-top .latest-answer-content .answer-audio-btn.pause::after { left: 15px; }
+.rooms-main .cite-top .latest-answer-content .answer-audio-meta { flex: 1 1 auto; min-width: 0; }
+.rooms-main .cite-top .latest-answer-content .answer-audio-progress input[type="range"] {
+    width: 100%;
+    margin: 0;
+    height: 6px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: linear-gradient(to right, rgba(255,255,255,0.9) var(--progress, 0%), rgba(255,255,255,0.35) var(--progress, 0%));
+    border-radius: 999px;
+    outline: none;
+}
+.rooms-main .cite-top .latest-answer-content .answer-audio-progress input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #fff;
+    border: 0;
+}
+.rooms-main .cite-top .latest-answer-content .answer-audio-progress input[type="range"]::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #fff;
+    border: 0;
+}
+.rooms-main .cite-top .latest-answer-content .answer-audio-time {
+    margin-top: 4px;
+    font-size: 11px;
+    opacity: 0.95;
+    font-variant-numeric: tabular-nums;
+}
+.rooms-main .cite-top .latest-answer-content .answer-audio-error {
+    margin-top: 6px;
+    font-size: 12px;
+    color: var(--red, #ff6b6b);
 }
 .rooms-main .cite-top .latest-answer-block .loading-icon {
 	text-align: center;
@@ -573,7 +668,7 @@
 		width: 85%;
 		max-height: 100%;
 		float: left;
-		max-height: 320px;
+		max-height: 450px;
 	}
 	.rooms-main .cite-top .aside {
 		width: 100%;
@@ -582,6 +677,11 @@
 	.rooms-main .cite-top .info-block {
 		height: auto;
 		padding: 15px 5%;
+	}
+
+	.rooms-main .cite-top .hello-info-text {
+		border: 0;
+		background: transparent;
 	}
 
 	.rooms-main .cite-top .transparent-btn {
@@ -608,7 +708,7 @@
 
 	.rooms-main .cite-top .mobile-info-block {
 		position: absolute!important;
-		z-index: 2;
+		z-index: 10;
 		top: 0;
 		left: 0;
 		height: 440px;

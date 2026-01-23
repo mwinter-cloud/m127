@@ -18,6 +18,11 @@ class EditorBtns extends React.Component {
         this.onImageUrlChange = this.onImageUrlChange.bind(this)
         this.onImageFileChange = this.onImageFileChange.bind(this)
         this.uploadAndInsertImage = this.uploadAndInsertImage.bind(this)
+        this.openAudioWin = this.openAudioWin.bind(this)
+        this.insertAudioByUrl = this.insertAudioByUrl.bind(this)
+        this.onAudioUrlChange = this.onAudioUrlChange.bind(this)
+        this.onAudioFileChange = this.onAudioFileChange.bind(this)
+        this.uploadAndInsertAudio = this.uploadAndInsertAudio.bind(this)
         this.makeCursive = this.makeCursive.bind(this)
         this.makeBold = this.makeBold.bind(this)
         this.closeDesignWin = this.closeDesignWin.bind(this)
@@ -33,6 +38,11 @@ class EditorBtns extends React.Component {
             image_file: null,
             image_error: null,
             image_loading: 'loaded', // 'loaded' | 'loading'
+            audio_mode: 'url', // 'url' | 'file'
+            audio_url: '',
+            audio_file: null,
+            audio_error: null,
+            audio_loading: 'loaded', // 'loaded' | 'loading'
         }
     }
 
@@ -244,6 +254,81 @@ class EditorBtns extends React.Component {
         }
     }
 
+    openAudioWin = () => {
+        if (this.state.design_win_status === 'audio') {
+            this.setState({design_win_status: 'hide'})
+        } else {
+            this.setState({
+                design_win_status: 'audio',
+                audio_error: null,
+                audio_loading: 'loaded',
+            })
+        }
+    }
+
+    onAudioUrlChange = (e) => {
+        this.setState({audio_url: e.target.value, audio_error: null})
+    }
+
+    onAudioFileChange = (e) => {
+        const file = e.target.files && e.target.files[0] ? e.target.files[0] : null
+        this.setState({audio_file: file, audio_error: null})
+    }
+
+    insertAudioByUrl = () => {
+        const url = (this.state.audio_url || '').trim()
+        if (!url) {
+            this.setState({audio_error: 'Введите URL аудиофайла.'})
+            return
+        }
+        // very light validation; server-side validation is for file uploads
+        if (!/^https?:\/\//i.test(url) && !/^\/media\//i.test(url)) {
+            this.setState({audio_error: 'URL должен начинаться с http(s):// или /media/.'})
+            return
+        }
+
+        this.props.textareaRef.focus()
+        const selection = window.getSelection()
+        const range = selection.getRangeAt(0)
+        const temp = document.createElement('div')
+        temp.textContent = `<audio src="${url}" controls></audio>`
+        range.insertNode(temp.firstChild)
+        selection.collapseToEnd()
+        this.props.inputTrigger()
+        this.closeDesignWin()
+        this.setState({audio_url: '', audio_file: null})
+    }
+
+    uploadAndInsertAudio = async () => {
+        if (this.state.audio_loading === 'loading') return
+        const file = this.state.audio_file
+        if (!file) {
+            this.setState({audio_error: 'Выберите аудиофайл.'})
+            return
+        }
+        this.setState({audio_loading: 'loading', audio_error: null})
+        try {
+            const formData = new FormData()
+            formData.append('csrfmiddlewaretoken', csrftoken)
+            formData.append('audio', file)
+            const {data} = await axios.post(
+                `${window.location.origin}/api/upload-answer-audio`,
+                formData,
+                {headers: {'Content-Type': 'multipart/form-data'}}
+            )
+            const url = data && data.url ? data.url : null
+            if (!url) {
+                this.setState({audio_error: 'Сервер не вернул ссылку на аудиофайл.'})
+                return
+            }
+            this.setState({audio_url: url}, this.insertAudioByUrl)
+        } catch (e) {
+            this.setState({audio_error: 'Загрузить аудиофайл не удалось. Попробуйте позже.'})
+        } finally {
+            this.setState({audio_loading: 'loaded'})
+        }
+    }
+
     render() {
         return (
             <>
@@ -327,6 +412,57 @@ class EditorBtns extends React.Component {
                                     </div>
                                 </>
                             )
+                        } else if (this.state.design_win_status === 'audio') {
+                            return (
+                                <>
+                                    <header>Аудио <div className="el-icon-close close-btn" onClick={this.closeDesignWin}></div></header>
+                                    <div className="image-insert-win">
+                                        <div className="image-insert-tabs">
+                                            <button
+                                                type="button"
+                                                className={this.state.audio_mode === 'url' ? 'active' : ''}
+                                                onClick={() => this.setState({audio_mode: 'url', audio_error: null})}
+                                            >
+                                                URL
+                                            </button>
+                                            <button
+                                                type="button"
+                                                className={this.state.audio_mode === 'file' ? 'active' : ''}
+                                                onClick={() => this.setState({audio_mode: 'file', audio_error: null})}
+                                            >
+                                                Файл
+                                            </button>
+                                        </div>
+
+                                        {this.state.audio_mode === 'url' ? (
+                                            <div className="image-insert-body">
+                                                <input
+                                                    type="text"
+                                                    placeholder="https://example.com/audio.mp3 или /media/..."
+                                                    value={this.state.audio_url}
+                                                    onChange={this.onAudioUrlChange}
+                                                />
+                                                <button type="button" onClick={this.insertAudioByUrl}>Вставить</button>
+                                            </div>
+                                        ) : (
+                                            <div className="image-insert-body">
+                                                <input type="file" accept="audio/*" onChange={this.onAudioFileChange} />
+                                                <button
+                                                    type="button"
+                                                    onClick={this.uploadAndInsertAudio}
+                                                    disabled={this.state.audio_loading === 'loading'}
+                                                >
+                                                    {this.state.audio_loading === 'loading' ? 'Загрузка…' : 'Загрузить и вставить'}
+                                                </button>
+                                            </div>
+                                        )}
+
+                                        {this.state.audio_error ? (
+                                            <div className="image-insert-error">{this.state.audio_error}</div>
+                                        ) : null}
+                                    </div>
+                                </>
+                            )
                         }
                     })()}
                 </div>
@@ -346,6 +482,7 @@ class EditorBtns extends React.Component {
                         </li>
                         <li data-title="изображение" onClick={this.openImageWin} onMouseDown={this.onMouse}><i
                             className="el-icon-picture-outline"></i></li>
+                        <li data-title="аудио" onClick={this.openAudioWin} onMouseDown={this.onMouse}><i className="el-icon-microphone"></i></li>
                         <MediaQuery minWidth={801}>
                             <li data-title="стикеры" className="block-btn"><img
                                 src={this.props.smilesSection == "spotti" ?

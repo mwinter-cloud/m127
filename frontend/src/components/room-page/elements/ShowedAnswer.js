@@ -1,6 +1,5 @@
 import React from 'react'
-import parse from "html-react-parser"
-import {specialtagstohtml, transformationforshow} from "../../common-elements/form/elements/editor/TextEditor"
+import {parseAnswerHtml} from "../../common-elements/form/elements/editor/TextEditor"
 
 class ShowedAnswer extends React.Component {
     constructor(props) {
@@ -8,7 +7,7 @@ class ShowedAnswer extends React.Component {
     }
 
     render() {
-        let text = this.props.text ? (parse(String(transformationforshow(specialtagstohtml(this.props.text))))) : '[ ]'
+        let text = this.props.text ? (parseAnswerHtml(this.props.text)) : '[ ]'
         if (this.props.text) {
             return (
                 <div className="showed-msg">{text!="undefined"?text:"[ ]"}</div>

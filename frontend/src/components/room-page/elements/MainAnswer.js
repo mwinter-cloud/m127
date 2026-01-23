@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
-import parse from "html-react-parser"
-import {specialtagstohtml, transformationforshow} from "../../common-elements/form/elements/editor/TextEditor"
+import {parseAnswerHtml} from "../../common-elements/form/elements/editor/TextEditor"
 import MediaQuery from 'react-responsive'
 import FullScreenWindow from "../../common-elements/windows/FullScreenWindow"
 import Profile from "../../member/profile/Profile"
@@ -47,7 +46,7 @@ const MainAnswer = ({answer}) => {
 						</MediaQuery>
 						<div
 							className="answer-text">
-							{parse(transformationforshow(specialtagstohtml(answer.text)))}
+							{parseAnswerHtml(answer.text)}
 						</div>
 					</div>
 				</div>

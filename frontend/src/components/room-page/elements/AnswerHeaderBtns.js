@@ -18,8 +18,7 @@ class AnswerHeaderBtns extends Component {
 						<div className="btn">
 							{this.props.answer.created_at}
 							{this.props.answer.number && (
-								<Link to={`/answer/${this.props.answer.id}`} className="answer-number-link">
-									({this.props.answer.number})
+								<Link to={`/answer/${this.props.answer.id}`} className="answer-number-link">#{this.props.answer.number}
 								</Link>
 							)}
 							</div>

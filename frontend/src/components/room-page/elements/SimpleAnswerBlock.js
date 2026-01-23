@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import parse from "html-react-parser"
-import {specialtagstohtml, transformationforshow} from "../../common-elements/form/elements/editor/TextEditor"
+import {parseAnswerHtml} from "../../common-elements/form/elements/editor/TextEditor"
 import axios from "axios"
 
 class SimpleAnswerBlock extends Component {
@@ -39,7 +38,7 @@ class SimpleAnswerBlock extends Component {
 							</header>
 							<div
 								className="answer-text">{this.state.answer.text ?
-								(parse(transformationforshow(specialtagstohtml(this.state.answer.text)))) : null}
+								(parseAnswerHtml(this.state.answer.text)) : null}
 							</div>
 						</div>
 					</div>

@@ -4,12 +4,19 @@ import SmileBlock from "./SmileBlock"
 import EditorBtns from "./EditorBtns"
 import MediaQuery from 'react-responsive'
 import ShowedAnswer from "../../../../room-page/elements/ShowedAnswer"
+import parse from "html-react-parser"
+import AnswerAudioPlayer from "../../../media/AnswerAudioPlayer"
 
 export function specialtagstohtml(text) {
     if(text) {
         let html = text.replace(new RegExp('&lt;appeal to=([0-9]+) color=([a-z-]*) answer=([0-9]+)&gt;([^`]+?)&lt;/appeal&gt;','g'),'<span class="answer-link $2" data-id="$3">$4</span>')
         html = html.replace(new RegExp('&lt;img src="/media/smiles/([^`]+?).png" class="smile"', 'g'), '<img src="/media/smiles/$1.png" class="smile">')
         html = html.replace(new RegExp('&lt;img src="([^`]+?)"/&gt;', 'g'), '<img src="$1" class="answer-illustration">')
+        // Support optional cover via data-cover="..."
+        html = html.replace(new RegExp('&lt;audio src="([^`]+?)"(?: data-cover="([^`]+?)")? controls&gt;&lt;/audio&gt;', 'g'), (m, src, cover) => {
+            const coverAttr = cover ? ` data-cover="${cover}"` : ''
+            return `<audio src="${src}"${coverAttr} controls class="answer-audio"></audio>`
+        })
         html = html.replace(new RegExp('&lt;div&gt;&lt;/div&gt;', 'g'), '')
         html = html.replace(new RegExp('&lt;p&gt;&lt;/p&gt;', 'g'), '')
         html = html.replace(new RegExp('&lt;b&gt;&lt;/b&gt;', 'g'), '')
@@ -30,6 +37,21 @@ export function transformationforshow(text) {
 export function specialtagsinnotification(text){
     let html = text.replace(new RegExp('&lt;appeal to=([0-9]+) color=([a-z-]+)&gt;([^`]+?), &lt;/appeal&gt;','g'),'')
     return html
+}
+
+export function parseAnswerHtml(text) {
+    if (!text) return null
+    const html = transformationforshow(specialtagstohtml(text))
+    return parse(String(html), {
+        replace: (domNode) => {
+            if (domNode && domNode.name === "audio" && domNode.attribs && domNode.attribs.src) {
+                const src = domNode.attribs.src
+                const coverUrl = domNode.attribs["data-cover"] || null
+                return <AnswerAudioPlayer src={src} coverUrl={coverUrl} />
+            }
+            return undefined
+        },
+    })
 }
 
 export const TextEditor = ({textValue, setText, specialId=null, initialText=null}) => {

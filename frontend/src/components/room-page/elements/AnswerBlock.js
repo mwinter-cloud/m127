@@ -2,8 +2,7 @@ import React, {Component} from "react"
 import FullScreenWindow from "../../common-elements/windows/FullScreenWindow"
 import Profile from "../../member/profile/Profile"
 import {AnswerForm} from "../forms/AnswerForm"
-import parse from "html-react-parser"
-import {specialtagstohtml, transformationforshow} from "../../common-elements/form/elements/editor/TextEditor"
+import {parseAnswerHtml} from "../../common-elements/form/elements/editor/TextEditor"
 import AnswerBtns_wrap from "../../../store/wraps/room-page/AnswerBtns_wrap"
 import AnswerHeaderBtns_wrap from "../../../store/wraps/room-page/AnswerHeaderBtns"
 import MediaQuery from "react-responsive"
@@ -80,7 +79,7 @@ class AnswerBlock extends Component {
 												</MediaQuery>
 												<div
 													className="answer-text">{this.state.text ?
-													(parse(transformationforshow(specialtagstohtml(this.state.text)))) : null}
+													(parseAnswerHtml(this.state.text)) : null}
 												</div>
 												<span>
 													{this.props.answer.edited ? (<span className="edited-at">Ред. {this.props.answer.edited_at}</span>) : null}
