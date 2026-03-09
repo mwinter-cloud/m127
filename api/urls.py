@@ -2,7 +2,7 @@ from django.urls import path
 from .views import UserView, ProfileView, RoomView, TagView, PollView, VoiceView, CommentView, SmileView, \
     AnswerView, ColorView, NotificationView, SearchView, CustomizationView, IllustrationView, OptionView, \
     ReportView, WorkplanView, UpdateView, RoomVoiceView, ArticleView, ArticleIllustrationView, StarWarsView
-from .views import AnswerImageUploadView, AnswerAudioUploadView
+from .views import AnswerImageUploadView, AnswerAudioUploadView, ChatView
 
 urlpatterns = [
     #members
@@ -74,6 +74,9 @@ urlpatterns = [
     path('restore-answer', AnswerView.as_view({'post': 'restore_answer'})),
     path('upload-answer-image', AnswerImageUploadView.as_view({'post': 'create'})),
     path('upload-answer-audio', AnswerAudioUploadView.as_view({'post': 'create'})),
+    path('chats', ChatView.as_view({'get': 'list'})),
+    path('chats/<int:pk>', ChatView.as_view({'get': 'retrieve', 'delete': 'destroy'})),
+    path('chats/<int:pk>/send-message', ChatView.as_view({'post': 'send_message'})),
     path('delete-room', RoomView.as_view({'post': 'delete'})),
     path('is-room-saved/<int:pk>', RoomView.as_view({'get': 'is_saved'})),
     path('save-room', RoomView.as_view({'post': 'save'})),

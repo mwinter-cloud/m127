@@ -51,6 +51,7 @@
 
 .registration-page .simple-form .inputWrapper label {
 	width: 100%;
+	color: var(--active-color);
 }
 
 .registration-page .simple-form:first-child {
@@ -61,7 +62,8 @@
 	width: 100%;
 	margin-top: 6px;
 	background: transparent;
-  	border: 1px solid var(--dark-border);
+	border: 2px solid rgba(255, 255, 255, 0.6);
+	color: white;
 }
 
 .no-banner-window {
@@ -70,11 +72,11 @@
 
 .night-mode .registration-window .send-btn {
 	background: #333438;
+    color: white;
 }
 
 .registration-window .send-btn:hover {
     background-image: var(--gradient-background) !important;
-    color: white;
     cursor: pointer;
 }
 

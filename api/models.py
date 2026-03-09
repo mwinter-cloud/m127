@@ -1,6 +1,7 @@
 from django.db import models
 from PIL import Image
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 class Color(models.Model):
     SITE_COLOR = 'SC'
@@ -446,3 +447,50 @@ class StarWarsVoice(models.Model):
 
     def __str__(self):
         return self.side
+
+class Chat(models.Model):
+    participants = models.ManyToManyField(
+        Profile,
+        related_name="chats",
+        verbose_name="Участники"
+    )
+
+    class Meta:
+        verbose_name = "Чат"
+        verbose_name_plural = "Чаты"
+
+
+class Message(models.Model):
+    chat = models.ForeignKey(
+        Chat,
+        on_delete=models.CASCADE,
+        related_name="messages",
+        verbose_name="Чат", null=True, 
+    )
+    sender = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name="sent_messages",
+        verbose_name="Отправитель"
+    )
+    content = models.TextField(verbose_name="Текст сообщения")
+    timestamp = models.DateTimeField(
+        default=timezone.now,
+        verbose_name="Время отправки"
+    )
+    is_read = models.BooleanField(default=False, verbose_name="Прочитано")
+
+    class Meta:
+        verbose_name = "Сообщение"
+        verbose_name_plural = "Сообщения"
+        indexes = [
+            models.Index(fields=['chat', '-timestamp']),  # Оптимизация запросов
+            models.Index(fields=['sender', '-timestamp']),
+        ]
+
+    def __str__(self):
+        return f"{self.sender.username}: {self.content[:30]}"
+
+    def mark_as_read(self):
+        self.is_read = True
+        self.save(update_fields=['is_read'])

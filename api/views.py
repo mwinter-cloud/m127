@@ -9,13 +9,13 @@ from .serializers import UserRegistrationSerializer, UserSerializer, ProfileSeri
     FullAnswerSerializer, CarouselRoomSerializer, HeaderRoomSerializer, HeaderRoomCreateSerializer, \
     CarouselRoomCreateSerializer, WorkplanSerializer, WorkplanCreateSerializer, ModeratorProfileSerializer, \
     UpdateSerializer, UpdateCreateSerializer, RoomVoiceSerializer, ArticleSerializer, \
-    ArticleIllustrationSerializer, OperationCodeSerializer, StarWarsVoiceSerializer
+    ArticleIllustrationSerializer, OperationCodeSerializer, StarWarsVoiceSerializer, ChatSerializer, ChatListSerializer, MessageSerializer
 from django.http.response import JsonResponse
 from rest_framework import viewsets
 from rest_framework.response import Response
 from .models import Profile, Room, Carousel_room, Header_room, Tag, Poll, Voice, Option, Comment, Smile, Answer, \
     Color, Notification, Customization, Illustration, Report, Workplan, Update, RoomVoice, Article, \
-    ArticleIllustration, Operation, StarWarsVoice
+    ArticleIllustration, Operation, StarWarsVoice, Chat, Message
 from django.shortcuts import get_object_or_404, redirect
 from django.db.models import Q
 from django.db.models import Count
@@ -797,6 +797,80 @@ class CustomizationView(viewsets.ViewSet):
             serializer = ColorSerializer(colors, many=True)
         return JsonResponse({"result": 1, "colors": serializer.data}, safe=False)
 
+class ChatView(viewsets.ViewSet):
+    def list(self, request):
+        if not request.user.is_authenticated:
+            return JsonResponse(status=403, data={"error": "auth_required"})
+
+        profile = request.user.profile
+        queryset = Chat.objects.filter(participants=profile).distinct()
+        serializer = ChatListSerializer(queryset, many=True)
+        return JsonResponse(serializer.data, safe=False)
+
+    def retrieve(self, request, pk=None):
+        if not request.user.is_authenticated:
+            return JsonResponse(status=403, data={"error": "auth_required"})
+
+        try:
+            chat = Chat.objects.get(pk=pk, participants=request.user.profile)
+        except Chat.DoesNotExist:
+            return JsonResponse(status=404, data={"error": "chat_not_found"})
+
+        limit = 30
+        try:
+            requested_limit = int(request.GET.get("limit", 30))
+            limit = max(1, min(requested_limit, 100))
+        except (ValueError, TypeError):
+            limit = 30
+
+        before_id = request.GET.get("before")
+        queryset = chat.messages.order_by("-timestamp", "-id")
+        if before_id:
+            try:
+                before_message = Message.objects.get(pk=before_id, chat=chat)
+            except Message.DoesNotExist:
+                queryset = queryset.none()
+            else:
+                queryset = queryset.filter(
+                    Q(timestamp__lt=before_message.timestamp) |
+                    Q(timestamp=before_message.timestamp, pk__lt=before_message.pk)
+                )
+
+        fetched = list(queryset[: limit + 1])
+        has_more = len(fetched) > limit
+        if has_more:
+            fetched = fetched[:-1]
+        fetched.reverse()
+        serializer = MessageSerializer(fetched, many=True)
+        response_data = {
+            "messages": serializer.data,
+            "has_more": has_more,
+        }
+        if serializer.data:
+            response_data["earliest"] = serializer.data[0]["id"]
+        return JsonResponse(response_data, safe=False)
+
+    def send_message(self, request, pk=None):
+        if not request.user.is_authenticated:
+            return JsonResponse(status=403, data={"error": "auth_required"})
+
+        chat = get_object_or_404(Chat, pk=pk, participants=request.user.profile)
+        content = (request.data.get("content") or "").strip()
+        if not content:
+            return JsonResponse(status=400, data={"error": "content_required"})
+
+        message = Message(chat=chat, sender=request.user, content=content)
+        message.save()
+        serializer = MessageSerializer(message)
+        return JsonResponse(serializer.data, safe=False)
+
+    def destroy(self, request, pk=None):
+        if not request.user.is_authenticated:
+            return JsonResponse(status=403, data={"error": "auth_required"})
+
+        chat = get_object_or_404(Chat, pk=pk, participants=request.user.profile)
+        chat.delete()
+        return JsonResponse({"result": "deleted"}, safe=False)
 
 class AnswerView(viewsets.ViewSet):
     def retrieve(self, request, id):

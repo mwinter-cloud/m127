@@ -1,0 +1,103 @@
+.hello-page {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	color: #fff;
+	padding: 24px;
+}
+
+.hello-page__nav {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	font-size: 0.85rem;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	gap: 12px;
+}
+
+.hello-page__nav-logo {
+	font-weight: 700;
+	font-size: 1rem;
+}
+
+.hello-page__nav-links {
+	display: flex;
+	gap: 16px;
+}
+
+.hello-page__nav-links span {
+	cursor: pointer;
+}
+
+.hello-page__nav-phone {
+	border: none;
+	background: #ffe0f5;
+	color: #0c1a53;
+	padding: 6px 14px;
+	border-radius: 40px;
+	font-weight: 600;
+	cursor: pointer;
+}
+
+.hello-page__hero {
+	margin-top: 60px;
+	align-items: center;
+}
+
+.hello-page__text {
+	max-width: 50%;
+}
+
+.hello-page__subtitle {
+	text-transform: uppercase;
+	font-size: 0.9rem;
+	letter-spacing: 0.2em;
+	margin-bottom: 12px;
+}
+
+.hello-page__title {
+	font-size: clamp(3rem, 6vw, 4.5rem);
+	margin: 0;
+	line-height: 1.1;
+}
+
+.hello-page__accent {
+	font-size: 1rem;
+	margin: 10px 0 0;
+}
+
+.hello-page__cta {
+	margin-top: 24px;
+	padding: 14px 36px;
+	border-radius: 999px;
+	border: none;
+	background: #ff9ed2;
+	color: #0c1a53;
+	font-size: 1rem;
+	font-weight: 600;
+	cursor: pointer;
+	text-transform: lowercase;
+}
+
+.hello-page__cat {
+	margin-top: auto;
+	height: 200px;
+	background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.12), transparent 55%),
+		url("/static/frontend/images/hellobg.jpeg");
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center bottom;
+}
+.hello-page__list {
+	font-size: 1.1em;
+	line-height: 1.8em;
+}
+.hello-page__list li {
+	margin-bottom: 12px;
+}
+.hello-page__list img {
+	height: 24px;
+	margin-right: 5px;
+	vertical-align: middle;
+}

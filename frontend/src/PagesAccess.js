@@ -12,6 +12,7 @@ import AgreementPage from "./components/common-elements/message-pages/AgreementP
 import EmailConfirmPage from "./components/member/registration/email-confirm/EmailConfirmPage"
 import Registration from "./components/member/registration/base/Registration"
 import Login from "./components/member/login/base/Login"
+import HelloPage from "./components/common-elements/message-pages/HelloPage"
 import RoomsPage_wrap from "./store/wraps/base/RoomsPage_wrap"
 import Polls_wrap from "./store/wraps/base/Polls_wrap"
 import {MainPollsTemplate} from "./components/main-page/polls/MainPollsTemplate"
@@ -124,6 +125,7 @@ class PagesAccess extends React.Component {
         return (
             <BrowserRouter>
                 <Routes>
+					<Route path="hello" element={<HelloPage/>}/>
 				{this.state.access_type}
                     {(() => {
                         if (this.state.access_type == 2) {
@@ -169,14 +171,13 @@ class PagesAccess extends React.Component {
                                     <Route path="login" element={<Login/>}/>
                                     <Route path="registration" element={<Registration/>}/>
                                     <Route path="agreement" element={<AgreementPage/>}/>
-                                    <Route path="*" element={<Login />}/>
+                                    <Route path="*" element={<HelloPage />}/>
                                 </>
                             )
                         } else {
                             return ('')
                         }
                     })()}
-                    )}
                     {(() => {
                         // доступ к настройкам сайта
                         if (this.state.is_admin == 1) {

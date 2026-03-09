@@ -157,8 +157,12 @@
     cursor: pointer;
 }
 
+.main-header .chat-section {
+    width: 45px;
+}
+
 /* notifications section */
-.main-header .notifications-section .bell {
+.main-header .notifications-section .bell, .main-header .chat-section i {
     font-size: 1.5em;
     margin-top: -3px;
     user-select: none;

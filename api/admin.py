@@ -2,7 +2,7 @@ from django.contrib import admin
 
 from .models import Customization, Color, Smile, Illustration, Profile, Tag, Carousel_room, Header_room, Room, \
     Poll, Voice, Option, Comment, Answer, Notification, Report, Workplan, Update, RoomVoice, Article, \
-    ArticleIllustration, Operation, StarWarsVoice
+    ArticleIllustration, Operation, StarWarsVoice, Chat, Message
 
 admin.site.register(Customization)
 admin.site.register(Color)
@@ -27,3 +27,5 @@ admin.site.register(Article)
 admin.site.register(ArticleIllustration)
 admin.site.register(Operation)
 admin.site.register(StarWarsVoice)
+admin.site.register(Chat)
+admin.site.register(Message)

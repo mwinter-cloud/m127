@@ -1,6 +1,11 @@
+import json
+import logging
+
 from asgiref.sync import async_to_sync
 from channels.generic.websocket import WebsocketConsumer
-import json
+
+from .models import Chat, Message
+from .serializers import MessageSerializer
 
 class CommonConsumer(WebsocketConsumer):
     def connect(self):
@@ -44,6 +49,74 @@ class CommonConsumer(WebsocketConsumer):
             'style': style,
             'text': text,
         }))
+
+class ChatConsumer(WebsocketConsumer):
+    def connect(self):
+        self.chat_id = str(self.scope["url_route"]["kwargs"].get("chat_id"))
+        self.user = self.scope.get("user")
+        profile = getattr(self.user, "profile", None)
+
+        if not self.chat_id or not self.user or not self.user.is_authenticated or not profile:
+            self.close()
+            return
+
+        try:
+            self.chat = Chat.objects.get(pk=self.chat_id, participants=profile)
+        except Chat.DoesNotExist:
+            logging.warning("Websocket connection attempt to unknown chat %s by %s", self.chat_id, self.user)
+            self.close()
+            return
+
+        self.room_group_name = f"chat_{self.chat_id}"
+        async_to_sync(self.channel_layer.group_add)(
+            self.room_group_name,
+            self.channel_name,
+        )
+        self.accept()
+
+    def disconnect(self, close_code):
+        room_group = getattr(self, "room_group_name", None)
+        if room_group:
+            async_to_sync(self.channel_layer.group_discard)(
+                room_group,
+                self.channel_name,
+            )
+
+    def receive(self, text_data):
+        try:
+            payload = json.loads(text_data)
+        except json.JSONDecodeError:
+            self.send(text_data=json.dumps({"error": "invalid_payload"}))
+            return
+
+        content = (payload.get("content") or "").strip()
+        if not content:
+            self.send(text_data=json.dumps({"error": "content_required"}))
+            return
+
+        try:
+            message = Message(chat=self.chat, sender=self.user, content=content)
+            message.save()
+        except Exception as exc:
+            logging.exception("Failed to save chat message for %s: %s", self.chat_id, exc)
+            self.send(text_data=json.dumps({"error": "message_save_failed"}))
+            return
+
+        serializer = MessageSerializer(message)
+        async_to_sync(self.channel_layer.group_send)(
+            self.room_group_name,
+            {
+                "type": "chat_message",
+                "message": serializer.data,
+            },
+        )
+
+    def chat_message(self, event):
+        message_data = event.get("message")
+        if not message_data:
+            return
+
+        self.send(text_data=json.dumps({"type": "chat_message", "message": message_data}))
 
 class PollConsumer(WebsocketConsumer):
     def connect(self):

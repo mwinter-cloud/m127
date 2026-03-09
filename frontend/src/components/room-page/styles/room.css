@@ -62,7 +62,7 @@
 }
 
 .room-page .padding-room-header {
-	padding-top: 145px;
+	padding-top: 100px;
 }
 
 .room-page .room-header img {
@@ -75,17 +75,19 @@
 	display: block;
 	margin-top: 30px;
 	margin-bottom: 25px;
+	width: 100%;
 }
 .room-page .room-header .room-title h2 {
-	font-weight: 500;
-	font-size: 1.3em;
+	font-weight: 400;
+	font-size: 1.5em;
 	display: inline-block;
 }
 .room-page .room-header .border-room-title h2 {
-    padding: 3px 10px;
-    border-radius: 3px;
-	border: 1px solid var(--transparent-border);
+    padding: 15px 15px;
+    border-radius: 3px 3px 0 0;
 	background: var(--transparent-background);
+	margin: 0;
+	width: 100%;
 }
 .room-page .room-header .white {
 	color: var(--color)!important;
@@ -175,14 +177,13 @@
 }
 
 .room-header .options {
-	padding: 5px;
-	margin-bottom: 5px;
-	width: auto;
-	display: inline-block;
+	padding: 0 15px 15px 15px;
+	margin-bottom: 0;
+	width: 100%;
+	display: block;
 	font-size: .8em;
-	border-radius: 3px;
+	border-radius: 0 0 3px 3px;
     color: var(--color);
-	border: 1px solid var(--transparent-border);
 	background: var(--transparent-background);
 }
 
@@ -198,7 +199,7 @@
 	width: auto;
 	cursor: pointer;
 	user-select: none;
-	padding: 0 5px;
+	padding: 0;
 }
 .room-header .options-block {
 	width: auto;
@@ -222,7 +223,7 @@
 	position: relative;
 }
 .first-answer .answer {
-	border-radius: 3px!important;
+	border-radius: 0 0 3px 3px!important;
 }
 .first-answer .answer-text {
 	padding-bottom: 0!important;

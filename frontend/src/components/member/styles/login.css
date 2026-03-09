@@ -2,10 +2,36 @@
 	padding-top: 20px;
     background: var(--LP);
     background-size: cover;
-}
+} 
 
 .login-page .registration-window {
 	padding: 38px!important;
+    border: 0;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    border-radius: 3px;
+    backdrop-filter: blur(2px);
+    background: rgba(26, 27, 32, 0.3);
+}
+
+.login-page .registration-window .blur-bg {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(90deg, #ee5c87, #f1a4b5, #d587b3);
+    opacity: .4;
+}
+
+.login-page .registration-window .content-container {
+    position: relative;
+}
+
+.registration-page .send-btn {
+    width: 100%!important;
+    background: var(--dark-border)!important;
 }
 
 .login-page .sitename {
@@ -14,22 +40,26 @@
 }
 
 .login-page .registration-invite {
-	color: var(--pale-color);
+	color: var(--active-color);
 	font-size: .85em;
     margin-bottom: 5px;
+    text-align: center;
 }
 
 .login-page .registration-invite a {
-	color: var(--color);
+	color: white;
+    font-weight: 500;
 }
 
 .login-page h1 {
-    font-size: 1.8em;
-    margin-bottom: 10px;
-    font-weight: 300;
+    font-size: 1.5em;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0;
+    font-weight: 600;
     position: relative;
     writing-mode: horizontal-tb;
-	color: var(--active-color);
+	color: white;
     left: 0;
     top: 0;
     opacity: .9;
@@ -59,6 +89,7 @@
     margin: 10px 0;
     display: inline-block;
 }
+
 
 @media (max-width: 800px) {
     .login-page {

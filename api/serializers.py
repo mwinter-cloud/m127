@@ -1,9 +1,10 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
 from django.db import models
+from django.utils.timezone import localtime
 from .models import Profile, Room, Tag, Poll, Option, Voice, Comment, Smile, Answer, Color, Notification, \
     Customization, Illustration, Report, Header_room, Carousel_room, Workplan, Update, RoomVoice, \
-    ArticleIllustration, Article, Operation, StarWarsVoice
+    ArticleIllustration, Article, Operation, StarWarsVoice, Chat, Message
 from django.shortcuts import get_object_or_404
 
 # user + profile
@@ -261,6 +262,53 @@ class NotificationCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Notification
         fields = ['id', 'text', 'type', 'created_at', 'object', 'sender', 'recipients', 'viewed']
+
+class ChatParticipantSerializer(serializers.ModelSerializer):
+    avatar = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Profile
+        fields = ['id', 'name', 'avatar']
+
+    def get_avatar(self, participant):
+        return participant.avatar.url if participant.avatar else None
+
+class MessageSerializer(serializers.ModelSerializer):
+    author = serializers.SerializerMethodField()
+    time = serializers.SerializerMethodField()
+    text = serializers.CharField(source="content")
+
+    class Meta:
+        model = Message
+        fields = ['id', 'author', 'time', 'text']
+
+    def get_author(self, message):
+        profile = getattr(message.sender, "profile", None)
+        return profile.name if profile and profile.name else message.sender.username
+
+    def get_time(self, message):
+        localized = localtime(message.timestamp)
+        return localized.strftime("%d.%m.%Y %H:%M")
+
+class ChatListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Chat
+        fields = ['id', 'participants']
+
+    participants = ChatParticipantSerializer(many=True, read_only=True)
+
+class ChatSerializer(serializers.ModelSerializer):
+    messages = serializers.SerializerMethodField()
+
+    def get_messages(self, chat):
+        queryset = chat.messages.order_by("timestamp")
+        return MessageSerializer(queryset, many=True).data
+
+    class Meta:
+        model = Chat
+        fields = ['id', 'participants', 'messages']
+
+    participants = ChatParticipantSerializer(many=True, read_only=True)
 
 #жалобы
 class ReportSerializer(serializers.ModelSerializer):

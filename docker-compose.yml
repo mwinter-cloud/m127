@@ -1,0 +1,23 @@
+version: "3.9"
+
+services:
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+
+  web:
+    build: .
+    command: ["daphne", "-b", "0.0.0.0", "-p", "8000", "windmail.asgi:application"]
+    ports:
+      - "8000:8000"
+    depends_on:
+      - redis
+    volumes:
+      - ./media:/app/media
+    environment:
+      DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY:-changeme}
+      DJANGO_ALLOWED_HOSTS: ${DJANGO_ALLOWED_HOSTS:-*}
+      EMAIL_HOST_PASSWORD: ${EMAIL_HOST_PASSWORD:-secret}
+      REDIS_URL: redis://redis:6379
